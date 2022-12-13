@@ -1,0 +1,101 @@
+/*=================================================
+=================  Hedge  =================
+===================================================
+*/
+WITH SET Merchant AS
+	 EXCEPT(
+	  [Dim Hedge 1].[Type Hedge].[Type Hedge].MEMBERS, 
+	  {[Dim Hedge 1].[Type Hedge].&[CR], [Dim Hedge 1].[Type Hedge].&[CR16], 
+	  [Dim Hedge 1].[Type Hedge].&[CR17], [Dim Hedge 1].[Type Hedge].&[OA]}	
+	 )
+	 SET Reguled AS
+	 EXCEPT(
+	  [Dim Hedge 1].[Type Hedge].[Type Hedge].MEMBERS, 
+	  {[Dim Hedge 1].[Type Hedge].&[PPA], [Dim Hedge 1].[Type Hedge].&[None], 
+	  [Dim Hedge 1].[Type Hedge].&[Unknown]}	
+	 )
+	 SET InExploitation AS
+	 EXCEPT(
+	 [Dim Hedge 1].[In Planif].[In Planif].MEMBERS,
+     [Dim Hedge 1].[In Planif].&[Oui]
+	 )
+	 SET InPlanification AS
+	 EXCEPT(
+	 [Dim Hedge 1].[In Planif].[In Planif].MEMBERS,
+     [Dim Hedge 1].[In Planif].&[Non]
+	 )
+	 SET Solar AS
+	 EXCEPT(
+	 [Dim Hedge 1].[Technology].[Technology].MEMBERS,
+     [Dim Hedge 1].[Technology].&[éolien]
+	 )
+	 SET WindPower AS
+	 EXCEPT(
+	 [Dim Hedge 1].[Technology].[Technology].MEMBERS,
+     [Dim Hedge 1].[Technology].&[solaire]
+	 )
+
+SELECT NON EMPTY ([Dim Date 1].[Date].[Calender Year].ALLMEMBERS
+                 ) ON COLUMNS,
+       NON EMPTY (
+       [Dim Hedge 1].[In Planif].[In Planif].MEMBERS,
+	   [Dim Hedge 1].[Technology].[Technology].MEMBERS,
+	   Merchant,
+       [Measures].[P50 Hedge]) ON ROWS
+FROM [blx dwh];
+GO
+
+SELECT NON EMPTY ([Dim Date 1].[Date].[Calender Year].ALLMEMBERS
+                 ) ON COLUMNS,
+       NON EMPTY (
+       [Dim Hedge 1].[In Planif].[In Planif].MEMBERS,
+	   [Dim Hedge 1].[Technology].[Technology].MEMBERS,
+       [Measures].[P50 Asset]) ON ROWS
+FROM [blx dwh];
+GO 
+/*=================================================
+=============  Production  =================
+===================================================
+*/
+WITH SET Merchant AS
+	 EXCEPT(
+	  [Dim Hedge 1].[Type Hedge].[Type Hedge].MEMBERS, 
+	  {[Dim Hedge 1].[Type Hedge].&[CR], [Dim Hedge 1].[Type Hedge].&[CR16], 
+	  [Dim Hedge 1].[Type Hedge].&[CR17], [Dim Hedge 1].[Type Hedge].&[OA]}	
+	 )
+	 SET Reguled AS
+	 EXCEPT(
+	  [Dim Hedge 1].[Type Hedge].[Type Hedge].MEMBERS, 
+	  {[Dim Hedge 1].[Type Hedge].&[PPA], [Dim Hedge 1].[Type Hedge].&[None], 
+	  [Dim Hedge 1].[Type Hedge].&[Unknown]}	
+	 )
+	 SET InExploitation AS
+	 EXCEPT(
+	 [Dim Hedge 1].[In Planif].[In Planif].MEMBERS,
+     [Dim Hedge 1].[In Planif].&[Oui]
+	 )
+	 SET InPlanification AS
+	 EXCEPT(
+	 [Dim Hedge 1].[In Planif].[In Planif].MEMBERS,
+     [Dim Hedge 1].[In Planif].&[Non]
+	 )
+	 SET Solar AS
+	 EXCEPT(
+	 [Dim Hedge 1].[Technology].[Technology].MEMBERS,
+     [Dim Hedge 1].[Technology].&[éolien]
+	 )
+	 SET WindPower AS
+	 EXCEPT(
+	 [Dim Hedge 1].[Technology].[Technology].MEMBERS,
+     [Dim Hedge 1].[Technology].&[solaire]
+	 )
+
+SELECT NON EMPTY ([Dim Date 1].[Date].[Calender Year].ALLMEMBERS
+                 ) ON COLUMNS,
+       NON EMPTY (
+       [Dim Hedge 1].[In Planif].[In Planif].MEMBERS,
+	   [Dim Hedge 1].[Technology].[Technology].MEMBERS,
+	   Merchant,
+       [Measures].[P50 Asset]) ON ROWS
+FROM [blx dwh];
+GO

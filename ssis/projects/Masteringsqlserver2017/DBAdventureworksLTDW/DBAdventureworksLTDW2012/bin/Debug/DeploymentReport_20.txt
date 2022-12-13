@@ -1,0 +1,67 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [Cube] (Schema)
+       [DW] (Schema)
+       [Staging] (Schema)
+       [SystemLog] (Schema)
+       [Cube].[DimPurchaseOrder] (Table)
+       [Cube].[DimSalesOrder] (Table)
+       [DW].[FactOrders] (Table)
+       [DW].[DimTime] (Table)
+       [DW].[DimProduct] (Table)
+       [DW].[DimOrderProvenance] (Table)
+       [DW].[DimCustomer] (Table)
+       [DW].[DimAddress] (Table)
+       [Staging].[StgSalesOrderHeader] (Table)
+       [Staging].[StgSalesOrderDetail] (Table)
+       [Staging].[StgProductModelProductDescription] (Table)
+       [Staging].[StgProductModel] (Table)
+       [Staging].[StgProductDescription] (Table)
+       [Staging].[StgProduct] (Table)
+       [Staging].[StgCustomerAddress] (Table)
+       [Staging].[StgCustomer] (Table)
+       [Staging].[StgAddress] (Table)
+       [Staging].[StgProductCategory] (Table)
+       [SystemLog].[ExecutionMessageTypes] (Table)
+       [SystemLog].[LoadEnvironments] (Table)
+       [SystemLog].[LoadApplications] (Table)
+       [SystemLog].[ExecutionRejects] (Table)
+       [SystemLog].[ExecutionStatus] (Table)
+       [SystemLog].[ExecutionMessages] (Table)
+       [SystemLog].[ExecutionStatictics] (Table)
+       [SystemLog].[LoadExecutions] (Table)
+       [SystemLog].[Loads] (Table)
+       [DW].[DimAddress_FactOrders_FK1] (Foreign Key)
+       [DW].[DimAddress_FactOrders_FK2] (Foreign Key)
+       [DW].[DimCustomer_FactOrders_FK1] (Foreign Key)
+       [DW].[DimOrderProvenance_FactOrders_FK1] (Foreign Key)
+       [DW].[DimProduct_FactOrders_FK1] (Foreign Key)
+       [DW].[DimTime_FactOrders_FK1] (Foreign Key)
+       [DW].[DimTime_FactOrders_FK2] (Foreign Key)
+       [DW].[DimTime_FactOrders_FK3] (Foreign Key)
+       [SystemLog].[FK_LoadExecutionRejects_To_LoadExecutions] (Foreign Key)
+       [SystemLog].[FK_ExecutionMessages_To_LoadExecutions] (Foreign Key)
+       [SystemLog].[FK_ExecutionMessages_to_ExecutionMessageTypes] (Foreign Key)
+       [SystemLog].[FK_ExecutionStatictics_To_LoadExecutions] (Foreign Key)
+       [SystemLog].[FK_Executions_To_Loads] (Foreign Key)
+       [SystemLog].[FK_Executions_To_ExectionStatus] (Foreign Key)
+       [SystemLog].[FK_Executions_To_LoadEnvironment] (Foreign Key)
+       [SystemLog].[FK_Loads_To_LoadApplications] (Foreign Key)
+       [SystemLog].[FK_Loads_To_ExectionStatus] (Foreign Key)
+       [Cube].[DimTime] (View)
+       [Cube].[FactOrders] (View)
+       [dbo].[ParsePipeline] (Function)
+       [SystemLog].[CloseLoadExecution] (Procedure)
+       [SystemLog].[OpenLoadExecution] (Procedure)
+
+** Supporting actions

@@ -1,0 +1,468 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/5/2022 11:50:01 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-JDQLDT1"
+  DTS:CreatorName="DESKTOP-JDQLDT1\nherm"
+  DTS:DTSID="{A8B62C04-6AEF-4CE5-B6A7-08662421C897}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="StgExcFromCloudDW"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{14B84700-F746-4AEA-A9EC-A321A2A94282}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[cmgr_Hadoop_Sandbox]"
+      DTS:CreationName="Hadoop"
+      DTS:DTSID="{E2D8D356-31E2-440E-9BF5-77D7C6E87227}"
+      DTS:ObjectName="cmgr_Hadoop_Sandbox">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionName">@[$Project::cmgr_Hadoop_Sandbox]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <HadoopConnectionManager
+          ConnectionString="WebHdfsHost=127.0.0.1;WebHdfsPort=50070;WebHdfsUserName=admin;WebHCatHost=127.0.0.1;WebHCatPort=50111;WebHCatUser=admin;EnableWebHdfs=True;EnableWebHCat=False;WebHdfsAuthType=Basic;WebHdfsDomain=;WebHCatAuthType=Basic;WebHCatDomain=;WebHdfsIsHttps=False;WebHCatIsHttps=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="20"
+      DTS:DTSID="{F2A5AF0C-FAA7-4066-B98B-62EA7DD6DDFB}"
+      DTS:ObjectName="LoadExecutionId"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="20"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{787BE8A4-61B3-42E8-9467-889542A5D5FE}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\abd_src_blxdatalake_Fact"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="© Microsoft Corporation; All Rights Reserved;"
+              description="Extracts data from a blob in Azure Storage. The supported file formats are: Text and Avro. To work with Azure Data Lake Storage Gen2, use Flexible File Source with Azure Storage Connection Manager instead."
+              name="abd_src_blxdatalake_Fact"
+              usesDispositions="true"
+              validateExternalMetadata="False">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The name of blob container"
+                  expressionType="Notify"
+                  name="Blob Container">excesrc</property>
+                <property
+                  dataType="System.String"
+                  description="The full name of blob"
+                  expressionType="Notify"
+                  name="Blob Name">table_faits.txt</property>
+                <property
+                  dataType="System.Int32"
+                  description="The format of blob file"
+                  name="Blob Format"
+                  typeConverter="Microsoft.SqlServer.IntegrationService.CloudComponents.Utilities.AzBlobFormatEnumStringConverter">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Compress File"
+                  name="Compress File">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="The compression type"
+                  name="Compression Type"
+                  typeConverter="Microsoft.SqlServer.IntegrationService.CloudComponents.Utilities.AzCompressionTypeEnumStringConverter">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The compression level"
+                  name="Compression Level"
+                  typeConverter="Microsoft.SqlServer.IntegrationService.CloudComponents.Utilities.AzCompressionLevelEnumStringConverter">0</property>
+                <property
+                  dataType="System.String"
+                  description="The character used to delimit columns in text file"
+                  name="Column Delimiter">;</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Column names in the first data row"
+                  name="First Row as Column Names">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">AzBlobSrc</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\abd_src_blxdatalake_Fact.Connections[Azure Storage]"
+                  connectionManagerID="{68B8B46B-D71F-4AA3-B46C-EA0387B0395B}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[cmgr_AsureStorage_datalake]"
+                  description="Connection Manager for Azure Storage"
+                  name="Azure Storage" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\abd_src_blxdatalake_Fact.Outputs[Output]"
+                  name="Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\abd_src_blxdatalake_Fact.Outputs[Output].Columns[id&#x9;hedge_id&#x9;asset_id&#x9;projet_id&#x9;projet&#x9;type_hedge&#x9;date&#x9;ann�e&#x9;trimestre&#x9;mois&#x9;p50_hedge&#x9;p90_hedge&#x9;delivery_period&#x9;p50_asset&#x9;p90_asset&#x9;settlement_price&#x9;contract_price]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\abd_src_blxdatalake_Fact.Outputs[Output].ExternalColumns[id&#x9;hedge_id&#x9;asset_id&#x9;projet_id&#x9;projet&#x9;type_hedge&#x9;date&#x9;ann�e&#x9;trimestre&#x9;mois&#x9;p50_hedge&#x9;p90_hedge&#x9;delivery_period&#x9;p50_asset&#x9;p90_asset&#x9;settlement_price&#x9;contract_price]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\abd_src_blxdatalake_Fact.Outputs[Output].Columns[id&#x9;hedge_id&#x9;asset_id&#x9;projet_id&#x9;projet&#x9;type_hedge&#x9;date&#x9;ann�e&#x9;trimestre&#x9;mois&#x9;p50_hedge&#x9;p90_hedge&#x9;delivery_period&#x9;p50_asset&#x9;p90_asset&#x9;settlement_price&#x9;contract_price]"
+                      name="id&#x9;hedge_id&#x9;asset_id&#x9;projet_id&#x9;projet&#x9;type_hedge&#x9;date&#x9;ann�e&#x9;trimestre&#x9;mois&#x9;p50_hedge&#x9;p90_hedge&#x9;delivery_period&#x9;p50_asset&#x9;p90_asset&#x9;settlement_price&#x9;contract_price"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\abd_src_blxdatalake_Fact.Outputs[Output].ExternalColumns[id&#x9;hedge_id&#x9;asset_id&#x9;projet_id&#x9;projet&#x9;type_hedge&#x9;date&#x9;ann�e&#x9;trimestre&#x9;mois&#x9;p50_hedge&#x9;p90_hedge&#x9;delivery_period&#x9;p50_asset&#x9;p90_asset&#x9;settlement_price&#x9;contract_price]"
+                      dataType="wstr"
+                      length="255"
+                      name="id&#x9;hedge_id&#x9;asset_id&#x9;projet_id&#x9;projet&#x9;type_hedge&#x9;date&#x9;ann�e&#x9;trimestre&#x9;mois&#x9;p50_hedge&#x9;p90_hedge&#x9;delivery_period&#x9;p50_asset&#x9;p90_asset&#x9;settlement_price&#x9;contract_price" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\abd_src_blxdatalake_Fact.Outputs[Error output]"
+                  isErrorOut="true"
+                  name="Error output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\abd_src_blxdatalake_Fact.Outputs[Error output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\abd_src_blxdatalake_Fact.Outputs[Error output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\abd_src_blxdatalake_Fact.Outputs[Error output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\abd_src_blxdatalake_Fact.Outputs[Error output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\abd_src_blxdatalake_Fact.Outputs[Error output].Columns[id&#x9;hedge_id&#x9;asset_id&#x9;projet_id&#x9;projet&#x9;type_hedge&#x9;date&#x9;ann�e&#x9;trimestre&#x9;mois&#x9;p50_hedge&#x9;p90_hedge&#x9;delivery_period&#x9;p50_asset&#x9;p90_asset&#x9;settlement_price&#x9;contract_price]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\abd_src_blxdatalake_Fact.Outputs[Error output].Columns[id&#x9;hedge_id&#x9;asset_id&#x9;projet_id&#x9;projet&#x9;type_hedge&#x9;date&#x9;ann�e&#x9;trimestre&#x9;mois&#x9;p50_hedge&#x9;p90_hedge&#x9;delivery_period&#x9;p50_asset&#x9;p90_asset&#x9;settlement_price&#x9;contract_price]"
+                      name="id&#x9;hedge_id&#x9;asset_id&#x9;projet_id&#x9;projet&#x9;type_hedge&#x9;date&#x9;ann�e&#x9;trimestre&#x9;mois&#x9;p50_hedge&#x9;p90_hedge&#x9;delivery_period&#x9;p50_asset&#x9;p90_asset&#x9;settlement_price&#x9;contract_price" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\der_LoadExecutionId"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="der_LoadExecutionId"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\der_LoadExecutionId.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\der_LoadExecutionId.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Data Flow Task\der_LoadExecutionId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Data Flow Task\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]"
+                      name="LoadExecutionId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[$Package::LoadExecutionId]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[$Package::LoadExecutionId]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Data Flow Task\der_LoadExecutionId.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Data Flow Task\der_LoadExecutionId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\hfs_dst_Fact"
+              componentClassID="Microsoft.ManagedComponentHost"
+              description="Loads data into a file in HDFS. The supported file formats are: Text, Avro, Orc."
+              name="hfs_dst_Fact"
+              validateExternalMetadata="False">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The name of HDFS file"
+                  expressionType="Notify"
+                  name="FilePath">/excelsrc/in/table_faits.txt</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Column names in the first data row"
+                  expressionType="Notify"
+                  name="FirstRowAsColumnNames">true</property>
+                <property
+                  dataType="System.String"
+                  description="The character used to delimit columns in text file"
+                  expressionType="Notify"
+                  name="ColumnDelimiter">,</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Enable batch mode"
+                  expressionType="Notify"
+                  name="IsBatchMode">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Batch size"
+                  expressionType="Notify"
+                  name="BatchSize">10000</property>
+                <property
+                  dataType="System.Int32"
+                  description="File Format"
+                  expressionType="Notify"
+                  name="FileFormat">0</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">HdfsDest</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\hfs_dst_Fact.Connections[Hadoop Connection Manager]"
+                  connectionManagerID="Package.ConnectionManagers[cmgr_Hadoop_Sandbox]"
+                  connectionManagerRefId="Package.ConnectionManagers[cmgr_Hadoop_Sandbox]"
+                  name="Hadoop Connection Manager" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\hfs_dst_Fact.Inputs[Input]"
+                  hasSideEffects="true"
+                  name="Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\hfs_dst_Fact.Inputs[Input].Columns[id&#x9;hedge_id&#x9;asset_id&#x9;projet_id&#x9;projet&#x9;type_hedge&#x9;date&#x9;ann�e&#x9;trimestre&#x9;mois&#x9;p50_hedge&#x9;p90_hedge&#x9;delivery_period&#x9;p50_asset&#x9;p90_asset&#x9;settlement_price&#x9;contract_price]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="id&#x9;hedge_id&#x9;asset_id&#x9;projet_id&#x9;projet&#x9;type_hedge&#x9;date&#x9;ann�e&#x9;trimestre&#x9;mois&#x9;p50_hedge&#x9;p90_hedge&#x9;delivery_period&#x9;p50_asset&#x9;p90_asset&#x9;settlement_price&#x9;contract_price"
+                      externalMetadataColumnId="Package\Data Flow Task\hfs_dst_Fact.Inputs[Input].ExternalColumns[id&#x9;hedge_id&#x9;asset_id&#x9;projet_id&#x9;projet&#x9;type_hedge&#x9;date&#x9;ann�e&#x9;trimestre&#x9;mois&#x9;p50_hedge&#x9;p90_hedge&#x9;delivery_period&#x9;p50_asset&#x9;p90_asset&#x9;settlement_price&#x9;contract_price]"
+                      lineageId="Package\Data Flow Task\abd_src_blxdatalake_Fact.Outputs[Output].Columns[id&#x9;hedge_id&#x9;asset_id&#x9;projet_id&#x9;projet&#x9;type_hedge&#x9;date&#x9;ann�e&#x9;trimestre&#x9;mois&#x9;p50_hedge&#x9;p90_hedge&#x9;delivery_period&#x9;p50_asset&#x9;p90_asset&#x9;settlement_price&#x9;contract_price]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\hfs_dst_Fact.Inputs[Input].Columns[LoadExecutionId]"
+                      cachedDataType="i8"
+                      cachedName="LoadExecutionId"
+                      externalMetadataColumnId="Package\Data Flow Task\hfs_dst_Fact.Inputs[Input].ExternalColumns[LoadExecutionId]"
+                      lineageId="Package\Data Flow Task\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\hfs_dst_Fact.Inputs[Input].ExternalColumns[id&#x9;hedge_id&#x9;asset_id&#x9;projet_id&#x9;projet&#x9;type_hedge&#x9;date&#x9;ann�e&#x9;trimestre&#x9;mois&#x9;p50_hedge&#x9;p90_hedge&#x9;delivery_period&#x9;p50_asset&#x9;p90_asset&#x9;settlement_price&#x9;contract_price]"
+                      dataType="wstr"
+                      length="255"
+                      name="id&#x9;hedge_id&#x9;asset_id&#x9;projet_id&#x9;projet&#x9;type_hedge&#x9;date&#x9;ann�e&#x9;trimestre&#x9;mois&#x9;p50_hedge&#x9;p90_hedge&#x9;delivery_period&#x9;p50_asset&#x9;p90_asset&#x9;settlement_price&#x9;contract_price" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\hfs_dst_Fact.Inputs[Input].ExternalColumns[LoadExecutionId]"
+                      dataType="i8"
+                      name="LoadExecutionId" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Derived Column Output]"
+              endId="Package\Data Flow Task\hfs_dst_Fact.Inputs[Input]"
+              name="Derived Column Output"
+              startId="Package\Data Flow Task\der_LoadExecutionId.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Data Flow Task.Paths[Output]"
+              endId="Package\Data Flow Task\der_LoadExecutionId.Inputs[Derived Column Input]"
+              name="Output"
+              startId="Package\Data Flow Task\abd_src_blxdatalake_Fact.Outputs[Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Data Flow Task"
+          TopLeft="158,45" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="200,42"
+          Id="Package\Data Flow Task\abd_src_blxdatalake_Fact"
+          TopLeft="244,31" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Data Flow Task\hfs_dst_Fact"
+          TopLeft="241,263" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\Data Flow Task\der_LoadExecutionId"
+          TopLeft="245,147" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Output]"
+          TopLeft="344,73">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-10,74"
+              Start="0,0"
+              End="-10,66.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33"
+                    Point2="0,37"
+                    Point3="-4,37" />
+                  <mssgle:LineSegment
+                    End="-6,37" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-6,37"
+                    Point2="-10,37"
+                    Point3="-10,41" />
+                  <mssgle:LineSegment
+                    End="-10,66.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="334,189">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-23.5,74"
+              Start="0,0"
+              End="-23.5,66.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33"
+                    Point2="0,37"
+                    Point3="-4,37" />
+                  <mssgle:LineSegment
+                    End="-19.5,37" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-19.5,37"
+                    Point2="-23.5,37"
+                    Point3="-23.5,41" />
+                  <mssgle:LineSegment
+                    End="-23.5,66.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\abd_src_blxdatalake_Fact">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\hfs_dst_Fact">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,1716 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/18/2022 5:57:33 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-JDQLDT1"
+  DTS:CreatorName="DESKTOP-JDQLDT1\nherm"
+  DTS:DTSID="{87F87C3F-0DA2-428C-8557-B13B976283BF}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="StgAsset"
+  DTS:PackageType="5"
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{DB5F120C-98BD-4667-8F6D-22D278612D46}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[cmgr_DWHStg]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{61D5BD3A-51B8-4668-81BE-C854FD569D47}"
+      DTS:ObjectName="cmgr_DWHStg">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::cmgr_DWHStg]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-JDQLDT1\MSSQLSERVERDWH;Initial Catalog=DWHStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[cmgr_OLTP]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{644B1696-AAD3-4942-B0F3-5A8E6C643E57}"
+      DTS:ObjectName="cmgr_OLTP">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::cmgr_OLTP]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-JDQLDT1\MSSQLSERVERDWH;Initial Catalog=OLTP;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="20"
+      DTS:DTSID="{412A4FF1-3B62-4057-AFFD-5C879E2B7014}"
+      DTS:ObjectName="LoadExecutionId"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="20"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\dft_Staging_StgAsset"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2C1D94C5-D6CB-41B8-A0A0-51E654C73B08}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="dft_Staging_StgAsset"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\dft_Staging_StgAsset\dcnv"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="dcnv"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\dft_Staging_StgAsset\dcnv.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Inputs[Data Conversion Input].Columns[AssetId]"
+                      cachedDataType="i4"
+                      cachedName="AssetId"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[AssetId]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Inputs[Data Conversion Input].Columns[ProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjectId"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[ProjectId]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Inputs[Data Conversion Input].Columns[Project]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="Project"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Project]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Inputs[Data Conversion Input].Columns[Technology]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Technology"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Technology]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Inputs[Data Conversion Input].Columns[Cod]"
+                      cachedDataType="dbDate"
+                      cachedName="Cod"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Cod]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Inputs[Data Conversion Input].Columns[Mw]"
+                      cachedDataType="numeric"
+                      cachedName="Mw"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Mw]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Inputs[Data Conversion Input].Columns[SuccesPct]"
+                      cachedDataType="numeric"
+                      cachedName="SuccesPct"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[SuccesPct]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Inputs[Data Conversion Input].Columns[InstalledPower]"
+                      cachedDataType="numeric"
+                      cachedName="InstalledPower"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[InstalledPower]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Inputs[Data Conversion Input].Columns[Eoh]"
+                      cachedDataType="numeric"
+                      cachedName="Eoh"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Eoh]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Inputs[Data Conversion Input].Columns[DateMerchant]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMerchant"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[DateMerchant]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Inputs[Data Conversion Input].Columns[DismentleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DismentleDate"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[DismentleDate]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Inputs[Data Conversion Input].Columns[Repowering]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Repowering"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Repowering]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Inputs[Data Conversion Input].Columns[DateMsi]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMsi"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[DateMsi]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Inputs[Data Conversion Input].Columns[InPlanif]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="InPlanif"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[InPlanif]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Inputs[Data Conversion Input].Columns[P50]"
+                      cachedDataType="numeric"
+                      cachedName="P50"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[P50]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Inputs[Data Conversion Input].Columns[P90]"
+                      cachedDataType="numeric"
+                      cachedName="P90"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[P90]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Inputs[Data Conversion Input].Columns[LoadExecutionId]"
+                      cachedDataType="i8"
+                      cachedName="LoadExecutionId"
+                      lineageId="Package\dft_Staging_StgAsset\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\dft_Staging_StgAsset\dcnv.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[AssetId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[AssetId]"
+                      name="AssetId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[AssetId]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[ProjectId]"
+                      name="ProjectId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[ProjectId]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="250"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[Project]"
+                      name="Project"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Project]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[Technology]"
+                      name="Technology"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Technology]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[Cod]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[Cod]"
+                      name="Cod"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Cod]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[Mw]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[Mw]"
+                      name="Mw"
+                      precision="5"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Mw]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[SuccesPct]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[SuccesPct]"
+                      name="SuccesPct"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[SuccesPct]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[InstalledPower]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[InstalledPower]"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[InstalledPower]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[Eoh]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[Eoh]"
+                      name="Eoh"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Eoh]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[DateMerchant]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[DateMerchant]"
+                      name="DateMerchant"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[DateMerchant]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[DismentleDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[DismentleDate]"
+                      name="DismentleDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[DismentleDate]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[Repowering]"
+                      name="Repowering"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Repowering]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[DateMsi]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[DateMsi]"
+                      name="DateMsi"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[DateMsi]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[InPlanif]"
+                      name="InPlanif"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[InPlanif]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[P50]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[P50]"
+                      name="P50"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[P50]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[P90]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[P90]"
+                      name="P90"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[P90]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[LoadExecutionId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[LoadExecutionId]"
+                      name="LoadExecutionId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgAsset\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\dft_Staging_StgAsset\dcnv.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_Staging_StgAsset\der_LoadExecutionId"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="der_LoadExecutionId"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\dft_Staging_StgAsset\der_LoadExecutionId.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_Staging_StgAsset\der_LoadExecutionId.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\dft_Staging_StgAsset\der_LoadExecutionId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgAsset\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]"
+                      name="LoadExecutionId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[$Package::LoadExecutionId]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[$Package::LoadExecutionId]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_Staging_StgAsset\der_LoadExecutionId.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\dft_Staging_StgAsset\der_LoadExecutionId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_Staging_StgAsset\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_Staging_StgAsset\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="ole_dest_Staging_StgAsset"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[ExcelMarketStaging].[StgAsset]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[cmgr_DWHStg]"
+                  connectionManagerRefId="Package.ConnectionManagers[cmgr_DWHStg]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].Columns[AssetId]"
+                      cachedDataType="i4"
+                      cachedName="AssetId"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[AssetId]"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[AssetId]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].Columns[ProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjectId"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[ProjectId]"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[ProjectId]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].Columns[Project]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="Project"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[Project]"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[Project]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].Columns[Technology]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Technology"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[Technology]"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[Technology]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].Columns[Cod]"
+                      cachedDataType="dbDate"
+                      cachedName="Cod"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[Cod]"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[Cod]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].Columns[Mw]"
+                      cachedDataType="numeric"
+                      cachedName="Mw"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[Mw]"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[Mw]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].Columns[SuccesPct]"
+                      cachedDataType="numeric"
+                      cachedName="SuccesPct"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[SuccesPct]"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[SuccesPct]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].Columns[InstalledPower]"
+                      cachedDataType="numeric"
+                      cachedName="InstalledPower"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[InstalledPower]"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[InstalledPower]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].Columns[Eoh]"
+                      cachedDataType="numeric"
+                      cachedName="Eoh"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[Eoh]"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[Eoh]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].Columns[DateMerchant]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMerchant"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[DateMerchant]"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[DateMerchant]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].Columns[DismentleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DismentleDate"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[DismentleDate]"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[DismentleDate]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].Columns[Repowering]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Repowering"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[Repowering]"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[Repowering]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].Columns[DateMsi]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMsi"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[DateMsi]"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[DateMsi]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].Columns[InPlanif]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="InPlanif"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[InPlanif]"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[InPlanif]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].Columns[P50]"
+                      cachedDataType="numeric"
+                      cachedName="P50"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[P50]"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[P50]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].Columns[P90]"
+                      cachedDataType="numeric"
+                      cachedName="P90"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[P90]"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[P90]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].Columns[LoadExecutionId]"
+                      cachedDataType="i4"
+                      cachedName="LoadExecutionId"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[LoadExecutionId]"
+                      lineageId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output].Columns[LoadExecutionId]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[AssetId]"
+                      dataType="i4"
+                      name="AssetId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ProjectId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="Project" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Technology" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[Cod]"
+                      dataType="dbDate"
+                      name="Cod" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[Mw]"
+                      dataType="numeric"
+                      name="Mw"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[SuccesPct]"
+                      dataType="numeric"
+                      name="SuccesPct"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[InstalledPower]"
+                      dataType="numeric"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[Eoh]"
+                      dataType="numeric"
+                      name="Eoh"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[DateMerchant]"
+                      dataType="dbDate"
+                      name="DateMerchant" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[DismentleDate]"
+                      dataType="dbDate"
+                      name="DismentleDate" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Repowering" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[DateMsi]"
+                      dataType="dbDate"
+                      name="DateMsi" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="InPlanif" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[P50]"
+                      dataType="numeric"
+                      name="P50"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[P90]"
+                      dataType="numeric"
+                      name="P90"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[ActivityDateTime]"
+                      dataType="dbTimeStamp"
+                      name="ActivityDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input].ExternalColumns[LoadExecutionId]"
+                      dataType="i4"
+                      name="LoadExecutionId" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="ole_src_ExcelMarket_Asset"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT         AssetId, ProjectId, Project, Technology, Cod, Mw, SuccesPct, InstalledPower, Eoh, DateMerchant, DismentleDate, Repowering, DateMsi, InPlanif, P50, P90
+FROM            ExcelMarket.Asset</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[cmgr_OLTP]"
+                  connectionManagerRefId="Package.ConnectionManagers[cmgr_OLTP]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[AssetId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[AssetId]"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[AssetId]"
+                      name="AssetId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[ProjectId]"
+                      length="100"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[ProjectId]"
+                      name="ProjectId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[Project]"
+                      length="250"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Project]"
+                      name="Project"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[Technology]"
+                      length="200"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Technology]"
+                      name="Technology"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Cod]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[Cod]"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Cod]"
+                      name="Cod"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Mw]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[Mw]"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Mw]"
+                      name="Mw"
+                      precision="5"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[SuccesPct]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[SuccesPct]"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[SuccesPct]"
+                      name="SuccesPct"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[InstalledPower]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[InstalledPower]"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[InstalledPower]"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Eoh]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[Eoh]"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Eoh]"
+                      name="Eoh"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[DateMerchant]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[DateMerchant]"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[DateMerchant]"
+                      name="DateMerchant"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[DismentleDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[DismentleDate]"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[DismentleDate]"
+                      name="DismentleDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[Repowering]"
+                      length="100"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[Repowering]"
+                      name="Repowering"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[DateMsi]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[DateMsi]"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[DateMsi]"
+                      name="DateMsi"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[InPlanif]"
+                      length="50"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[InPlanif]"
+                      name="InPlanif"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[P50]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[P50]"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[P50]"
+                      name="P50"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[P90]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[P90]"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].Columns[P90]"
+                      name="P90"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[AssetId]"
+                      dataType="i4"
+                      name="AssetId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ProjectId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="Project" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Technology" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[Cod]"
+                      dataType="dbDate"
+                      name="Cod" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[Mw]"
+                      dataType="numeric"
+                      name="Mw"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[SuccesPct]"
+                      dataType="numeric"
+                      name="SuccesPct"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[InstalledPower]"
+                      dataType="numeric"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[Eoh]"
+                      dataType="numeric"
+                      name="Eoh"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[DateMerchant]"
+                      dataType="dbDate"
+                      name="DateMerchant" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[DismentleDate]"
+                      dataType="dbDate"
+                      name="DismentleDate" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Repowering" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[DateMsi]"
+                      dataType="dbDate"
+                      name="DateMsi" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="InPlanif" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[P50]"
+                      dataType="numeric"
+                      name="P50"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output].ExternalColumns[P90]"
+                      dataType="numeric"
+                      name="P90"
+                      precision="10"
+                      scale="3" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[AssetId]"
+                      dataType="i4"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[AssetId]"
+                      name="AssetId" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[ProjectId]"
+                      name="ProjectId" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[Project]"
+                      name="Project" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[Technology]"
+                      name="Technology" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[Cod]"
+                      dataType="dbDate"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[Cod]"
+                      name="Cod" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[Mw]"
+                      dataType="numeric"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[Mw]"
+                      name="Mw"
+                      precision="5"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[SuccesPct]"
+                      dataType="numeric"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[SuccesPct]"
+                      name="SuccesPct"
+                      precision="7"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[InstalledPower]"
+                      dataType="numeric"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[InstalledPower]"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[Eoh]"
+                      dataType="numeric"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[Eoh]"
+                      name="Eoh"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[DateMerchant]"
+                      dataType="dbDate"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[DateMerchant]"
+                      name="DateMerchant" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[DismentleDate]"
+                      dataType="dbDate"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[DismentleDate]"
+                      name="DismentleDate" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[Repowering]"
+                      name="Repowering" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[DateMsi]"
+                      dataType="dbDate"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[DateMsi]"
+                      name="DateMsi" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[InPlanif]"
+                      name="InPlanif" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[P50]"
+                      dataType="numeric"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[P50]"
+                      name="P50"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[P90]"
+                      dataType="numeric"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[P90]"
+                      name="P90"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\dft_Staging_StgAsset.Paths[Data Conversion Output]"
+              endId="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\dft_Staging_StgAsset\dcnv.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\dft_Staging_StgAsset.Paths[Derived Column Output]"
+              endId="Package\dft_Staging_StgAsset\dcnv.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\dft_Staging_StgAsset\der_LoadExecutionId.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\dft_Staging_StgAsset.Paths[OLE DB Source Output]"
+              endId="Package\dft_Staging_StgAsset\der_LoadExecutionId.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\sql_DeleteCurrentLoadIDData"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{28747CE3-687A-4463-A81A-8A76B1D8BB05}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="sql_DeleteCurrentLoadIDData"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{61D5BD3A-51B8-4668-81BE-C854FD569D47}"
+          SQLTask:SqlStatementSource="DELETE FROM [ExcelMarketStaging].[StgAsset] WHERE [LoadExecutionId] = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::LoadExecutionId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\sql_Truncate_ExcelMarketStaging_StgAsset"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{69B88CD7-5467-4936-8E85-5EDA2BBD98B9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="sql_Truncate_ExcelMarketStaging_StgAsset"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{61D5BD3A-51B8-4668-81BE-C854FD569D47}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [ExcelMarketStaging].[StgAsset];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{10116F7C-176E-49C8-B5E9-A003C78113E8}"
+      DTS:From="Package\sql_DeleteCurrentLoadIDData"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\dft_Staging_StgAsset" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{7F0840E0-4EFD-493F-B881-1693C8F9097A}"
+      DTS:From="Package\sql_Truncate_ExcelMarketStaging_StgAsset"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\dft_Staging_StgAsset" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="179,42"
+          Id="Package\dft_Staging_StgAsset"
+          TopLeft="295,175" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\sql_DeleteCurrentLoadIDData"
+          TopLeft="130,39" />
+        <NodeLayout
+          Size="283,42"
+          Id="Package\sql_Truncate_ExcelMarketStaging_StgAsset"
+          TopLeft="506,42" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="239.5,81">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="116.5,94"
+              Start="0,0"
+              End="116.5,86.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.9003322259136" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,51.9003322259136"
+                    Point2="0,55.9003322259136"
+                    Point3="4,55.9003322259136" />
+                  <mssgle:LineSegment
+                    End="112.5,55.9003322259136" />
+                  <mssgle:CubicBezierSegment
+                    Point1="112.5,55.9003322259136"
+                    Point2="116.5,55.9003322259136"
+                    Point3="116.5,59.9003322259136" />
+                  <mssgle:LineSegment
+                    End="116.5,86.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="647.5,84">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-234.5,91"
+              Start="0,0"
+              End="-234.5,83.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.1162790697674" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,50.1162790697674"
+                    Point2="0,54.1162790697674"
+                    Point3="-4,54.1162790697674" />
+                  <mssgle:LineSegment
+                    End="-230.5,54.1162790697674" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-230.5,54.1162790697674"
+                    Point2="-234.5,54.1162790697674"
+                    Point3="-234.5,58.1162790697674" />
+                  <mssgle:LineSegment
+                    End="-234.5,83.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\dft_Staging_StgAsset">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="206,42"
+          Id="Package\dft_Staging_StgAsset\der_LoadExecutionId"
+          TopLeft="322.75,156" />
+        <NodeLayout
+          Size="206,42"
+          Id="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset"
+          TopLeft="322.75,54" />
+        <NodeLayout
+          Size="206,42"
+          Id="Package\dft_Staging_StgAsset\dcnv"
+          TopLeft="322.75,254" />
+        <NodeLayout
+          Size="206,42"
+          Id="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset"
+          TopLeft="322.75,365" />
+        <EdgeLayout
+          Id="Package\dft_Staging_StgAsset.Paths[OLE DB Source Output]"
+          TopLeft="425.75,96">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\dft_Staging_StgAsset.Paths[Derived Column Output]"
+          TopLeft="425.75,198">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56"
+              Start="0,0"
+              End="0,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\dft_Staging_StgAsset.Paths[Data Conversion Output]"
+          TopLeft="425.75,296">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,69"
+              Start="0,0"
+              End="0,61.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\dft_Staging_StgAsset\ole_src_ExcelMarket_Asset">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\dft_Staging_StgAsset\ole_dest_Staging_StgAsset">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

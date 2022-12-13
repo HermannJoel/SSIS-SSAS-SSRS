@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "ResellerSales", "ResellerSales\ResellerSales.dwproj", "{AFCA9DC6-31F1-438E-92C4-7ACEC11E67EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AFCA9DC6-31F1-438E-92C4-7ACEC11E67EB}.Development|Default.ActiveCfg = Development
+		{AFCA9DC6-31F1-438E-92C4-7ACEC11E67EB}.Development|Default.Build.0 = Development
+		{AFCA9DC6-31F1-438E-92C4-7ACEC11E67EB}.Development|Default.Deploy.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "blxmdp", "blxmdp\blxmdp.dwproj", "{DD2B1102-A7CE-48FC-ACF1-16F66EEE3321}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DD2B1102-A7CE-48FC-ACF1-16F66EEE3321}.Development|Default.ActiveCfg = Development
+		{DD2B1102-A7CE-48FC-ACF1-16F66EEE3321}.Development|Default.Build.0 = Development
+		{DD2B1102-A7CE-48FC-ACF1-16F66EEE3321}.Development|Default.Deploy.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

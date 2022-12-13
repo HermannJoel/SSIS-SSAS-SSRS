@@ -1,0 +1,74 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [SystemLog].[Loads]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The column [SystemLog].[ExecutionMessages].[MessageType] is being dropped, data loss could occur.
+       The column [SystemLog].[Loads].[LoadApplicationId] on table [SystemLog].[Loads] must be added, but the column has no
+         default value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this
+         issue you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of
+         smart-defaults as a deployment option.
+       The column [SystemLog].[Loads].[LoadStatusId] on table [SystemLog].[Loads] must be added, but the column has no default
+         value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue
+         you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of
+         smart-defaults as a deployment option.
+
+** User actions
+     Rename
+       [Staging].[StgAddress].[LoadExecutionId] (Column)
+       [Staging].[StgCustomer].[LoadExecutionId] (Column)
+       [Staging].[StgCustomerAddress].[LoadExecutionId] (Column)
+       [Staging].[StgProduct].[LoadExecutionId] (Column)
+       [Staging].[StgProductCategory].[LoadExecutionId] (Column)
+       [Staging].[StgProductDescription].[LoadExecutionId] (Column)
+       [Staging].[StgProductModel].[LoadExecutionId] (Column)
+       [Staging].[StgProductModelProductDescription].[LoadExecutionId] (Column)
+       [Staging].[StgSalesOrderDetail].[LoadExecutionId] (Column)
+       [Staging].[StgSalesOrderHeader].[LoadExecutionId] (Column)
+       [DW].[DimAddress].[LoadExecutionId] (Column)
+       [DW].[DimCustomer].[LoadExecutionId] (Column)
+       [DW].[DimOrderProvenance].[LoadExecutionId] (Column)
+       [DW].[DimProduct].[LoadExecutionId] (Column)
+       [DW].[FactOrders].[LoadExecutionId] (Column)
+       [DW].[FactOrders].[PurchaseOrderNumber] (Column)
+     Alter
+       [DW].[DimAddress] (Table)
+       [DW].[DimCustomer] (Table)
+       [DW].[DimOrderProvenance] (Table)
+       [DW].[DimProduct] (Table)
+       [DW].[FactOrders] (Table)
+       [Staging].[StgAddress] (Table)
+       [Staging].[StgCustomer] (Table)
+       [Staging].[StgCustomerAddress] (Table)
+       [Staging].[StgProduct] (Table)
+       [Staging].[StgProductCategory] (Table)
+       [Staging].[StgProductDescription] (Table)
+       [Staging].[StgProductModel] (Table)
+       [Staging].[StgProductModelProductDescription] (Table)
+       [Staging].[StgSalesOrderDetail] (Table)
+       [Staging].[StgSalesOrderHeader] (Table)
+       [SystemLog].[ExecutionMessages] (Table)
+     Table rebuild
+       [SystemLog].[Loads] (Table)
+     Create
+       [SystemLog].[LoadApplications] (Table)
+       [SystemLog].[FK_Loads_To_LoadApplications] (Foreign Key)
+       [SystemLog].[FK_Loads_To_ExectionStatus] (Foreign Key)
+       [SystemLog].[CloseLoadExecution] (Procedure)
+       [SystemLog].[OpenLoadExecution] (Procedure)
+
+** Supporting actions
+     Drop
+       [SystemLog].[FK_Executions_To_Loads] (Foreign Key)
+     Create
+       [SystemLog].[FK_Executions_To_Loads] (Foreign Key)
+     Refresh
+       [Cube].[FactOrders] (View)
+
+The column [SystemLog].[ExecutionMessages].[MessageType] is being dropped, data loss could occur.
+The column [SystemLog].[Loads].[LoadApplicationId] on table [SystemLog].[Loads] must be added, but the column has no default value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of smart-defaults as a deployment option.
+The column [SystemLog].[Loads].[LoadStatusId] on table [SystemLog].[Loads] must be added, but the column has no default value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of smart-defaults as a deployment option.
+

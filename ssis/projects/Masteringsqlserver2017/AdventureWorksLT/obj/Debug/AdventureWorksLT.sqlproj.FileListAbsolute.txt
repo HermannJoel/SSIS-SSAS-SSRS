@@ -1,0 +1,18 @@
+c:\users\ccote\documents\visual studio 2015\Projects\AdventureWorksLT\AdventureWorksLT\obj\Debug\AdventureWorksLT.dll
+c:\users\ccote\documents\visual studio 2015\Projects\AdventureWorksLT\AdventureWorksLT\obj\Debug\AdventureWorksLT.pdb
+c:\users\ccote\documents\visual studio 2015\Projects\AdventureWorksLT\AdventureWorksLT\bin\Debug\AdventureWorksLT.dacpac
+c:\users\ccote\documents\visual studio 2015\Projects\AdventureWorksLT\AdventureWorksLT\bin\Debug\AdventureWorksLT.dll
+c:\users\ccote\documents\visual studio 2015\Projects\AdventureWorksLT\AdventureWorksLT\bin\Debug\AdventureWorksLT.pdb
+c:\users\ccote\documents\visual studio 2015\Projects\AdventureWorksLT\AdventureWorksLT\obj\Debug\Model.xml
+c:\users\ccote\documents\visual studio 2015\Projects\AdventureWorksLT\AdventureWorksLT\obj\Debug\refactor.xml
+c:\users\ccote\documents\visual studio 2015\Projects\AdventureWorksLT\AdventureWorksLT\obj\Debug\postdeploy.sql
+c:\users\ccote\documents\visual studio 2015\Projects\AdventureWorksLT\AdventureWorksLT\obj\Debug\predeploy.sql
+C:\Users\Christian\Source\Workspaces\ETL_BI_DEMO\ETL_BI_Solution\AdventureWorksLT\bin\Debug\AdventureWorksLT.dacpac
+C:\Users\Christian\Source\Workspaces\ETL_BI_DEMO\ETL_BI_Solution\AdventureWorksLT\bin\Debug\AdventureWorksLT.dll
+C:\Users\Christian\Source\Workspaces\ETL_BI_DEMO\ETL_BI_Solution\AdventureWorksLT\bin\Debug\AdventureWorksLT.pdb
+C:\Users\Christian\Source\Workspaces\ETL_BI_DEMO\ETL_BI_Solution\AdventureWorksLT\obj\Debug\Model.xml
+C:\Users\Christian\Source\Workspaces\ETL_BI_DEMO\ETL_BI_Solution\AdventureWorksLT\obj\Debug\refactor.xml
+C:\Users\Christian\Source\Workspaces\ETL_BI_DEMO\ETL_BI_Solution\AdventureWorksLT\obj\Debug\postdeploy.sql
+C:\Users\Christian\Source\Workspaces\ETL_BI_DEMO\ETL_BI_Solution\AdventureWorksLT\obj\Debug\predeploy.sql
+C:\Users\Christian\Source\Workspaces\ETL_BI_DEMO\ETL_BI_Solution\AdventureWorksLT\obj\Debug\AdventureWorksLT.dll
+C:\Users\Christian\Source\Workspaces\ETL_BI_DEMO\ETL_BI_Solution\AdventureWorksLT\obj\Debug\AdventureWorksLT.pdb

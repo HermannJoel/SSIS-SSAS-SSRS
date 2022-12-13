@@ -1,0 +1,345 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="fd6b98ad-7e35-4839-bf11-0eebeb06e632" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Dim Hedge 1</ID>
+  <Name>Dim Hedge 1</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+      <Value>
+        <dds xmlns="">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="8" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-1674" scrolltop="4761" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="4974" y="10054" backcolor="16119285" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+            <font>
+              <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
+            </font>
+            <mouseicon>
+              <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
+            </mouseicon>
+          </diagram>
+          <layoutmanager>
+            <ddsxmlobj />
+          </layoutmanager>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="DimAsset" left="231" top="0" logicalid="4" controlid="1" masterid="0" hint1="0" hint2="0" width="3334" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000c0000060d000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="DW_DimAsset" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="DimHedge" left="-1383" top="7506" logicalid="5" controlid="2" masterid="0" hint1="0" hint2="0" width="3757" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobjectstreaminitwrapper binary="000c0000ad0e000088130000" />
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="DW_DimHedge" vartype="8" />
+              </ddsxmlobj>
+            </layoutobject>
+            <shape groupshapeid="0" groupnode="0" />
+          </ddscontrol>
+          <ddscontrol controlprogid="MSDDS.Polyline" left="195" top="4501" logicalid="6" controlid="3" masterid="0" hint1="0" hint2="0" width="1003" height="3305" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+            <control>
+              <ddsxmlobj>
+                <polyline endtypedst="6" endtypesrc="3" usercolor="1973790" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
+              </ddsxmlobj>
+            </control>
+            <layoutobject>
+              <ddsxmlobj>
+                <property name="LogicalObject" value="dataSet.Relations[FK_DimHedge_DimAsset]" vartype="8" />
+                <property name="Virtual" value="0" vartype="11" />
+                <property name="VisibleAP" value="0" vartype="3" />
+              </ddsxmlobj>
+            </layoutobject>
+            <connector lineroutestyle="MSDDS.Rectilinear" sourceid="1" destid="2" sourceattachpoint="1" destattachpoint="6" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+              <point x="798" y="5000" />
+              <point x="798" y="6332" />
+              <point x="495" y="6332" />
+              <point x="495" y="7506" />
+            </connector>
+          </ddscontrol>
+        </dds>
+      </Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>-1674</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>4761</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>-1383</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
+      <Value>
+        <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="0" xmlns="">
+          <Shapes NodeWidth="106">
+            <Shape Id="Hedge Id" Expanded="false">
+              <Attributes>
+                <Attribute Id="Hedge Id" />
+                <Attribute Id="Asset Id" />
+                <Attribute Id="In Planif" />
+                <Attribute Id="Type Hedge" />
+              </Attributes>
+              <Position x="20" y="20" />
+            </Shape>
+            <Shape Id="Project Id" Expanded="false">
+              <Attributes>
+                <Attribute Id="Project Id" />
+              </Attributes>
+              <Position x="157" y="20" />
+            </Shape>
+            <Shape Id="Project" Expanded="false">
+              <Attributes>
+                <Attribute Id="Project" />
+              </Attributes>
+              <Position x="295" y="20" />
+            </Shape>
+            <Shape Id="Technology" Expanded="false">
+              <Attributes>
+                <Attribute Id="Technology" />
+              </Attributes>
+              <Position x="432" y="20" />
+            </Shape>
+          </Shapes>
+        </DiagramLayout>
+      </Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="d7124ab3-4a69-4f54-86a4-d4654aff9659">
+    <DataSourceViewID>blx dwh</DataSourceViewID>
+  </Source>
+  <UnknownMember>Visible</UnknownMember>
+  <ErrorConfiguration dwd:design-time-name="11a0b627-4e6d-4851-ac60-a50584b6d6bf">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <Attributes>
+    <Attribute dwd:design-time-name="fbe27668-65ae-49cc-bd95-e55046719d19">
+      <ID>Hedge Id</ID>
+      <Name>Hedge Id</Name>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="c294cd1f-7f54-46f8-b0c6-9cb1d0f6634b">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="55b8ecf3-a47b-430b-b42a-0581865e1559">
+            <TableID>DW_DimHedge</TableID>
+            <ColumnID>HedgeId</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="c886cef7-51ed-4821-9e55-84032aa5c021">
+          <AttributeID>Asset Id</AttributeID>
+          <Name>Asset Id</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="135561f4-208d-47da-9193-9b089ec6b9b2">
+          <AttributeID>In Planif</AttributeID>
+          <Name>In Planif</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="51871c89-3708-403f-94b4-8e1141001258">
+          <AttributeID>Type Hedge</AttributeID>
+          <Name>Type Hedge</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="3ca046b7-2470-4dc4-8fca-69718d1dc873">
+          <AttributeID>Project Id</AttributeID>
+          <Name>Project Id</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="d4060308-c14d-43eb-a4ce-3ec675af8648">
+      <ID>Asset Id</ID>
+      <Name>Asset Id</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="a92f8677-7950-4c8c-b811-937dc50e1640">
+          <DataType>Integer</DataType>
+          <NullProcessing>UnknownMember</NullProcessing>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="e4df902c-240e-4eb1-9222-ff7554c376dd">
+            <TableID>DW_DimAsset</TableID>
+            <ColumnID>AssetId</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="ce36fb83-8c47-49f3-9858-f5d9c39cf781">
+      <ID>Project Id</ID>
+      <Name>Project Id</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="6ff5efe5-b012-40da-839e-d72012cb225d">
+          <DataType>WChar</DataType>
+          <DataSize>100</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="b02a9e1c-335a-4064-b562-d4577bd763a1">
+            <TableID>DW_DimHedge</TableID>
+            <ColumnID>ProjectId</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="7fb61f6d-8515-4f70-bfdd-d3e22da89279">
+          <AttributeID>Project</AttributeID>
+          <Name>Project</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="277e8731-af27-43a6-bf2a-feefdfd364b1">
+      <ID>Project</ID>
+      <Name>Project</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="bd150e58-5af1-48fb-adad-3be13719111b">
+          <DataType>WChar</DataType>
+          <DataSize>250</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="64e2ed2e-f617-46e4-80ac-633584109f55">
+            <TableID>DW_DimHedge</TableID>
+            <ColumnID>Project</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="ee0f5bb7-00d4-4f7e-ab9c-10c5e616103b">
+          <AttributeID>Technology</AttributeID>
+          <Name>Technology</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="bc7a44ad-7e70-45b4-8ab4-fecae2c15dd2">
+      <ID>Technology</ID>
+      <Name>Technology</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="5fc7800f-ab72-42ee-8cd5-ac23fccbeee3">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="f1b40d5f-d8a9-4cb0-98a9-f225e1c36c16">
+            <TableID>DW_DimHedge</TableID>
+            <ColumnID>Technology</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="f1cca3fd-7072-4070-aa2e-86961fce75b0">
+        <DataType>WChar</DataType>
+        <DataSize>200</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="828a19c1-7e79-49fb-b3ca-273ff8283d84">
+          <TableID>DW_DimHedge</TableID>
+          <ColumnID>Technology</ColumnID>
+        </Source>
+      </NameColumn>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="2e324adf-bd40-490c-88aa-305dc17993ab">
+      <ID>In Planif</ID>
+      <Name>In Planif</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="827849eb-d4ee-4bde-918c-2da10a61ea20">
+          <DataType>WChar</DataType>
+          <DataSize>50</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="60421351-c746-4687-8edc-c57c5b75f0d6">
+            <TableID>DW_DimHedge</TableID>
+            <ColumnID>InPlanif</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="34b6dfe3-bc19-45ec-a516-cf2483cf7119">
+      <ID>Type Hedge</ID>
+      <Name>Type Hedge</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="c8dc2e52-c023-463c-b213-d0292f4cae00">
+          <DataType>WChar</DataType>
+          <DataSize>50</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="a00ef781-7642-48bf-9ea2-226f43df7961">
+            <TableID>DW_DimHedge</TableID>
+            <ColumnID>TypeHedge</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <NameColumn dwd:design-time-name="d5f0973f-72ef-484b-a4a2-97b86246a20d">
+        <DataType>WChar</DataType>
+        <DataSize>50</DataSize>
+        <Source xsi:type="ColumnBinding" dwd:design-time-name="7d21594d-0439-4cd3-ada4-196811337452">
+          <TableID>DW_DimHedge</TableID>
+          <ColumnID>TypeHedge</ColumnID>
+        </Source>
+      </NameColumn>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <Hierarchies>
+    <Hierarchy dwd:design-time-name="c22b6cfa-a019-4d6d-9b93-d421f316a6ea">
+      <ID>Hierarchy</ID>
+      <Name>Projects</Name>
+      <Levels>
+        <Level dwd:design-time-name="1b001b19-a7ed-4c9a-8ff4-9627ab8539db">
+          <ID>Project</ID>
+          <Name>Project</Name>
+          <SourceAttributeID>Project</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="a6534fd3-b992-440a-adc8-971c07455069">
+          <ID>Project Id</ID>
+          <Name>Project Id</Name>
+          <SourceAttributeID>Project Id</SourceAttributeID>
+        </Level>
+        <Level dwd:design-time-name="9c41ae7f-578c-433f-abfb-65c20ea283be">
+          <ID>Hedge Id</ID>
+          <Name>Hedge Id</Name>
+          <SourceAttributeID>Hedge Id</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+    <Hierarchy dwd:design-time-name="16418e25-387c-4315-adf7-c341a3fec681">
+      <ID>Hierarchy 1 1</ID>
+      <Name>Technologies</Name>
+      <Levels>
+        <Level dwd:design-time-name="eab17db6-162d-4327-a290-5317a85bbd1d">
+          <ID>Technology</ID>
+          <Name>Technology</Name>
+          <SourceAttributeID>Technology</SourceAttributeID>
+        </Level>
+      </Levels>
+    </Hierarchy>
+  </Hierarchies>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>

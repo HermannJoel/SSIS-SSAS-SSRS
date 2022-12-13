@@ -1,0 +1,1470 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/2/2022 7:10:08 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-JDQLDT1"
+  DTS:CreatorName="DESKTOP-JDQLDT1\nherm"
+  DTS:DTSID="{9F8FC6C6-5DDD-4C46-A73B-F8836171749A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ETL-Hedge"
+  DTS:PackageType="5"
+  DTS:VersionBuild="35"
+  DTS:VersionGUID="{E33B1B3B-B2FC-4A28-8682-664E16CC3487}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-JDQLDT1\MSSQLSERVERDWH.OLTP]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4FAAB851-D436-4843-9C35-1487E926801D}"
+      DTS:ObjectName="DESKTOP-JDQLDT1\MSSQLSERVERDWH.OLTP">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::ConnOLTP]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-JDQLDT1\MSSQLSERVERDWH;Initial Catalog=OLTP;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ECMHedge]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{2929B1A0-C7F0-45F4-9D74-882A71F91302}"
+      DTS:ObjectName="ECMHedge">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">@[$Project::ProjectFolder]+"\\"+ @[$Project::TemplateHedgeFileName]+ @[$Project::xlsExt]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\blx_mdp\cwd\in\template_hedge_dwh.xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{27F09490-B901-4E91-82EF-A65EF7353D82}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageStartDateTime">
+      <DTS:VariableValue
+        DTS:DataType="7">10/3/2022 11:41:25 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9B2F99A9-A2E1-4D20-8A3A-31E9F6D43304}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PreviousActivityDateTime">
+      <DTS:VariableValue
+        DTS:DataType="7">10/3/2022 11:41:59 PM</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Expression Task"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{961EB427-6F89-4707-8DAC-D017530C9257}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Expression Task"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::PackageStartDateTime]=GETDATE()" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Insert_Template_Hedge"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B62108F8-E4E9-45A3-8B80-923F0464EE63}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Insert_Template_Hedge"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Insert_Template_Hedge\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Insert_Template_Hedge\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Inputs[Data Conversion Input].Columns[hedge_id]"
+                      cachedDataType="r8"
+                      cachedName="hedge_id"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[hedge_id]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Inputs[Data Conversion Input].Columns[projet_id]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="projet_id"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[projet_id]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Inputs[Data Conversion Input].Columns[projet]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="projet"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[projet]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Inputs[Data Conversion Input].Columns[technologie]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="technologie"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[technologie]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Inputs[Data Conversion Input].Columns[type_hedge]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="type_hedge"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[type_hedge]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Inputs[Data Conversion Input].Columns[date_debut]"
+                      cachedDataType="date"
+                      cachedName="date_debut"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[date_debut]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Inputs[Data Conversion Input].Columns[date_fin]"
+                      cachedDataType="date"
+                      cachedName="date_fin"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[date_fin]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Inputs[Data Conversion Input].Columns[date_dementelement]"
+                      cachedDataType="date"
+                      cachedName="date_dementelement"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[date_dementelement]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Inputs[Data Conversion Input].Columns[puissance_installée]"
+                      cachedDataType="r8"
+                      cachedName="puissance_installée"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[puissance_installée]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Inputs[Data Conversion Input].Columns[profil]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="profil"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[profil]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Inputs[Data Conversion Input].Columns[pct_couverture]"
+                      cachedDataType="r8"
+                      cachedName="pct_couverture"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[pct_couverture]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Inputs[Data Conversion Input].Columns[contrepartie]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="contrepartie"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[contrepartie]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Inputs[Data Conversion Input].Columns[pays_contrepartie]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="pays_contrepartie"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[pays_contrepartie]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Inputs[Data Conversion Input].Columns[en_planif]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="en_planif"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[en_planif]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Insert_Template_Hedge\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[HedgeId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[HedgeId]"
+                      name="HedgeId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[hedge_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[ProjectId]"
+                      name="ProjectId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[projet_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="250"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[Project]"
+                      name="Project"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[projet]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[Technology]"
+                      name="Technology"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[technologie]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[TypeHedge]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[TypeHedge]"
+                      name="TypeHedge"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[type_hedge]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[StartDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[StartDate]"
+                      name="StartDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[date_debut]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[EndDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[EndDate]"
+                      name="EndDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[date_fin]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[DismentleDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[DismentleDate]"
+                      name="DismentleDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[date_dementelement]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[InstalledPower]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[InstalledPower]"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[puissance_installée]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[Profil]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[Profil]"
+                      name="Profil"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[profil]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[HedgePct]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[HedgePct]"
+                      name="HedgePct"
+                      precision="4"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[pct_couverture]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[Counterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[Counterparty]"
+                      name="Counterparty"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[contrepartie]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[CountryCounterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[CountryCounterparty]"
+                      name="CountryCounterparty"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[pays_contrepartie]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[InPlanif]"
+                      name="InPlanif"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[en_planif]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Insert_Template_Hedge\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Insert_Template_Hedge\Excel Source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Sheet1$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Insert_Template_Hedge\Excel Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ECMHedge]"
+                  connectionManagerRefId="Package.ConnectionManagers[ECMHedge]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[hedge_id]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[hedge_id]"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[hedge_id]"
+                      name="hedge_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[projet_id]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[projet_id]"
+                      length="255"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[projet_id]"
+                      name="projet_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[projet]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[projet]"
+                      length="255"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[projet]"
+                      name="projet"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[technologie]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[technologie]"
+                      length="255"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[technologie]"
+                      name="technologie"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[type_hedge]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[type_hedge]"
+                      length="255"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[type_hedge]"
+                      name="type_hedge"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[date_debut]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[date_debut]"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[date_debut]"
+                      name="date_debut"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[date_fin]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[date_fin]"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[date_fin]"
+                      name="date_fin"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[date_dementelement]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[date_dementelement]"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[date_dementelement]"
+                      name="date_dementelement"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[puissance_installée]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[puissance_installée]"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[puissance_installée]"
+                      name="puissance_installée"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[profil]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[profil]"
+                      length="255"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[profil]"
+                      name="profil"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[pct_couverture]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[pct_couverture]"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[pct_couverture]"
+                      name="pct_couverture"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[contrepartie]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[contrepartie]"
+                      length="255"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[contrepartie]"
+                      name="contrepartie"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[pays_contrepartie]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[pays_contrepartie]"
+                      length="255"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[pays_contrepartie]"
+                      name="pays_contrepartie"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[en_planif]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[en_planif]"
+                      length="255"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].Columns[en_planif]"
+                      name="en_planif"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[rw_id]"
+                      dataType="r8"
+                      name="rw_id" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[hedge_id]"
+                      dataType="r8"
+                      name="hedge_id" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[projet_id]"
+                      dataType="wstr"
+                      length="255"
+                      name="projet_id" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[projet]"
+                      dataType="wstr"
+                      length="255"
+                      name="projet" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[technologie]"
+                      dataType="wstr"
+                      length="255"
+                      name="technologie" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[type_hedge]"
+                      dataType="wstr"
+                      length="255"
+                      name="type_hedge" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[date_debut]"
+                      dataType="date"
+                      name="date_debut" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[date_fin]"
+                      dataType="date"
+                      name="date_fin" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[date_dementelement]"
+                      dataType="date"
+                      name="date_dementelement" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[puissance_installée]"
+                      dataType="r8"
+                      name="puissance_installée" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[profil]"
+                      dataType="wstr"
+                      length="255"
+                      name="profil" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[pct_couverture]"
+                      dataType="r8"
+                      name="pct_couverture" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[contrepartie]"
+                      dataType="wstr"
+                      length="255"
+                      name="contrepartie" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[pays_contrepartie]"
+                      dataType="wstr"
+                      length="255"
+                      name="pays_contrepartie" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output].ExternalColumns[en_planif]"
+                      dataType="wstr"
+                      length="255"
+                      name="en_planif" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[hedge_id]"
+                      dataType="r8"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[hedge_id]"
+                      name="hedge_id" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[projet_id]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[projet_id]"
+                      name="projet_id" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[projet]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[projet]"
+                      name="projet" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[technologie]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[technologie]"
+                      name="technologie" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[type_hedge]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[type_hedge]"
+                      name="type_hedge" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[date_debut]"
+                      dataType="date"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[date_debut]"
+                      name="date_debut" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[date_fin]"
+                      dataType="date"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[date_fin]"
+                      name="date_fin" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[date_dementelement]"
+                      dataType="date"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[date_dementelement]"
+                      name="date_dementelement" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[puissance_installée]"
+                      dataType="r8"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[puissance_installée]"
+                      name="puissance_installée" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[profil]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[profil]"
+                      name="profil" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[pct_couverture]"
+                      dataType="r8"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[pct_couverture]"
+                      name="pct_couverture" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[contrepartie]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[contrepartie]"
+                      name="contrepartie" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[pays_contrepartie]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[pays_contrepartie]"
+                      name="pays_contrepartie" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[en_planif]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[en_planif]"
+                      name="en_planif" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Insert_Template_Hedge\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Hedge]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Insert_Template_Hedge\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JDQLDT1\MSSQLSERVERDWH.OLTP]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JDQLDT1\MSSQLSERVERDWH.OLTP]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[HedgeId]"
+                      cachedDataType="i4"
+                      cachedName="HedgeId"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[HedgeId]"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[HedgeId]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjectId"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProjectId]"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[ProjectId]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Project]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="Project"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Project]"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[Project]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Technology]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Technology"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Technology]"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[Technology]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TypeHedge]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TypeHedge"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TypeHedge]"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[TypeHedge]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[StartDate]"
+                      cachedDataType="dbDate"
+                      cachedName="StartDate"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ContractStartDate]"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[StartDate]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[EndDate]"
+                      cachedDataType="dbDate"
+                      cachedName="EndDate"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ContractEndDate]"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[EndDate]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DismentleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DismentleDate"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DismentleDate]"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[DismentleDate]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[InstalledPower]"
+                      cachedDataType="numeric"
+                      cachedName="InstalledPower"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InstalledPower]"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[InstalledPower]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Profil]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Profil"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Profil]"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[Profil]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[HedgePct]"
+                      cachedDataType="numeric"
+                      cachedName="HedgePct"
+                      cachedPrecision="4"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[HedgePct]"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[HedgePct]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Counterparty]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Counterparty"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Counterparty]"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[Counterparty]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CountryCounterparty]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="CountryCounterparty"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CountryCounterparty]"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[CountryCounterparty]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[InPlanif]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="InPlanif"
+                      externalMetadataColumnId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InPlanif]"
+                      lineageId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output].Columns[InPlanif]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[HedgeId]"
+                      dataType="i4"
+                      name="HedgeId" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="ProjectId" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="Project" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Technology" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TypeHedge]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TypeHedge" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ContractStartDate]"
+                      dataType="dbDate"
+                      name="ContractStartDate" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ContractEndDate]"
+                      dataType="dbDate"
+                      name="ContractEndDate" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DismentleDate]"
+                      dataType="dbDate"
+                      name="DismentleDate" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InstalledPower]"
+                      dataType="numeric"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Profil]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Profil" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[HedgePct]"
+                      dataType="numeric"
+                      name="HedgePct"
+                      precision="4"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Counterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Counterparty" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CountryCounterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="CountryCounterparty" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="InPlanif" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ActivityDateTime]"
+                      dataType="dbTimeStamp"
+                      name="ActivityDateTime" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Insert_Template_Hedge\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Insert_Template_Hedge\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Hedge\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Insert_Template_Hedge\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Insert_Template_Hedge.Paths[Data Conversion Output]"
+              endId="Package\Insert_Template_Hedge\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Insert_Template_Hedge\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Insert_Template_Hedge.Paths[Excel Source Output]"
+              endId="Package\Insert_Template_Hedge\Data Conversion.Inputs[Data Conversion Input]"
+              name="Excel Source Output"
+              startId="Package\Insert_Template_Hedge\Excel Source.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate_Hedge_Table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{FDC7F6AF-9505-4182-B16F-8EF10B66E454}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate_Hedge_Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4FAAB851-D436-4843-9C35-1487E926801D}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.[Hedge]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update_LogTracker"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B9F5D7DA-B276-4EB2-875E-6B82E3A31AAC}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update_LogTracker"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4FAAB851-D436-4843-9C35-1487E926801D}"
+          SQLTask:SqlStatementSource="INSERT INTO dbo.[LogTracker]([EventType],[TableName],[LastActivityDateTime]) VALUES &#xA;('I', 'Hedge',?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::PackageStartDateTime"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{55045E7F-84B9-4742-8BD2-9B3E369D73E6}"
+      DTS:From="Package\Expression Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Insert_Template_Hedge" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{ECE2C090-F3FC-414C-87C7-27A54368B6C8}"
+      DTS:From="Package\Insert_Template_Hedge"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Update_LogTracker" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{8E985FEF-A2E6-4A60-88F6-6E5D83B0D66C}"
+      DTS:From="Package\Truncate_Hedge_Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Insert_Template_Hedge" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Expression Task"
+          TopLeft="114,42" />
+        <NodeLayout
+          Size="192,42"
+          Id="Package\Insert_Template_Hedge"
+          TopLeft="392,61" />
+        <NodeLayout
+          Size="206,42"
+          Id="Package\Truncate_Hedge_Table"
+          TopLeft="680,38" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Update_LogTracker"
+          TopLeft="399,192" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="269,63">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="123,19"
+              Start="0,0"
+              End="115.5,19">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="57.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="57.5,0"
+                    Point2="61.5,0"
+                    Point3="61.5,4" />
+                  <mssgle:LineSegment
+                    End="61.5,15" />
+                  <mssgle:CubicBezierSegment
+                    Point1="61.5,15"
+                    Point2="61.5,19"
+                    Point3="65.5,19" />
+                  <mssgle:LineSegment
+                    End="115.5,19" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="486.25,103">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,89"
+              Start="0,0"
+              End="0,81.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,81.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="680,59">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-96,23"
+              Start="0,0"
+              End="-88.5,23">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-44,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-44,0"
+                    Point2="-48,0"
+                    Point3="-48,4" />
+                  <mssgle:LineSegment
+                    End="-48,19" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-48,19"
+                    Point2="-48,23"
+                    Point3="-52,23" />
+                  <mssgle:LineSegment
+                    End="-88.5,23" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Insert_Template_Hedge">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Insert_Template_Hedge\OLE DB Destination"
+          TopLeft="361,242" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Insert_Template_Hedge\Data Conversion"
+          TopLeft="371,140" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Insert_Template_Hedge\Excel Source"
+          TopLeft="377,31" />
+        <EdgeLayout
+          Id="Package\Insert_Template_Hedge.Paths[Data Conversion Output]"
+          TopLeft="447.75,182">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Insert_Template_Hedge.Paths[Excel Source Output]"
+          TopLeft="447.75,73">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,67"
+              Start="0,0"
+              End="0,59.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,59.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Insert_Template_Hedge\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Insert_Template_Hedge\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

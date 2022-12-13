@@ -1,0 +1,82 @@
+﻿<DeploymentSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0">
+  <Target>
+    <Database>ResellerSales</Database>
+    <Server>DESKTOP-JDQLDT1\MSSQLSERVERDWH</Server>
+    <ConnectionString>Data Source=DESKTOP-JDQLDT1\MSSQLSERVERDWH;Timeout=0</ConnectionString>
+  </Target>
+  <Options>
+    <TransactionalDeployment>false</TransactionalDeployment>
+    <PartitionDeployment>DeployPartitions</PartitionDeployment>
+    <RoleDeployment>DeployRolesRetainMembers</RoleDeployment>
+    <ProcessingOption>DoNotProcess</ProcessingOption>
+    <OutputScript></OutputScript>
+    <ImpactAnalysisFile></ImpactAnalysisFile>
+    <ConfigurationSettingsDeployment>Deploy</ConfigurationSettingsDeployment>
+    <OptimizationSettingsDeployment>Deploy</OptimizationSettingsDeployment>
+    <WriteBackTableCreation>UseExisting</WriteBackTableCreation>
+  </Options>
+  <Snapshot>
+    <ObjectSnapshots>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
+        <TimeStamp>QEhjoPQVHXb+cTGUPiNlLOs3cAM=10/26/2022 6:36:23 PM10/26/2022 6:36:23 PM</TimeStamp>
+        <ID>
+          <String>ResellerSales</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>E+Q2avWAKsS8Fm5hy4ePmVshO7U=10/26/2022 7:05:52 PM10/26/2022 6:39:04 PM</TimeStamp>
+        <ID>
+          <String>ResellerSales</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>Poa1dU9uZy66NYtOMEuCh00BQ4Q=10/26/2022 6:44:44 PM10/26/2022 6:44:44 PM</TimeStamp>
+        <ID>
+          <String>Dim Sales Territory</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>FsiGzaaJvv79pyjnWfVHkz6mOtk=10/26/2022 9:46:23 PM10/26/2022 6:44:44 PM</TimeStamp>
+        <ID>
+          <String>Dim Reseller</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>o4lcZRYy0QxNAqvJ5hJt9U4ybF8=10/26/2022 6:44:44 PM10/26/2022 6:44:44 PM</TimeStamp>
+        <ID>
+          <String>Fact Reseller Sales</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>Gb6bFJ2dRlOsNBCxWiNSh5mJc6o=10/28/2022 4:14:43 PM10/26/2022 7:12:10 PM</TimeStamp>
+        <ID>
+          <String>DimDate</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>NL6h8R9b7UAdhTWe5Q5VxOsVm70=10/28/2022 4:14:22 PM10/26/2022 6:44:44 PMTbvQlC95+oT8FdV19JqCYHMHdl8=10/26/2022 6:44:44 PM10/26/2022 6:44:44 PM</TimeStamp>
+        <ID>
+          <String>ResellerSales</String>
+        </ID>
+      </ObjectSnapshot>
+    </ObjectSnapshots>
+    <DatabaseSnapshot>
+      <Type>Microsoft.AnalysisServices.Database</Type>
+      <TimeStamp>fH4rpioZwSn065AkRhQ3UTAJdB0=10/26/2022 6:35:17 PM10/26/2022 6:35:17 PM</TimeStamp>
+      <ID>
+        <String>ResellerSales</String>
+      </ID>
+    </DatabaseSnapshot>
+    <Granularity>Coarse</Granularity>
+  </Snapshot>
+  <AssemblyLocations />
+  <ProcessingComplete>true</ProcessingComplete>
+  <LastDeployed>2022-10-28T14:14:54.203333Z</LastDeployed>
+</DeploymentSnapshot>

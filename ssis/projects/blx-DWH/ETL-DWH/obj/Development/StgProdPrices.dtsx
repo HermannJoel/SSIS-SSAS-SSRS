@@ -1,0 +1,1346 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/17/2022 10:26:08 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-JDQLDT1"
+  DTS:CreatorName="DESKTOP-JDQLDT1\nherm"
+  DTS:DTSID="{8990BE8D-FECF-49B8-B639-A2B0EA9EC920}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="StgProdPrices"
+  DTS:PackageType="5"
+  DTS:VersionBuild="23"
+  DTS:VersionGUID="{BF281138-BE2C-4926-90BA-4AF78DD491EC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[cmgr_DWHStg]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D8968900-9651-4203-BE91-1B0E87DDAD97}"
+      DTS:ObjectName="cmgr_DWHStg">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::cmgr_DWHStg]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-JDQLDT1\MSSQLSERVERDWH;Initial Catalog=DWHStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[cmgr_OLTP]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{EF5BE09F-27BA-42EB-8920-B9894E8BF3D6}"
+      DTS:ObjectName="cmgr_OLTP">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::cmgr_OLTP]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-JDQLDT1\MSSQLSERVERDWH;Initial Catalog=OLTP;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="20"
+      DTS:DTSID="{1E3F76D9-0D33-4BD3-9EDA-2A3078421D40}"
+      DTS:ObjectName="LoadExecutionId"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="20"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\dft_Staging_StgProdPrices"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{1E60DA72-AF3E-4A42-A685-6988880FCD3D}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="dft_Staging_StgProdPrices"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\dft_Staging_StgProdPrices\dcnv"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="dcnv"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\dft_Staging_StgProdPrices\dcnv.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Inputs[Data Conversion Input].Columns[AssetId]"
+                      cachedDataType="i4"
+                      cachedName="AssetId"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[AssetId]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Inputs[Data Conversion Input].Columns[HedgeId]"
+                      cachedDataType="i4"
+                      cachedName="HedgeId"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[HedgeId]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Inputs[Data Conversion Input].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[Date]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Inputs[Data Conversion Input].Columns[ProjetId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjetId"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[ProjetId]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Inputs[Data Conversion Input].Columns[P50Asset]"
+                      cachedDataType="numeric"
+                      cachedName="P50Asset"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[P50Asset]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Inputs[Data Conversion Input].Columns[P90Asset]"
+                      cachedDataType="numeric"
+                      cachedName="P90Asset"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[P90Asset]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Inputs[Data Conversion Input].Columns[P50Hedge]"
+                      cachedDataType="numeric"
+                      cachedName="P50Hedge"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[P50Hedge]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Inputs[Data Conversion Input].Columns[P90Hedge]"
+                      cachedDataType="numeric"
+                      cachedName="P90Hedge"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[P90Hedge]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Inputs[Data Conversion Input].Columns[ContractPrice]"
+                      cachedDataType="numeric"
+                      cachedName="ContractPrice"
+                      cachedPrecision="7"
+                      cachedScale="3"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[ContractPrice]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Inputs[Data Conversion Input].Columns[SettlementPrice]"
+                      cachedDataType="numeric"
+                      cachedName="SettlementPrice"
+                      cachedPrecision="7"
+                      cachedScale="3"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[SettlementPrice]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Inputs[Data Conversion Input].Columns[LoadExecutionId]"
+                      cachedDataType="i8"
+                      cachedName="LoadExecutionId"
+                      lineageId="Package\dft_Staging_StgProdPrices\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\dft_Staging_StgProdPrices\dcnv.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[AssetId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[AssetId]"
+                      name="AssetId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[AssetId]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[HedgeId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[HedgeId]"
+                      name="HedgeId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[HedgeId]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[Date]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[Date]"
+                      name="Date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[Date]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[ProjetId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[ProjetId]"
+                      name="ProjetId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[ProjetId]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[P50Asset]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[P50Asset]"
+                      name="P50Asset"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[P50Asset]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[P90Asset]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[P90Asset]"
+                      name="P90Asset"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[P90Asset]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[P50Hedge]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[P50Hedge]"
+                      name="P50Hedge"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[P50Hedge]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[P90Hedge]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[P90Hedge]"
+                      name="P90Hedge"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[P90Hedge]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[ContractPrice]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[ContractPrice]"
+                      name="ContractPrice"
+                      precision="7"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[ContractPrice]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[SettlementPrice]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[SettlementPrice]"
+                      name="SettlementPrice"
+                      precision="7"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[SettlementPrice]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[LoadExecutionId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[LoadExecutionId]"
+                      name="LoadExecutionId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_Staging_StgProdPrices\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\dft_Staging_StgProdPrices\dcnv.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_Staging_StgProdPrices\der_LoadExecutionId"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="der_LoadExecutionId"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\dft_Staging_StgProdPrices\der_LoadExecutionId.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_Staging_StgProdPrices\der_LoadExecutionId.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\dft_Staging_StgProdPrices\der_LoadExecutionId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_Staging_StgProdPrices\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]"
+                      name="LoadExecutionId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[$Package::LoadExecutionId]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[$Package::LoadExecutionId]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_Staging_StgProdPrices\der_LoadExecutionId.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\dft_Staging_StgProdPrices\der_LoadExecutionId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_Staging_StgProdPrices\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_Staging_StgProdPrices\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="ole_dest_Staging_StgProdPrices"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[ExcelMarketStaging].[StgProdPrices]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[cmgr_DWHStg]"
+                  connectionManagerRefId="Package.ConnectionManagers[cmgr_DWHStg]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].Columns[AssetId]"
+                      cachedDataType="i4"
+                      cachedName="AssetId"
+                      externalMetadataColumnId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[AssetId]"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[AssetId]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].Columns[HedgeId]"
+                      cachedDataType="i4"
+                      cachedName="HedgeId"
+                      externalMetadataColumnId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[HedgeId]"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[HedgeId]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      externalMetadataColumnId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[Date]"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[Date]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].Columns[ProjetId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="ProjetId"
+                      externalMetadataColumnId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[ProjetId]"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[ProjetId]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].Columns[P50Asset]"
+                      cachedDataType="numeric"
+                      cachedName="P50Asset"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[P50Asset]"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[P50Asset]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].Columns[P90Asset]"
+                      cachedDataType="numeric"
+                      cachedName="P90Asset"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[P90Asset]"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[P90Asset]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].Columns[P50Hedge]"
+                      cachedDataType="numeric"
+                      cachedName="P50Hedge"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[P50Hedge]"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[P50Hedge]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].Columns[P90Hedge]"
+                      cachedDataType="numeric"
+                      cachedName="P90Hedge"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[P90Hedge]"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[P90Hedge]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].Columns[ContractPrice]"
+                      cachedDataType="numeric"
+                      cachedName="ContractPrice"
+                      cachedPrecision="7"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[ContractPrice]"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[ContractPrice]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].Columns[SettlementPrice]"
+                      cachedDataType="numeric"
+                      cachedName="SettlementPrice"
+                      cachedPrecision="7"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[SettlementPrice]"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[SettlementPrice]" />
+                    <inputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].Columns[LoadExecutionId]"
+                      cachedDataType="i4"
+                      cachedName="LoadExecutionId"
+                      externalMetadataColumnId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[LoadExecutionId]"
+                      lineageId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output].Columns[LoadExecutionId]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[AssetId]"
+                      dataType="i4"
+                      name="AssetId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[HedgeId]"
+                      dataType="i4"
+                      name="HedgeId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[Date]"
+                      dataType="dbDate"
+                      name="Date" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[ProjetId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ProjetId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[P50Asset]"
+                      dataType="numeric"
+                      name="P50Asset"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[P90Asset]"
+                      dataType="numeric"
+                      name="P90Asset"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[P50Hedge]"
+                      dataType="numeric"
+                      name="P50Hedge"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[P90Hedge]"
+                      dataType="numeric"
+                      name="P90Hedge"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[ContractPrice]"
+                      dataType="numeric"
+                      name="ContractPrice"
+                      precision="7"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[SettlementPrice]"
+                      dataType="numeric"
+                      name="SettlementPrice"
+                      precision="7"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[ActivityDateTime]"
+                      dataType="dbTimeStamp"
+                      name="ActivityDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[LoadExecutionId]"
+                      dataType="i4"
+                      name="LoadExecutionId" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="ole_src_ExcelMarket_ProdPrices"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        AssetId, HedgeId, [Date], ProjetId, P50Asset, P90Asset, P50Hedge, P90Hedge, ContractPrice, SettlementPrice
+FROM            ExcelMarket.ProdPrices</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[cmgr_OLTP]"
+                  connectionManagerRefId="Package.ConnectionManagers[cmgr_OLTP]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[AssetId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].ExternalColumns[AssetId]"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[AssetId]"
+                      name="AssetId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[HedgeId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].ExternalColumns[HedgeId]"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[HedgeId]"
+                      name="HedgeId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[Date]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].ExternalColumns[Date]"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[Date]"
+                      name="Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[ProjetId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].ExternalColumns[ProjetId]"
+                      length="100"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[ProjetId]"
+                      name="ProjetId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[P50Asset]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].ExternalColumns[P50Asset]"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[P50Asset]"
+                      name="P50Asset"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[P90Asset]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].ExternalColumns[P90Asset]"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[P90Asset]"
+                      name="P90Asset"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[P50Hedge]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].ExternalColumns[P50Hedge]"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[P50Hedge]"
+                      name="P50Hedge"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[P90Hedge]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].ExternalColumns[P90Hedge]"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[P90Hedge]"
+                      name="P90Hedge"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[ContractPrice]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].ExternalColumns[ContractPrice]"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[ContractPrice]"
+                      name="ContractPrice"
+                      precision="7"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[SettlementPrice]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].ExternalColumns[SettlementPrice]"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].Columns[SettlementPrice]"
+                      name="SettlementPrice"
+                      precision="7"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].ExternalColumns[AssetId]"
+                      dataType="i4"
+                      name="AssetId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].ExternalColumns[HedgeId]"
+                      dataType="i4"
+                      name="HedgeId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].ExternalColumns[Date]"
+                      dataType="dbDate"
+                      name="Date" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].ExternalColumns[ProjetId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ProjetId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].ExternalColumns[P50Asset]"
+                      dataType="numeric"
+                      name="P50Asset"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].ExternalColumns[P90Asset]"
+                      dataType="numeric"
+                      name="P90Asset"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].ExternalColumns[P50Hedge]"
+                      dataType="numeric"
+                      name="P50Hedge"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].ExternalColumns[P90Hedge]"
+                      dataType="numeric"
+                      name="P90Hedge"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].ExternalColumns[ContractPrice]"
+                      dataType="numeric"
+                      name="ContractPrice"
+                      precision="7"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output].ExternalColumns[SettlementPrice]"
+                      dataType="numeric"
+                      name="SettlementPrice"
+                      precision="7"
+                      scale="3" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[AssetId]"
+                      dataType="i4"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[AssetId]"
+                      name="AssetId" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[HedgeId]"
+                      dataType="i4"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[HedgeId]"
+                      name="HedgeId" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[Date]"
+                      dataType="dbDate"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[Date]"
+                      name="Date" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[ProjetId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[ProjetId]"
+                      name="ProjetId" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[P50Asset]"
+                      dataType="numeric"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[P50Asset]"
+                      name="P50Asset"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[P90Asset]"
+                      dataType="numeric"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[P90Asset]"
+                      name="P90Asset"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[P50Hedge]"
+                      dataType="numeric"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[P50Hedge]"
+                      name="P50Hedge"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[P90Hedge]"
+                      dataType="numeric"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[P90Hedge]"
+                      name="P90Hedge"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[ContractPrice]"
+                      dataType="numeric"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[ContractPrice]"
+                      name="ContractPrice"
+                      precision="7"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[SettlementPrice]"
+                      dataType="numeric"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[SettlementPrice]"
+                      name="SettlementPrice"
+                      precision="7"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\dft_Staging_StgProdPrices.Paths[Data Conversion Output]"
+              endId="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\dft_Staging_StgProdPrices\dcnv.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\dft_Staging_StgProdPrices.Paths[Derived Column Output]"
+              endId="Package\dft_Staging_StgProdPrices\dcnv.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\dft_Staging_StgProdPrices\der_LoadExecutionId.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\dft_Staging_StgProdPrices.Paths[OLE DB Source Output]"
+              endId="Package\dft_Staging_StgProdPrices\der_LoadExecutionId.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\sql_DeleteCurrentLoadIDData"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2280C207-88C2-4036-919D-DB434F7B39AF}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="sql_DeleteCurrentLoadIDData"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D8968900-9651-4203-BE91-1B0E87DDAD97}"
+          SQLTask:SqlStatementSource="DELETE FROM [ExcelMarketStaging].[StgProdPrices] WHERE [LoadExecutionId] = ?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::LoadExecutionId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\sql_Truncate_ExcelMarketStaging_StgProdPrices"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{D401B54C-40B7-415E-A49C-CFAD6D907715}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="sql_Truncate_ExcelMarketStaging_StgProdPrices"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D8968900-9651-4203-BE91-1B0E87DDAD97}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [ExcelMarketStaging].[StgProdPrices];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{E1E32880-8449-4092-8DEC-A1693FA422D4}"
+      DTS:From="Package\sql_DeleteCurrentLoadIDData"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\dft_Staging_StgProdPrices" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{60AEAEBA-B8FA-4053-9D19-B6F7A3174FB9}"
+      DTS:From="Package\sql_Truncate_ExcelMarketStaging_StgProdPrices"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\dft_Staging_StgProdPrices" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="203,42"
+          Id="Package\dft_Staging_StgProdPrices"
+          TopLeft="273.5,149" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\sql_DeleteCurrentLoadIDData"
+          TopLeft="41.5,34" />
+        <NodeLayout
+          Size="307,42"
+          Id="Package\sql_Truncate_ExcelMarketStaging_StgProdPrices"
+          TopLeft="548,35" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="151,76">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="191.5,73"
+              Start="0,0"
+              End="191.5,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.4574780058651" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,39.4574780058651"
+                    Point2="0,43.4574780058651"
+                    Point3="4,43.4574780058651" />
+                  <mssgle:LineSegment
+                    End="187.5,43.4574780058651" />
+                  <mssgle:CubicBezierSegment
+                    Point1="187.5,43.4574780058651"
+                    Point2="191.5,43.4574780058651"
+                    Point3="191.5,47.4574780058651" />
+                  <mssgle:LineSegment
+                    End="191.5,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="701.5,77">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-294,72"
+              Start="0,0"
+              End="-294,64.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.8621700879765" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38.8621700879765"
+                    Point2="0,42.8621700879765"
+                    Point3="-4,42.8621700879765" />
+                  <mssgle:LineSegment
+                    End="-290,42.8621700879765" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-290,42.8621700879765"
+                    Point2="-294,42.8621700879765"
+                    Point3="-294,46.8621700879765" />
+                  <mssgle:LineSegment
+                    End="-294,64.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\dft_Staging_StgProdPrices">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="230,42"
+          Id="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices"
+          TopLeft="254.5,345" />
+        <NodeLayout
+          Size="230,42"
+          Id="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices"
+          TopLeft="254.5,32" />
+        <NodeLayout
+          Size="230,42"
+          Id="Package\dft_Staging_StgProdPrices\der_LoadExecutionId"
+          TopLeft="254.5,140" />
+        <NodeLayout
+          Size="230,42"
+          Id="Package\dft_Staging_StgProdPrices\dcnv"
+          TopLeft="254.5,235" />
+        <EdgeLayout
+          Id="Package\dft_Staging_StgProdPrices.Paths[OLE DB Source Output]"
+          TopLeft="369.5,74">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,66"
+              Start="0,0"
+              End="0,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\dft_Staging_StgProdPrices.Paths[Derived Column Output]"
+          TopLeft="369.5,182">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53"
+              Start="0,0"
+              End="0,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\dft_Staging_StgProdPrices.Paths[Data Conversion Output]"
+          TopLeft="369.5,277">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,68"
+              Start="0,0"
+              End="0,60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\dft_Staging_StgProdPrices\ole_dest_Staging_StgProdPrices">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\dft_Staging_StgProdPrices\ole_src_ExcelMarket_ProdPrices">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

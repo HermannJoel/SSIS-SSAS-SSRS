@@ -1,0 +1,1267 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/25/2022 9:00:20 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-JDQLDT1"
+  DTS:CreatorName="DESKTOP-JDQLDT1\nherm"
+  DTS:DTSID="{D5025F84-E812-47C7-817C-B11934E51DFE}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="lkp_AssetKey"
+  DTS:PackageType="5"
+  DTS:VersionBuild="21"
+  DTS:VersionGUID="{32533497-AE40-4457-8A40-3F7A5AB076C6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="20"
+      DTS:DTSID="{BD9E188C-C4AE-4D2F-8D4C-20E67538EDA4}"
+      DTS:ObjectName="LoadExecutionId"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="20"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\dft_lkp_AssetId_DimHedge"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{C99BA504-3012-42A1-A4A8-CDE1ABDAAC2F}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="dft_lkp_AssetId_DimHedge"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\dft_lkp_AssetId_DimHedge\der_LoadExecutionId"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="der_LoadExecutionId"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\dft_lkp_AssetId_DimHedge\der_LoadExecutionId.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_lkp_AssetId_DimHedge\der_LoadExecutionId.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\dft_lkp_AssetId_DimHedge\der_LoadExecutionId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExcecutionId]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExcecutionId]"
+                      name="LoadExcecutionId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[$Package::LoadExecutionId]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[$Package::LoadExecutionId]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_lkp_AssetId_DimHedge\der_LoadExecutionId.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\dft_lkp_AssetId_DimHedge\der_LoadExecutionId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_lkp_AssetId_DimHedge\lkp_AssetKey_DimAsset"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="lkp_AssetKey_DimAsset"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        AssetId, ProjectId, Project, Technology, Cod, Mw, SuccesPct, InstalledPower, Eoh, DateMerchant, DismentleDate, Repowering, DateMsi, InPlanif, P50, P90
+FROM DW.DimAsset</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT        AssetId, ProjectId, Project, Technology, Cod, Mw, SuccesPct, InstalledPower, Eoh, DateMerchant, DismentleDate, Repowering, DateMsi, InPlanif, P50, P90
+FROM DW.DimAsset) [refTable]
+where [refTable].[ProjectId] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="AssetId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProjectId" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Project" dataType="DT_STR" length="250" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Technology" dataType="DT_STR" length="200" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Cod" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Mw" dataType="DT_NUMERIC" length="0" precision="5" scale="2" codePage="0"/&gt;&lt;referenceColumn name="SuccesPct" dataType="DT_NUMERIC" length="0" precision="7" scale="5" codePage="0"/&gt;&lt;referenceColumn name="InstalledPower" dataType="DT_NUMERIC" length="0" precision="7" scale="5" codePage="0"/&gt;&lt;referenceColumn name="Eoh" dataType="DT_NUMERIC" length="0" precision="10" scale="3" codePage="0"/&gt;&lt;referenceColumn name="DateMerchant" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DismentleDate" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Repowering" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="DateMsi" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="InPlanif" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="P50" dataType="DT_NUMERIC" length="0" precision="10" scale="3" codePage="0"/&gt;&lt;referenceColumn name="P90" dataType="DT_NUMERIC" length="0" precision="10" scale="3" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ProjectId]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dft_lkp_AssetId_DimHedge\lkp_AssetKey_DimAsset.Connections[OleDbConnection]"
+                  connectionManagerID="{AD885AA9-3491-48A3-BD1F-1CCB9A057A74}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[cmgr_DWH]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dft_lkp_AssetId_DimHedge\lkp_AssetKey_DimAsset.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\lkp_AssetKey_DimAsset.Inputs[Lookup Input].Columns[ProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjectId"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ProjectId]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ProjectId</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_lkp_AssetId_DimHedge\lkp_AssetKey_DimAsset.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\dft_lkp_AssetId_DimHedge\lkp_AssetKey_DimAsset.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\lkp_AssetKey_DimAsset.Outputs[Lookup Match Output].Columns[DimAssetId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\lkp_AssetKey_DimAsset.Outputs[Lookup Match Output].Columns[DimAssetId]"
+                      name="DimAssetId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">AssetId</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_lkp_AssetId_DimHedge\lkp_AssetKey_DimAsset.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\dft_lkp_AssetId_DimHedge\lkp_AssetKey_DimAsset.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_lkp_AssetId_DimHedge\lkp_AssetKey_DimAsset.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\dft_lkp_AssetId_DimHedge\lkp_AssetKey_DimAsset.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\lkp_AssetKey_DimAsset.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\lkp_AssetKey_DimAsset.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\lkp_AssetKey_DimAsset.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\lkp_AssetKey_DimAsset.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[DW].[DimHedge]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{AD885AA9-3491-48A3-BD1F-1CCB9A057A74}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[cmgr_DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[LoadExcecutionId]"
+                      cachedDataType="i8"
+                      cachedName="LoadExcecutionId"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LoadExecutionId]"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExcecutionId]" />
+                    <inputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DimAssetId]"
+                      cachedDataType="i4"
+                      cachedName="DimAssetId"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AssetKey]"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\lkp_AssetKey_DimAsset.Outputs[Lookup Match Output].Columns[DimAssetId]" />
+                    <inputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[HedgeId]"
+                      cachedDataType="i4"
+                      cachedName="HedgeId"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[HedgeId]"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[HedgeId]" />
+                    <inputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjectId"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProjectId]"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ProjectId]" />
+                    <inputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Project]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="Project"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Project]"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Project]" />
+                    <inputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Technology]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Technology"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Technology]"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Technology]" />
+                    <inputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[TypeHedge]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TypeHedge"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TypeHedge]"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[TypeHedge]" />
+                    <inputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ContractStartDate]"
+                      cachedDataType="dbDate"
+                      cachedName="ContractStartDate"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ContractStartDate]"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ContractStartDate]" />
+                    <inputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ContractEndDate]"
+                      cachedDataType="dbDate"
+                      cachedName="ContractEndDate"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ContractEndDate]"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ContractEndDate]" />
+                    <inputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DismentleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DismentleDate"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DismentleDate]"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[DismentleDate]" />
+                    <inputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[InstalledPower]"
+                      cachedDataType="numeric"
+                      cachedName="InstalledPower"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InstalledPower]"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[InstalledPower]" />
+                    <inputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Profil]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Profil"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Profil]"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Profil]" />
+                    <inputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[HedgePct]"
+                      cachedDataType="numeric"
+                      cachedName="HedgePct"
+                      cachedPrecision="4"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[HedgePct]"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[HedgePct]" />
+                    <inputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Counterparty]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Counterparty"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Counterparty]"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Counterparty]" />
+                    <inputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[CountryCounterparty]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="CountryCounterparty"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CountryCounterparty]"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[CountryCounterparty]" />
+                    <inputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[InPlanif]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="InPlanif"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InPlanif]"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[InPlanif]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[HedgeId]"
+                      dataType="i4"
+                      name="HedgeId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ProjectId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="Project" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Technology" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[TypeHedge]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TypeHedge" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ContractStartDate]"
+                      dataType="dbDate"
+                      name="ContractStartDate" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ContractEndDate]"
+                      dataType="dbDate"
+                      name="ContractEndDate" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DismentleDate]"
+                      dataType="dbDate"
+                      name="DismentleDate" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InstalledPower]"
+                      dataType="numeric"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Profil]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Profil" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[HedgePct]"
+                      dataType="numeric"
+                      name="HedgePct"
+                      precision="4"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Counterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Counterparty" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CountryCounterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="CountryCounterparty" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="InPlanif" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LoadExecutionId]"
+                      dataType="i4"
+                      name="LoadExecutionId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AssetKey]"
+                      dataType="i4"
+                      name="AssetKey" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="ole_src_ExcelMarketStaging_StgHedge"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT  HedgeId, ProjectId, Project, Technology, TypeHedge, ContractStartDate, ContractEndDate, DismentleDate, InstalledPower, Profil, HedgePct, Counterparty, CountryCounterparty, InPlanif
+FROM            ExcelMarketStaging.StgHedge</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Connections[OleDbConnection]"
+                  connectionManagerID="{7F3B45BE-1FAF-4BD5-A5CB-88A0E8A2FE4E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[cmgr_DWHStg]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[HedgeId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[HedgeId]"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[HedgeId]"
+                      name="HedgeId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[ProjectId]"
+                      length="100"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ProjectId]"
+                      name="ProjectId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[Project]"
+                      length="250"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Project]"
+                      name="Project"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[Technology]"
+                      length="200"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Technology]"
+                      name="Technology"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[TypeHedge]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[TypeHedge]"
+                      length="50"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[TypeHedge]"
+                      name="TypeHedge"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ContractStartDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[ContractStartDate]"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ContractStartDate]"
+                      name="ContractStartDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ContractEndDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[ContractEndDate]"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ContractEndDate]"
+                      name="ContractEndDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[DismentleDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[DismentleDate]"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[DismentleDate]"
+                      name="DismentleDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[InstalledPower]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[InstalledPower]"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[InstalledPower]"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Profil]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[Profil]"
+                      length="100"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Profil]"
+                      name="Profil"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[HedgePct]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[HedgePct]"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[HedgePct]"
+                      name="HedgePct"
+                      precision="4"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Counterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[Counterparty]"
+                      length="100"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Counterparty]"
+                      name="Counterparty"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[CountryCounterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[CountryCounterparty]"
+                      length="100"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[CountryCounterparty]"
+                      name="CountryCounterparty"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[InPlanif]"
+                      length="50"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[InPlanif]"
+                      name="InPlanif"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[HedgeId]"
+                      dataType="i4"
+                      name="HedgeId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ProjectId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="Project" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Technology" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[TypeHedge]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TypeHedge" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[ContractStartDate]"
+                      dataType="dbDate"
+                      name="ContractStartDate" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[ContractEndDate]"
+                      dataType="dbDate"
+                      name="ContractEndDate" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[DismentleDate]"
+                      dataType="dbDate"
+                      name="DismentleDate" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[InstalledPower]"
+                      dataType="numeric"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[Profil]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Profil" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[HedgePct]"
+                      dataType="numeric"
+                      name="HedgePct"
+                      precision="4"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[Counterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Counterparty" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[CountryCounterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="CountryCounterparty" />
+                    <externalMetadataColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="InPlanif" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[HedgeId]"
+                      dataType="i4"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[HedgeId]"
+                      name="HedgeId" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[ProjectId]"
+                      name="ProjectId" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[Project]"
+                      name="Project" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[Technology]"
+                      name="Technology" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[TypeHedge]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[TypeHedge]"
+                      name="TypeHedge" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[ContractStartDate]"
+                      dataType="dbDate"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[ContractStartDate]"
+                      name="ContractStartDate" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[ContractEndDate]"
+                      dataType="dbDate"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[ContractEndDate]"
+                      name="ContractEndDate" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[DismentleDate]"
+                      dataType="dbDate"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[DismentleDate]"
+                      name="DismentleDate" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[InstalledPower]"
+                      dataType="numeric"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[InstalledPower]"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[Profil]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[Profil]"
+                      name="Profil" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[HedgePct]"
+                      dataType="numeric"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[HedgePct]"
+                      name="HedgePct"
+                      precision="4"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[Counterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[Counterparty]"
+                      name="Counterparty" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[CountryCounterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[CountryCounterparty]"
+                      name="CountryCounterparty" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[InPlanif]"
+                      name="InPlanif" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\dft_lkp_AssetId_DimHedge.Paths[Derived Column Output]"
+              endId="Package\dft_lkp_AssetId_DimHedge\lkp_AssetKey_DimAsset.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\dft_lkp_AssetId_DimHedge\der_LoadExecutionId.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\dft_lkp_AssetId_DimHedge.Paths[Lookup Match Output]"
+              endId="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\dft_lkp_AssetId_DimHedge\lkp_AssetKey_DimAsset.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\dft_lkp_AssetId_DimHedge.Paths[OLE DB Source Output]"
+              endId="Package\dft_lkp_AssetId_DimHedge\der_LoadExecutionId.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute SQL Task"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{F9D6AA3D-F114-4362-AD26-4998976018B7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute SQL Task"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{AD885AA9-3491-48A3-BD1F-1CCB9A057A74}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [DW].[DimHedge];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{C40F022E-A6EC-453E-B31E-69577C85E9A1}"
+      DTS:From="Package\Execute SQL Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\dft_lkp_AssetId_DimHedge" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="207,42"
+          Id="Package\dft_lkp_AssetId_DimHedge"
+          TopLeft="305,117" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Execute SQL Task"
+          TopLeft="313,15" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="394.5,57">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="14,60"
+              Start="0,0"
+              End="14,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="10,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="10,30"
+                    Point2="14,30"
+                    Point3="14,34" />
+                  <mssgle:LineSegment
+                    End="14,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\dft_lkp_AssetId_DimHedge">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="261,42"
+          Id="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge"
+          TopLeft="345,38" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\dft_lkp_AssetId_DimHedge\der_LoadExecutionId"
+          TopLeft="350,146" />
+        <EdgeLayout
+          Id="Package\dft_lkp_AssetId_DimHedge.Paths[OLE DB Source Output]"
+          TopLeft="475.5,80">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-36.5,66"
+              Start="0,0"
+              End="-36.5,58.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29"
+                    Point2="0,33"
+                    Point3="-4,33" />
+                  <mssgle:LineSegment
+                    End="-32.5,33" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-32.5,33"
+                    Point2="-36.5,33"
+                    Point3="-36.5,37" />
+                  <mssgle:LineSegment
+                    End="-36.5,58.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="190,42"
+          Id="Package\dft_lkp_AssetId_DimHedge\lkp_AssetKey_DimAsset"
+          TopLeft="363,257" />
+        <EdgeLayout
+          Id="Package\dft_lkp_AssetId_DimHedge.Paths[Derived Column Output]"
+          TopLeft="439,188">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="19,69"
+              Start="0,0"
+              End="19,61.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.5"
+                    Point2="0,34.5"
+                    Point3="4,34.5" />
+                  <mssgle:LineSegment
+                    End="15,34.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="15,34.5"
+                    Point2="19,34.5"
+                    Point3="19,38.5" />
+                  <mssgle:LineSegment
+                    End="19,61.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="171,42"
+          Id="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination"
+          TopLeft="117,346" />
+        <EdgeLayout
+          Id="Package\dft_lkp_AssetId_DimHedge.Paths[Lookup Match Output]"
+          TopLeft="458,299">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-255.5,47"
+              Start="0,0"
+              End="-255.5,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.5"
+                    Point2="0,23.5"
+                    Point3="-4,23.5" />
+                  <mssgle:LineSegment
+                    End="-251.5,23.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-251.5,23.5"
+                    Point2="-255.5,23.5"
+                    Point3="-255.5,27.5" />
+                  <mssgle:LineSegment
+                    End="-255.5,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-175.94138671875,28.5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\dft_lkp_AssetId_DimHedge\ole_src_ExcelMarketStaging_StgHedge">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\dft_lkp_AssetId_DimHedge\lkp_AssetKey_DimAsset">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\dft_lkp_AssetId_DimHedge\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

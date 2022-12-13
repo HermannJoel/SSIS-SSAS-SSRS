@@ -1,0 +1,5 @@
+C:\Users\Christian\Source\Workspaces\ETL_BI_DEMO\ETL_BI_Solution\DBAdventureworksLTDW2012\DBAdventureworksLTDW2012\bin\Debug\DBAdventureworksLTDW2012.dacpac
+C:\Users\Christian\Source\Workspaces\ETL_BI_DEMO\ETL_BI_Solution\DBAdventureworksLTDW2012\DBAdventureworksLTDW2012\bin\Debug\DBAdventureworksLTDW2012.dll
+C:\Users\Christian\Source\Workspaces\ETL_BI_DEMO\ETL_BI_Solution\DBAdventureworksLTDW2012\DBAdventureworksLTDW2012\bin\Debug\DBAdventureworksLTDW2012.pdb
+C:\Users\Christian\Source\Workspaces\ETL_BI_DEMO\ETL_BI_Solution\DBAdventureworksLTDW2012\DBAdventureworksLTDW2012\obj\Debug\DBAdventureworksLTDW2012.dll
+C:\Users\Christian\Source\Workspaces\ETL_BI_DEMO\ETL_BI_Solution\DBAdventureworksLTDW2012\DBAdventureworksLTDW2012\obj\Debug\DBAdventureworksLTDW2012.pdb

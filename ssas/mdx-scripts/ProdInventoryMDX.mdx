@@ -1,0 +1,155 @@
+SELECT FROM [ProdInventory]
+WHERE [Measures].[Units In];
+GO
+
+/*===== To select more than one measures SET {}   =====*/
+SELECT {[Measures].[Units In],[Measures].[Units Out]} ON COLUMNS
+FROM [ProdInventory]
+
+/*=====   Dimension  =====*/
+SELECT  [DimProduct].[(ALL)] ON COLUMNS
+FROM [ProdInventory]
+WHERE [Measures].[Units Balance]
+GO
+
+SELECT  [DimProduct].[Color].[(ALL)] ON COLUMNS
+FROM [ProdInventory]
+WHERE [Measures].[Units In]
+GO
+
+SELECT  [DimProduct].[Color].[Color].MEMBERS ON COLUMNS
+FROM [ProdInventory]
+WHERE [Measures].[Units In]
+GO
+
+---Dimension =[DimProduct]
+---Hierachy=[Color]
+---Level=[Color]
+---Members=&[Black]
+SELECT  [DimProduct].[Color].[Color].&[Black] ON COLUMNS
+FROM [ProdInventory]
+WHERE [Measures].[Units In]
+GO
+
+/*======  : To define a range within a set ======*/
+
+SELECT{[DimDate].[Calendar Year].&[2010]
+       ,[DimDate].[Calendar Year].&[2011]} ON COLUMNS
+FROM [ProdInventory]
+WHERE [Measures].[Units In]
+GO
+
+SELECT{[DimDate].[Calendar Year].&[2010]
+       :[DimDate].[Calendar Year].&[2015]} ON COLUMNS
+FROM [ProdInventory]
+WHERE [Measures].[Units In]
+GO 
+/*
+====== Tuples            ======
+====== 0=Columns, 1=Rows ======
+*/ 
+
+SELECT NON EMPTY 
+       ([DimDate].[Calendar Year].[Calendar Year].MEMBERS,
+		[DimDate].[Calendar Quarter].[Calendar Quarter].MEMBERS) ON COLUMNS 
+       ,[DimProduct].[Color].[Color].MEMBERS ON ROWS
+FROM [ProdInventory]
+WHERE [Measures].[Units In]
+GO 
+
+SELECT NON EMPTY 
+CROSSJOIN ([DimDate].[Calendar Year].[Calendar Year].MEMBERS,
+		[DimDate].[Calendar Quarter].[Calendar Quarter].MEMBERS) ON COLUMNS 
+       ,[DimProduct].[Color].[Color].MEMBERS ON ROWS
+FROM [ProdInventory]
+WHERE [Measures].[Units In]
+GO 
+
+SELECT NON EMPTY 
+        [DimDate].[Calendar Year].[Calendar Year].MEMBERS
+		*[DimDate].[Calendar Quarter].[Calendar Quarter].MEMBERS ON COLUMNS 
+       ,[DimProduct].[Color].[Color].MEMBERS ON ROWS
+FROM [ProdInventory]
+WHERE [Measures].[Units In]
+GO
+
+WITH MEMBER [Distinct Count] AS 
+DISTINCTCOUNT(([DimDate].[Calendar Year].[Calendar Year],[Measures].[Units In])) 
+ 
+SELECT [Distinct Count] ON COLUMNS
+FROM [ProdInventory]
+
+/*==============  Functions ==============*/
+---TOPCOUNT
+SELECT [Measures].[Units In] ON COLUMNS,
+       TOPCOUNT([DimProduct].[English Product Name].[English Product Name].MEMBERS, 5,
+	   [Measures].[Units In]) ON ROWS 
+FROM [ProdInventory]
+---TOPPERCENT
+SELECT [Measures].[Units In] ON COLUMNS,
+       TOPCOUNT([DimProduct].[English Product Name].[English Product Name].MEMBERS, 5,
+	   [Measures].[Units In]) ON ROWS 
+FROM [ProdInventory]
+----BOTTOMCOUNT
+SELECT [Measures].[Units In] ON COLUMNS,
+       TOPCOUNT([DimProduct].[English Product Name].[English Product Name].MEMBERS, 5,
+	   [Measures].[Units In]) ON ROWS 
+FROM [ProdInventory]
+
+/*======    BOTTOMPERCENT    =====*/
+SELECT [Measures].[Units In] ON COLUMNS,
+       TOPCOUNT([DimProduct].[English Product Name].[English Product Name].MEMBERS, 5,
+	   [Measures].[Units In]) ON ROWS 
+FROM [ProdInventory]
+/*======    PARALLELPERIOD    =====*/
+WITH MEMBER Units AS 
+     [Measures].[Units In]
+     MEMBER Target AS
+	 ([Measures].[Units In],
+	 PARALLELPERIOD([DimDate].[Calendar Year].[Calendar Year],1,
+	 [DimDate].[Calendar Year].CURRENTMEMBER))*(1+.1)
+
+SELECT {Units, Target} ON COLUMNS,
+       [DimDate].[Calendar Year].[Calendar Year] ON ROWS
+FROM [ProdInventory];
+GO
+/*========= KPI  ==========*/
+---Value
+---Goal
+---Status
+---Trend
+WITH MEMBER UnitValue AS
+[Measures].[Units In]
+MEMBER UnitTarget AS (
+			[Measures].[Units In]
+			,PARALLELPERIOD([DimDate].[Hierarchy].[Calendar Year], 1,
+             [DimDate].[Hierarchy].[Calendar Year].CURRENTMEMBER
+			))
+MEMBER UnitStatusCalc AS  
+(UnitValue-UnitTarget)/UnitTarget
+MEMBER UnitStatus AS
+CASE WHEN ISEMPTY(UnitTarget) THEN Null
+     WHEN ISEMPTY(UnitValue) THEN Null
+     WHEN UnitStatusCalc >.2 THEN 1 
+     WHEN UnitStatusCalc <-.2 THEN -1 
+	 ELSE 0
+	 ---iif(UnitStatusCalc>.2, 1, iif(UnitStatusCalc<-.2,-1,0))
+     ----WHEN UnitStatusCalc>-.2 AND UnitStatusCalc<-.2 THEN 0
+END
+MEMBER UnitsInTwoYearsAgo AS
+            ([Measures].[Units In]
+			,PARALLELPERIOD([DimDate].[Hierarchy].[Calendar Year], 2,
+            [DimDate].[Hierarchy].[Calendar Year].CURRENTMEMBER
+			))
+MEMBER UnitsTrend AS 
+CASE WHEN ISEMPTY(UnitTarget) THEN Null
+     WHEN ISEMPTY(UnitValue) THEN Null
+	 WHEN ISEMPTY(UnitsInTwoYearsAgo) THEN Null
+     WHEN UnitValue>UnitTarget AND UnitTarget>UnitsInTwoYearsAgo THEN 1 
+     WHEN UnitValueU<nitTarget AND UnitTarget<UnitsInTwoYearsAgo  THEN -1 
+	 ELSE 0
+END
+SELECT 
+{UnitValue, UnitTarget, UnitStatus, UnitsTrend} ON COLUMNS 
+,NON EMPTY [DimDate].[Hierarchy].[Calendar Year] ON ROWS
+FROM [ProdInventory]

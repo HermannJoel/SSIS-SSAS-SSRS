@@ -1,0 +1,56 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [SystemLog].[ExecutionMessages]
+       [SystemLog].[ExecutionStatictics]
+       [SystemLog].[LoadExecutions]
+       [SystemLog].[Loads]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       The column [SystemLog].[ExecutionMessages].[ExecutionMessageTypeId] on table [SystemLog].[ExecutionMessages] must be
+         added, but the column has no default value and does not allow NULL values. If the table contains data, the ALTER script
+         will not work. To avoid this issue you must either: add a default value to the column, mark it as allowing NULL values,
+         or enable the generation of smart-defaults as a deployment option.
+       The column [SystemLog].[ExecutionStatictics].[SSISProjectName] on table [SystemLog].[ExecutionStatictics] must be added,
+         but the column has no default value and does not allow NULL values. If the table contains data, the ALTER script will
+         not work. To avoid this issue you must either: add a default value to the column, mark it as allowing NULL values, or
+         enable the generation of smart-defaults as a deployment option.
+       The type for column DestinationComponentName in table [SystemLog].[ExecutionStatictics] is currently  NVARCHAR (4000)
+         NOT NULL but is being changed to  NVARCHAR (500) NOT NULL. Data loss could occur.
+       The column [SystemLog].[LoadExecutions].[ExecutionStatusId] on table [SystemLog].[LoadExecutions] must be added, but the
+         column has no default value and does not allow NULL values. If the table contains data, the ALTER script will not work.
+         To avoid this issue you must either: add a default value to the column, mark it as allowing NULL values, or enable the
+         generation of smart-defaults as a deployment option.
+
+** User actions
+     Rename
+       [SystemLog].[ExecutionStatictics].[ExecutionStatisticId] (Column)
+     Table rebuild
+       [SystemLog].[ExecutionMessages] (Table)
+       [SystemLog].[ExecutionStatictics] (Table)
+       [SystemLog].[LoadExecutions] (Table)
+       [SystemLog].[Loads] (Table)
+     Create
+       [SystemLog].[ExecutionMessageTypes] (Table)
+       [SystemLog].[ExecutionRejects] (Table)
+       [SystemLog].[ExecutionStatus] (Table)
+       [SystemLog].[FK_ExecutionMessages_to_ExecutionMessageTypes] (Foreign Key)
+       [SystemLog].[FK_Executions_To_Loads] (Foreign Key)
+       [SystemLog].[FK_Executions_To_ExectionStatus] (Foreign Key)
+       [SystemLog].[FK_LoadExecutionRejects_To_LoadExecutions] (Foreign Key)
+
+** Supporting actions
+     Drop
+       [SystemLog].[FK_ExecutionMessages_To_LoadExecutions] (Foreign Key)
+       [SystemLog].[FK_ExecutionStatictics_To_LoadExecutions] (Foreign Key)
+     Create
+       [SystemLog].[FK_ExecutionMessages_To_LoadExecutions] (Foreign Key)
+       [SystemLog].[FK_ExecutionStatictics_To_LoadExecutions] (Foreign Key)
+
+The column [SystemLog].[ExecutionMessages].[ExecutionMessageTypeId] on table [SystemLog].[ExecutionMessages] must be added, but the column has no default value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of smart-defaults as a deployment option.
+The column [SystemLog].[ExecutionStatictics].[SSISProjectName] on table [SystemLog].[ExecutionStatictics] must be added, but the column has no default value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of smart-defaults as a deployment option.
+The type for column DestinationComponentName in table [SystemLog].[ExecutionStatictics] is currently  NVARCHAR (4000) NOT NULL but is being changed to  NVARCHAR (500) NOT NULL. Data loss could occur.
+The column [SystemLog].[LoadExecutions].[ExecutionStatusId] on table [SystemLog].[LoadExecutions] must be added, but the column has no default value and does not allow NULL values. If the table contains data, the ALTER script will not work. To avoid this issue you must either: add a default value to the column, mark it as allowing NULL values, or enable the generation of smart-defaults as a deployment option.
+

@@ -1,0 +1,1559 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/2/2022 7:10:08 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-JDQLDT1"
+  DTS:CreatorName="DESKTOP-JDQLDT1\nherm"
+  DTS:DTSID="{87DBEDFC-4A8D-4F10-B5F9-0BFB235CF264}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ExcelSrcHedge"
+  DTS:PackageType="5"
+  DTS:VersionBuild="67"
+  DTS:VersionGUID="{EA884BC5-5BE5-4585-8692-F170CF6D49E7}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[cmgr_OLTP]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4FAAB851-D436-4843-9C35-1487E926801D}"
+      DTS:ObjectName="cmgr_OLTP">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::cmgr_OLTP]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-JDQLDT1\MSSQLSERVERDWH;Initial Catalog=OLTP;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="20"
+      DTS:DTSID="{92811893-6D88-45BD-952D-8FDFEEEA3775}"
+      DTS:ObjectName="LoadExecutionId"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="20"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{27F09490-B901-4E91-82EF-A65EF7353D82}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageStartDateTime">
+      <DTS:VariableValue
+        DTS:DataType="7">10/3/2022 11:41:25 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9B2F99A9-A2E1-4D20-8A3A-31E9F6D43304}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PreviousActivityDateTime">
+      <DTS:VariableValue
+        DTS:DataType="7">10/3/2022 11:41:59 PM</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\dft_oltp_ExcelMarket_Hedge"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B62108F8-E4E9-45A3-8B80-923F0464EE63}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="dft_oltp_ExcelMarket_Hedge"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="dcnv"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Inputs[Data Conversion Input].Columns[hedge_id]"
+                      cachedDataType="r8"
+                      cachedName="hedge_id"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[hedge_id]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Inputs[Data Conversion Input].Columns[projet_id]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="projet_id"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[projet_id]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Inputs[Data Conversion Input].Columns[projet]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="projet"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[projet]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Inputs[Data Conversion Input].Columns[technologie]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="technologie"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[technologie]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Inputs[Data Conversion Input].Columns[type_hedge]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="type_hedge"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[type_hedge]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Inputs[Data Conversion Input].Columns[date_debut]"
+                      cachedDataType="date"
+                      cachedName="date_debut"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[date_debut]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Inputs[Data Conversion Input].Columns[date_fin]"
+                      cachedDataType="date"
+                      cachedName="date_fin"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[date_fin]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Inputs[Data Conversion Input].Columns[date_dementelement]"
+                      cachedDataType="date"
+                      cachedName="date_dementelement"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[date_dementelement]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Inputs[Data Conversion Input].Columns[puissance_installée]"
+                      cachedDataType="r8"
+                      cachedName="puissance_installée"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[puissance_installée]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Inputs[Data Conversion Input].Columns[profil]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="profil"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[profil]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Inputs[Data Conversion Input].Columns[pct_couverture]"
+                      cachedDataType="r8"
+                      cachedName="pct_couverture"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[pct_couverture]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Inputs[Data Conversion Input].Columns[contrepartie]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="contrepartie"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[contrepartie]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Inputs[Data Conversion Input].Columns[pays_contrepartie]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="pays_contrepartie"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[pays_contrepartie]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Inputs[Data Conversion Input].Columns[en_planif]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="en_planif"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[en_planif]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Inputs[Data Conversion Input].Columns[LoadExecutionId]"
+                      cachedDataType="i4"
+                      cachedName="LoadExecutionId"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[HedgeId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[HedgeId]"
+                      name="HedgeId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[hedge_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[ProjectId]"
+                      name="ProjectId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[projet_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="250"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[Project]"
+                      name="Project"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[projet]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[Technology]"
+                      name="Technology"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[technologie]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[TypeHedge]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[TypeHedge]"
+                      name="TypeHedge"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[type_hedge]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[StartDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[StartDate]"
+                      name="StartDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[date_debut]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[EndDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[EndDate]"
+                      name="EndDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[date_fin]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[DismentleDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[DismentleDate]"
+                      name="DismentleDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[date_dementelement]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[InstalledPower]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[InstalledPower]"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[puissance_installée]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[Profil]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[Profil]"
+                      name="Profil"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[profil]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[HedgePct]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[HedgePct]"
+                      name="HedgePct"
+                      precision="4"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[pct_couverture]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[Counterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[Counterparty]"
+                      name="Counterparty"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[contrepartie]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[CountryCounterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[CountryCounterparty]"
+                      name="CountryCounterparty"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[pays_contrepartie]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[InPlanif]"
+                      name="InPlanif"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[en_planif]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[LoadExecutionId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[LoadExecutionId]"
+                      name="LoadExecutionId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_oltp_ExcelMarket_Hedge\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_oltp_ExcelMarket_Hedge\der_LoadExecutionId"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="der_LoadExecutionId"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\dft_oltp_ExcelMarket_Hedge\der_LoadExecutionId.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_oltp_ExcelMarket_Hedge\der_LoadExecutionId.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\dft_oltp_ExcelMarket_Hedge\der_LoadExecutionId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]"
+                      name="LoadExecutionId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_I4)@[$Package::LoadExecutionId]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_I4)@[$Package::LoadExecutionId]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_oltp_ExcelMarket_Hedge\der_LoadExecutionId.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\dft_oltp_ExcelMarket_Hedge\der_LoadExecutionId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="excel_src_templateHedge"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Sheet1$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Connections[OleDbConnection]"
+                  connectionManagerID="{2929B1A0-C7F0-45F4-9D74-882A71F91302}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ecmgr_Hedge]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[hedge_id]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[hedge_id]"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[hedge_id]"
+                      name="hedge_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[projet_id]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[projet_id]"
+                      length="255"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[projet_id]"
+                      name="projet_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[projet]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[projet]"
+                      length="255"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[projet]"
+                      name="projet"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[technologie]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[technologie]"
+                      length="255"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[technologie]"
+                      name="technologie"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[type_hedge]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[type_hedge]"
+                      length="255"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[type_hedge]"
+                      name="type_hedge"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[date_debut]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[date_debut]"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[date_debut]"
+                      name="date_debut"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[date_fin]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[date_fin]"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[date_fin]"
+                      name="date_fin"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[date_dementelement]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[date_dementelement]"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[date_dementelement]"
+                      name="date_dementelement"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[puissance_installée]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[puissance_installée]"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[puissance_installée]"
+                      name="puissance_installée"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[profil]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[profil]"
+                      length="255"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[profil]"
+                      name="profil"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[pct_couverture]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[pct_couverture]"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[pct_couverture]"
+                      name="pct_couverture"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[contrepartie]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[contrepartie]"
+                      length="255"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[contrepartie]"
+                      name="contrepartie"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[pays_contrepartie]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[pays_contrepartie]"
+                      length="255"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[pays_contrepartie]"
+                      name="pays_contrepartie"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[en_planif]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[en_planif]"
+                      length="255"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].Columns[en_planif]"
+                      name="en_planif"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[rw_id]"
+                      dataType="r8"
+                      name="rw_id" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[hedge_id]"
+                      dataType="r8"
+                      name="hedge_id" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[projet_id]"
+                      dataType="wstr"
+                      length="255"
+                      name="projet_id" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[projet]"
+                      dataType="wstr"
+                      length="255"
+                      name="projet" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[technologie]"
+                      dataType="wstr"
+                      length="255"
+                      name="technologie" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[type_hedge]"
+                      dataType="wstr"
+                      length="255"
+                      name="type_hedge" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[date_debut]"
+                      dataType="date"
+                      name="date_debut" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[date_fin]"
+                      dataType="date"
+                      name="date_fin" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[date_dementelement]"
+                      dataType="date"
+                      name="date_dementelement" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[puissance_installée]"
+                      dataType="r8"
+                      name="puissance_installée" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[profil]"
+                      dataType="wstr"
+                      length="255"
+                      name="profil" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[pct_couverture]"
+                      dataType="r8"
+                      name="pct_couverture" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[contrepartie]"
+                      dataType="wstr"
+                      length="255"
+                      name="contrepartie" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[pays_contrepartie]"
+                      dataType="wstr"
+                      length="255"
+                      name="pays_contrepartie" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output].ExternalColumns[en_planif]"
+                      dataType="wstr"
+                      length="255"
+                      name="en_planif" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[hedge_id]"
+                      dataType="r8"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[hedge_id]"
+                      name="hedge_id" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[projet_id]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[projet_id]"
+                      name="projet_id" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[projet]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[projet]"
+                      name="projet" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[technologie]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[technologie]"
+                      name="technologie" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[type_hedge]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[type_hedge]"
+                      name="type_hedge" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[date_debut]"
+                      dataType="date"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[date_debut]"
+                      name="date_debut" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[date_fin]"
+                      dataType="date"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[date_fin]"
+                      name="date_fin" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[date_dementelement]"
+                      dataType="date"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[date_dementelement]"
+                      name="date_dementelement" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[puissance_installée]"
+                      dataType="r8"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[puissance_installée]"
+                      name="puissance_installée" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[profil]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[profil]"
+                      name="profil" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[pct_couverture]"
+                      dataType="r8"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[pct_couverture]"
+                      name="pct_couverture" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[contrepartie]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[contrepartie]"
+                      name="contrepartie" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[pays_contrepartie]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[pays_contrepartie]"
+                      name="pays_contrepartie" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[en_planif]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[en_planif]"
+                      name="en_planif" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="ole_dst_Hedge"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[ExcelMarket].[Hedge]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[cmgr_OLTP]"
+                  connectionManagerRefId="Package.ConnectionManagers[cmgr_OLTP]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].Columns[HedgeId]"
+                      cachedDataType="i4"
+                      cachedName="HedgeId"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[HedgeId]"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[HedgeId]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].Columns[ProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjectId"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[ProjectId]"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[ProjectId]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].Columns[Project]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="Project"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[Project]"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[Project]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].Columns[Technology]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Technology"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[Technology]"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[Technology]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].Columns[TypeHedge]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TypeHedge"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[TypeHedge]"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[TypeHedge]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].Columns[StartDate]"
+                      cachedDataType="dbDate"
+                      cachedName="StartDate"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[ContractStartDate]"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[StartDate]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].Columns[EndDate]"
+                      cachedDataType="dbDate"
+                      cachedName="EndDate"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[ContractEndDate]"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[EndDate]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].Columns[DismentleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DismentleDate"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[DismentleDate]"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[DismentleDate]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].Columns[InstalledPower]"
+                      cachedDataType="numeric"
+                      cachedName="InstalledPower"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[InstalledPower]"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[InstalledPower]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].Columns[Profil]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Profil"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[Profil]"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[Profil]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].Columns[HedgePct]"
+                      cachedDataType="numeric"
+                      cachedName="HedgePct"
+                      cachedPrecision="4"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[HedgePct]"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[HedgePct]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].Columns[Counterparty]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Counterparty"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[Counterparty]"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[Counterparty]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].Columns[CountryCounterparty]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="CountryCounterparty"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[CountryCounterparty]"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[CountryCounterparty]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].Columns[InPlanif]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="InPlanif"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[InPlanif]"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[InPlanif]" />
+                    <inputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].Columns[LoadExecutionId]"
+                      cachedDataType="i4"
+                      cachedName="LoadExecutionId"
+                      externalMetadataColumnId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[LoadExecutionId]"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output].Columns[LoadExecutionId]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[HedgeId]"
+                      dataType="i4"
+                      name="HedgeId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ProjectId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="Project" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Technology" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[TypeHedge]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TypeHedge" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[ContractStartDate]"
+                      dataType="dbDate"
+                      name="ContractStartDate" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[ContractEndDate]"
+                      dataType="dbDate"
+                      name="ContractEndDate" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[DismentleDate]"
+                      dataType="dbDate"
+                      name="DismentleDate" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[InstalledPower]"
+                      dataType="numeric"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[Profil]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Profil" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[HedgePct]"
+                      dataType="numeric"
+                      name="HedgePct"
+                      precision="4"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[Counterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Counterparty" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[CountryCounterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="CountryCounterparty" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="InPlanif" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[ActivityDateTime]"
+                      dataType="dbTimeStamp"
+                      name="ActivityDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input].ExternalColumns[LoadExecutionId]"
+                      dataType="i4"
+                      name="LoadExecutionId" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\dft_oltp_ExcelMarket_Hedge.Paths[Data Conversion Output]"
+              endId="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\dft_oltp_ExcelMarket_Hedge.Paths[Derived Column Output]"
+              endId="Package\dft_oltp_ExcelMarket_Hedge\dcnv.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\dft_oltp_ExcelMarket_Hedge\der_LoadExecutionId.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\dft_oltp_ExcelMarket_Hedge.Paths[Excel Source Output]"
+              endId="Package\dft_oltp_ExcelMarket_Hedge\der_LoadExecutionId.Inputs[Derived Column Input]"
+              name="Excel Source Output"
+              startId="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\sql_DeleteCurrentLoadExecutionIdData"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C9AE7329-0194-4A02-8826-772A8CD7079D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="sql_DeleteCurrentLoadExecutionIdData"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4FAAB851-D436-4843-9C35-1487E926801D}"
+          SQLTask:SqlStatementSource="DELETE FROM [ExcelMarket].[Hedge] WHERE [LoadExecutionId] = ?   " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::LoadExecutionId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\sql_Truncate_ExcelMarket_Hedge"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{AAED8992-05BF-458B-8E02-ADDB83E573E6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="sql_Truncate_ExcelMarket_Hedge"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4FAAB851-D436-4843-9C35-1487E926801D}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [ExcelMarket].[Hedge];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{50C6C014-A765-4656-9942-6509A198F6CE}"
+      DTS:From="Package\sql_Truncate_ExcelMarket_Hedge"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\dft_oltp_ExcelMarket_Hedge" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{81BE3F43-F52C-45B2-A95E-90DB6B52D895}"
+      DTS:From="Package\sql_DeleteCurrentLoadExecutionIdData"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\dft_oltp_ExcelMarket_Hedge" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="214,42"
+          Id="Package\dft_oltp_ExcelMarket_Hedge"
+          TopLeft="298,197" />
+        <NodeLayout
+          Size="263,42"
+          Id="Package\sql_DeleteCurrentLoadExecutionIdData"
+          TopLeft="49,84" />
+        <NodeLayout
+          Size="238,42"
+          Id="Package\sql_Truncate_ExcelMarket_Hedge"
+          TopLeft="579,91" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="698,133">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-258.666666666667,64"
+              Start="0,0"
+              End="-258.666666666667,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.1150278293135" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.1150278293135"
+                    Point2="0,38.1150278293135"
+                    Point3="-4,38.1150278293135" />
+                  <mssgle:LineSegment
+                    End="-254.666666666667,38.1150278293135" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-254.666666666667,38.1150278293135"
+                    Point2="-258.666666666667,38.1150278293135"
+                    Point3="-258.666666666667,42.1150278293135" />
+                  <mssgle:LineSegment
+                    End="-258.666666666667,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="180.5,126">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="190.166666666667,71"
+              Start="0,0"
+              End="190.166666666667,63.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.2838589981447" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38.2838589981447"
+                    Point2="0,42.2838589981447"
+                    Point3="4,42.2838589981447" />
+                  <mssgle:LineSegment
+                    End="186.166666666667,42.2838589981447" />
+                  <mssgle:CubicBezierSegment
+                    Point1="186.166666666667,42.2838589981447"
+                    Point2="190.166666666667,42.2838589981447"
+                    Point3="190.166666666667,46.2838589981447" />
+                  <mssgle:LineSegment
+                    End="190.166666666667,63.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\dft_oltp_ExcelMarket_Hedge">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="200,42"
+          Id="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge"
+          TopLeft="369.666666666667,368" />
+        <NodeLayout
+          Size="202,42"
+          Id="Package\dft_oltp_ExcelMarket_Hedge\der_LoadExecutionId"
+          TopLeft="371,131" />
+        <NodeLayout
+          Size="202,42"
+          Id="Package\dft_oltp_ExcelMarket_Hedge\dcnv"
+          TopLeft="371.666666666667,238" />
+        <NodeLayout
+          Size="207,42"
+          Id="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge"
+          TopLeft="369.666666666667,31" />
+        <EdgeLayout
+          Id="Package\dft_oltp_ExcelMarket_Hedge.Paths[Excel Source Output]"
+          TopLeft="472.583333333333,73">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58"
+              Start="0,0"
+              End="0,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\dft_oltp_ExcelMarket_Hedge.Paths[Derived Column Output]"
+          TopLeft="472.333333333333,173">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,65"
+              Start="0,0"
+              End="0,57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\dft_oltp_ExcelMarket_Hedge.Paths[Data Conversion Output]"
+          TopLeft="471.166666666667,280">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,88"
+              Start="0,0"
+              End="0,80.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,80.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\dft_oltp_ExcelMarket_Hedge\ole_dst_Hedge">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\dft_oltp_ExcelMarket_Hedge\excel_src_templateHedge">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

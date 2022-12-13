@@ -1,0 +1,1367 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/20/2022 8:15:59 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-JDQLDT1"
+  DTS:CreatorName="DESKTOP-JDQLDT1\nherm"
+  DTS:DTSID="{E65028FF-99F5-43D7-95AF-30E064ACE809}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DW FactProdPrices"
+  DTS:PackageType="5"
+  DTS:VersionBuild="36"
+  DTS:VersionGUID="{BDA691DA-3ACA-4004-B3BE-63FA0326767C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[cmgr_DWH]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{9EC1DDF9-B6FD-4CB7-A421-ED4EE259BCDC}"
+      DTS:ObjectName="cmgr_DWH">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::cmgr_DWH]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-JDQLDT1\MSSQLSERVERDWH;Initial Catalog=DWH;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[cmgr_DWHStg]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E93DDCD0-485F-4A70-B8CF-ACD8781EB719}"
+      DTS:ObjectName="cmgr_DWHStg">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::cmgr_DWHStg]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-JDQLDT1\MSSQLSERVERDWH;Initial Catalog=DWHStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="7"
+      DTS:DTSID="{F8744324-DEB6-40E6-95FF-C73148B58352}"
+      DTS:ObjectName="LoadExecutionDate"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="7"
+        DTS:Name="ParameterValue">1/1/1900</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="20"
+      DTS:DTSID="{F3DEE550-937F-4BF9-8554-39BA6AE6ED97}"
+      DTS:ObjectName="LoadExecutionId"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="20"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="20"
+      DTS:DTSID="{BE4D88C4-5329-42BF-9653-88A0D55570A0}"
+      DTS:ObjectName="LoadId">
+      <DTS:Property
+        DTS:DataType="20"
+        DTS:Name="ParameterValue">490</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="20"
+      DTS:DTSID="{87A1FC83-ACB6-4B08-9E49-AB10590A83D7}"
+      DTS:ObjectName="SourceLoadExecutionId"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="20"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\dft_DW_FactProdPrices_ins"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B3897C14-572E-4FA6-99EB-3F0BA0559E81}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="dft_DW_FactProdPrices_ins"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\dft_DW_FactProdPrices_ins\der_LoadExecutionId"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="der_LoadExecutionId"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\dft_DW_FactProdPrices_ins\der_LoadExecutionId.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_DW_FactProdPrices_ins\der_LoadExecutionId.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\dft_DW_FactProdPrices_ins\der_LoadExecutionId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]"
+                      name="LoadExecutionId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_I4)@[$Package::LoadExecutionId]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_I4)@[$Package::LoadExecutionId]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_DW_FactProdPrices_ins\der_LoadExecutionId.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\dft_DW_FactProdPrices_ins\der_LoadExecutionId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_DW_FactProdPrices_ins\lkp_DateKey_DW_DimDate"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="lkp_DateKey_DW_DimDate"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        [Date], CalenderYear, QuarterNumberOfYear, MonthNumberOfYear, MonthNameOfYear, DayNumberOfYear, DateKey
+FROM    DW.DimDate</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT        [Date], CalenderYear, QuarterNumberOfYear, MonthNumberOfYear, MonthNameOfYear, DayNumberOfYear, DateKey
+FROM    DW.DimDate) [refTable]
+where [refTable].[Date] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Date" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CalenderYear" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="QuarterNumberOfYear" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MonthNumberOfYear" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="MonthNameOfYear" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DayNumberOfYear" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DateKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[Date]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dft_DW_FactProdPrices_ins\lkp_DateKey_DW_DimDate.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[cmgr_DWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[cmgr_DWH]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dft_DW_FactProdPrices_ins\lkp_DateKey_DW_DimDate.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\lkp_DateKey_DW_DimDate.Inputs[Lookup Input].Columns[Date]"
+                      cachedDataType="dbDate"
+                      cachedName="Date"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[Date]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Date</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_DW_FactProdPrices_ins\lkp_DateKey_DW_DimDate.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\dft_DW_FactProdPrices_ins\lkp_DateKey_DW_DimDate.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\lkp_DateKey_DW_DimDate.Outputs[Lookup Match Output].Columns[DateKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\lkp_DateKey_DW_DimDate.Outputs[Lookup Match Output].Columns[DateKey]"
+                      name="DateKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DateKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_DW_FactProdPrices_ins\lkp_DateKey_DW_DimDate.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\dft_DW_FactProdPrices_ins\lkp_DateKey_DW_DimDate.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_DW_FactProdPrices_ins\lkp_DateKey_DW_DimDate.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\dft_DW_FactProdPrices_ins\lkp_DateKey_DW_DimDate.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\lkp_DateKey_DW_DimDate.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\lkp_DateKey_DW_DimDate.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\lkp_DateKey_DW_DimDate.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\lkp_DateKey_DW_DimDate.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_DW_FactProdPrices_ins\lkp_DW_DimHedge"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="lkp_DW_DimHedge"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        HedgeId, ProjectId, Project, Technology, TypeHedge, ContractStartDate, ContractEndDate, DismentleDate, InstalledPower, Profil, HedgePct, Counterparty, CountryCounterparty, InPlanif
+FROM            DW.DimHedge</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT        HedgeId, ProjectId, Project, Technology, TypeHedge, ContractStartDate, ContractEndDate, DismentleDate, InstalledPower, Profil, HedgePct, Counterparty, CountryCounterparty, InPlanif
+FROM            DW.DimHedge) [refTable]
+where [refTable].[HedgeId] = ? and [refTable].[ProjectId] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="HedgeId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProjectId" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Project" dataType="DT_STR" length="250" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Technology" dataType="DT_STR" length="200" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="TypeHedge" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="ContractStartDate" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ContractEndDate" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DismentleDate" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="InstalledPower" dataType="DT_NUMERIC" length="0" precision="7" scale="5" codePage="0"/&gt;&lt;referenceColumn name="Profil" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="HedgePct" dataType="DT_NUMERIC" length="0" precision="4" scale="2" codePage="0"/&gt;&lt;referenceColumn name="Counterparty" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="CountryCounterparty" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="InPlanif" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[HedgeId]};#{Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[ProjetId]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dft_DW_FactProdPrices_ins\lkp_DW_DimHedge.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[cmgr_DWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[cmgr_DWH]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dft_DW_FactProdPrices_ins\lkp_DW_DimHedge.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\lkp_DW_DimHedge.Inputs[Lookup Input].Columns[ProjetId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjetId"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[ProjetId]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ProjectId</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\lkp_DW_DimHedge.Inputs[Lookup Input].Columns[HedgeId]"
+                      cachedDataType="i4"
+                      cachedName="HedgeId"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[HedgeId]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">HedgeId</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_DW_FactProdPrices_ins\lkp_DW_DimHedge.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\dft_DW_FactProdPrices_ins\lkp_DW_DimHedge.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\lkp_DW_DimHedge.Outputs[Lookup Match Output].Columns[HedgeId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\lkp_DW_DimHedge.Outputs[Lookup Match Output].Columns[HedgeId]"
+                      name="HedgeId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">HedgeId</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_DW_FactProdPrices_ins\lkp_DW_DimHedge.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\dft_DW_FactProdPrices_ins\lkp_DW_DimHedge.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_DW_FactProdPrices_ins\lkp_DW_DimHedge.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\dft_DW_FactProdPrices_ins\lkp_DW_DimHedge.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\lkp_DW_DimHedge.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\lkp_DW_DimHedge.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\lkp_DW_DimHedge.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\lkp_DW_DimHedge.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="ole_dst_DW_FactProdPrices"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[DW].[FactProdPrices]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[cmgr_DWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[cmgr_DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].Columns[ProjetId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjetId"
+                      externalMetadataColumnId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[ProjetId]"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[ProjetId]" />
+                    <inputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].Columns[P50Asset]"
+                      cachedDataType="numeric"
+                      cachedName="P50Asset"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[P50Asset]"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[P50Asset]" />
+                    <inputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].Columns[P90Asset]"
+                      cachedDataType="numeric"
+                      cachedName="P90Asset"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[P90Asset]"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[P90Asset]" />
+                    <inputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].Columns[P50Hedge]"
+                      cachedDataType="numeric"
+                      cachedName="P50Hedge"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[P50Hedge]"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[P50Hedge]" />
+                    <inputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].Columns[P90Hedge]"
+                      cachedDataType="numeric"
+                      cachedName="P90Hedge"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[P90Hedge]"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[P90Hedge]" />
+                    <inputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].Columns[ContractPrice]"
+                      cachedDataType="numeric"
+                      cachedName="ContractPrice"
+                      cachedPrecision="7"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[ContractPrice]"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[ContractPrice]" />
+                    <inputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].Columns[SettlementPrice]"
+                      cachedDataType="numeric"
+                      cachedName="SettlementPrice"
+                      cachedPrecision="7"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[SettlementPrice]"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[SettlementPrice]" />
+                    <inputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].Columns[LoadExecutionId]"
+                      cachedDataType="i4"
+                      cachedName="LoadExecutionId"
+                      externalMetadataColumnId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[LoadExecutionId]"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]" />
+                    <inputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].Columns[DateKey]"
+                      cachedDataType="i4"
+                      cachedName="DateKey"
+                      externalMetadataColumnId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[DateKey]"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\lkp_DateKey_DW_DimDate.Outputs[Lookup Match Output].Columns[DateKey]" />
+                    <inputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].Columns[HedgeId]"
+                      cachedDataType="i4"
+                      cachedName="HedgeId"
+                      externalMetadataColumnId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[Hedgekey]"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\lkp_DW_DimHedge.Outputs[Lookup Match Output].Columns[HedgeId]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[Hedgekey]"
+                      dataType="i4"
+                      name="Hedgekey" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[DateKey]"
+                      dataType="i4"
+                      name="DateKey" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[ProjetId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ProjetId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[P50Asset]"
+                      dataType="numeric"
+                      name="P50Asset"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[P90Asset]"
+                      dataType="numeric"
+                      name="P90Asset"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[P50Hedge]"
+                      dataType="numeric"
+                      name="P50Hedge"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[P90Hedge]"
+                      dataType="numeric"
+                      name="P90Hedge"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[ContractPrice]"
+                      dataType="numeric"
+                      name="ContractPrice"
+                      precision="7"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[SettlementPrice]"
+                      dataType="numeric"
+                      name="SettlementPrice"
+                      precision="7"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input].ExternalColumns[LoadExecutionId]"
+                      dataType="i4"
+                      name="LoadExecutionId" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="ole_src_ExcelMarketStaging_StgProdPrices"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT AssetId, HedgeId, [Date], ProjetId, P50Asset, P90Asset, P50Hedge, P90Hedge, ContractPrice, SettlementPrice
+FROM ExcelMarketStaging.StgProdPrices WHERE (LoadExecutionId=?)</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"Parameter0:Input",{BE4D88C4-ACD6-42BF-9653-88A0D55570A0};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[cmgr_DWHStg]"
+                  connectionManagerRefId="Package.ConnectionManagers[cmgr_DWHStg]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[AssetId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].ExternalColumns[AssetId]"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[AssetId]"
+                      name="AssetId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[HedgeId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].ExternalColumns[HedgeId]"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[HedgeId]"
+                      name="HedgeId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[Date]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].ExternalColumns[Date]"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[Date]"
+                      name="Date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[ProjetId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].ExternalColumns[ProjetId]"
+                      length="100"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[ProjetId]"
+                      name="ProjetId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[P50Asset]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].ExternalColumns[P50Asset]"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[P50Asset]"
+                      name="P50Asset"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[P90Asset]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].ExternalColumns[P90Asset]"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[P90Asset]"
+                      name="P90Asset"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[P50Hedge]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].ExternalColumns[P50Hedge]"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[P50Hedge]"
+                      name="P50Hedge"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[P90Hedge]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].ExternalColumns[P90Hedge]"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[P90Hedge]"
+                      name="P90Hedge"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[ContractPrice]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].ExternalColumns[ContractPrice]"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[ContractPrice]"
+                      name="ContractPrice"
+                      precision="7"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[SettlementPrice]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].ExternalColumns[SettlementPrice]"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].Columns[SettlementPrice]"
+                      name="SettlementPrice"
+                      precision="7"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].ExternalColumns[AssetId]"
+                      dataType="i4"
+                      name="AssetId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].ExternalColumns[HedgeId]"
+                      dataType="i4"
+                      name="HedgeId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].ExternalColumns[Date]"
+                      dataType="dbDate"
+                      name="Date" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].ExternalColumns[ProjetId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ProjetId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].ExternalColumns[P50Asset]"
+                      dataType="numeric"
+                      name="P50Asset"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].ExternalColumns[P90Asset]"
+                      dataType="numeric"
+                      name="P90Asset"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].ExternalColumns[P50Hedge]"
+                      dataType="numeric"
+                      name="P50Hedge"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].ExternalColumns[P90Hedge]"
+                      dataType="numeric"
+                      name="P90Hedge"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].ExternalColumns[ContractPrice]"
+                      dataType="numeric"
+                      name="ContractPrice"
+                      precision="7"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output].ExternalColumns[SettlementPrice]"
+                      dataType="numeric"
+                      name="SettlementPrice"
+                      precision="7"
+                      scale="3" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[AssetId]"
+                      dataType="i4"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[AssetId]"
+                      name="AssetId" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[HedgeId]"
+                      dataType="i4"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[HedgeId]"
+                      name="HedgeId" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[Date]"
+                      dataType="dbDate"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[Date]"
+                      name="Date" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[ProjetId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[ProjetId]"
+                      name="ProjetId" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[P50Asset]"
+                      dataType="numeric"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[P50Asset]"
+                      name="P50Asset"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[P90Asset]"
+                      dataType="numeric"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[P90Asset]"
+                      name="P90Asset"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[P50Hedge]"
+                      dataType="numeric"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[P50Hedge]"
+                      name="P50Hedge"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[P90Hedge]"
+                      dataType="numeric"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[P90Hedge]"
+                      name="P90Hedge"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[ContractPrice]"
+                      dataType="numeric"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[ContractPrice]"
+                      name="ContractPrice"
+                      precision="7"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[SettlementPrice]"
+                      dataType="numeric"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[SettlementPrice]"
+                      name="SettlementPrice"
+                      precision="7"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\dft_DW_FactProdPrices_ins.Paths[Derived Column Output]"
+              endId="Package\dft_DW_FactProdPrices_ins\lkp_DW_DimHedge.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\dft_DW_FactProdPrices_ins\der_LoadExecutionId.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\dft_DW_FactProdPrices_ins.Paths[Lookup Match Output]"
+              endId="Package\dft_DW_FactProdPrices_ins\lkp_DateKey_DW_DimDate.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\dft_DW_FactProdPrices_ins\lkp_DW_DimHedge.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\dft_DW_FactProdPrices_ins.Paths[Lookup Match Output1]"
+              endId="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\dft_DW_FactProdPrices_ins\lkp_DateKey_DW_DimDate.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\dft_DW_FactProdPrices_ins.Paths[OLE DB Source Output]"
+              endId="Package\dft_DW_FactProdPrices_ins\der_LoadExecutionId.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\sql_Truncate_DW_FactProdPrices"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{CE5D53A4-4B7A-4BEC-897F-EA3B5AAC1EF6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="sql_Truncate_DW_FactProdPrices"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9EC1DDF9-B6FD-4CB7-A421-ED4EE259BCDC}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [DW].[FactProdPrices]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{058353D5-8838-41A0-8FDF-5567EF20F6CA}"
+      DTS:From="Package\sql_Truncate_DW_FactProdPrices"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\dft_DW_FactProdPrices_ins" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="208,42"
+          Id="Package\dft_DW_FactProdPrices_ins"
+          TopLeft="294,153" />
+        <NodeLayout
+          Size="237,42"
+          Id="Package\sql_Truncate_DW_FactProdPrices"
+          TopLeft="315,25" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="433.5,67">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-35.5,86"
+              Start="0,0"
+              End="-35.5,78.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,39"
+                    Point2="0,43"
+                    Point3="-4,43" />
+                  <mssgle:LineSegment
+                    End="-31.5,43" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-31.5,43"
+                    Point2="-35.5,43"
+                    Point3="-35.5,47" />
+                  <mssgle:LineSegment
+                    End="-35.5,78.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\dft_DW_FactProdPrices_ins">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="210,42"
+          Id="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices"
+          TopLeft="182.047619047619,626" />
+        <NodeLayout
+          Size="280,42"
+          Id="Package\dft_DW_FactProdPrices_ins\der_LoadExecutionId"
+          TopLeft="182.047619047619,124" />
+        <NodeLayout
+          Size="280,42"
+          Id="Package\dft_DW_FactProdPrices_ins\lkp_DateKey_DW_DimDate"
+          TopLeft="182.047619047619,413" />
+        <NodeLayout
+          Size="280,42"
+          Id="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices"
+          TopLeft="182.047619047619,26" />
+        <NodeLayout
+          Size="280,42"
+          Id="Package\dft_DW_FactProdPrices_ins\lkp_DW_DimHedge"
+          TopLeft="182.047619047619,255" />
+        <EdgeLayout
+          Id="Package\dft_DW_FactProdPrices_ins.Paths[OLE DB Source Output]"
+          TopLeft="322.047619047619,68">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56"
+              Start="0,0"
+              End="0,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\dft_DW_FactProdPrices_ins.Paths[Lookup Match Output]"
+          TopLeft="322.047619047619,297">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,116"
+              Start="0,0"
+              End="0,108.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,108.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,48.4453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\dft_DW_FactProdPrices_ins.Paths[Derived Column Output]"
+          TopLeft="322.047619047619,166">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,89"
+              Start="0,0"
+              End="0,81.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,81.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\dft_DW_FactProdPrices_ins.Paths[Lookup Match Output1]"
+          TopLeft="322.047619047619,455">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-35,171"
+              Start="0,0"
+              End="-35,163.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,81.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,81.5"
+                    Point2="0,85.5"
+                    Point3="-4,85.5" />
+                  <mssgle:LineSegment
+                    End="-31,85.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-31,85.5"
+                    Point2="-35,85.5"
+                    Point3="-35,89.5" />
+                  <mssgle:LineSegment
+                    End="-35,163.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-65.69138671875,90.5,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\dft_DW_FactProdPrices_ins\ole_dst_DW_FactProdPrices">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\dft_DW_FactProdPrices_ins\lkp_DateKey_DW_DimDate">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\dft_DW_FactProdPrices_ins\ole_src_ExcelMarketStaging_StgProdPrices">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\dft_DW_FactProdPrices_ins\lkp_DW_DimHedge">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
