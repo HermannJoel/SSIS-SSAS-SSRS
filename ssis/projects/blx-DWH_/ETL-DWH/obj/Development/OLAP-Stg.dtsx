@@ -1,0 +1,1652 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/3/2022 2:31:44 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-JDQLDT1"
+  DTS:CreatorName="DESKTOP-JDQLDT1\nherm"
+  DTS:DTSID="{EEB2F303-47F7-4A7E-87AD-1D734C88A5DA}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="OLAP-Stg"
+  DTS:PackageType="5"
+  DTS:VersionBuild="27"
+  DTS:VersionGUID="{EFFCBC61-589F-4466-AB27-60FCF4871660}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-JDQLDT1\MSSQLSERVERDWH.DWHStaging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E55530FE-EF2C-43FF-B2E8-F307E70DE6D9}"
+      DTS:ObjectName="DESKTOP-JDQLDT1\MSSQLSERVERDWH.DWHStaging">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::ConnDWHStg]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-JDQLDT1\MSSQLSERVERDWH;Initial Catalog=DWHStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-JDQLDT1\MSSQLSERVERDWH.OLTP]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{6356C4A1-09D4-43CA-88DF-93E5201EDDE9}"
+      DTS:ObjectName="DESKTOP-JDQLDT1\MSSQLSERVERDWH.OLTP">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::ConnOLTP]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-JDQLDT1\MSSQLSERVERDWH;Initial Catalog=OLTP;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DC2064C9-34AD-43E2-9B7D-457F52FF1D1D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageStartDateTime">
+      <DTS:VariableValue
+        DTS:DataType="7">10/3/2022 3:09:02 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8059A798-68FC-45E0-9649-C78467B9E4FD}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PreviousActivityDateTime">
+      <DTS:VariableValue
+        DTS:DataType="7">10/3/2022 3:10:05 PM</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Expression Task"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{C0463AAF-CDCE-452E-85B1-C494F9AE2FF6}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Expression Task"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::PackageStartDateTime]= GETDATE()" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\PackageStartDate&gt;records&gt;LastActivityDate"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{7EDAAF1C-8EFD-458C-83A1-8B31DEFD0371}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="PackageStartDate&gt;records&gt;LastActivityDate"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Inputs[Data Conversion Input].Columns[ProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjectId"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[ProjectId]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Inputs[Data Conversion Input].Columns[AssetId]"
+                      cachedDataType="i4"
+                      cachedName="AssetId"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[AssetId]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Inputs[Data Conversion Input].Columns[Project]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="Project"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Project]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Inputs[Data Conversion Input].Columns[Technology]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Technology"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Technology]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Inputs[Data Conversion Input].Columns[Cod]"
+                      cachedDataType="dbDate"
+                      cachedName="Cod"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Cod]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Inputs[Data Conversion Input].Columns[Mw]"
+                      cachedDataType="numeric"
+                      cachedName="Mw"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Mw]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Inputs[Data Conversion Input].Columns[SuccesPct]"
+                      cachedDataType="numeric"
+                      cachedName="SuccesPct"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[SuccesPct]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Inputs[Data Conversion Input].Columns[InstalledPower]"
+                      cachedDataType="numeric"
+                      cachedName="InstalledPower"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[InstalledPower]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Inputs[Data Conversion Input].Columns[Eoh]"
+                      cachedDataType="numeric"
+                      cachedName="Eoh"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Eoh]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Inputs[Data Conversion Input].Columns[DateMerchant]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMerchant"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[DateMerchant]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Inputs[Data Conversion Input].Columns[DismentleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DismentleDate"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[DismentleDate]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Inputs[Data Conversion Input].Columns[Repowering]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Repowering"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Repowering]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Inputs[Data Conversion Input].Columns[DateMsi]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMsi"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[DateMsi]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Inputs[Data Conversion Input].Columns[InPlanif]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="InPlanif"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[InPlanif]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Inputs[Data Conversion Input].Columns[P50]"
+                      cachedDataType="numeric"
+                      cachedName="P50"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[P50]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Inputs[Data Conversion Input].Columns[P90]"
+                      cachedDataType="numeric"
+                      cachedName="P90"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[P90]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[ProjectId]"
+                      name="ProjectId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[ProjectId]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[AssetId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[AssetId]"
+                      name="AssetId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[AssetId]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="250"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[Project]"
+                      name="Project"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Project]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[Technology]"
+                      name="Technology"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Technology]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[Cod]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[Cod]"
+                      name="Cod"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Cod]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[Mw]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[Mw]"
+                      name="Mw"
+                      precision="5"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Mw]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[SuccesPct]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[SuccesPct]"
+                      name="SuccesPct"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[SuccesPct]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[InstalledPower]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[InstalledPower]"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[InstalledPower]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[Eoh]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[Eoh]"
+                      name="Eoh"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Eoh]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[DateMerchant]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[DateMerchant]"
+                      name="DateMerchant"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[DateMerchant]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[DismentleDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[DismentleDate]"
+                      name="DismentleDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[DismentleDate]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[Repowering]"
+                      name="Repowering"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Repowering]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[DateMsi]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[DateMsi]"
+                      name="DateMsi"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[DateMsi]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[InPlanif]"
+                      name="InPlanif"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[InPlanif]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[P50]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[P50]"
+                      name="P50"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[P50]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[P90]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[P90]"
+                      name="P90"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[P90]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="Extract_Asset"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Asset]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT  AssetId, ProjectId, Project, Technology, Cod, Mw, SuccesPct, InstalledPower, Eoh, DateMerchant, DismentleDate, Repowering, DateMsi, InPlanif, P50, P90
+FROM  dbo.[Asset] WHERE (ActivityDateTime &gt; ?) AND (ActivityDateTime &lt;= ?)</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"Parameter0:Input",{8059A798-68FC-45E0-9649-C78467B9E4FD};"Parameter1:Input",{DC2064C9-34AD-43E2-9B7D-457F52FF1D1D};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JDQLDT1\MSSQLSERVERDWH.OLTP]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JDQLDT1\MSSQLSERVERDWH.OLTP]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[AssetId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[AssetId]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[AssetId]"
+                      name="AssetId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[ProjectId]"
+                      length="100"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[ProjectId]"
+                      name="ProjectId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[Project]"
+                      length="250"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Project]"
+                      name="Project"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[Technology]"
+                      length="200"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Technology]"
+                      name="Technology"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Cod]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[Cod]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Cod]"
+                      name="Cod"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Mw]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[Mw]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Mw]"
+                      name="Mw"
+                      precision="5"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[SuccesPct]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[SuccesPct]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[SuccesPct]"
+                      name="SuccesPct"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[InstalledPower]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[InstalledPower]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[InstalledPower]"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Eoh]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[Eoh]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Eoh]"
+                      name="Eoh"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[DateMerchant]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[DateMerchant]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[DateMerchant]"
+                      name="DateMerchant"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[DismentleDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[DismentleDate]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[DismentleDate]"
+                      name="DismentleDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[Repowering]"
+                      length="100"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[Repowering]"
+                      name="Repowering"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[DateMsi]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[DateMsi]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[DateMsi]"
+                      name="DateMsi"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[InPlanif]"
+                      length="50"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[InPlanif]"
+                      name="InPlanif"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[P50]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[P50]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[P50]"
+                      name="P50"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[P90]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[P90]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].Columns[P90]"
+                      name="P90"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[AssetId]"
+                      dataType="i4"
+                      name="AssetId" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ProjectId" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="Project" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Technology" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[Cod]"
+                      dataType="dbDate"
+                      name="Cod" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[Mw]"
+                      dataType="numeric"
+                      name="Mw"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[SuccesPct]"
+                      dataType="numeric"
+                      name="SuccesPct"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[InstalledPower]"
+                      dataType="numeric"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[Eoh]"
+                      dataType="numeric"
+                      name="Eoh"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[DateMerchant]"
+                      dataType="dbDate"
+                      name="DateMerchant" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[DismentleDate]"
+                      dataType="dbDate"
+                      name="DismentleDate" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Repowering" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[DateMsi]"
+                      dataType="dbDate"
+                      name="DateMsi" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="InPlanif" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[P50]"
+                      dataType="numeric"
+                      name="P50"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output].ExternalColumns[P90]"
+                      dataType="numeric"
+                      name="P90"
+                      precision="10"
+                      scale="3" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[AssetId]"
+                      dataType="i4"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[AssetId]"
+                      name="AssetId" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[ProjectId]"
+                      name="ProjectId" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[Project]"
+                      name="Project" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[Technology]"
+                      name="Technology" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[Cod]"
+                      dataType="dbDate"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[Cod]"
+                      name="Cod" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[Mw]"
+                      dataType="numeric"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[Mw]"
+                      name="Mw"
+                      precision="5"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[SuccesPct]"
+                      dataType="numeric"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[SuccesPct]"
+                      name="SuccesPct"
+                      precision="7"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[InstalledPower]"
+                      dataType="numeric"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[InstalledPower]"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[Eoh]"
+                      dataType="numeric"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[Eoh]"
+                      name="Eoh"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[DateMerchant]"
+                      dataType="dbDate"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[DateMerchant]"
+                      name="DateMerchant" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[DismentleDate]"
+                      dataType="dbDate"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[DismentleDate]"
+                      name="DismentleDate" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[Repowering]"
+                      name="Repowering" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[DateMsi]"
+                      dataType="dbDate"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[DateMsi]"
+                      name="DateMsi" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[InPlanif]"
+                      name="InPlanif" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[P50]"
+                      dataType="numeric"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[P50]"
+                      name="P50"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[P90]"
+                      dataType="numeric"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[P90]"
+                      name="P90"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insert_Stg_Asset"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[StgAsset]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JDQLDT1\MSSQLSERVERDWH.DWHStaging]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JDQLDT1\MSSQLSERVERDWH.DWHStaging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].Columns[ProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjectId"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[ProjectId]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[ProjectId]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].Columns[AssetId]"
+                      cachedDataType="i4"
+                      cachedName="AssetId"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[AssetId]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[AssetId]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].Columns[Project]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="Project"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Project]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[Project]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].Columns[Technology]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Technology"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Technology]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[Technology]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].Columns[Cod]"
+                      cachedDataType="dbDate"
+                      cachedName="Cod"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Cod]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[Cod]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].Columns[Mw]"
+                      cachedDataType="numeric"
+                      cachedName="Mw"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Mw]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[Mw]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].Columns[SuccesPct]"
+                      cachedDataType="numeric"
+                      cachedName="SuccesPct"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[SuccesPct]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[SuccesPct]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].Columns[InstalledPower]"
+                      cachedDataType="numeric"
+                      cachedName="InstalledPower"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[InstalledPower]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[InstalledPower]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].Columns[Eoh]"
+                      cachedDataType="numeric"
+                      cachedName="Eoh"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Eoh]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[Eoh]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].Columns[DateMerchant]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMerchant"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[DateMerchant]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[DateMerchant]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].Columns[DismentleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DismentleDate"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[DismentleDate]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[DismentleDate]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].Columns[Repowering]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Repowering"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Repowering]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[Repowering]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].Columns[DateMsi]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMsi"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[DateMsi]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[DateMsi]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].Columns[InPlanif]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="InPlanif"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[InPlanif]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[InPlanif]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].Columns[P50]"
+                      cachedDataType="numeric"
+                      cachedName="P50"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[P50]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[P50]" />
+                    <inputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].Columns[P90]"
+                      cachedDataType="numeric"
+                      cachedName="P90"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[P90]"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output].Columns[P90]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[AssetId]"
+                      dataType="i4"
+                      name="AssetId" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ProjectId" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="Project" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Technology" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Cod]"
+                      dataType="dbDate"
+                      name="Cod" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Mw]"
+                      dataType="numeric"
+                      name="Mw"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[SuccesPct]"
+                      dataType="numeric"
+                      name="SuccesPct"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[InstalledPower]"
+                      dataType="numeric"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Eoh]"
+                      dataType="numeric"
+                      name="Eoh"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[DateMerchant]"
+                      dataType="dbDate"
+                      name="DateMerchant" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[DismentleDate]"
+                      dataType="dbDate"
+                      name="DismentleDate" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Repowering" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[DateMsi]"
+                      dataType="dbDate"
+                      name="DateMsi" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="InPlanif" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[P50]"
+                      dataType="numeric"
+                      name="P50"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input].ExternalColumns[P90]"
+                      dataType="numeric"
+                      name="P90"
+                      precision="10"
+                      scale="3" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\PackageStartDate&gt;records&gt;LastActivityDate.Paths[Data Conversion Output]"
+              endId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\PackageStartDate&gt;records&gt;LastActivityDate.Paths[OLE DB Source Output]"
+              endId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Select_Max_ActivityDateTime_Asset"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1072CDF0-C9A1-40C6-A9B6-80B744377E49}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Select_Max_ActivityDateTime_Asset"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6356C4A1-09D4-43CA-88DF-93E5201EDDE9}"
+          SQLTask:SqlStatementSource="SELECT MAX([LastActivityDateTime]) AS LastActivityDateTime FROM dbo.[LogTracker] WHERE TableName='Asset';"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="LastActivityDateTime"
+            SQLTask:DtsVariableName="User::PreviousActivityDateTime" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update_Log_Tracker"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{064C8030-F0C1-4ED4-8006-3E6373DBE529}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update_Log_Tracker"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{6356C4A1-09D4-43CA-88DF-93E5201EDDE9}"
+          SQLTask:SqlStatementSource="INSERT INTO dbo.[LogTracker]([EventType], [TableName],[LastActivityDateTime]) VALUES &#xA;('I', 'Asset',?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::PackageStartDateTime"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{8E246432-65DF-4AA6-9958-F980F059478D}"
+      DTS:From="Package\Select_Max_ActivityDateTime_Asset"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\PackageStartDate&gt;records&gt;LastActivityDate" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{363D6E43-30D8-4567-831D-AB30779B37DB}"
+      DTS:From="Package\Expression Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\PackageStartDate&gt;records&gt;LastActivityDate" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{C9E48B04-57EE-4B99-A997-6C0D936345BA}"
+      DTS:From="Package\PackageStartDate&gt;records&gt;LastActivityDate"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Update_Log_Tracker" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Expression Task"
+          TopLeft="129,32" />
+        <NodeLayout
+          Size="288,42"
+          Id="Package\PackageStartDate&gt;records&gt;LastActivityDate"
+          TopLeft="284,164" />
+        <NodeLayout
+          Size="248,42"
+          Id="Package\Select_Max_ActivityDateTime_Asset"
+          TopLeft="422,38" />
+        <NodeLayout
+          Size="177,42"
+          Id="Package\Update_Log_Tracker"
+          TopLeft="274,273" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="546,80">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-71.3333333333334,84"
+              Start="0,0"
+              End="-71.3333333333334,76.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.121546961326" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,46.121546961326"
+                    Point2="0,50.121546961326"
+                    Point3="-4,50.121546961326" />
+                  <mssgle:LineSegment
+                    End="-67.3333333333334,50.121546961326" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-67.3333333333334,50.121546961326"
+                    Point2="-71.3333333333334,50.121546961326"
+                    Point3="-71.3333333333334,54.121546961326" />
+                  <mssgle:LineSegment
+                    End="-71.3333333333334,76.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="206.5,74">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="174.833333333333,90"
+              Start="0,0"
+              End="174.833333333333,82.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.7016574585635" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,49.7016574585635"
+                    Point2="0,53.7016574585635"
+                    Point3="4,53.7016574585635" />
+                  <mssgle:LineSegment
+                    End="170.833333333333,53.7016574585635" />
+                  <mssgle:CubicBezierSegment
+                    Point1="170.833333333333,53.7016574585635"
+                    Point2="174.833333333333,53.7016574585635"
+                    Point3="174.833333333333,57.7016574585635" />
+                  <mssgle:LineSegment
+                    End="174.833333333333,82.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="428,206">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-65.5,67"
+              Start="0,0"
+              End="-65.5,59.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.5"
+                    Point2="0,33.5"
+                    Point3="-4,33.5" />
+                  <mssgle:LineSegment
+                    End="-61.5,33.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-61.5,33.5"
+                    Point2="-65.5,33.5"
+                    Point3="-65.5,37.5" />
+                  <mssgle:LineSegment
+                    End="-65.5,59.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\PackageStartDate&gt;records&gt;LastActivityDate">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="159,42"
+          Id="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset"
+          TopLeft="319,325" />
+        <NodeLayout
+          Size="143,42"
+          Id="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset"
+          TopLeft="336,45" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\PackageStartDate&gt;records&gt;LastActivityDate\Data Conversion"
+          TopLeft="322,199" />
+        <EdgeLayout
+          Id="Package\PackageStartDate&gt;records&gt;LastActivityDate.Paths[OLE DB Source Output]"
+          TopLeft="403.75,87">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,112"
+              Start="0,0"
+              End="0,104.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,104.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\PackageStartDate&gt;records&gt;LastActivityDate.Paths[Data Conversion Output]"
+          TopLeft="399.25,241">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,84"
+              Start="0,0"
+              End="0,76.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,76.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\PackageStartDate&gt;records&gt;LastActivityDate\Insert_Stg_Asset">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\PackageStartDate&gt;records&gt;LastActivityDate\Extract_Asset">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "adwks1", "adwks1\adwks1.rptproj", "{8F78FF3D-A336-4370-8817-C67B8E63BC50}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F78FF3D-A336-4370-8817-C67B8E63BC50}.Debug|Default.ActiveCfg = Debug
+		{8F78FF3D-A336-4370-8817-C67B8E63BC50}.Debug|Default.Build.0 = Debug
+		{8F78FF3D-A336-4370-8817-C67B8E63BC50}.Debug|Default.Deploy.0 = Debug
+		{8F78FF3D-A336-4370-8817-C67B8E63BC50}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{8F78FF3D-A336-4370-8817-C67B8E63BC50}.DebugLocal|Default.Build.0 = DebugLocal
+		{8F78FF3D-A336-4370-8817-C67B8E63BC50}.Release|Default.ActiveCfg = Release
+		{8F78FF3D-A336-4370-8817-C67B8E63BC50}.Release|Default.Build.0 = Release
+		{8F78FF3D-A336-4370-8817-C67B8E63BC50}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

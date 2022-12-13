@@ -1,0 +1,21 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [SystemLog].[ExecutionMessages] (Table)
+       [SystemLog].[ExecutionStatictics] (Table)
+       [SystemLog].[LoadExecutions] (Table)
+       [SystemLog].[Loads] (Table)
+       [SystemLog].[FK_ExecutionMessages_To_LoadExecutions] (Foreign Key)
+       [SystemLog].[FK_ExecutionStatictics_To_LoadExecutions] (Foreign Key)
+       [SystemLog].[Startload] (Procedure)
+
+** Supporting actions

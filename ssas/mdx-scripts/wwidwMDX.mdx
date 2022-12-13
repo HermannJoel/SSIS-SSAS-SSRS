@@ -1,0 +1,27 @@
+SELECT [Customer].[CustomerHierachy].[Bill To Customer].MEMBERS on 0
+FROM [Wwidw];
+GO
+
+SELECT [Customer].[CustomerHierachy].[Bill To Customer].MEMBERS on 0
+FROM [Wwidw]
+WHERE [Invoice Date].[Fiscal].[Fiscal Year].&[FY2015];
+GO
+
+SELECT {[Measures].[Profit],[Measures].[Total Excluding Tax],[Measures].[Total Including Tax]} on columns
+,[Customer].[CustomerHierachy].[Bill To Customer].members on rows
+FROM [Wwidw]
+WHERE [Invoice Date].[Fiscal].[Fiscal Year].&[FY2015];
+GO
+
+SELECT CROSSJOIN([Customer].[CustomerHierachy].[Customer].MEMBERS, [Measures].[Quantity]) on 0
+, [Delivery Date].[Calendar].[Calendar Year].&[CY2015].children on 1
+FROM [Wwidw]
+WHERE [Item].[Color].&[Red];
+GO
+
+SELECT {[Measures].[Black Items], [Measures].[Blue Items]} on 0
+, [Delivery Date].[Calendar].[Calendar Year Label].MEMBERS on 1
+FROM [Wwidw];
+GO
+
+

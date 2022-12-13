@@ -1,0 +1,14 @@
+C:\Projects\SSISCookBook\AdventureWorksLT\bin\Debug\DB.AdventureWorksLT.dacpac
+C:\Projects\SSISCookBook\AdventureWorksLT\bin\Debug\AdventureWorksLT.dll
+C:\Projects\SSISCookBook\AdventureWorksLT\bin\Debug\AdventureWorksLT.pdb
+C:\Projects\SSISCookBook\AdventureWorksLT\obj\Debug\AdventureWorksLT.dll
+C:\Projects\SSISCookBook\AdventureWorksLT\obj\Debug\AdventureWorksLT.pdb
+D:\SSDT\ssis\projects\ssisCookbook\AdventureWorksLT\bin\Debug\DB.AdventureWorksLT.dacpac
+D:\SSDT\ssis\projects\ssisCookbook\AdventureWorksLT\bin\Debug\AdventureWorksLT.dll
+D:\SSDT\ssis\projects\ssisCookbook\AdventureWorksLT\bin\Debug\AdventureWorksLT.pdb
+D:\SSDT\ssis\projects\ssisCookbook\AdventureWorksLT\obj\Debug\AdventureWorksLT.dll
+D:\SSDT\ssis\projects\ssisCookbook\AdventureWorksLT\obj\Debug\AdventureWorksLT.pdb
+D:\SSDT\ssis\projects\ssisCookbook\AdventureWorksLT\obj\Debug\Model.xml
+D:\SSDT\ssis\projects\ssisCookbook\AdventureWorksLT\obj\Debug\refactor.xml
+D:\SSDT\ssis\projects\ssisCookbook\AdventureWorksLT\obj\Debug\postdeploy.sql
+D:\SSDT\ssis\projects\ssisCookbook\AdventureWorksLT\obj\Debug\predeploy.sql

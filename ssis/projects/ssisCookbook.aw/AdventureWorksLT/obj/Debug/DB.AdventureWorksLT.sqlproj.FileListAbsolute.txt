@@ -1,0 +1,5 @@
+C:\Projects\SSISCookBook\AdventureWorksLT\bin\Debug\DB.AdventureWorksLT.dacpac
+C:\Projects\SSISCookBook\AdventureWorksLT\bin\Debug\AdventureWorksLT.dll
+C:\Projects\SSISCookBook\AdventureWorksLT\bin\Debug\AdventureWorksLT.pdb
+C:\Projects\SSISCookBook\AdventureWorksLT\obj\Debug\AdventureWorksLT.dll
+C:\Projects\SSISCookBook\AdventureWorksLT\obj\Debug\AdventureWorksLT.pdb

@@ -1,0 +1,10 @@
+C:\Projects\SSISCookBook\DBAdventureworksLTDW\DBAdventureworksLTDW2012\bin\Debug\DB.AdventureworksLTDW.dacpac
+C:\Projects\SSISCookBook\DBAdventureworksLTDW\DBAdventureworksLTDW2012\bin\Debug\DBAdventureworksLTDW2016.dll
+C:\Projects\SSISCookBook\DBAdventureworksLTDW\DBAdventureworksLTDW2012\bin\Debug\DBAdventureworksLTDW2016.pdb
+C:\Projects\SSISCookBook\DBAdventureworksLTDW\DBAdventureworksLTDW2012\obj\Debug\DBAdventureworksLTDW2016.dll
+C:\Projects\SSISCookBook\DBAdventureworksLTDW\DBAdventureworksLTDW2012\obj\Debug\DBAdventureworksLTDW2016.pdb
+C:\Projects\SSISCookBook\DBAdventureworksLTDW\DBAdventureworksLTDW2012\bin\Debug\SSISDB_2016.dacpac
+C:\Projects\SSISCookBook\DBAdventureworksLTDW\DBAdventureworksLTDW2012\obj\Debug\Model.xml
+C:\Projects\SSISCookBook\DBAdventureworksLTDW\DBAdventureworksLTDW2012\obj\Debug\refactor.xml
+C:\Projects\SSISCookBook\DBAdventureworksLTDW\DBAdventureworksLTDW2012\obj\Debug\postdeploy.sql
+C:\Projects\SSISCookBook\DBAdventureworksLTDW\DBAdventureworksLTDW2012\obj\Debug\predeploy.sql

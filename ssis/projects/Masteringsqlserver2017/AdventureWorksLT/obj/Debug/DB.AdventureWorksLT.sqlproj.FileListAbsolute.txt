@@ -1,0 +1,14 @@
+C:\Projects\SSISCookBook\AdventureWorksLT\bin\Debug\DB.AdventureWorksLT.dacpac
+C:\Projects\SSISCookBook\AdventureWorksLT\bin\Debug\AdventureWorksLT.dll
+C:\Projects\SSISCookBook\AdventureWorksLT\bin\Debug\AdventureWorksLT.pdb
+C:\Projects\SSISCookBook\AdventureWorksLT\obj\Debug\AdventureWorksLT.dll
+C:\Projects\SSISCookBook\AdventureWorksLT\obj\Debug\AdventureWorksLT.pdb
+D:\SSDT\ssis\projects\Masteringsqlserver2017\AdventureWorksLT\bin\Debug\DB.AdventureWorksLT.dacpac
+D:\SSDT\ssis\projects\Masteringsqlserver2017\AdventureWorksLT\bin\Debug\AdventureWorksLT.dll
+D:\SSDT\ssis\projects\Masteringsqlserver2017\AdventureWorksLT\bin\Debug\AdventureWorksLT.pdb
+D:\SSDT\ssis\projects\Masteringsqlserver2017\AdventureWorksLT\obj\Debug\Model.xml
+D:\SSDT\ssis\projects\Masteringsqlserver2017\AdventureWorksLT\obj\Debug\refactor.xml
+D:\SSDT\ssis\projects\Masteringsqlserver2017\AdventureWorksLT\obj\Debug\postdeploy.sql
+D:\SSDT\ssis\projects\Masteringsqlserver2017\AdventureWorksLT\obj\Debug\predeploy.sql
+D:\SSDT\ssis\projects\Masteringsqlserver2017\AdventureWorksLT\obj\Debug\AdventureWorksLT.dll
+D:\SSDT\ssis\projects\Masteringsqlserver2017\AdventureWorksLT\obj\Debug\AdventureWorksLT.pdb

@@ -1,0 +1,3675 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/21/2022 4:53:07 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-JDQLDT1"
+  DTS:CreatorName="DESKTOP-JDQLDT1\nherm"
+  DTS:DTSID="{1E0E55E1-59D3-4593-A798-3FDA3D48B76E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DW DimAsset"
+  DTS:PackageType="5"
+  DTS:VersionBuild="38"
+  DTS:VersionGUID="{0271213C-B16E-4087-8D28-8B8602D81ED6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="7"
+      DTS:DTSID="{8159CA82-8ECF-4A3E-9305-1EE2FC255CA5}"
+      DTS:ObjectName="LoadDate"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="7"
+        DTS:Name="ParameterValue">1/1/1900</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="20"
+      DTS:DTSID="{1196A38B-9744-4A48-9A67-C84AD76B6D7E}"
+      DTS:ObjectName="LoadExcecutionId"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="20"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="20"
+      DTS:DTSID="{40F93323-E302-49F4-8C76-396A26434B41}"
+      DTS:ObjectName="SourceLoadExecutionId"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="20"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\dft_DimAsset_ups"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{22E04FC5-EFD5-4918-AF3E-0950BD0AFBAD}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="dft_DimAsset_ups"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\dft_DimAsset_ups\Audit"
+              componentClassID="Microsoft.Lineage"
+              contactInfo="Audit;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Includes data about the environment in which the package runs. Map system variables to new output columns. For example, add the name of the computer and operator to the data flow."
+              name="Audit">
+              <inputs>
+                <input
+                  refId="Package\dft_DimAsset_ups\Audit.Inputs[Audit Input 1]"
+                  name="Audit Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_DimAsset_ups\Audit.Outputs[Audit Output 1]"
+                  exclusionGroup="1"
+                  name="Audit Output 1"
+                  synchronousInputId="Package\dft_DimAsset_ups\Audit.Inputs[Audit Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_DimAsset_ups\der_LoadExecutionId"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="der_LoadExecutionId"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\dft_DimAsset_ups\der_LoadExecutionId.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_DimAsset_ups\der_LoadExecutionId.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\dft_DimAsset_ups\der_LoadExecutionId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExcecutionId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_DimAsset_ups\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExcecutionId]"
+                      name="LoadExcecutionId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_I4)@[$Package::LoadExcecutionId]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_I4)@[$Package::LoadExcecutionId]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_DimAsset_ups\der_LoadExecutionId.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\dft_DimAsset_ups\der_LoadExecutionId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_DimAsset_ups\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_DimAsset_ups\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="lkp_AssetId_ProjetId_DimAsset"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [DW].[DimAsset]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [DW].[DimAsset]) [refTable]
+where [refTable].[AssetId] = ? and [refTable].[ProjectId] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="AssetId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProjectId" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Project" dataType="DT_STR" length="250" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Technology" dataType="DT_STR" length="200" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Cod" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Mw" dataType="DT_NUMERIC" length="0" precision="5" scale="2" codePage="0"/&gt;&lt;referenceColumn name="SuccesPct" dataType="DT_NUMERIC" length="0" precision="7" scale="5" codePage="0"/&gt;&lt;referenceColumn name="InstalledPower" dataType="DT_NUMERIC" length="0" precision="7" scale="5" codePage="0"/&gt;&lt;referenceColumn name="Eoh" dataType="DT_NUMERIC" length="0" precision="10" scale="3" codePage="0"/&gt;&lt;referenceColumn name="DateMerchant" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DismentleDate" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Repowering" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="DateMsi" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="InPlanif" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="P50" dataType="DT_NUMERIC" length="0" precision="10" scale="3" codePage="0"/&gt;&lt;referenceColumn name="P90" dataType="DT_NUMERIC" length="0" precision="10" scale="3" codePage="0"/&gt;&lt;referenceColumn name="LoadExecutionId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[AssetId]};#{Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[ProjectId]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Connections[OleDbConnection]"
+                  connectionManagerID="{AD885AA9-3491-48A3-BD1F-1CCB9A057A74}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[cmgr_DWH]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Inputs[Lookup Input].Columns[AssetId]"
+                      cachedDataType="i4"
+                      cachedName="AssetId"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[AssetId]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">AssetId</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Inputs[Lookup Input].Columns[ProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjectId"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[ProjectId]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ProjectId</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimProject]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="250"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimProject]"
+                      name="DimProject"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Project</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimTechnology]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="200"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimTechnology]"
+                      name="DimTechnology"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Technology</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimCod]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimCod]"
+                      name="DimCod"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Cod</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimMw]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimMw]"
+                      name="DimMw"
+                      precision="5"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Mw</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimSuccesPct]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimSuccesPct]"
+                      name="DimSuccesPct"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">SuccesPct</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimInstalledPower]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimInstalledPower]"
+                      name="DimInstalledPower"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">InstalledPower</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimEoh]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimEoh]"
+                      name="DimEoh"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Eoh</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimDateMerchant]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimDateMerchant]"
+                      name="DimDateMerchant"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DateMerchant</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimDismentleDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimDismentleDate]"
+                      name="DimDismentleDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DismentleDate</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimRepowering]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="100"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimRepowering]"
+                      name="DimRepowering"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Repowering</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimDateMsi]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimDateMsi]"
+                      name="DimDateMsi"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DateMsi</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimInPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="50"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimInPlanif]"
+                      name="DimInPlanif"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">InPlanif</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimP50]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimP50]"
+                      name="DimP50"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">P50</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimP90]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimP90]"
+                      name="DimP90"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">P90</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimAssetId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimAssetId]"
+                      name="DimAssetId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">AssetId</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="100"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimProjectId]"
+                      name="DimProjectId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ProjectId</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="ole_cmd_update_DW_DimAsset"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [DW].[DimAsset]
+   SET [Project] = ?
+      ,[Technology] = ?
+      ,[Cod] = ?
+      ,[Mw] = ?
+      ,[SuccesPct] = ?
+      ,[InstalledPower] = ?
+      ,[Eoh] = ?
+      ,[DateMerchant] = ?
+      ,[DismentleDate] = ?
+      ,[Repowering] = ?
+      ,[DateMsi] = ?
+      ,[InPlanif] = ?
+      ,[P50] = ?
+      ,[P90] = ?
+      ,[LoadExecutionId] = ?
+ WHERE AssetId = ? AND ProjectId=?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Connections[OleDbConnection]"
+                  connectionManagerID="{AD885AA9-3491-48A3-BD1F-1CCB9A057A74}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[cmgr_DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].Columns[AssetId]"
+                      cachedDataType="i4"
+                      cachedName="AssetId"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_15]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[AssetId]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].Columns[ProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjectId"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_16]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[ProjectId]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].Columns[LoadExcecutionId]"
+                      cachedDataType="i4"
+                      cachedName="LoadExcecutionId"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_14]"
+                      lineageId="Package\dft_DimAsset_ups\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExcecutionId]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].Columns[Project]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="Project"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Project]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].Columns[Technology]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Technology"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Technology]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].Columns[Cod]"
+                      cachedDataType="dbDate"
+                      cachedName="Cod"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Cod]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].Columns[Mw]"
+                      cachedDataType="numeric"
+                      cachedName="Mw"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Mw]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].Columns[SuccesPct]"
+                      cachedDataType="numeric"
+                      cachedName="SuccesPct"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[SuccesPct]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].Columns[InstalledPower]"
+                      cachedDataType="numeric"
+                      cachedName="InstalledPower"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[InstalledPower]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].Columns[Eoh]"
+                      cachedDataType="numeric"
+                      cachedName="Eoh"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Eoh]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].Columns[DateMerchant]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMerchant"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[DateMerchant]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].Columns[DismentleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DismentleDate"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[DismentleDate]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].Columns[Repowering]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Repowering"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Repowering]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].Columns[DateMsi]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMsi"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[DateMsi]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].Columns[InPlanif]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="InPlanif"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_11]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[InPlanif]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].Columns[P50]"
+                      cachedDataType="numeric"
+                      cachedName="P50"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_12]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[P50]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].Columns[P90]"
+                      cachedDataType="numeric"
+                      cachedName="P90"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_13]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[P90]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="dbDate"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="numeric"
+                      name="Param_3"
+                      precision="5"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="numeric"
+                      name="Param_4"
+                      precision="7"
+                      scale="5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      dataType="numeric"
+                      name="Param_5"
+                      precision="7"
+                      scale="5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      dataType="numeric"
+                      name="Param_6"
+                      precision="10"
+                      scale="3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      dataType="dbDate"
+                      name="Param_7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      dataType="dbDate"
+                      name="Param_8">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_9">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      dataType="dbDate"
+                      name="Param_10">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_11]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_11">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_12]"
+                      dataType="numeric"
+                      name="Param_12"
+                      precision="10"
+                      scale="3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_13]"
+                      dataType="numeric"
+                      name="Param_13"
+                      precision="10"
+                      scale="3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_14]"
+                      dataType="i4"
+                      name="Param_14">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_15]"
+                      dataType="i4"
+                      name="Param_15">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input].ExternalColumns[Param_16]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_16">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="ole_dest_DW_DimAsset"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[DW].[DimAsset]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Connections[OleDbConnection]"
+                  connectionManagerID="{AD885AA9-3491-48A3-BD1F-1CCB9A057A74}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[cmgr_DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].Columns[AssetId]"
+                      cachedDataType="i4"
+                      cachedName="AssetId"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[AssetId]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[AssetId]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].Columns[ProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjectId"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[ProjectId]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[ProjectId]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].Columns[Project]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="Project"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[Project]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Project]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].Columns[Technology]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Technology"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[Technology]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Technology]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].Columns[Cod]"
+                      cachedDataType="dbDate"
+                      cachedName="Cod"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[Cod]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Cod]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].Columns[Mw]"
+                      cachedDataType="numeric"
+                      cachedName="Mw"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[Mw]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Mw]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].Columns[SuccesPct]"
+                      cachedDataType="numeric"
+                      cachedName="SuccesPct"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[SuccesPct]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[SuccesPct]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].Columns[InstalledPower]"
+                      cachedDataType="numeric"
+                      cachedName="InstalledPower"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[InstalledPower]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[InstalledPower]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].Columns[Eoh]"
+                      cachedDataType="numeric"
+                      cachedName="Eoh"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[Eoh]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Eoh]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].Columns[DateMerchant]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMerchant"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[DateMerchant]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[DateMerchant]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].Columns[DismentleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DismentleDate"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[DismentleDate]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[DismentleDate]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].Columns[Repowering]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Repowering"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[Repowering]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Repowering]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].Columns[DateMsi]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMsi"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[DateMsi]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[DateMsi]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].Columns[InPlanif]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="InPlanif"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[InPlanif]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[InPlanif]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].Columns[P50]"
+                      cachedDataType="numeric"
+                      cachedName="P50"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[P50]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[P50]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].Columns[P90]"
+                      cachedDataType="numeric"
+                      cachedName="P90"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[P90]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[P90]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[AssetId]"
+                      dataType="i4"
+                      name="AssetId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ProjectId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="Project" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Technology" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[Cod]"
+                      dataType="dbDate"
+                      name="Cod" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[Mw]"
+                      dataType="numeric"
+                      name="Mw"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[SuccesPct]"
+                      dataType="numeric"
+                      name="SuccesPct"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[InstalledPower]"
+                      dataType="numeric"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[Eoh]"
+                      dataType="numeric"
+                      name="Eoh"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[DateMerchant]"
+                      dataType="dbDate"
+                      name="DateMerchant" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[DismentleDate]"
+                      dataType="dbDate"
+                      name="DismentleDate" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Repowering" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[DateMsi]"
+                      dataType="dbDate"
+                      name="DateMsi" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="InPlanif" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[P50]"
+                      dataType="numeric"
+                      name="P50"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[P90]"
+                      dataType="numeric"
+                      name="P90"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input].ExternalColumns[LoadExecutionId]"
+                      dataType="i4"
+                      name="LoadExecutionId" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="ole_src_ExcelMarketStaging_StgAsset"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[ExcelMarketStaging].[StgAsset]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT        AssetId, ProjectId, Project, Technology, Cod, Mw, SuccesPct, InstalledPower, Eoh, DateMerchant, DismentleDate, Repowering, DateMsi, InPlanif, P50, P90
+FROM            ExcelMarketStaging.StgAsset 
+WHERE (LoadExecutionId=?)</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"Parameter0:Input",{40F93323-1CFD-49F4-8C76-396A26434B41};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Connections[OleDbConnection]"
+                  connectionManagerID="{7F3B45BE-1FAF-4BD5-A5CB-88A0E8A2FE4E}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[cmgr_DWHStg]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[AssetId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[AssetId]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[AssetId]"
+                      name="AssetId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[ProjectId]"
+                      length="100"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[ProjectId]"
+                      name="ProjectId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Project]"
+                      length="250"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Project]"
+                      name="Project"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Technology]"
+                      length="200"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Technology]"
+                      name="Technology"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Cod]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Cod]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Cod]"
+                      name="Cod"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Mw]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Mw]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Mw]"
+                      name="Mw"
+                      precision="5"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[SuccesPct]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[SuccesPct]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[SuccesPct]"
+                      name="SuccesPct"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[InstalledPower]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[InstalledPower]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[InstalledPower]"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Eoh]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Eoh]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Eoh]"
+                      name="Eoh"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[DateMerchant]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[DateMerchant]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[DateMerchant]"
+                      name="DateMerchant"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[DismentleDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[DismentleDate]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[DismentleDate]"
+                      name="DismentleDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Repowering]"
+                      length="100"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Repowering]"
+                      name="Repowering"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[DateMsi]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[DateMsi]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[DateMsi]"
+                      name="DateMsi"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[InPlanif]"
+                      length="50"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[InPlanif]"
+                      name="InPlanif"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[P50]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[P50]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[P50]"
+                      name="P50"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[P90]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[P90]"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[P90]"
+                      name="P90"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[AssetId]"
+                      dataType="i4"
+                      name="AssetId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ProjectId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="Project" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Technology" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Cod]"
+                      dataType="dbDate"
+                      name="Cod" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Mw]"
+                      dataType="numeric"
+                      name="Mw"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[SuccesPct]"
+                      dataType="numeric"
+                      name="SuccesPct"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[InstalledPower]"
+                      dataType="numeric"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Eoh]"
+                      dataType="numeric"
+                      name="Eoh"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[DateMerchant]"
+                      dataType="dbDate"
+                      name="DateMerchant" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[DismentleDate]"
+                      dataType="dbDate"
+                      name="DismentleDate" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Repowering" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[DateMsi]"
+                      dataType="dbDate"
+                      name="DateMsi" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="InPlanif" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[P50]"
+                      dataType="numeric"
+                      name="P50"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[P90]"
+                      dataType="numeric"
+                      name="P90"
+                      precision="10"
+                      scale="3" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[AssetId]"
+                      dataType="i4"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[AssetId]"
+                      name="AssetId" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[ProjectId]"
+                      name="ProjectId" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[Project]"
+                      name="Project" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[Technology]"
+                      name="Technology" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[Cod]"
+                      dataType="dbDate"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[Cod]"
+                      name="Cod" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[Mw]"
+                      dataType="numeric"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[Mw]"
+                      name="Mw"
+                      precision="5"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[SuccesPct]"
+                      dataType="numeric"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[SuccesPct]"
+                      name="SuccesPct"
+                      precision="7"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[InstalledPower]"
+                      dataType="numeric"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[InstalledPower]"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[Eoh]"
+                      dataType="numeric"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[Eoh]"
+                      name="Eoh"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[DateMerchant]"
+                      dataType="dbDate"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[DateMerchant]"
+                      name="DateMerchant" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[DismentleDate]"
+                      dataType="dbDate"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[DismentleDate]"
+                      name="DismentleDate" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[Repowering]"
+                      name="Repowering" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[DateMsi]"
+                      dataType="dbDate"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[DateMsi]"
+                      name="DateMsi" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[InPlanif]"
+                      name="InPlanif" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[P50]"
+                      dataType="numeric"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[P50]"
+                      name="P50"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[P90]"
+                      dataType="numeric"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[P90]"
+                      name="P90"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;11"
+              description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
+              name="scr_CheckForDiffrentColumns"
+              version="11">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Stores the source code of the component"
+                  isArray="true"
+                  name="SourceCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="30">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[ComponentWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services component wrapper
+*  This module defines the base class for your component
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+
+public class UserComponent: ScriptComponent
+{
+    public Connections Connections;
+    public Variables Variables;
+    public UserComponent()
+    {
+        Connections = new Connections(this);
+        Variables = new Variables(this);
+    }
+
+    public override void ProcessInput(int InputID, string InputName, PipelineBuffer Buffer, OutputNameMap OutputMap)
+    {
+
+        if (InputName.Equals(@"Input 0", StringComparison.Ordinal))
+        {
+            Input0_ProcessInput(new Input0Buffer(Buffer, GetColumnIndexes(InputID), OutputMap));
+        }
+
+    }
+
+    public virtual void Input0_ProcessInput(Input0Buffer Buffer)
+    {
+        while (Buffer.NextRow())
+        {
+            Input0_ProcessInputRow(Buffer);
+        }
+    }
+
+    public virtual void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+    }
+
+}
+
+public class Connections
+{
+    ScriptComponent ParentComponent;
+
+    public Connections(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+
+public class Variables
+{
+    ScriptComponent ParentComponent;
+
+    public Variables(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.resx]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[main.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[#region Help:  Introduction to the Script Component
+/* The Script Component allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services data flow.
+ *
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script component. */
+#endregion
+
+#region Namespaces
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+#endregion
+
+/// <summary>
+/// This is the class to which to add your code.  Do not change the name, attributes, or parent
+/// of this class.
+/// </summary>
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
+public class ScriptMain : UserComponent
+{
+
+    public override void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+        bool _RowIsDifferent = false;
+        if ((!_RowIsDifferent) && (Row.AssetId != Row.DimAssetId))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.ProjectId != Row.DimProjectId))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.DimTechnology != Row.DimTechnology))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.Cod != Row.DimCod))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.DimMw != Row.DimMw))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.SuccesPct != Row.DimSuccesPct))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.DimInstalledPower != Row.DimInstalledPower))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.Eoh != Row.DimEoh))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.DateMerchant != Row.DimDateMerchant))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.DateMsi != Row.DimDateMsi))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.DismentleDate != Row.DimDismentleDate))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.Repowering != Row.DimRepowering))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.InPlanif != Row.DimInPlanif))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.P50 != Row.DimP50))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.P90 != Row.DimP90))
+            _RowIsDifferent = true;
+
+        if (_RowIsDifferent == true)
+            Row.DirectRowToDifferentColumns();
+        else
+            Row.DirectRowToSameColumns();
+    }
+
+}]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[BufferWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services buffer wrappers
+*  This module defines classes for accessing data flow buffers
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+
+public class Input0Buffer: ScriptBuffer
+
+{
+    public Input0Buffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public Int32 AssetId
+    {
+        get
+        {
+            return Buffer.GetInt32(BufferColumnIndexes[0]);
+        }
+    }
+    public bool AssetId_IsNull
+    {
+        get
+        {
+            return IsNull(0);
+        }
+    }
+
+    public String ProjectId
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[1]);
+        }
+    }
+    public bool ProjectId_IsNull
+    {
+        get
+        {
+            return IsNull(1);
+        }
+    }
+
+    public String Project
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[2]);
+        }
+    }
+    public bool Project_IsNull
+    {
+        get
+        {
+            return IsNull(2);
+        }
+    }
+
+    public String Technology
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[3]);
+        }
+    }
+    public bool Technology_IsNull
+    {
+        get
+        {
+            return IsNull(3);
+        }
+    }
+
+    public DateTime Cod
+    {
+        get
+        {
+            return Buffer.GetDate(BufferColumnIndexes[4]);
+        }
+    }
+    public bool Cod_IsNull
+    {
+        get
+        {
+            return IsNull(4);
+        }
+    }
+
+    public Decimal Mw
+    {
+        get
+        {
+            return Buffer.GetDecimal(BufferColumnIndexes[5]);
+        }
+    }
+    public bool Mw_IsNull
+    {
+        get
+        {
+            return IsNull(5);
+        }
+    }
+
+    public Decimal SuccesPct
+    {
+        get
+        {
+            return Buffer.GetDecimal(BufferColumnIndexes[6]);
+        }
+    }
+    public bool SuccesPct_IsNull
+    {
+        get
+        {
+            return IsNull(6);
+        }
+    }
+
+    public Decimal InstalledPower
+    {
+        get
+        {
+            return Buffer.GetDecimal(BufferColumnIndexes[7]);
+        }
+    }
+    public bool InstalledPower_IsNull
+    {
+        get
+        {
+            return IsNull(7);
+        }
+    }
+
+    public Decimal Eoh
+    {
+        get
+        {
+            return Buffer.GetDecimal(BufferColumnIndexes[8]);
+        }
+    }
+    public bool Eoh_IsNull
+    {
+        get
+        {
+            return IsNull(8);
+        }
+    }
+
+    public DateTime DateMerchant
+    {
+        get
+        {
+            return Buffer.GetDate(BufferColumnIndexes[9]);
+        }
+    }
+    public bool DateMerchant_IsNull
+    {
+        get
+        {
+            return IsNull(9);
+        }
+    }
+
+    public DateTime DismentleDate
+    {
+        get
+        {
+            return Buffer.GetDate(BufferColumnIndexes[10]);
+        }
+    }
+    public bool DismentleDate_IsNull
+    {
+        get
+        {
+            return IsNull(10);
+        }
+    }
+
+    public String Repowering
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[11]);
+        }
+    }
+    public bool Repowering_IsNull
+    {
+        get
+        {
+            return IsNull(11);
+        }
+    }
+
+    public DateTime DateMsi
+    {
+        get
+        {
+            return Buffer.GetDate(BufferColumnIndexes[12]);
+        }
+    }
+    public bool DateMsi_IsNull
+    {
+        get
+        {
+            return IsNull(12);
+        }
+    }
+
+    public String InPlanif
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[13]);
+        }
+    }
+    public bool InPlanif_IsNull
+    {
+        get
+        {
+            return IsNull(13);
+        }
+    }
+
+    public Decimal P50
+    {
+        get
+        {
+            return Buffer.GetDecimal(BufferColumnIndexes[14]);
+        }
+    }
+    public bool P50_IsNull
+    {
+        get
+        {
+            return IsNull(14);
+        }
+    }
+
+    public Decimal P90
+    {
+        get
+        {
+            return Buffer.GetDecimal(BufferColumnIndexes[15]);
+        }
+    }
+    public bool P90_IsNull
+    {
+        get
+        {
+            return IsNull(15);
+        }
+    }
+
+    public Int32 LoadExcecutionId
+    {
+        get
+        {
+            return Buffer.GetInt32(BufferColumnIndexes[16]);
+        }
+    }
+    public bool LoadExcecutionId_IsNull
+    {
+        get
+        {
+            return IsNull(16);
+        }
+    }
+
+    public String DimProject
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[17]);
+        }
+    }
+    public bool DimProject_IsNull
+    {
+        get
+        {
+            return IsNull(17);
+        }
+    }
+
+    public String DimTechnology
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[18]);
+        }
+    }
+    public bool DimTechnology_IsNull
+    {
+        get
+        {
+            return IsNull(18);
+        }
+    }
+
+    public DateTime DimCod
+    {
+        get
+        {
+            return Buffer.GetDate(BufferColumnIndexes[19]);
+        }
+    }
+    public bool DimCod_IsNull
+    {
+        get
+        {
+            return IsNull(19);
+        }
+    }
+
+    public Decimal DimMw
+    {
+        get
+        {
+            return Buffer.GetDecimal(BufferColumnIndexes[20]);
+        }
+    }
+    public bool DimMw_IsNull
+    {
+        get
+        {
+            return IsNull(20);
+        }
+    }
+
+    public Decimal DimSuccesPct
+    {
+        get
+        {
+            return Buffer.GetDecimal(BufferColumnIndexes[21]);
+        }
+    }
+    public bool DimSuccesPct_IsNull
+    {
+        get
+        {
+            return IsNull(21);
+        }
+    }
+
+    public Decimal DimInstalledPower
+    {
+        get
+        {
+            return Buffer.GetDecimal(BufferColumnIndexes[22]);
+        }
+    }
+    public bool DimInstalledPower_IsNull
+    {
+        get
+        {
+            return IsNull(22);
+        }
+    }
+
+    public Decimal DimEoh
+    {
+        get
+        {
+            return Buffer.GetDecimal(BufferColumnIndexes[23]);
+        }
+    }
+    public bool DimEoh_IsNull
+    {
+        get
+        {
+            return IsNull(23);
+        }
+    }
+
+    public DateTime DimDateMerchant
+    {
+        get
+        {
+            return Buffer.GetDate(BufferColumnIndexes[24]);
+        }
+    }
+    public bool DimDateMerchant_IsNull
+    {
+        get
+        {
+            return IsNull(24);
+        }
+    }
+
+    public DateTime DimDismentleDate
+    {
+        get
+        {
+            return Buffer.GetDate(BufferColumnIndexes[25]);
+        }
+    }
+    public bool DimDismentleDate_IsNull
+    {
+        get
+        {
+            return IsNull(25);
+        }
+    }
+
+    public String DimRepowering
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[26]);
+        }
+    }
+    public bool DimRepowering_IsNull
+    {
+        get
+        {
+            return IsNull(26);
+        }
+    }
+
+    public DateTime DimDateMsi
+    {
+        get
+        {
+            return Buffer.GetDate(BufferColumnIndexes[27]);
+        }
+    }
+    public bool DimDateMsi_IsNull
+    {
+        get
+        {
+            return IsNull(27);
+        }
+    }
+
+    public String DimInPlanif
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[28]);
+        }
+    }
+    public bool DimInPlanif_IsNull
+    {
+        get
+        {
+            return IsNull(28);
+        }
+    }
+
+    public Decimal DimP50
+    {
+        get
+        {
+            return Buffer.GetDecimal(BufferColumnIndexes[29]);
+        }
+    }
+    public bool DimP50_IsNull
+    {
+        get
+        {
+            return IsNull(29);
+        }
+    }
+
+    public Decimal DimP90
+    {
+        get
+        {
+            return Buffer.GetDecimal(BufferColumnIndexes[30]);
+        }
+    }
+    public bool DimP90_IsNull
+    {
+        get
+        {
+            return IsNull(30);
+        }
+    }
+
+    public Int32 DimAssetId
+    {
+        get
+        {
+            return Buffer.GetInt32(BufferColumnIndexes[31]);
+        }
+    }
+    public bool DimAssetId_IsNull
+    {
+        get
+        {
+            return IsNull(31);
+        }
+    }
+
+    public String DimProjectId
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[32]);
+        }
+    }
+    public bool DimProjectId_IsNull
+    {
+        get
+        {
+            return IsNull(32);
+        }
+    }
+
+    public void DirectRowToDifferentColumns()
+    {
+        base.DirectRow(@"DifferentColumns");
+    }
+
+    public void DirectRowToSameColumns()
+    {
+        base.DirectRow(@"SameColumns");
+    }
+
+    new public bool NextRow()
+    {
+        return base.NextRow();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_d268b41e94984d528d9000d79ecdb25b.Properties.Settings.get_Default():SC_d268b41e94984d528d9000d79ecdb25b.Properties.Sett" +
+    "ings")]
+
+namespace SC_d268b41e94984d528d9000d79ecdb25b.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_d268b41e94984d528d9000d79ecdb25b.csproj]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ad379bd6-3211-42a2-b334-d8a7823e65f0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SC_d268b41e94984d528d9000d79ecdb25b</RootNamespace>
+    <AssemblyName>SC_d268b41e94984d528d9000d79ecdb25b</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.TxScript, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.PipelineHost, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Compile Include="main.cs" />
+    <Compile Include="BufferWrapper.cs" />
+    <Compile Include="ComponentWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="ScriptComponent" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="" DebugInfoCommandLine="" DebugInfoWorkingDir="" IconImageList="" />
+        <Host Name="ScriptComponent" GeneratedNamespace="SC_d268b41e94984d528d9000d79ecdb25b" IconIndex="0"></Host>
+        <ProjectClient>
+          <HostIdentifier>SSIS_SC130</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Project]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:CodeName>SC_d268b41e94984d528d9000d79ecdb25b</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
+		<msb:DisplayName>SC_d268b41e94984d528d9000d79ecdb25b</msb:DisplayName>
+		<msb:ProjectId>{1DB081FA-4BD1-422A-AAB8-4C89D71D8A72}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="SC_d268b41e94984d528d9000d79ecdb25b.csproj"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="BufferWrapper.cs"/>
+		<msb:File Include="main.cs"/>
+		<msb:File Include="ComponentWrapper.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\AssemblyInfo.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("SC_d268b41e94984d528d9000d79ecdb25b")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("SC_d268b41e94984d528d9000d79ecdb25b")]
+[assembly: AssemblyCopyright("Copyright @  2022")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.0.0")]
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_d268b41e94984d528d9000d79ecdb25b.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_d268b41e94984d528d9000d79ecdb25b.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_d268b41e94984d528d9000d79ecdb25b.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace SC_d268b41e94984d528d9000d79ecdb25b.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SC_d268b41e94984d528d9000d79ecdb25b.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Stores the binary representation of the component"
+                  isArray="true"
+                  name="BinaryCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="2">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_d268b41e94984d528d9000d79ecdb25b.dll]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAFkGU2MAAAAAAAAAAOAAIiALATAAACIAAAAIAAAAAAAAikEA
+AAAgAAAAYAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACgAAAAAgAAAAAAAAMAYIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAADhBAABPAAAAAGAAAEgEAAAAAAAAAAAAAAAAAAAA
+AAAAAIAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAkCEAAAAgAAAAIgAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAEgEAAAAYAAAAAYAAAAkAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAIAAAAACAAAAKgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAABs
+QQAAAAAAAEgAAAACAAUA9CYAAIwZAAABAAAAAAAAAIBAAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAABMwAgB2AQAAAQAAERYKBi0QA28EAAAGA29CAAAGLgIXCgYt
+FQNvBgAABgNvRAAABigQAAAKLAIXCgYtFQNvKAAABgNvKAAABigQAAAKLAIXCgYtFQNvDAAABgNv
+KgAABigRAAAKLAIXCgYtFQNvLAAABgNvLAAABigSAAAKLAIXCgYtFQNvEAAABgNvLgAABigSAAAK
+LAIXCgYtFQNvMAAABgNvMAAABigSAAAKLAIXCgYtFQNvFAAABgNvMgAABigSAAAKLAIXCgYtFQNv
+FgAABgNvNAAABigRAAAKLAIXCgYtFQNvHAAABgNvOgAABigRAAAKLAIXCgYtFQNvGAAABgNvNgAA
+BigRAAAKLAIXCgYtFQNvGgAABgNvOAAABigQAAAKLAIXCgYtFQNvHgAABgNvPAAABigQAAAKLAIX
+CgYtFQNvIAAABgNvPgAABigSAAAKLAIXCgYtFQNvIgAABgNvQAAABigSAAAKLAIXCgYsBwNvRgAA
+BioDb0cAAAYqHgIoSgAABioqAgMEBSgTAAAKKlICexQAAAoCexUAAAoWlG8WAAAKKiICFigXAAAK
+KlICexQAAAoCexUAAAoXlG8YAAAKKiICFygXAAAKKlICexQAAAoCexUAAAoYlG8YAAAKKiICGCgX
+AAAKKlICexQAAAoCexUAAAoZlG8YAAAKKiICGSgXAAAKKlICexQAAAoCexUAAAoalG8ZAAAKKiIC
+GigXAAAKKlICexQAAAoCexUAAAoblG8aAAAKKiICGygXAAAKKlICexQAAAoCexUAAAoclG8aAAAK
+KiICHCgXAAAKKlICexQAAAoCexUAAAodlG8aAAAKKiICHSgXAAAKKlICexQAAAoCexUAAAoelG8a
+AAAKKiICHigXAAAKKlYCexQAAAoCexUAAAofCZRvGQAACiomAh8JKBcAAAoqVgJ7FAAACgJ7FQAA
+Ch8KlG8ZAAAKKiYCHwooFwAACipWAnsUAAAKAnsVAAAKHwuUbxgAAAoqJgIfCygXAAAKKlYCexQA
+AAoCexUAAAofDJRvGQAACiomAh8MKBcAAAoqVgJ7FAAACgJ7FQAACh8NlG8YAAAKKiYCHw0oFwAA
+CipWAnsUAAAKAnsVAAAKHw6UbxoAAAoqJgIfDigXAAAKKlYCexQAAAoCexUAAAofD5RvGgAACiom
+Ah8PKBcAAAoqVgJ7FAAACgJ7FQAACh8QlG8WAAAKKiYCHxAoFwAACipWAnsUAAAKAnsVAAAKHxGU
+bxgAAAoqJgIfESgXAAAKKlYCexQAAAoCexUAAAofEpRvGAAACiomAh8SKBcAAAoqVgJ7FAAACgJ7
+FQAACh8TlG8ZAAAKKiYCHxMoFwAACipWAnsUAAAKAnsVAAAKHxSUbxoAAAoqJgIfFCgXAAAKKlYC
+exQAAAoCexUAAAofFZRvGgAACiomAh8VKBcAAAoqVgJ7FAAACgJ7FQAACh8WlG8aAAAKKiYCHxYo
+FwAACipWAnsUAAAKAnsVAAAKHxeUbxoAAAoqJgIfFygXAAAKKlYCexQAAAoCexUAAAofGJRvGQAA
+CiomAh8YKBcAAAoqVgJ7FAAACgJ7FQAACh8ZlG8ZAAAKKiYCHxkoFwAACipWAnsUAAAKAnsVAAAK
+HxqUbxgAAAoqJgIfGigXAAAKKlYCexQAAAoCexUAAAofG5RvGQAACiomAh8bKBcAAAoqVgJ7FAAA
+CgJ7FQAACh8clG8YAAAKKiYCHxwoFwAACipWAnsUAAAKAnsVAAAKHx2UbxoAAAoqJgIfHSgXAAAK
+KlYCexQAAAoCexUAAAofHpRvGgAACiomAh8eKBcAAAoqVgJ7FAAACgJ7FQAACh8flG8WAAAKKiYC
+Hx8oFwAACipWAnsUAAAKAnsVAAAKHyCUbxgAAAoqJgIfICgXAAAKKjICcgEAAHAoGwAACioyAnIj
+AABwKBsAAAoqHgIoHAAACioeAigdAAAKKn4CKB4AAAoCAnNOAAAGfQEAAAQCAnNPAAAGfQIAAAQq
+kgRyOwAAcBpvHwAACiwVAgUCAyggAAAKDgRzAwAABm9MAAAGKkorBwIDb00AAAYDb0gAAAYt8SoG
+KjoCKCEAAAoCA30DAAAEKjoCKCEAAAoCA30EAAAEKh4CKCEAAAoqrn4FAAAELR5ySwAAcNAHAAAC
+KCIAAApvIwAACnMkAAAKgAUAAAR+BQAABCoafgYAAAQqHgKABgAABCoafgcAAAQqHgIoJQAACiou
+c1UAAAaABwAABCoAQlNKQgEAAQAAAAAADAAAAHY0LjAuMzAzMTkAAAAABQBsAAAAvAsAACN+AAAo
+DAAAtAoAACNTdHJpbmdzAAAAANwWAADAAAAAI1VTAJwXAAAQAAAAI0dVSUQAAACsFwAA4AEAACNC
+bG9iAAAAAAAAAAIAAAFXFaIBCQEAAAD6ATMAFgAAAQAAACAAAAAIAAAABwAAAFYAAAANAAAAJQAA
+ABAAAAABAAAAAwAAAEUAAABGAAAAAQAAAAQAAAABAAAAAAAWBAEAAAAAAAYArQIPCAYAQQMPCAYA
++QH8Bw8AgwgAAAYAJgJCBwYAkAJCBwYAcQJCBwYAKANCBwYAzQJCBwYA5gJCBwYAPQJCBwYAWAKC
+AwoAAQMXAQoApQcXAQ4AlgcXAQoAcQcXAQYADgH6BgYA+AP6BgoA2wkXAQYAXgn6BgYA3AH8BwYA
+tgcvCAYAZQctBxIArAEABBIADQIABBIAZQEYBwYAwQEPCAYAwAP6BgYAVAf6BgYAOAH6BgYA4AD6
+BgYAnApCBwAAAAAwAAAAAAABAAEAAQAQAA0HAAAQAAEAAQABABAAiQcAADkAAQADAAEAEAC9CQAA
+TQABAEoAAQAQADMJAABRAAMATgABABAAwQgAAFEABABPAAAAEAA2CJIIUQAFAFAAAAEQAPAIkghp
+AAcAVAAGADMJmgAGAMEIngABAMsJogABAMsJogARAAEHpgARAFUBqgARANAArgBQIAAAAADGAFgK
+sgABANIhAAAAAIYY7wcGAAIA2iEAAAAAhhjvBzUAAgDlIQAAAACGCKIAuAAFAPohAAAAAIYIyQRi
+AAUAAyIAAAAAhgiDALwABQAYIgAAAACGCJwEYgAFACEiAAAAAIYIZQm8AAUANiIAAAAAhghQBmIA
+BQA/IgAAAACGCHcKvAAFAFQiAAAAAIYIywZiAAUAXSIAAAAAhgi9AMAABQByIgAAAACGCPIEYgAF
+AHsiAAAAAIYIPQrFAAUAkCIAAAAAhgisBmIABQCZIgAAAACGCD8JxQAFAK4iAAAAAIYIIwZiAAUA
+tyIAAAAAhgjGB8UABQDMIgAAAACGCOwFYgAFANUiAAAAAIYIxwPFAAUA6iIAAAAAhgiiBWIABQDz
+IgAAAACGCJgJwAAFAAkjAAAAAIYIeQZiAAUAEyMAAAAAhgh9AcAABQApIwAAAACGCBMFYgAFADMj
+AAAAAIYInAO8AAUASSMAAAAAhghzBWIABQBTIwAAAACGCNoDwAAFAGkjAAAAAIYIwwViAAUAcyMA
+AAAAhghlA7wABQCJIwAAAACGCEgFYgAFAJMjAAAAAIYIAQDFAAUAqSMAAAAAhgg+BGIABQCzIwAA
+AACGCBQAxQAFAMkjAAAAAIYIXwRiAAUA0yMAAAAAhghuALgABQDpIwAAAACGCIAEYgAFAPMjAAAA
+AIYIcQm8AAUACSQAAAAAhghjBmIABQATJAAAAACGCIYKvAAFACkkAAAAAIYI4QZiAAUAMyQAAAAA
+hgjFAMAABQBJJAAAAACGCAEFYgAFAFMkAAAAAIYIRArFAAUAaSQAAAAAhgi6BmIABQBzJAAAAACG
+CE0JxQAFAIkkAAAAAIYIOAZiAAUAkyQAAAAAhgjZB8UABQCpJAAAAACGCAYGYgAFALMkAAAAAIYI
+zwPFAAUAySQAAAAAhgixBWIABQDTJAAAAACGCKkJwAAFAOkkAAAAAIYIkQZiAAUA8yQAAAAAhgiP
+AcAABQAJJQAAAACGCCwFYgAFABMlAAAAAIYIqwO8AAUAKSUAAAAAhgiJBWIABQAzJQAAAACGCOYD
+wAAFAEklAAAAAIYI1gViAAUAUyUAAAAAhghyA7wABQBpJQAAAACGCFwFYgAFAHMlAAAAAIYICQDF
+AAUAiSUAAAAAhghNBGIABQCTJQAAAACGCBwAxQAFAKklAAAAAIYIbgRiAAUAsyUAAAAAhgiuALgA
+BQDJJQAAAACGCNwEYgAFANMlAAAAAIYIkQC8AAUA6SUAAAAAhgixBGIABQDzJQAAAACGABcJBgAF
+AAAmAAAAAIYAAAkGAAUADSYAAAAAhgBvCmIABQAVJgAAAACGAIAJYgAFAB0mAAAAAIYY7wcGAAUA
+PSYAAAAAxgAwCsoABQBiJgAAAADGASkKsgAJAHUmAAAAAMYBWAqyAAoAdyYAAAAAhhjvB9QACwCG
+JgAAAACGGO8H1AAMAJUmAAAAAIMY7wcGAA0AnSYAAAAAkwiyB9oADQDJJgAAAACTCD0B3wANANAm
+AAAAAJMISQHkAA0A2CYAAAAAlgiMCeoADgDfJgAAAACGGO8HBgAOAOcmAAAAAJEY9QfvAA4AAAAB
+AHMKAAABAKsHAAACAMsIAAADAH8HAAABADkAAAACAAQBAAADAKsHAAAEAH8HAAABAKsHAAABAHMK
+AAABAOEJAAABAOEJAAABAF8DCQDvBwEAEQDvBwYAGQDvBwoAKQDvBxAAMQDvBxAAOQDvBxAAQQDv
+BxAASQDvBxAAUQDvBxAAWQDvBxAAYQDvBxAAaQDvBwYAqQDvBwYAyQDvBxUA2QDvBwYA4QClCh8A
+iQClCiUAkQClCi0AcQDvBzUAcQCrBz8AcQDLCEMAeQAnAEcAcQDzBkwAeQC9A1EAeQCkAVYAeQD1
+A1wAcQBOChAAcQBvCmIAcQCACWIAmQDvBwYA4QD5CGYAmQDfCG0AoQDvBwYA8QDyAHMA8QCYCnoA
+sQDvB4AA0QDvBwYALgALABgBLgATACEBLgAbAEABLgAjAEkBLgArAHIBLgAzAHIBLgA7AHIBLgBD
+AEkBLgBLAHgBLgBTAHIBLgBbAI8BQwBjANkB4QB7ANkB4wBrANkBaQhzAEABiQhzAEABGwADAAEA
+BwBDAAgARQAAALUA8wAAAOME9wAAAJgA+wAAALgE9wAAAHgJ+wAAAGoG9wAAAI0K+wAAAOgG9wAA
+AMwA/wAAAAgF9wAAAEsKBAEAAMEG9wAAAFQJBAEAAD8G9wAAAOAHBAEAAA0G9wAAANYDBAEAALgF
+9wAAALAJ/wAAAJgG9wAAAJYB/wAAADMF9wAAALID+wAAAJAF9wAAAO0D/wAAAN0F9wAAAHkD+wAA
+AGMF9wAAABAABAEAAFQE9wAAACMABAEAAHUE9wAAAHIA8wAAAIQE9wAAAHUJ+wAAAGcG9wAAAIoK
++wAAAOUG9wAAAMkA/wAAAAUF9wAAAEgKBAEAAL4G9wAAAFEJBAEAADwG9wAAAN0HBAEAAAoG9wAA
+ANMDBAEAALUF9wAAAK0J/wAAAJUG9wAAAJMB/wAAADAF9wAAAK8D+wAAAI0F9wAAAOoD/wAAANoF
+9wAAAHYD+wAAAGAF9wAAAA0ABAEAAFEE9wAAACAABAEAAHIE9wAAALIA8wAAAOAE9wAAAJUA+wAA
+ALUE9wAAALYHCQEAAF0BDgEAAJAJEwECAAQAAwACAAUABQACAAYABwACAAcACQACAAgACwACAAkA
+DQACAAoADwACAAsAEQACAAwAEwACAA0AFQACAA4AFwACAA8AGQACABAAGwACABEAHQACABIAHwAC
+ABMAIQACABQAIwACABUAJQACABYAJwACABcAKQACABgAKwACABkALQACABoALwACABsAMQACABwA
+MwACAB0ANQACAB4ANwACAB8AOQACACAAOwACACEAPQACACIAPwACACMAQQACACQAQwACACUARQAC
+ACYARwACACcASQACACgASwACACkATQACACoATwACACsAUQACACwAUwACAC0AVQACAC4AVwACAC8A
+WQACADAAWwACADEAXQACADIAXwACADMAYQACADQAYwACADUAZQACADYAZwACADcAaQACADgAawAC
+ADkAbQACADoAbwACADsAcQACADwAcwACAD0AdQACAD4AdwACAD8AeQACAEAAewACAEEAfQACAEIA
+fwACAEMAgQACAEQAgwACAEUAhQACAFEAhwACAFIAiQABAFMAiQACAFQAiwAEgAAAAQAAAAAAAAAA
+AAAAAABBAAAABAAAAAAAAAAAAAAAiABlAAAAAAAOAAAAAAAAAAAAAACRAOsJAAAAAA4AAAAAAAAA
+AAAAAJEACAoAAAAABAAAAAAAAAAAAAAAiAD6BgAAAAAAAAAAAQAAAEAIAAAAAABnZXRfUDUwAGdl
+dF9EaW1QNTAAZ2V0X1A5MABnZXRfRGltUDkwAEdldEludDMyADxNb2R1bGU+AElucHV0SUQAU0Nf
+ZDI2OGI0MWU5NDk4NGQ1MjhkOTAwMGQ3OWVjZGIyNWIAbXNjb3JsaWIAZ2V0X0xvYWRFeGNlY3V0
+aW9uSWQAZ2V0X1Byb2plY3RJZABnZXRfRGltUHJvamVjdElkAGdldF9Bc3NldElkAGdldF9EaW1B
+c3NldElkAGdldF9Db2QAZ2V0X0RpbUNvZABkZWZhdWx0SW5zdGFuY2UAUnVudGltZVR5cGVIYW5k
+bGUAR2V0VHlwZUZyb21IYW5kbGUASW5wdXROYW1lAERhdGVUaW1lAE1pY3Jvc29mdC5TcWxTZXJ2
+ZXIuRHRzLlBpcGVsaW5lAFR5cGUAZ2V0X0N1bHR1cmUAc2V0X0N1bHR1cmUAcmVzb3VyY2VDdWx0
+dXJlAEFwcGxpY2F0aW9uU2V0dGluZ3NCYXNlAGdldF9EaXNtZW50bGVEYXRlAGdldF9EaW1EaXNt
+ZW50bGVEYXRlAEdldERhdGUARWRpdG9yQnJvd3NhYmxlU3RhdGUAQ29tcGlsZXJHZW5lcmF0ZWRB
+dHRyaWJ1dGUARGVidWdnZXJOb25Vc2VyQ29kZUF0dHJpYnV0ZQBEZWJ1Z2dhYmxlQXR0cmlidXRl
+AEVkaXRvckJyb3dzYWJsZUF0dHJpYnV0ZQBBc3NlbWJseVRpdGxlQXR0cmlidXRlAEFzc2VtYmx5
+VHJhZGVtYXJrQXR0cmlidXRlAFRhcmdldEZyYW1ld29ya0F0dHJpYnV0ZQBBc3NlbWJseUNvbmZp
+Z3VyYXRpb25BdHRyaWJ1dGUAQXNzZW1ibHlEZXNjcmlwdGlvbkF0dHJpYnV0ZQBDb21waWxhdGlv
+blJlbGF4YXRpb25zQXR0cmlidXRlAEFzc2VtYmx5UHJvZHVjdEF0dHJpYnV0ZQBBc3NlbWJseUNv
+cHlyaWdodEF0dHJpYnV0ZQBTU0lTU2NyaXB0Q29tcG9uZW50RW50cnlQb2ludEF0dHJpYnV0ZQBB
+c3NlbWJseUNvbXBhbnlBdHRyaWJ1dGUAUnVudGltZUNvbXBhdGliaWxpdHlBdHRyaWJ1dGUAdmFs
+dWUAZ2V0X0luUGxhbmlmAGdldF9EaW1JblBsYW5pZgBTeXN0ZW0uUnVudGltZS5WZXJzaW9uaW5n
+AGdldF9SZXBvd2VyaW5nAGdldF9EaW1SZXBvd2VyaW5nAEdldFN0cmluZwBnZXRfRW9oAGdldF9E
+aW1Fb2gAZ2V0X0RhdGVNc2kAZ2V0X0RpbURhdGVNc2kAR2V0RGVjaW1hbABTeXN0ZW0uQ29tcG9u
+ZW50TW9kZWwAU0NfZDI2OGI0MWU5NDk4NGQ1MjhkOTAwMGQ3OWVjZGIyNWIuZGxsAGdldF9QNTBf
+SXNOdWxsAGdldF9EaW1QNTBfSXNOdWxsAGdldF9QOTBfSXNOdWxsAGdldF9EaW1QOTBfSXNOdWxs
+AGdldF9Mb2FkRXhjZWN1dGlvbklkX0lzTnVsbABnZXRfUHJvamVjdElkX0lzTnVsbABnZXRfRGlt
+UHJvamVjdElkX0lzTnVsbABnZXRfQXNzZXRJZF9Jc051bGwAZ2V0X0RpbUFzc2V0SWRfSXNOdWxs
+AGdldF9Db2RfSXNOdWxsAGdldF9EaW1Db2RfSXNOdWxsAGdldF9EaXNtZW50bGVEYXRlX0lzTnVs
+bABnZXRfRGltRGlzbWVudGxlRGF0ZV9Jc051bGwAZ2V0X0luUGxhbmlmX0lzTnVsbABnZXRfRGlt
+SW5QbGFuaWZfSXNOdWxsAGdldF9SZXBvd2VyaW5nX0lzTnVsbABnZXRfRGltUmVwb3dlcmluZ19J
+c051bGwAZ2V0X0VvaF9Jc051bGwAZ2V0X0RpbUVvaF9Jc051bGwAZ2V0X0RhdGVNc2lfSXNOdWxs
+AGdldF9EaW1EYXRlTXNpX0lzTnVsbABnZXRfSW5zdGFsbGVkUG93ZXJfSXNOdWxsAGdldF9EaW1J
+bnN0YWxsZWRQb3dlcl9Jc051bGwAZ2V0X1N1Y2Nlc1BjdF9Jc051bGwAZ2V0X0RpbVN1Y2Nlc1Bj
+dF9Jc051bGwAZ2V0X1Byb2plY3RfSXNOdWxsAGdldF9EaW1Qcm9qZWN0X0lzTnVsbABnZXRfRGF0
+ZU1lcmNoYW50X0lzTnVsbABnZXRfRGltRGF0ZU1lcmNoYW50X0lzTnVsbABnZXRfTXdfSXNOdWxs
+AGdldF9EaW1Nd19Jc051bGwAZ2V0X1RlY2hub2xvZ3lfSXNOdWxsAGdldF9EaW1UZWNobm9sb2d5
+X0lzTnVsbABTeXN0ZW0AcmVzb3VyY2VNYW4AU2NyaXB0TWFpbgBTeXN0ZW0uQ29uZmlndXJhdGlv
+bgBTeXN0ZW0uR2xvYmFsaXphdGlvbgBTeXN0ZW0uUmVmbGVjdGlvbgBTdHJpbmdDb21wYXJpc29u
+AEN1bHR1cmVJbmZvAE91dHB1dE5hbWVNYXAAT3V0cHV0TWFwAElucHV0MEJ1ZmZlcgBQaXBlbGlu
+ZUJ1ZmZlcgBTY3JpcHRCdWZmZXIAZ2V0X1Jlc291cmNlTWFuYWdlcgBnZXRfSW5zdGFsbGVkUG93
+ZXIAZ2V0X0RpbUluc3RhbGxlZFBvd2VyAC5jdG9yAC5jY3RvcgBTeXN0ZW0uRGlhZ25vc3RpY3MA
+U3lzdGVtLlJ1bnRpbWUuQ29tcGlsZXJTZXJ2aWNlcwBTeXN0ZW0uUmVzb3VyY2VzAFNDX2QyNjhi
+NDFlOTQ5ODRkNTI4ZDkwMDBkNzllY2RiMjViLlByb3BlcnRpZXMuUmVzb3VyY2VzLnJlc291cmNl
+cwBEZWJ1Z2dpbmdNb2RlcwBTQ19kMjY4YjQxZTk0OTg0ZDUyOGQ5MDAwZDc5ZWNkYjI1Yi5Qcm9w
+ZXJ0aWVzAFZhcmlhYmxlcwBCdWZmZXJDb2x1bW5JbmRleGVzAEdldENvbHVtbkluZGV4ZXMAU2V0
+dGluZ3MARXF1YWxzAERpcmVjdFJvd1RvU2FtZUNvbHVtbnMARGlyZWN0Um93VG9EaWZmZXJlbnRD
+b2x1bW5zAENvbm5lY3Rpb25zAGdldF9TdWNjZXNQY3QAZ2V0X0RpbVN1Y2Nlc1BjdABPYmplY3QA
+Z2V0X1Byb2plY3QAZ2V0X0RpbVByb2plY3QARW5kT2ZSb3dzZXQAZ2V0X0RlZmF1bHQAZ2V0X0Rh
+dGVNZXJjaGFudABnZXRfRGltRGF0ZU1lcmNoYW50AFVzZXJDb21wb25lbnQAUGFyZW50Q29tcG9u
+ZW50AFNjcmlwdENvbXBvbmVudABNaWNyb3NvZnQuU3FsU2VydmVyLlR4U2NyaXB0AE1pY3Jvc29m
+dC5TcWxTZXJ2ZXIuUGlwZWxpbmVIb3N0AElucHV0MF9Qcm9jZXNzSW5wdXQAZ2V0X013AGdldF9E
+aW1NdwBEaXJlY3RSb3cASW5wdXQwX1Byb2Nlc3NJbnB1dFJvdwBOZXh0Um93AGdldF9UZWNobm9s
+b2d5AGdldF9EaW1UZWNobm9sb2d5AGdldF9Bc3NlbWJseQBvcF9JbmVxdWFsaXR5AAAAIUQAaQBm
+AGYAZQByAGUAbgB0AEMAbwBsAHUAbQBuAHMAABdTAGEAbQBlAEMAbwBsAHUAbQBuAHMAAA9JAG4A
+cAB1AHQAIAAwAABxUwBDAF8AZAAyADYAOABiADQAMQBlADkANAA5ADgANABkADUAMgA4AGQAOQAw
+ADAAMABkADcAOQBlAGMAZABiADIANQBiAC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8A
+dQByAGMAZQBzAAAAAAC4gq0JgLWdTJow+HU9AqDaAAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFh
+AwcBAgUAAgIODgcAAgIRRRFFBwACAhFJEUkJIAMBEj0dCBJBAwYSPQMGHQgEIAEICAQgAQIIBCAB
+DggFIAERRQgFIAERSQgDIAACBiACAg4RdQUgAR0ICAYAARJ5EX0FIAASgIEHIAIBDhKAgQi3elxW
+GTTgiQiJhF3NgIDMkQMGEhQDBhIYAwYSTQMGElkDBhJdAwYSIAUgAQESDAMgAAgDIAAOBCAAEUUE
+IAARSQkgBAEIDhI9EkEFIAEBEk0EAAASWQQAABJdBQABARJdBAAAEiADAAABAygACAMoAAIDKAAO
+BCgAEUUEKAARSQQIABJZBAgAEl0ECAASIAgBAAgAAAAAAB4BAAEAVAIWV3JhcE5vbkV4Y2VwdGlv
+blRocm93cwEIAQACAAAAAAAoAQAjU0NfZDI2OGI0MWU5NDk4NGQ1MjhkOTAwMGQ3OWVjZGIyNWIA
+AAUBAAAAABYBABFDb3B5cmlnaHQgQCAgMjAyMgAASQEAGi5ORVRGcmFtZXdvcmssVmVyc2lvbj12
+NC41AQBUDhRGcmFtZXdvcmtEaXNwbGF5TmFtZRIuTkVUIEZyYW1ld29yayA0LjUEAQAAAAAAtAAA
+AM7K774BAAAAkQAAAGxTeXN0ZW0uUmVzb3VyY2VzLlJlc291cmNlUmVhZGVyLCBtc2NvcmxpYiwg
+VmVyc2lvbj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2
+MTkzNGUwODkjU3lzdGVtLlJlc291cmNlcy5SdW50aW1lUmVzb3VyY2VTZXQCAAAAAAAAAAAAAABQ
+QURQQURQtAAAAGBBAAAAAAAAAAAAAHpBAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAABsQQAAAAAA
+AAAAAAAAAF9Db3JEbGxNYWluAG1zY29yZWUuZGxsAAAAAAD/JQAgABAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABABAA
+AAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABIAAAAWGAA
+AOwDAAAAAAAAAAAAAOwDNAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAAAAC9BO/+
+AAABAAAAAQAAAAAAAAABAAAAAAA/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAAAAEAVgBh
+AHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4AAAAAAAAA
+sARMAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAAAoAwAAAQAwADAAMAAwADAANABi
+ADAAAAAaAAEAAQBDAG8AbQBtAGUAbgB0AHMAAAAAAAAAIgABAAEAQwBvAG0AcABhAG4AeQBOAGEA
+bQBlAAAAAAAAAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAAAFMAQwBf
+AGQAMgA2ADgAYgA0ADEAZQA5ADQAOQA4ADQAZAA1ADIAOABkADkAMAAwADAAZAA3ADkAZQBjAGQA
+YgAyADUAYgAAADAACAABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgAwAC4AMAAA
+AHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBDAF8AZAAyADYAOABiADQAMQBlADkA
+NAA5ADgANABkADUAMgA4AGQAOQAwADAAMABkADcAOQBlAGMAZABiADIANQBiAC4AZABsAGwAAABI
+ABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8AcAB5AHIAaQBnAGgAdAAgAEAA
+IAAgADIAMAAyADIAAAAqAAEAAQBMAGUAZwBhAGwAVAByAGEAZABlAG0AYQByAGsAcwAAAAAAAAAA
+AHgAKAABAE8AcgBpAGcAaQBuAGEAbABGAGkAbABlAG4AYQBtAGUAAABTAEMAXwBkADIANgA4AGIA
+NAAxAGUAOQA0ADkAOAA0AGQANQAyADgAZAA5ADAAMAAwAGQANwA5AGUAYwBkAGIAMgA1AGIALgBk
+AGwAbAAAAGgAJAABAFAAcgBvAGQAdQBjAHQATgBhAG0AZQAAAAAAUwBDAF8AZAAyADYAOABiADQA
+MQBlADkANAA5ADgANABkADUAMgA4AGQAOQAwADAAMABkADcAOQBlAGMAZABiADIANQBiAAAANAAI
+AAEAUAByAG8AZAB1AGMAdABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgAwAC4AMAAAADgACAABAEEA
+cwBzAGUAbQBiAGwAeQAgAFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADAALgAwAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAwAAACMMQAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the Microsoft Visual Studio Tools for Applications project. Project names must be unique within a package."
+                  name="VSTAProjectName"
+                  typeConverter="NOTBROWSABLE">SC_d268b41e94984d528d9000d79ecdb25b</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the programming language used by the script."
+                  name="ScriptLanguage"
+                  typeConverter="Microsoft.SqlServer.VSTAHosting.ScriptingLanguages">CSharp</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read-only variables."
+                  name="ReadOnlyVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read/write variables."
+                  name="ReadWriteVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIWriteableVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="List of breakpoints present on the script."
+                  isArray="true"
+                  name="BreakpointCollection"
+                  typeConverter="NOTBROWSABLE">
+                  <arrayElements
+                    arrayElementCount="0" />
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataChecksum140"
+                  typeConverter="NOTBROWSABLE">D3</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0]"
+                  hasSideEffects="true"
+                  name="Input 0">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[AssetId]"
+                      cachedDataType="i4"
+                      cachedName="AssetId"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[AssetId]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[ProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjectId"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[ProjectId]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[Project]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="Project"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Project]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[Technology]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Technology"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Technology]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[Cod]"
+                      cachedDataType="dbDate"
+                      cachedName="Cod"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Cod]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[Mw]"
+                      cachedDataType="numeric"
+                      cachedName="Mw"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Mw]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[SuccesPct]"
+                      cachedDataType="numeric"
+                      cachedName="SuccesPct"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[SuccesPct]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[InstalledPower]"
+                      cachedDataType="numeric"
+                      cachedName="InstalledPower"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[InstalledPower]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[Eoh]"
+                      cachedDataType="numeric"
+                      cachedName="Eoh"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Eoh]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DateMerchant]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMerchant"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[DateMerchant]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DismentleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DismentleDate"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[DismentleDate]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[Repowering]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Repowering"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[Repowering]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DateMsi]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMsi"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[DateMsi]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[InPlanif]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="InPlanif"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[InPlanif]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[P50]"
+                      cachedDataType="numeric"
+                      cachedName="P50"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[P50]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[P90]"
+                      cachedDataType="numeric"
+                      cachedName="P90"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      lineageId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output].Columns[P90]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[LoadExcecutionId]"
+                      cachedDataType="i4"
+                      cachedName="LoadExcecutionId"
+                      lineageId="Package\dft_DimAsset_ups\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExcecutionId]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimProject]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="DimProject"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimProject]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimTechnology]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="DimTechnology"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimTechnology]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimCod]"
+                      cachedDataType="dbDate"
+                      cachedName="DimCod"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimCod]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimMw]"
+                      cachedDataType="numeric"
+                      cachedName="DimMw"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimMw]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimSuccesPct]"
+                      cachedDataType="numeric"
+                      cachedName="DimSuccesPct"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimSuccesPct]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimInstalledPower]"
+                      cachedDataType="numeric"
+                      cachedName="DimInstalledPower"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimInstalledPower]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimEoh]"
+                      cachedDataType="numeric"
+                      cachedName="DimEoh"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimEoh]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimDateMerchant]"
+                      cachedDataType="dbDate"
+                      cachedName="DimDateMerchant"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimDateMerchant]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimDismentleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DimDismentleDate"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimDismentleDate]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimRepowering]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="DimRepowering"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimRepowering]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimDateMsi]"
+                      cachedDataType="dbDate"
+                      cachedName="DimDateMsi"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimDateMsi]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimInPlanif]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="DimInPlanif"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimInPlanif]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimP50]"
+                      cachedDataType="numeric"
+                      cachedName="DimP50"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimP50]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimP90]"
+                      cachedDataType="numeric"
+                      cachedName="DimP90"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimP90]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimAssetId]"
+                      cachedDataType="i4"
+                      cachedName="DimAssetId"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimAssetId]" />
+                    <inputColumn
+                      refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="DimProjectId"
+                      lineageId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output].Columns[DimProjectId]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Outputs[DifferentColumns]"
+                  exclusionGroup="1"
+                  name="DifferentColumns"
+                  synchronousInputId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Outputs[SameColumns]"
+                  exclusionGroup="1"
+                  name="SameColumns"
+                  synchronousInputId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\dft_DimAsset_ups.Paths[Derived Column Output]"
+              endId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\dft_DimAsset_ups\der_LoadExecutionId.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\dft_DimAsset_ups.Paths[DifferentColumns]"
+              endId="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset.Inputs[OLE DB Command Input]"
+              name="DifferentColumns"
+              startId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Outputs[DifferentColumns]" />
+            <path
+              refId="Package\dft_DimAsset_ups.Paths[Lookup Match Output]"
+              endId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Inputs[Input 0]"
+              name="Lookup Match Output"
+              startId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\dft_DimAsset_ups.Paths[Lookup No Match Output]"
+              endId="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\dft_DimAsset_ups.Paths[OLE DB Source Output]"
+              endId="Package\dft_DimAsset_ups\der_LoadExecutionId.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\dft_DimAsset_ups.Paths[SameColumns]"
+              endId="Package\dft_DimAsset_ups\Audit.Inputs[Audit Input 1]"
+              name="SameColumns"
+              startId="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns.Outputs[SameColumns]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="164,42"
+          Id="Package\dft_DimAsset_ups"
+          TopLeft="288,76" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\dft_DimAsset_ups">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="256,42"
+          Id="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset"
+          TopLeft="218.333333333333,245" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\dft_DimAsset_ups\scr_CheckForDiffrentColumns"
+          TopLeft="362,340" />
+        <NodeLayout
+          Size="191,42"
+          Id="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset"
+          TopLeft="21,346" />
+        <NodeLayout
+          Size="256,42"
+          Id="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset"
+          TopLeft="218.333333333333,19" />
+        <NodeLayout
+          Size="256,42"
+          Id="Package\dft_DimAsset_ups\der_LoadExecutionId"
+          TopLeft="218.333333333333,121" />
+        <NodeLayout
+          Size="229,42"
+          Id="Package\dft_DimAsset_ups\ole_cmd_update_DW_DimAsset"
+          TopLeft="15,445" />
+        <NodeLayout
+          Size="103,42"
+          Id="Package\dft_DimAsset_ups\Audit"
+          TopLeft="547,434" />
+        <EdgeLayout
+          Id="Package\dft_DimAsset_ups.Paths[SameColumns]"
+          TopLeft="505.333333333333,382">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="93.1666666666667,52"
+              Start="0,0"
+              End="93.1666666666667,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.028362305581" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.028362305581"
+                    Point2="0,21.028362305581"
+                    Point3="4,21.028362305581" />
+                  <mssgle:LineSegment
+                    End="89.1666666666667,21.028362305581" />
+                  <mssgle:CubicBezierSegment
+                    Point1="89.1666666666667,21.028362305581"
+                    Point2="93.1666666666667,21.028362305581"
+                    Point3="93.1666666666667,25.028362305581" />
+                  <mssgle:LineSegment
+                    End="93.1666666666667,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="14.7500911458333,26.028362305581,63.666484375,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\dft_DimAsset_ups.Paths[OLE DB Source Output]"
+          TopLeft="346.333333333333,61">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\dft_DimAsset_ups.Paths[Lookup No Match Output]"
+          TopLeft="305,287">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-188.5,59"
+              Start="0,0"
+              End="-188.5,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.8198757763975" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.8198757763975"
+                    Point2="0,23.8198757763975"
+                    Point3="-4,23.8198757763975" />
+                  <mssgle:LineSegment
+                    End="-184.5,23.8198757763975" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-184.5,23.8198757763975"
+                    Point2="-188.5,23.8198757763975"
+                    Point3="-188.5,27.8198757763975" />
+                  <mssgle:LineSegment
+                    End="-188.5,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-150.05638671875,28.8198757763975,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\dft_DimAsset_ups.Paths[Lookup Match Output]"
+          TopLeft="387.666666666667,287">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="82.8333333333334,53"
+              Start="0,0"
+              End="82.8333333333334,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.3975155279503" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.3975155279503"
+                    Point2="0,21.3975155279503"
+                    Point3="4,21.3975155279503" />
+                  <mssgle:LineSegment
+                    End="78.8333333333334,21.3975155279503" />
+                  <mssgle:CubicBezierSegment
+                    Point1="78.8333333333334,21.3975155279503"
+                    Point2="82.8333333333334,21.3975155279503"
+                    Point3="82.8333333333334,25.3975155279503" />
+                  <mssgle:LineSegment
+                    End="82.8333333333334,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-6.77472005208332,26.3975155279503,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\dft_DimAsset_ups.Paths[DifferentColumns]"
+          TopLeft="435.666666666667,382">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-306.166666666667,63"
+              Start="0,0"
+              End="-306.166666666667,55.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.4766697163769" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.4766697163769"
+                    Point2="0,25.4766697163769"
+                    Point3="-4,25.4766697163769" />
+                  <mssgle:LineSegment
+                    End="-302.166666666667,25.4766697163769" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-302.166666666667,25.4766697163769"
+                    Point2="-306.166666666667,25.4766697163769"
+                    Point3="-306.166666666667,29.4766697163769" />
+                  <mssgle:LineSegment
+                    End="-306.166666666667,55.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-191.730911458333,30.4766697163769,77.29515625,9.7978515625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\dft_DimAsset_ups.Paths[Derived Column Output]"
+          TopLeft="346.333333333333,163">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,82"
+              Start="0,0"
+              End="0,74.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,74.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\dft_DimAsset_ups\lkp_AssetId_ProjetId_DimAsset">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[DW].[DimAsset]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\dft_DimAsset_ups\ole_dest_DW_DimAsset">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\dft_DimAsset_ups\ole_src_ExcelMarketStaging_StgAsset">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

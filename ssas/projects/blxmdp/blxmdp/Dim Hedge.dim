@@ -1,0 +1,203 @@
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="3fb049b0-43a6-4571-9f50-a5958748e8d5" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+  <ID>Dim Hedge</ID>
+  <Name>Dim Hedge</Name>
+  <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
+  <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
+  <Annotations>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
+      <Value>false</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
+      <Value>true</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
+      <Value>0</Value>
+    </Annotation>
+    <Annotation>
+      <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
+      <Value>100</Value>
+    </Annotation>
+  </Annotations>
+  <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
+  <State>Unprocessed</State>
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="894919aa-07f9-48cf-8657-d9aad0d043e8">
+    <DataSourceViewID>blxdwh</DataSourceViewID>
+  </Source>
+  <UnknownMember>Visible</UnknownMember>
+  <ErrorConfiguration dwd:design-time-name="004e921a-a173-4962-a922-817a1558fc62">
+    <KeyNotFound>ReportAndStop</KeyNotFound>
+    <KeyDuplicate>ReportAndStop</KeyDuplicate>
+    <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
+  </ErrorConfiguration>
+  <CurrentStorageMode>Molap</CurrentStorageMode>
+  <Attributes>
+    <Attribute dwd:design-time-name="5b89ba31-cc4d-4f5e-b136-6628764c3ef1">
+      <ID>Hedge Id</ID>
+      <Name>Hedge Id</Name>
+      <Usage>Key</Usage>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="5e378054-adf8-4f26-8fba-8d0ef8e6133b">
+          <DataType>Integer</DataType>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="32bea190-e6c8-4c10-a0e5-2430bfa9adf4">
+            <TableID>DW_DimHedge</TableID>
+            <ColumnID>HedgeId</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <AttributeRelationships>
+        <AttributeRelationship dwd:design-time-name="9bb88be7-2e8a-4d66-89ed-882a946bfdd9">
+          <AttributeID>Project Id</AttributeID>
+          <Name>Project Id</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="a591b527-8b32-40e1-827c-e3a2c53a80a3">
+          <AttributeID>Project</AttributeID>
+          <Name>Project</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="36c98c46-9a43-4483-96be-aa5f7f0c5a92">
+          <AttributeID>Technology</AttributeID>
+          <Name>Technology</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="a71c1614-af70-4a2a-9d21-25b3f380321d">
+          <AttributeID>Type Hedge</AttributeID>
+          <Name>Type Hedge</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="afd5c77e-0282-4643-a3a0-d64751dda020">
+          <AttributeID>In Planif</AttributeID>
+          <Name>In Planif</Name>
+        </AttributeRelationship>
+        <AttributeRelationship dwd:design-time-name="cbe3ea34-6864-4d3b-b2a3-a72a744ad1aa">
+          <AttributeID>Asset Id</AttributeID>
+          <Name>Asset Id</Name>
+        </AttributeRelationship>
+      </AttributeRelationships>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="773303f3-99bb-4d01-a75b-9f12276b84d9">
+      <ID>Project Id</ID>
+      <Name>Project Id</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="30765b7a-c6ec-4cee-ab92-71873483cafa">
+          <DataType>WChar</DataType>
+          <DataSize>100</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="fd81c30a-5956-46b7-ac7f-1d02cd0b7024">
+            <TableID>DW_DimHedge</TableID>
+            <ColumnID>ProjectId</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="0a1113e5-05de-4a57-b93a-2277bec2263c">
+      <ID>Project</ID>
+      <Name>Project</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="56a634a9-b1e1-4078-ae9a-fbadc4ce4e9a">
+          <DataType>WChar</DataType>
+          <DataSize>250</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="bc1f967b-2d1a-4112-b302-b07e9c610018">
+            <TableID>DW_DimHedge</TableID>
+            <ColumnID>Project</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="1a97f6eb-a42a-4795-b270-20306a168958">
+      <ID>Technology</ID>
+      <Name>Technology</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="77acd521-a1fa-4329-8b0a-1199e3c4b516">
+          <DataType>WChar</DataType>
+          <DataSize>200</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="da75362e-ad13-4d20-8679-07a67250df39">
+            <TableID>DW_DimHedge</TableID>
+            <ColumnID>Technology</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="df1c121a-c8f7-4c31-946e-5f103db85a43">
+      <ID>Type Hedge</ID>
+      <Name>Type Hedge</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="9ba87c32-5d6a-4b7a-a225-4ac927be453f">
+          <DataType>WChar</DataType>
+          <DataSize>50</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="4e3d8ed9-2a96-44b4-b0bb-7f7c41dc2954">
+            <TableID>DW_DimHedge</TableID>
+            <ColumnID>TypeHedge</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="bcd82ba8-92a4-46d2-8a14-75eda636b82e">
+      <ID>In Planif</ID>
+      <Name>In Planif</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="60a1b06e-9dc1-4031-96be-e54f5d464fbb">
+          <DataType>WChar</DataType>
+          <DataSize>50</DataSize>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="6bf6e16d-0a52-4999-b705-5a818d7d03bf">
+            <TableID>DW_DimHedge</TableID>
+            <ColumnID>InPlanif</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+    <Attribute dwd:design-time-name="3b3b0444-e176-4ec2-ba7b-f051aac98f03">
+      <ID>Asset Id</ID>
+      <Name>Asset Id</Name>
+      <KeyColumns>
+        <KeyColumn dwd:design-time-name="4d4ff168-7f9d-4c3c-8fa0-743fcd3b75df">
+          <DataType>Integer</DataType>
+          <NullProcessing>UnknownMember</NullProcessing>
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="a7fd24f0-c50f-443d-b260-9885cf62ebff">
+            <TableID>DW_DimAsset</TableID>
+            <ColumnID>AssetId</ColumnID>
+          </Source>
+        </KeyColumn>
+      </KeyColumns>
+      <OrderBy>Key</OrderBy>
+      <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+      <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+    </Attribute>
+  </Attributes>
+  <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
+</Dimension>

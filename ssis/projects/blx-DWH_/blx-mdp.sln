@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ETL_Staging", "ETL-DWH\ETL_Staging.dtproj", "{9C837B14-2AE7-453F-BD8E-ADD23336A2EB}"
+EndProject
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "ETL_DW", "ETL_DWH\ETL_DW.dtproj", "{ACE64DCC-7E4C-4DF1-BFB0-181FAD278264}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9C837B14-2AE7-453F-BD8E-ADD23336A2EB}.Development|Default.ActiveCfg = Development
+		{9C837B14-2AE7-453F-BD8E-ADD23336A2EB}.Development|Default.Build.0 = Development
+		{ACE64DCC-7E4C-4DF1-BFB0-181FAD278264}.Development|Default.ActiveCfg = Development
+		{ACE64DCC-7E4C-4DF1-BFB0-181FAD278264}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

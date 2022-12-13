@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "adwks1", "adwks1\adwks1.dwproj", "{8B1EB7CA-55C6-4079-AF23-3C59EE4720BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B1EB7CA-55C6-4079-AF23-3C59EE4720BA}.Development|Default.ActiveCfg = Development
+		{8B1EB7CA-55C6-4079-AF23-3C59EE4720BA}.Development|Default.Build.0 = Development
+		{8B1EB7CA-55C6-4079-AF23-3C59EE4720BA}.Development|Default.Deploy.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

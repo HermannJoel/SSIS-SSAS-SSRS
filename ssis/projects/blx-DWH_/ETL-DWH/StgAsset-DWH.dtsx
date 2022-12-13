@@ -1,0 +1,2698 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/3/2022 2:32:15 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-JDQLDT1"
+  DTS:CreatorName="DESKTOP-JDQLDT1\nherm"
+  DTS:DTSID="{B89550DC-4681-4518-B156-ED01EBC9F79F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="StgAsset-Dwh"
+  DTS:PackageType="5"
+  DTS:VersionBuild="33"
+  DTS:VersionGUID="{1F334D16-10E8-4A42-A562-242C9A36E3E1}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[cmgr_DWH]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{7A0BD7ED-6CA6-4712-8660-C2FD67498F93}"
+      DTS:ObjectName="cmgr_DWH">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::cmgr_DWH]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-JDQLDT1\MSSQLSERVERDWH;Initial Catalog=DWH;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[cmgr_DWHStg]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{2415A019-1505-4F77-A994-D7A1F09249A9}"
+      DTS:ObjectName="cmgr_DWHStg">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::cmgr_DWHStg]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-JDQLDT1\MSSQLSERVERDWH;Initial Catalog=DWHStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[cmgr_OLTP]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B1AE7128-C884-40AB-B317-014A834C4CD7}"
+      DTS:ObjectName="cmgr_OLTP">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::cmgr_OLTP]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-JDQLDT1\MSSQLSERVERDWH;Initial Catalog=OLTP;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{83803E40-6142-4FE8-9C93-8F4601C64B11}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageStartDateTime">
+      <DTS:VariableValue
+        DTS:DataType="7">10/3/2022 9:28:13 PM</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Expression Task"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{513A0D56-939F-421F-8E77-AFC023F7F4FA}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Expression Task"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::PackageStartDateTime]= GETDATE()" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SCD_type 1"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{DF5C6316-2632-4826-84B1-BD420BC923E0}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SCD_type 1"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\SCD_type 1\dc_"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="dc_"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\SCD_type 1\dc_.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\SCD_type 1\dc_.Inputs[Data Conversion Input].Columns[AssetId]"
+                      cachedDataType="i4"
+                      cachedName="AssetId"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[AssetId]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\dc_.Inputs[Data Conversion Input].Columns[ProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjectId"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[ProjectId]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\dc_.Inputs[Data Conversion Input].Columns[Project]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="Project"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Project]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\dc_.Inputs[Data Conversion Input].Columns[Technology]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Technology"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Technology]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\dc_.Inputs[Data Conversion Input].Columns[Cod]"
+                      cachedDataType="dbDate"
+                      cachedName="Cod"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Cod]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\dc_.Inputs[Data Conversion Input].Columns[Mw]"
+                      cachedDataType="numeric"
+                      cachedName="Mw"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Mw]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\dc_.Inputs[Data Conversion Input].Columns[SuccesPct]"
+                      cachedDataType="numeric"
+                      cachedName="SuccesPct"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[SuccesPct]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\dc_.Inputs[Data Conversion Input].Columns[InstalledPower]"
+                      cachedDataType="numeric"
+                      cachedName="InstalledPower"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[InstalledPower]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\dc_.Inputs[Data Conversion Input].Columns[Eoh]"
+                      cachedDataType="numeric"
+                      cachedName="Eoh"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Eoh]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\dc_.Inputs[Data Conversion Input].Columns[DateMerchant]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMerchant"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[DateMerchant]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\dc_.Inputs[Data Conversion Input].Columns[DismentleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DismentleDate"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[DismentleDate]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\dc_.Inputs[Data Conversion Input].Columns[Repowering]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Repowering"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Repowering]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\dc_.Inputs[Data Conversion Input].Columns[DateMsi]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMsi"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[DateMsi]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\dc_.Inputs[Data Conversion Input].Columns[InPlanif]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="InPlanif"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[InPlanif]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\dc_.Inputs[Data Conversion Input].Columns[P50]"
+                      cachedDataType="numeric"
+                      cachedName="P50"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[P50]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\dc_.Inputs[Data Conversion Input].Columns[P90]"
+                      cachedDataType="numeric"
+                      cachedName="P90"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[P90]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\SCD_type 1\dc_.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[AssetId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[AssetId]"
+                      name="AssetId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[AssetId]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[ProjectId]"
+                      name="ProjectId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[ProjectId]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="250"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Project]"
+                      name="Project"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Project]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Technology]"
+                      name="Technology"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Technology]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Cod]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Cod]"
+                      name="Cod"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Cod]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Mw]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Mw]"
+                      name="Mw"
+                      precision="5"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Mw]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[SuccesPct]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[SuccesPct]"
+                      name="SuccesPct"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[SuccesPct]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[InstalledPower]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[InstalledPower]"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[InstalledPower]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Eoh]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Eoh]"
+                      name="Eoh"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Eoh]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[DateMerchant]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[DateMerchant]"
+                      name="DateMerchant"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[DateMerchant]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[DismentleDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[DismentleDate]"
+                      name="DismentleDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[DismentleDate]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Repowering]"
+                      name="Repowering"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Repowering]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[DateMsi]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[DateMsi]"
+                      name="DateMsi"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[DateMsi]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[InPlanif]"
+                      name="InPlanif"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[InPlanif]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[P50]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[P50]"
+                      name="P50"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[P50]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[P90]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[P90]"
+                      name="P90"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[P90]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\SCD_type 1\dc_.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\SCD_type 1\dc_.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SCD_type 1\dc_.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\dc_.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\SCD_type 1\ole_ DB_Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="ole_ DB_Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[DimAsset] SET [Cod] = ?,[DateMerchant] = ?,[DateMsi] = ?,[DismentleDate] = ?,[Eoh] = ?,[InPlanif] = ?,[InstalledPower] = ?,[Mw] = ?,[P50] = ?,[P90] = ?,[Project] = ?,[Repowering] = ?,[SuccesPct] = ?,[Technology] = ? WHERE [AssetId] = ? AND [ProjectId] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SCD_type 1\ole_ DB_Command.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[cmgr_DWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[cmgr_DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].Columns[AssetId]"
+                      cachedDataType="i4"
+                      cachedName="AssetId"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_14]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[AssetId]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].Columns[Cod]"
+                      cachedDataType="dbDate"
+                      cachedName="Cod"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Cod]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].Columns[DateMerchant]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMerchant"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[DateMerchant]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].Columns[DateMsi]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMsi"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[DateMsi]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].Columns[DismentleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DismentleDate"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[DismentleDate]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].Columns[Eoh]"
+                      cachedDataType="numeric"
+                      cachedName="Eoh"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Eoh]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].Columns[InPlanif]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="InPlanif"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[InPlanif]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].Columns[InstalledPower]"
+                      cachedDataType="numeric"
+                      cachedName="InstalledPower"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[InstalledPower]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].Columns[Mw]"
+                      cachedDataType="numeric"
+                      cachedName="Mw"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Mw]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].Columns[P50]"
+                      cachedDataType="numeric"
+                      cachedName="P50"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[P50]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].Columns[P90]"
+                      cachedDataType="numeric"
+                      cachedName="P90"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[P90]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].Columns[Project]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="Project"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Project]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].Columns[ProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjectId"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_15]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[ProjectId]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].Columns[Repowering]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Repowering"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_11]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Repowering]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].Columns[SuccesPct]"
+                      cachedDataType="numeric"
+                      cachedName="SuccesPct"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_12]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[SuccesPct]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].Columns[Technology]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Technology"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_13]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Technology]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="dbDate"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="dbDate"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="dbDate"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="dbDate"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="numeric"
+                      name="Param_4"
+                      precision="10"
+                      scale="3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      dataType="numeric"
+                      name="Param_6"
+                      precision="7"
+                      scale="5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      dataType="numeric"
+                      name="Param_7"
+                      precision="5"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      dataType="numeric"
+                      name="Param_8"
+                      precision="10"
+                      scale="3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      dataType="numeric"
+                      name="Param_9"
+                      precision="10"
+                      scale="3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="Param_10">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_11]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_11">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_12]"
+                      dataType="numeric"
+                      name="Param_12"
+                      precision="7"
+                      scale="5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_13]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Param_13">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_14]"
+                      dataType="i4"
+                      name="Param_14">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input].ExternalColumns[Param_15]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_15">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\SCD_type 1\ole_ DB_Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\SCD_type 1\ole_ DB_Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SCD_type 1\ole_ DB_Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_ DB_Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SCD_type 1\ole_ DB_Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\SCD_type 1\ole_dst_Insert_Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="ole_dst_Insert_Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimAsset]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SCD_type 1\ole_dst_Insert_Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[cmgr_DWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[cmgr_DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].Columns[AssetId]"
+                      cachedDataType="i4"
+                      cachedName="AssetId"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[AssetId]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[AssetId]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].Columns[ProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjectId"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProjectId]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[ProjectId]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].Columns[Project]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="Project"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Project]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Project]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].Columns[Technology]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Technology"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Technology]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Technology]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].Columns[Cod]"
+                      cachedDataType="dbDate"
+                      cachedName="Cod"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Cod]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Cod]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].Columns[Mw]"
+                      cachedDataType="numeric"
+                      cachedName="Mw"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Mw]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Mw]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].Columns[SuccesPct]"
+                      cachedDataType="numeric"
+                      cachedName="SuccesPct"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[SuccesPct]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[SuccesPct]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].Columns[InstalledPower]"
+                      cachedDataType="numeric"
+                      cachedName="InstalledPower"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[InstalledPower]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[InstalledPower]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].Columns[Eoh]"
+                      cachedDataType="numeric"
+                      cachedName="Eoh"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Eoh]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Eoh]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].Columns[DateMerchant]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMerchant"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateMerchant]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[DateMerchant]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].Columns[DismentleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DismentleDate"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[DismentleDate]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[DismentleDate]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].Columns[Repowering]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Repowering"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Repowering]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Repowering]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].Columns[DateMsi]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMsi"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateMsi]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[DateMsi]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].Columns[InPlanif]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="InPlanif"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[InPlanif]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[InPlanif]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].Columns[P50]"
+                      cachedDataType="numeric"
+                      cachedName="P50"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[P50]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[P50]" />
+                    <inputColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].Columns[P90]"
+                      cachedDataType="numeric"
+                      cachedName="P90"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[P90]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[P90]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[AssetId]"
+                      dataType="i4"
+                      name="AssetId" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ProjectId" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="Project" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Technology" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Cod]"
+                      dataType="dbDate"
+                      name="Cod" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Mw]"
+                      dataType="numeric"
+                      name="Mw"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[SuccesPct]"
+                      dataType="numeric"
+                      name="SuccesPct"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[InstalledPower]"
+                      dataType="numeric"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Eoh]"
+                      dataType="numeric"
+                      name="Eoh"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateMerchant]"
+                      dataType="dbDate"
+                      name="DateMerchant" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[DismentleDate]"
+                      dataType="dbDate"
+                      name="DismentleDate" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Repowering" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateMsi]"
+                      dataType="dbDate"
+                      name="DateMsi" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="InPlanif" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[P50]"
+                      dataType="numeric"
+                      name="P50"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input].ExternalColumns[P90]"
+                      dataType="numeric"
+                      name="P90"
+                      precision="10"
+                      scale="3" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\SCD_type 1\ole_dst_Insert_Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SCD_type 1\ole_dst_Insert_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_dst_Insert_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SCD_type 1\ole_dst_Insert_Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\SCD_type 1\ole_src_StgAsset"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="ole_src_StgAsset"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[StgAsset]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SCD_type 1\ole_src_StgAsset.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[cmgr_DWHStg]"
+                  connectionManagerRefId="Package.ConnectionManagers[cmgr_DWHStg]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[AssetId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[AssetId]"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[AssetId]"
+                      name="AssetId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[ProjectId]"
+                      length="100"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[ProjectId]"
+                      name="ProjectId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Project]"
+                      length="250"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Project]"
+                      name="Project"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Technology]"
+                      length="200"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Technology]"
+                      name="Technology"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Cod]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Cod]"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Cod]"
+                      name="Cod"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Mw]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Mw]"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Mw]"
+                      name="Mw"
+                      precision="5"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[SuccesPct]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[SuccesPct]"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[SuccesPct]"
+                      name="SuccesPct"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[InstalledPower]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[InstalledPower]"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[InstalledPower]"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Eoh]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Eoh]"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Eoh]"
+                      name="Eoh"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[DateMerchant]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[DateMerchant]"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[DateMerchant]"
+                      name="DateMerchant"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[DismentleDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[DismentleDate]"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[DismentleDate]"
+                      name="DismentleDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Repowering]"
+                      length="100"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[Repowering]"
+                      name="Repowering"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[DateMsi]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[DateMsi]"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[DateMsi]"
+                      name="DateMsi"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[InPlanif]"
+                      length="50"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[InPlanif]"
+                      name="InPlanif"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[P50]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[P50]"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[P50]"
+                      name="P50"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[P90]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[P90]"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].Columns[P90]"
+                      name="P90"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[AssetId]"
+                      dataType="i4"
+                      name="AssetId" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ProjectId" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="Project" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Technology" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Cod]"
+                      dataType="dbDate"
+                      name="Cod" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Mw]"
+                      dataType="numeric"
+                      name="Mw"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[SuccesPct]"
+                      dataType="numeric"
+                      name="SuccesPct"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[InstalledPower]"
+                      dataType="numeric"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Eoh]"
+                      dataType="numeric"
+                      name="Eoh"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[DateMerchant]"
+                      dataType="dbDate"
+                      name="DateMerchant" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[DismentleDate]"
+                      dataType="dbDate"
+                      name="DismentleDate" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Repowering" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[DateMsi]"
+                      dataType="dbDate"
+                      name="DateMsi" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="InPlanif" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[P50]"
+                      dataType="numeric"
+                      name="P50"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output].ExternalColumns[P90]"
+                      dataType="numeric"
+                      name="P90"
+                      precision="10"
+                      scale="3" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[AssetId]"
+                      dataType="i4"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[AssetId]"
+                      name="AssetId" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[ProjectId]"
+                      name="ProjectId" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[Project]"
+                      name="Project" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[Technology]"
+                      name="Technology" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[Cod]"
+                      dataType="dbDate"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[Cod]"
+                      name="Cod" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[Mw]"
+                      dataType="numeric"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[Mw]"
+                      name="Mw"
+                      precision="5"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[SuccesPct]"
+                      dataType="numeric"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[SuccesPct]"
+                      name="SuccesPct"
+                      precision="7"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[InstalledPower]"
+                      dataType="numeric"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[InstalledPower]"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[Eoh]"
+                      dataType="numeric"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[Eoh]"
+                      name="Eoh"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[DateMerchant]"
+                      dataType="dbDate"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[DateMerchant]"
+                      name="DateMerchant" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[DismentleDate]"
+                      dataType="dbDate"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[DismentleDate]"
+                      name="DismentleDate" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[Repowering]"
+                      name="Repowering" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[DateMsi]"
+                      dataType="dbDate"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[DateMsi]"
+                      name="DateMsi" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[InPlanif]"
+                      name="InPlanif" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[P50]"
+                      dataType="numeric"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[P50]"
+                      name="P50"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[P90]"
+                      dataType="numeric"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[P90]"
+                      name="P90"
+                      precision="10"
+                      scale="3" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\SCD_type 1\scd_type1"
+              componentClassID="Microsoft.SCD"
+              contactInfo="Slowly Changing Dimension;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Updates a SQL Server Analysis Services data warehouse dimension. Update dimension records that are already present and  insert dimension records that aren't. For example, update the DimProduct table of the AdventureWorksDW OLAP database with data from the Products table in the AdventureWorks OLTP database."
+              name="scd_type1"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SELECT statement used to create a schema rowset."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [AssetId], [Cod], [DateMerchant], [DateMsi], [DismentleDate], [Eoh], [InPlanif], [InstalledPower], [Mw], [P50], [P90], [Project], [ProjectId], [Repowering], [SuccesPct], [Technology] FROM [dbo].[DimAsset]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
+                  name="CurrentRowWhere"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
+                  name="UpdateChangingAttributeHistory">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
+                  name="FailOnFixedAttributeChange">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the column name for the inferred member."
+                  name="InferredMemberIndicator"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether inferred member updates are detected."
+                  name="EnableInferredMember">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when a lookup of an existing record fails."
+                  name="FailOnLookupFailure">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies that all rows in the input are new or the transformation detects the change type."
+                  name="IncomingRowChangeType"
+                  typeConverter="IncomingRowChangeType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SCD_type 1\scd_type1.Connections[LookupConnection]"
+                  connectionManagerID="Package.ConnectionManagers[cmgr_DWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[cmgr_DWH]"
+                  description="Defines the connection to use for lookups in the dimension table"
+                  name="LookupConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input]"
+                  name="Slowly Changing Dimension Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].Columns[AssetId]"
+                      cachedDataType="i4"
+                      cachedName="AssetId"
+                      externalMetadataColumnId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[AssetId]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[AssetId]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].Columns[Cod]"
+                      cachedDataType="dbDate"
+                      cachedName="Cod"
+                      externalMetadataColumnId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[Cod]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Cod]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].Columns[DateMerchant]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMerchant"
+                      externalMetadataColumnId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[DateMerchant]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[DateMerchant]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].Columns[DateMsi]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMsi"
+                      externalMetadataColumnId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[DateMsi]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[DateMsi]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].Columns[DismentleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DismentleDate"
+                      externalMetadataColumnId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[DismentleDate]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[DismentleDate]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].Columns[Eoh]"
+                      cachedDataType="numeric"
+                      cachedName="Eoh"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[Eoh]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Eoh]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].Columns[InPlanif]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="InPlanif"
+                      externalMetadataColumnId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[InPlanif]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[InPlanif]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].Columns[InstalledPower]"
+                      cachedDataType="numeric"
+                      cachedName="InstalledPower"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[InstalledPower]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[InstalledPower]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].Columns[Mw]"
+                      cachedDataType="numeric"
+                      cachedName="Mw"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[Mw]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Mw]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].Columns[P50]"
+                      cachedDataType="numeric"
+                      cachedName="P50"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[P50]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[P50]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].Columns[P90]"
+                      cachedDataType="numeric"
+                      cachedName="P90"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[P90]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[P90]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].Columns[Project]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="Project"
+                      externalMetadataColumnId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[Project]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Project]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].Columns[ProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjectId"
+                      externalMetadataColumnId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[ProjectId]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[ProjectId]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].Columns[Repowering]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Repowering"
+                      externalMetadataColumnId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[Repowering]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Repowering]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].Columns[SuccesPct]"
+                      cachedDataType="numeric"
+                      cachedName="SuccesPct"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[SuccesPct]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[SuccesPct]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].Columns[Technology]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Technology"
+                      externalMetadataColumnId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[Technology]"
+                      lineageId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output].Columns[Technology]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[AssetId]"
+                      dataType="i4"
+                      name="AssetId" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[Cod]"
+                      dataType="dbDate"
+                      name="Cod" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[DateMerchant]"
+                      dataType="dbDate"
+                      name="DateMerchant" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[DateMsi]"
+                      dataType="dbDate"
+                      name="DateMsi" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[DismentleDate]"
+                      dataType="dbDate"
+                      name="DismentleDate" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[Eoh]"
+                      dataType="numeric"
+                      name="Eoh"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="InPlanif" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[InstalledPower]"
+                      dataType="numeric"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[Mw]"
+                      dataType="numeric"
+                      name="Mw"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[P50]"
+                      dataType="numeric"
+                      name="P50"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[P90]"
+                      dataType="numeric"
+                      name="P90"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="Project" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ProjectId" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Repowering" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[SuccesPct]"
+                      dataType="numeric"
+                      name="SuccesPct"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input].ExternalColumns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Technology" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\SCD_type 1\scd_type1.Outputs[Unchanged Output]"
+                  description="Unchanged rows"
+                  exclusionGroup="1"
+                  name="Unchanged Output"
+                  synchronousInputId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\SCD_type 1\scd_type1.Outputs[New Output]"
+                  description="New rows"
+                  exclusionGroup="1"
+                  name="New Output"
+                  synchronousInputId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\SCD_type 1\scd_type1.Outputs[Fixed Attribute Output]"
+                  description="Rows with changes in columns tagged FixedAttribute"
+                  exclusionGroup="1"
+                  name="Fixed Attribute Output"
+                  synchronousInputId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\SCD_type 1\scd_type1.Outputs[Changing Attribute Updates Output]"
+                  description="These rows contain new information for ChangingAttribute (Type 1) column changes"
+                  exclusionGroup="1"
+                  name="Changing Attribute Updates Output"
+                  synchronousInputId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\SCD_type 1\scd_type1.Outputs[Historical Attribute Inserts Output]"
+                  description="HistoricalAttribute (Type 2) changes result in these new rows"
+                  exclusionGroup="2"
+                  name="Historical Attribute Inserts Output"
+                  synchronousInputId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\SCD_type 1\scd_type1.Outputs[Inferred Member Updates Output]"
+                  description="Information to update unpopulated initial dimension row"
+                  exclusionGroup="1"
+                  name="Inferred Member Updates Output"
+                  synchronousInputId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\SCD_type 1.Paths[Changing Attribute Updates Output]"
+              endId="Package\SCD_type 1\ole_ DB_Command.Inputs[OLE DB Command Input]"
+              name="Changing Attribute Updates Output"
+              startId="Package\SCD_type 1\scd_type1.Outputs[Changing Attribute Updates Output]" />
+            <path
+              refId="Package\SCD_type 1.Paths[Data Conversion Output]"
+              endId="Package\SCD_type 1\scd_type1.Inputs[Slowly Changing Dimension Input]"
+              name="Data Conversion Output"
+              startId="Package\SCD_type 1\dc_.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\SCD_type 1.Paths[New Output]"
+              endId="Package\SCD_type 1\ole_dst_Insert_Destination.Inputs[OLE DB Destination Input]"
+              name="New Output"
+              startId="Package\SCD_type 1\scd_type1.Outputs[New Output]" />
+            <path
+              refId="Package\SCD_type 1.Paths[OLE DB Source Output]"
+              endId="Package\SCD_type 1\dc_.Inputs[Data Conversion Input]"
+              name="OLE DB Source Output"
+              startId="Package\SCD_type 1\ole_src_StgAsset.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tuncate_Stg_Asset_Table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{0EDB17BE-2DDD-455C-A887-4D795570F5C8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tuncate_Stg_Asset_Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{2415A019-1505-4F77-A994-D7A1F09249A9}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.[StgAsset]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update LogTracker"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2432156A-7281-4878-A620-F6EDBBA1E507}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update LogTracker"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{B1AE7128-C884-40AB-B317-014A834C4CD7}"
+          SQLTask:SqlStatementSource="INSERT INTO dbo.[LogTracker]([EventType],[TableName], [LastActivityDateTime]) VALUES &#xA;('I', 'DimAsset', ?)"
+          SQLTask:TypeConversionMode="None" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::PackageStartDateTime"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{5E3E95A4-9A1A-4A6C-98BA-8D4AA979CDAF}"
+      DTS:From="Package\SCD_type 1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Update LogTracker" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{EA45546D-DB2D-4847-BF3E-0E434CCAD360}"
+      DTS:From="Package\Expression Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\SCD_type 1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{D0B1E507-A664-45B4-BDD6-A1A6A4F35587}"
+      DTS:From="Package\Update LogTracker"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Tuncate_Stg_Asset_Table" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Expression Task"
+          TopLeft="79,112" />
+        <NodeLayout
+          Size="134,42"
+          Id="Package\SCD_type 1"
+          TopLeft="302,115" />
+        <NodeLayout
+          Size="201,42"
+          Id="Package\Tuncate_Stg_Asset_Table"
+          TopLeft="283,318" />
+        <NodeLayout
+          Size="168,42"
+          Id="Package\Update LogTracker"
+          TopLeft="284,235" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="368.5,157">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,78"
+              Start="0,0"
+              End="0,70.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,70.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="234,134.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="68,0"
+              Start="0,0"
+              End="60.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="60.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="368,277">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="15.5,41"
+              Start="0,0"
+              End="15.5,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.5"
+                    Point2="0,20.5"
+                    Point3="4,20.5" />
+                  <mssgle:LineSegment
+                    End="11.5,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="11.5,20.5"
+                    Point2="15.5,20.5"
+                    Point3="15.5,24.5" />
+                  <mssgle:LineSegment
+                    End="15.5,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\SCD_type 1">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="159,42"
+          Id="Package\SCD_type 1\ole_src_StgAsset"
+          TopLeft="240,5.5" />
+        <NodeLayout
+          Size="127,42"
+          Id="Package\SCD_type 1\scd_type1"
+          TopLeft="210.5,209.5" />
+        <NodeLayout
+          Size="205,42"
+          Id="Package\SCD_type 1\ole_dst_Insert_Destination"
+          TopLeft="0.500000000000057,328.5" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\SCD_type 1\ole_ DB_Command"
+          TopLeft="440,328.5" />
+        <NodeLayout
+          Size="96,42"
+          Id="Package\SCD_type 1\dc_"
+          TopLeft="237,107.5" />
+        <EdgeLayout
+          Id="Package\SCD_type 1.Paths[OLE DB Source Output]"
+          TopLeft="319.5,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-34.5,60"
+              Start="0,0"
+              End="-34.5,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="-4,30" />
+                  <mssgle:LineSegment
+                    End="-30.5,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-30.5,30"
+                    Point2="-34.5,30"
+                    Point3="-34.5,34" />
+                  <mssgle:LineSegment
+                    End="-34.5,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SCD_type 1.Paths[New Output]"
+          TopLeft="254.166666666667,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-151.166666666667,77"
+              Start="0,0"
+              End="-151.166666666667,69.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.3748055987558" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.3748055987558"
+                    Point2="0,31.3748055987558"
+                    Point3="-4,31.3748055987558" />
+                  <mssgle:LineSegment
+                    End="-147.166666666667,31.3748055987558" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-147.166666666667,31.3748055987558"
+                    Point2="-151.166666666667,31.3748055987558"
+                    Point3="-151.166666666667,35.3748055987558" />
+                  <mssgle:LineSegment
+                    End="-151.166666666667,69.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-102.674720052083,36.3748055987558,54.1827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SCD_type 1.Paths[Data Conversion Output]"
+          TopLeft="285,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-11,60"
+              Start="0,0"
+              End="-11,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="-4,30" />
+                  <mssgle:LineSegment
+                    End="-7,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-7,30"
+                    Point2="-11,30"
+                    Point3="-11,34" />
+                  <mssgle:LineSegment
+                    End="-11,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SCD_type 1.Paths[Changing Attribute Updates Output]"
+          TopLeft="293.833333333333,251.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="230.666666666667,77"
+              Start="0,0"
+              End="230.666666666667,69.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.3748055987558" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.3748055987558"
+                    Point2="0,31.3748055987558"
+                    Point3="4,31.3748055987558" />
+                  <mssgle:LineSegment
+                    End="226.666666666667,31.3748055987558" />
+                  <mssgle:CubicBezierSegment
+                    Point1="226.666666666667,31.3748055987558"
+                    Point2="230.666666666667,31.3748055987558"
+                    Point3="230.666666666667,35.3748055987558" />
+                  <mssgle:LineSegment
+                    End="230.666666666667,69.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="36.7994270833333,36.3748055987558,157.0678125,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SCD_type 1\scd_type1">
+    <Properties>
+      <Property>
+        <Name>SCDMetadata</Name>
+        <Value
+          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SCDWizardMetadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionID&gt;{7A0BD7ED-6CA6-4712-8660-C2FD67498F93}&lt;/ConnectionID&gt;
+  &lt;TableName&gt;[dbo].[DimAsset]&lt;/TableName&gt;
+  &lt;InputToColumnsCollection&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[AssetId]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;AssetId&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[Cod]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Cod&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[DateMerchant]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;DateMerchant&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[DateMsi]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;DateMsi&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[DismentleDate]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;DismentleDate&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[Eoh]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Eoh&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[InPlanif]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;InPlanif&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[InstalledPower]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;InstalledPower&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[Mw]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Mw&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[P50]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;P50&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[P90]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;P90&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[Project]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Project&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[ProjectId]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;ProjectId&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[Repowering]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Repowering&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[SuccesPct]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;SuccesPct&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Data Conversion.Outputs[Data Conversion Output].Columns[Technology]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Technology&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+  &lt;/InputToColumnsCollection&gt;
+  &lt;GeneratedComponentsIdentificationStrings&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Insert Destination&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
+  &lt;/GeneratedComponentsIdentificationStrings&gt;
+  &lt;FailFixedAttribute&gt;false&lt;/FailFixedAttribute&gt;
+  &lt;FailChangeAttribute&gt;true&lt;/FailChangeAttribute&gt;
+  &lt;UseStartEndDate&gt;false&lt;/UseStartEndDate&gt;
+  &lt;CurrentIndicatorColumn /&gt;
+  &lt;InferredIndicatorColumn /&gt;
+  &lt;ValueCurrent /&gt;
+  &lt;ValueExpired /&gt;
+  &lt;StartDateColumn /&gt;
+  &lt;EndDateColumn /&gt;
+  &lt;DateVariable /&gt;
+  &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
+&lt;/SCDWizardMetadata&gt;</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SCD_type 1\ole_src_StgAsset">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SCD_type 1\ole_dst_Insert_Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

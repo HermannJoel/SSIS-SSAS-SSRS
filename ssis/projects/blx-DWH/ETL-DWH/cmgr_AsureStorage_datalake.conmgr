@@ -1,0 +1,13 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="cmgr_AsureStorage_datalake"
+  DTS:DTSID="{68B8B46B-D71F-4AA3-B46C-EA0387B0395B}"
+  DTS:CreationName="AzureStorage">
+  <DTS:ObjectData>
+    <AzureStorageConnectionManager
+      ConnectionString="AccountName=blxmdpdatalake;DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;">
+      <AccountKey
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAEGd8WAosU0C4pIgyFz1PDgAAAAACAAAAAAAQZgAAAAEAACAAAAC004LlXRx3hvi0TnxQ88ZMB01PxoNPA/yFr2CCdbn2HQAAAAAOgAAAAAIAACAAAAAaZ7RY1gdy15MIhtUGyU/Zm3aFymJ9OlaswlUtPrjdUoAAAAD7KNPtnBIUfY8VFxRf9prOJZYYSmDEmqCiMNq5tixosEjwm6LarhWUowRpAnS3Py5LsS647OyagkNnjLWyYIk2YgAMdLuIWOzoojhyYJSEmPIL13+NIn59+06QQR0Lo5bMWbEUReuc5lMIAGeDRAWJX0Zeu88lt+4iuWaoYyN6yEAAAAAo3JPfK8HXzpgYhwNvOrqxQ1YGdENuEalkhPqF7uMKAuLMDlCDaQK67hME7Mqr2TWfF3sQGu2fu9+AeOPDwOQZ</AccountKey>
+    </AzureStorageConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

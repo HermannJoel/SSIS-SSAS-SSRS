@@ -1,0 +1,549 @@
+/*==========   Measures ==============*/
+
+SELECT {[Measures].[P50 Asset], [Measures].[P50 Hedge]} ON COLUMNS
+FROM [blxdwh]
+GO
+
+WHIT MEMBER [Exposition] AS [Measures].[P50 Asset], [Measures].[P50 Hedge]
+GO
+/*==========   To create a member   ==============*/
+CREATE MEMBER [blxdwh].[Measures].[Exposition] AS [Measures].[P50 Asset] + [Measures].[P50 Hedge]
+GO
+
+SELECT {[Measures].[P50 Asset], [Measures].[P50 Hedge], [Exposition]} ON COLUMNS
+FROM [blxdwh]
+GO
+
+/*============  Dimension  ================*/
+SELECT {[DimHedge].[Technology].&[éolien], [DimDate2].[Hierarchy].[Calender Year].&[2022]} ON COLUMNS
+FROM [blxdwh]
+WHERE [Measures].[P50 Asset]
+
+SELECT [DimHedge].[Technology].[Technology] ON COLUMNS
+FROM [blxdwh]
+WHERE [Measures].[P50 Asset]
+
+SELECT NON EMPTY [Dim Date 1].[Calender Year].[Calender Year].MEMBERS ON COLUMNS
+FROM [blx dwh]
+WHERE [Measures].[P50 Asset]
+GO
+
+SELECT 
+		NON EMPTY (
+		           [Measures].[P50 Asset], 
+				   [Dim Hedge 1].[Technology].[Technology].MEMBERS
+				   ) ON COLUMNS, 
+	    NON EMPTY( 
+		           [Dim Date 1].[Calender Year].&[2022], 
+				   [Dim Date 1].[Quarter Of Year].[Quarter Of Year].MEMBERS,
+                   ---[Dim Date 1].[Month Number Of Year].[Month Number Of Year].MEMBERS, 
+				   [Dim Date 1].[Month Of Year].[Month Of Year].MEMBERS
+       ) ON ROWS
+FROM [blx dwh]
+
+/*=========  Exposition ==============*/
+
+SELECT 
+      NON EMPTY ([Measures].[Exposition]
+                 ,[Dim Hedge 1].[Technology].[Technology].MEMBERS
+				 ) ON COLUMNS, 
+      NON EMPTY(
+                [Dim Date 1].[Calender Year].&[2022] 
+		        ---,[Dim Date 1].[Quarter Of Year].[Quarter Of Year].MEMBERS
+                ---,[Dim Date 1].[Month Number Of Year].[Month Number Of Year].MEMBERS
+                ---,[Dim Date 1].[Month Of Year].[Month Of Year].MEMBERS 
+				) ON ROWS
+FROM [blx dwh]
+
+/*=========== Hierachy  =================*/
+--- Parent, Children
+SELECT [Dim Date 1].[Hierarchy].[Month Number Of Year].&[10]&[2022].Parent.Children ON COLUMNS,
+       [Dim Hedge 1].[Technology].[Technology].MEMBERS ON ROWS
+FROM [blx dwh]
+
+--- Ancestors (Get you at a certain nber of levels)
+SELECT ANCESTOR([Dim Date 1].[Hierarchy].[Month Number Of Year].&[10]&[2022], 3) ON COLUMNS,
+       [Dim Hedge 1].[Technology].[Technology].MEMBERS ON ROWS
+FROM [blx dwh]
+
+--- Ascendants (Get you on top of the hierachy)
+SELECT ASCENDANTS([Dim Date 1].[Hierarchy].[Month Number Of Year].&[10]&[2022]) ON COLUMNS,
+       [Dim Hedge 1].[Technology].[Technology].MEMBERS ON ROWS
+FROM [blx dwh]
+
+--- DESCENDANTS
+SELECT DESCENDANTS([Dim Date 1].[Hierarchy].[Calender Year].&[2022], 1) ON COLUMNS,
+       [Dim Hedge 1].[Technology].[Technology].MEMBERS ON ROWS
+FROM [blx dwh]
+
+----Siblings
+SELECT DESCENDANTS([Dim Date 1].[Hierarchy].[Date Key].&[20220131].NEXTMEMBER) ON COLUMNS,
+                   [Dim Hedge 1].[Type Hedge].[Type Hedge].MEMBERS ON ROWS
+FROM [blx dwh]
+--- lag
+SELECT DESCENDANTS([Dim Date 1].[Hierarchy].[Date Key].&[20220131].lag(30)) ON COLUMNS,
+                   [Dim Hedge 1].[Type Hedge].[Type Hedge].MEMBERS ON ROWS
+FROM [blx dwh]
+--- firstsibling
+SELECT DESCENDANTS([Dim Date 1].[Hierarchy].[Date Key].&[20220131].firstsibling) ON COLUMNS,
+                   [Dim Hedge 1].[Type Hedge].[Type Hedge].MEMBERS ON ROWS
+FROM [blx dwh]
+---  lastsibling
+SELECT DESCENDANTS([Dim Date 1].[Hierarchy].[Date Key].&[20220131].lastsibling) ON COLUMNS,
+                   [Dim Hedge 1].[Type Hedge].[Type Hedge].MEMBERS ON ROWS
+FROM [blx dwh]
+---  Head 
+SELECT NON EMPTY HEAD([Dim Date 1].[Hierarchy].[Date Key].&[20220131].siblings, 5) ON COLUMNS,
+                   [Dim Hedge 1].[Type Hedge].[Type Hedge].MEMBERS ON ROWS
+FROM [blx dwh]
+
+---  Tail
+SELECT NON EMPTY TAIL([Dim Date 1].[Hierarchy].[Date Key].&[20220131].siblings, 100) ON COLUMNS,
+                   [Dim Hedge 1].[Type Hedge].[Type Hedge].MEMBERS ON ROWS
+FROM [blx dwh]
+
+--- lead
+SELECT DESCENDANTS([Dim Date 1].[Date].[Date Key].&[20220131].lead(32)) ON COLUMNS,
+                   [Dim Hedge 1].[Type Hedge].[Type Hedge].MEMBERS ON ROWS
+FROM [blx dwh]
+
+---ytd
+SELECT NON EMPTY ytd([Dim Date 1].[Date].[Date Key].&[20221028]) ON COLUMNS,
+       NON EMPTY [Dim Hedge 1].[Type Hedge].[Type Hedge].MEMBERS ON ROWS
+FROM [blx dwh]
+WHERE [Measures].[P50 Hedge]
+
+WITH MEMBER TotalToYtd AS 
+AGGREGATE(ytd([Dim Date 1].[Date].[Date Key].&[20221028])
+              ,[Measures].[P50 Asset])
+SELECT (
+        TotalToYtd,
+		[Dim Hedge 1].[Project Id].[Project Id].MEMBERS
+       ) ON COLUMNS,
+      NON EMPTY  
+	  (
+	   [Dim Hedge 1].[Technology].[Technology].MEMBERS
+	   ---,[Dim Hedge 1].[Type Hedge].[Type Hedge].MEMBERS 
+	   )ON ROWS
+FROM [blx dwh];
+GO
+
+-----Parallelperiod
+SELECT PARALLELPERIOD( 
+                      [Dim Date 1].[Hierarchy].[Calender Year],-1
+                      ,[Dim Date 1].[Hierarchy].[Date Key].&[20221001]
+					  
+					  ---,[Dim Date 1].[Hierarchy].[Date Key],-1
+					  ) 
+					  ON COLUMNS,
+					  NON EMPTY [Dim Hedge 1].[Technology].[Technology].MEMBERS 
+					  ON ROWS
+FROM [blx dwh]
+WHERE [Measures].[P50 Hedge]
+
+/*
+====  To compare the production ytd with last year-ytd.  ===== 
+*/
+WITH MEMBER YtdThisYear AS
+     AGGREGATE(ytd([Dim Date 1].[Hierarchy].[Date Key].&[20231001]),
+	[Measures].[P50 Hedge])
+     MEMBER YtdLastYear AS
+	AGGREGATE(ytd(
+	PARALLELPERIOD(
+	               [Dim Date 1].[Hierarchy].[Calender Year],1
+	              ,[Dim Date 1].[Hierarchy].[Date Key].&[20231001])),
+	[Measures].[P50 Hedge])
+SELECT{YtdLastYear, YtdThisYear} ON COLUMNS,
+      NON EMPTY[Dim Hedge 1].[Technology].[Technology].MEMBERS ON ROWS
+FROM [blx dwh] 
+
+/*====   Functions ======*/
+----
+SELECT ([Measures].[P50 Asset]
+        )ON COLUMNS,       
+       (TOPCOUNT([Dim Hedge 1].[Hierarchy].[Project].MEMBERS,10,
+	   [Measures].[P50 Asset])
+	   )ON ROWS 
+FROM [blx dwh]
+WHERE [Dim Date 1].[Calender Year].&[2022]
+---TOPPERCENT
+SELECT [Measures].[P50 Asset] ON COLUMNS,       
+       TOPPERCENT([Dim Hedge 1].[Hierarchy].[Project].MEMBERS,10,
+	   [Measures].[P50 Asset]) ON ROWS 
+FROM [blx dwh]
+WHERE [Dim Date 1].[Calender Year].&[2022]
+---BOTTOMCOUNT
+SELECT NON EMPTY [Measures].[P50 Asset] ON COLUMNS,       
+      NON EMPTY BOTTOMCOUNT([Dim Hedge 1].[Hierarchy].[Project].MEMBERS,10,
+	   [Measures].[P50 Asset]) ON ROWS 
+FROM [blx dwh]
+WHERE [Dim Date 1].[Calender Year].&[2028]
+
+---BOTTOMPERCENT
+SELECT [Measures].[P50 Asset] ON COLUMNS,       
+       BOTTOMPERCENT([Dim Hedge 1].[Hierarchy].[Project].MEMBERS,10,
+	   [Measures].[P50 Asset]) ON ROWS 
+FROM [blx dwh]
+WHERE [Dim Date 1].[Calender Year].&[2022]
+
+-----   Create set   ------
+---CREATE SET TopProjects22 AS  
+WITH SET TopProjects AS        
+     TOPCOUNT([Dim Hedge 1].[Hierarchy].[Project].MEMBERS
+	 ,10
+	 ,([Measures].[P50 Asset],
+	  [Dim Date 1].[Calender Year].&[2022])
+	  ) 
+SELECT [Measures].[P50 Asset] ON COLUMNS, TopProjects ON ROWS
+FROM [blx dwh];
+GO
+----DROP SET TopProjects22
+
+SELECT [Dim Hedge 1].[Hierarchy].[Project].Children ON COLUMNS,
+       [Dim Date 1].[Calender Year].&[2022] ON ROWS
+FROM [blx dwh]
+---- JOIN SET  ---- 
+WITH SET TopProjects22 AS        
+TOPCOUNT([Dim Hedge 1].[Hierarchy].[Project].MEMBERS
+	 ,10
+	 ,([Measures].[P50 Asset],
+	  [Dim Date 1].[Calender Year].&[2022])
+	  ) 
+SET TopProjects23 AS        
+     TOPCOUNT([Dim Hedge 1].[Hierarchy].[Project].MEMBERS
+	 ,10
+	 ,([Measures].[P50 Asset],
+	  [Dim Date 1].[Calender Year].&[2023])
+	  ) 
+SELECT {[Dim Date 1].[Calender Year].&[2022],
+        [Dim Date 1].[Calender Year].&[2023]
+       } ON COLUMNS, 
+       UNION(TopProjects22,TopProjects23) ON ROWS
+FROM [blx dwh]
+WHERE [Measures].[P50 Asset]
+GO
+
+/*====== ranking/Intersect/Exept  =====*/
+WITH MEMBER RANKING AS 
+RANK([Dim Hedge 1].[Projects].[Project].CURRENTMEMBER,
+     [Dim Hedge 1].[Projects].[Project].CURRENTMEMBER.SIBLINGS,
+     [Measures].[P50 Asset])
+SET TopProjects22 AS 
+TOPCOUNT([Dim Hedge 1].[Projects].[Project].MEMBERS
+	 ,10
+	 ,([Measures].[P50 Asset],
+	  [Dim Date 1].[Calender Year].&[2022])
+	  ) 
+SET TopProjects23 AS        
+     TOPCOUNT([Dim Hedge 1].[Projects].[Project].MEMBERS
+	 ,10
+	 ,([Measures].[P50 Asset],
+	  [Dim Date 1].[Calender Year].&[2023])
+	  ) 
+SELECT {[Dim Date 1].[Calender Year].&[2022],
+        [Dim Date 1].[Calender Year].&[2023]
+       } ON COLUMNS, 
+       ---UNION(TopProjects22,TopProjects23) ON ROWS
+       ---INTERSECT(TopProjects22,TopProjects23) ON ROWS
+	   EXCEPT(TopProjects22,TopProjects23) ON ROWS
+	   TopProjects22-TopProjects23 ON ROWS
+FROM [blx dwh]
+WHERE [Measures].[P50 Asset]
+---WHERE [Measures].[RANKING]
+GO
+
+/*=====-  Sub cube queries    ======*/
+---1st query
+SELECT NON EMPTY [Dim Date 1].[Calender Year].[Calender Year].MEMBERS ON COLUMNS,
+       NON EMPTY [Dim Hedge 1].[Technology].[Technology].MEMBERS ON ROWS
+FROM [blx dwh]
+WHERE [Measures].[P50 Asset];
+GO
+---2nd query
+SELECT TOPCOUNT([Dim Hedge 1].[Project].[Project].MEMBERS,
+                5,
+                [Measures].[P50 Asset]) ON COLUMNS
+ FROM [blx dwh]
+WHERE [Measures].[P50 Asset];
+GO
+----Sur Cube query
+SELECT NON EMPTY [Dim Date 1].[Calender Year].[Calender Year].MEMBERS ON COLUMNS,
+       NON EMPTY [Dim Hedge 1].[Technology].[Technology].MEMBERS ON ROWS
+FROM ---NON VISUAL
+      (SELECT TOPCOUNT([Dim Hedge 1].[Project].[Project].MEMBERS,
+                5,
+                [Measures].[P50 Asset]) ON COLUMNS
+      FROM [blx dwh]
+      WHERE [Measures].[P50 Asset])
+WHERE [Measures].[P50 Asset]
+GO
+
+/*======    Hierachize   ==========*/
+WITH SET ExceptXyear AS
+EXCEPT([Dim Date 1].[Calender Year].[Calender Year].MEMBERS, 
+       [Dim Date 1].[Calender Year].&[2024])
+     SET TypeHedge AS 
+	 {[Dim Hedge 1].[Type Hedge].&[PPA], [Dim Hedge 1].[Type Hedge].&[CR], 
+	 [Dim Hedge 1].[Type Hedge].&[CR16], [Dim Hedge 1].[Type Hedge].&[CR17]}
+
+SELECT NON EMPTY ExceptXyear ON COLUMNS,
+       NON EMPTY (TypeHedge,
+	              [Dim Hedge 1].[Technology].[Technology].MEMBERS) ON ROWS
+FROM  [blx dwh]
+WHERE [Measures].[P50 Hedge]
+
+/*========= KPI  ==========*/
+---Value
+---Goal:Last year's value
+---Status: Comparaison of last year's value with this year's
+---Trend (rise-rise=1, fall-fall=-1, rise-fall/fall-rise=0,	Isempty(Thisyear), Isempty(lastyear), 
+---      Isempty(yearbefore)=Null
+          
+WITH MEMBER HCR  AS
+    (-[Measures].[P50 Hedge]/[Measures].[P50 Asset]) 
+     MEMBER HCRTARGET AS (HCR, 
+			PARALLELPERIOD([Dim Date 1].[Calender Year].[Calender Year],1,
+            [Dim Date 1].[Calender Year].CURRENTMEMBER
+			))   
+SELECT 
+{HCR, HCRTARGET} ON COLUMNS 
+,([Dim Hedge 1].[Project Id].[Project Id].MEMBERS, [Dim Date 1].[Calender Year].&[2022]) ON ROWS
+FROM [blx dwh]
+WHERE [Dim Hedge 1].[In Planif].&[Non]
+
+
+{HCR, HCRTARGET} ON COLUMNS 
+,([Dim Hedge 1].[Project Id].&[RON1], 
+ [Dim Date 1].[Calender Year].[Calender Year]) ON ROWS
+FROM [blx dwh]
+
+/*
+SELECT {[Measures].[P50 Asset], [Measures].[P50 Hedge]} ON COLUMNS,
+ORDER([Dim Date 1].[Hierarchy].[Quarter Number Of Year].MEMBERS,
+       [Dim Hedge 1].[Project Id].&[ALBE]) ON ROWS
+FROM [blx dwh]
+*/
+
+/*==============   KPI    ================*/
+
+WITH MEMBER HCR AS
+-[Measures].[P50 Hedge]/[Measures].[P50 Asset]
+
+     MEMBER HCRTARGET AS (HCR, 
+			PARALLELPERIOD([Dim Date 1].[Calender Year].[Calender Year],1,
+            [Dim Date 1].[Calender Year].CURRENTMEMBER
+			))
+	 MEMBER HCRStatusCalc AS 
+	 (HCR-HCRTARGET) / HCRTARGET
+
+	 MEMBER HCRStatus AS
+	 CASE WHEN ISEMPTY(HCRTARGET) THEN Null
+	      WHEN ISEMPTY(HCR) THEN Null
+	      WHEN HCRStatusCalc >.1 THEN 1
+	      WHEN HCRStatusCalc <-.1 THEN -1
+		  ELSE 0
+	END
+MEMBER HCRXyearsAgo AS
+            (--- -[Measures].[P50 Hedge]/[Measures].[P50 Asset]
+			HCR
+			,PARALLELPERIOD([Dim Date 1].[Calender Year].[Calender Year], 2,
+            [Dim Date 1].[Calender Year].CURRENTMEMBER
+			))
+MEMBER HCRTrend AS 
+CASE WHEN ISEMPTY(HCR) THEN Null
+     WHEN ISEMPTY(HCRTARGET) THEN Null
+	 WHEN ISEMPTY(HCRXyearsAgo) THEN Null
+     WHEN HCR>HCRTARGET AND HCRTARGET>HCRXyearsAgo THEN 1 
+     WHEN HCR<HCRTARGET AND HCRTARGET<HCRXyearsAgo  THEN -1 
+	 ELSE 0
+END
+SELECT 
+{HCR, HCRTARGET, HCRStatus, HCRTrend} ON COLUMNS 
+,([Dim Hedge 1].[Project Id].[Project Id].MEMBERS, [Dim Date 1].[Calender Year].&[2023]:[Dim Date 1].[Calender Year].&[2025]) ON ROWS
+FROM [blx dwh]
+WHERE [Dim Hedge 1].[In Planif].&[Non]
+
+/*==============  Use KPI  ===========*/
+SELECT 
+{kpivalue("Coverage Ratio"), kpigoal("Coverage Ratio"), 
+kpistatus("Coverage Ratio"), kpitrend("Coverage Ratio")} ON COLUMNS 
+,([Dim Hedge 1].[Project Id].[Project Id].MEMBERS, 
+  [Dim Date 1].[Hierarchy].[Calender Year].&[2024]:[Dim Date 1].[Hierarchy].[Calender Year].&[2028]) ON ROWS
+FROM [blx dwh]
+WHERE [Dim Hedge 1].[In Planif].&[Non]
+
+
+/******   Except *************/
+
+WITH SET PrStatus AS
+EXCEPT([Dim Hedge 1].[In Planif].[In Planif].MEMBERS, 
+       {[Dim Hedge 1].[In Planif].&[Non]})
+
+SELECT NON EMPTY PrStatus ON COLUMNS,
+       NON EMPTY ([Dim Hedge 1].[Project Id].[Project Id],
+	              [Dim Date 1].[Calender Year].&[2022],
+	              [Dim Hedge 1].[Technology].[Technology].MEMBERS) ON ROWS
+FROM  [blx dwh]
+WHERE [Measures].[P50 Hedge]
+
+
+SELECT NON EMPTY [Measures].[P50 Hedge] ON COLUMNS,
+(
+[BottomXProjectsXyears]) ON ROWS
+FROM  [blx dwh]
+
+SELECT NON EMPTY [Measures].[P50 Hedge] ON COLUMNS,
+([TopXProjectsXyears]) ON ROWS
+FROM  [blx dwh]
+
+/*================             ================= */
+WITH MEMBER Total AS
+SUM([Dim Hedge 1].[Technology].MEMBERS, 
+              [Measures].[P50 Asset])
+
+SELECT Total ON COLUMNS
+,NON EMPTY [Dim Date 1].[Calender Year].[Calender Year].MEMBERS ON ROWS 
+FROM [blx dwh]
+
+/*=================================================
+=================  Reguled Hedge  =================
+===================================================
+*/
+
+WITH SET Merchant AS
+	 EXCEPT(
+	  [Dim Hedge 1].[Type Hedge].[Type Hedge].MEMBERS, 
+	  {[Dim Hedge 1].[Type Hedge].&[CR], [Dim Hedge 1].[Type Hedge].&[CR16], 
+	  [Dim Hedge 1].[Type Hedge].&[CR17], [Dim Hedge 1].[Type Hedge].&[OA]}	
+	 )
+	 SET Reguled AS
+	 EXCEPT(
+	  [Dim Hedge 1].[Type Hedge].[Type Hedge].MEMBERS, 
+	  {[Dim Hedge 1].[Type Hedge].&[PPA], [Dim Hedge 1].[Type Hedge].&[None], 
+	  [Dim Hedge 1].[Type Hedge].&[Unknown]}	
+	 )
+	 SET InExploitation AS
+	 EXCEPT(
+	 [Dim Hedge 1].[In Planif].[In Planif].MEMBERS,
+     [Dim Hedge 1].[In Planif].&[Oui]
+	 )
+	 SET InPlanification AS
+	 EXCEPT(
+	 [Dim Hedge 1].[In Planif].[In Planif].MEMBERS,
+     [Dim Hedge 1].[In Planif].&[Non]
+	 )
+	 SET Solar AS
+	 EXCEPT(
+	 [Dim Hedge 1].[Technology].[Technology].MEMBERS,
+     [Dim Hedge 1].[Technology].&[éolien]
+	 )
+	 SET WindPower AS
+	 EXCEPT(
+	 [Dim Hedge 1].[Technology].[Technology].MEMBERS,
+     [Dim Hedge 1].[Technology].&[solaire]
+	 )
+
+SELECT NON EMPTY DESCENDANTS([Dim Date 1].[Date].[Calender Year], 2
+                 ) ON COLUMNS,
+       NON EMPTY (
+       [Dim Hedge 1].[In Planif].[In Planif].MEMBERS,
+	   [Dim Hedge 1].[Technology].[Technology].MEMBERS,
+	   Reguled,
+       [Measures].[P50 Hedge]) ON ROWS
+FROM [blx dwh];
+GO
+
+/*=================================================
+=============  Reguled Portfolio  =================
+===================================================
+*/
+WITH SET Merchant AS
+	 EXCEPT(
+	  [Dim Hedge 1].[Type Hedge].[Type Hedge].MEMBERS, 
+	  {[Dim Hedge 1].[Type Hedge].&[CR], [Dim Hedge 1].[Type Hedge].&[CR16], 
+	  [Dim Hedge 1].[Type Hedge].&[CR17], [Dim Hedge 1].[Type Hedge].&[OA]}	
+	 )
+	 SET Reguled AS
+	 EXCEPT(
+	  [Dim Hedge 1].[Type Hedge].[Type Hedge].MEMBERS, 
+	  {[Dim Hedge 1].[Type Hedge].&[PPA], [Dim Hedge 1].[Type Hedge].&[None], 
+	  [Dim Hedge 1].[Type Hedge].&[Unknown]}	
+	 )
+	 SET InExploitation AS
+	 EXCEPT(
+	 [Dim Hedge 1].[In Planif].[In Planif].MEMBERS,
+     [Dim Hedge 1].[In Planif].&[Oui]
+	 )
+	 SET InPlanification AS
+	 EXCEPT(
+	 [Dim Hedge 1].[In Planif].[In Planif].MEMBERS,
+     [Dim Hedge 1].[In Planif].&[Non]
+	 )
+	 SET Solar AS
+	 EXCEPT(
+	 [Dim Hedge 1].[Technology].[Technology].MEMBERS,
+     [Dim Hedge 1].[Technology].&[éolien]
+	 )
+	 SET WindPower AS
+	 EXCEPT(
+	 [Dim Hedge 1].[Technology].[Technology].MEMBERS,
+     [Dim Hedge 1].[Technology].&[solaire]
+	 )
+
+SELECT NON EMPTY DESCENDANTS([Dim Date 1].[Date].[Calender Year], 2
+                 ) ON COLUMNS,
+       NON EMPTY (
+       [Dim Hedge 1].[In Planif].[In Planif].MEMBERS,
+	   [Dim Hedge 1].[Technology].[Technology].MEMBERS,
+	   Reguled,
+       [Measures].[P50 Asset]) ON ROWS
+FROM [blx dwh];
+GO
+
+/*=================================================
+=================  Merchant Hedge  =================
+===================================================
+*/
+
+WITH SET Merchant AS
+	 EXCEPT(
+	  [Dim Hedge 1].[Type Hedge].[Type Hedge].MEMBERS, 
+	  {[Dim Hedge 1].[Type Hedge].&[CR], [Dim Hedge 1].[Type Hedge].&[CR16], 
+	  [Dim Hedge 1].[Type Hedge].&[CR17], [Dim Hedge 1].[Type Hedge].&[OA]}	
+	 )
+	 SET Reguled AS
+	 EXCEPT(
+	  [Dim Hedge 1].[Type Hedge].[Type Hedge].MEMBERS, 
+	  {[Dim Hedge 1].[Type Hedge].&[PPA], [Dim Hedge 1].[Type Hedge].&[None], 
+	  [Dim Hedge 1].[Type Hedge].&[Unknown]}	
+	 )
+	 SET InExploitation AS
+	 EXCEPT(
+	 [Dim Hedge 1].[In Planif].[In Planif].MEMBERS,
+     [Dim Hedge 1].[In Planif].&[Oui]
+	 )
+	 SET InPlanification AS
+	 EXCEPT(
+	 [Dim Hedge 1].[In Planif].[In Planif].MEMBERS,
+     [Dim Hedge 1].[In Planif].&[Non]
+	 )
+	 SET Solar AS
+	 EXCEPT(
+	 [Dim Hedge 1].[Technology].[Technology].MEMBERS,
+     [Dim Hedge 1].[Technology].&[éolien]
+	 )
+	 SET WindPower AS
+	 EXCEPT(
+	 [Dim Hedge 1].[Technology].[Technology].MEMBERS,
+     [Dim Hedge 1].[Technology].&[solaire]
+	 )
+
+SELECT NON EMPTY DESCENDANTS([Dim Date 1].[Date].[Calender Year], 2
+                 ) ON COLUMNS,
+       NON EMPTY (
+       [Dim Hedge 1].[In Planif].[In Planif].MEMBERS,
+	   [Dim Hedge 1].[Technology].[Technology].MEMBERS,
+	   Merchant,
+       [Measures].[P50 Hedge]) ON ROWS
+FROM [blx dwh]
+

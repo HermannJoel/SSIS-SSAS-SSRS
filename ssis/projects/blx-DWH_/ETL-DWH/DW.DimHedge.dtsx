@@ -1,0 +1,3534 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/20/2022 8:13:59 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-JDQLDT1"
+  DTS:CreatorName="DESKTOP-JDQLDT1\nherm"
+  DTS:DTSID="{E0CE26C9-EE34-4A66-B311-09B22AA95F7F}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="DW DimHedge"
+  DTS:PackageType="5"
+  DTS:VersionBuild="43"
+  DTS:VersionGUID="{77104CD2-87C5-4CB8-9260-6098B33911BC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[cmgr_DWH]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5B007637-D635-46FE-AC63-BC2A11412FCD}"
+      DTS:ObjectName="cmgr_DWH">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::cmgr_DWH]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-JDQLDT1\MSSQLSERVERDWH;Initial Catalog=DWH;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[cmgr_DWHStg]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{618F5D64-BAC2-4C8F-B982-1BD399D30DC0}"
+      DTS:ObjectName="cmgr_DWHStg">
+      <DTS:PropertyExpression
+        DTS:Name="ConnectionString">@[$Project::cmgr_DWHStg]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-JDQLDT1\MSSQLSERVERDWH;Initial Catalog=DWHStaging;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="7"
+      DTS:DTSID="{90A21851-3CF9-45DF-9502-801DA9A53730}"
+      DTS:ObjectName="LoadDate"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="7"
+        DTS:Name="ParameterValue">1/1/1900</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="20"
+      DTS:DTSID="{9FCB90D5-6332-4B30-A9B6-FDA3736464D8}"
+      DTS:ObjectName="LoadExcecutionId"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="20"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="20"
+      DTS:DTSID="{D2433890-D95A-4FF0-A33E-13467418EEEC}"
+      DTS:ObjectName="SourceLoadExecutionId"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="20"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\dft_DimHedge_ups"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2ABF42CE-1D2C-4F89-A49C-1BB567E92F57}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="dft_DimHedge_ups"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="[lkp_DimHedge].[SqlCommand]">"SELECT HedgeId, ProjectId, Project, Technology, TypeHedge, ContractStartDate, ContractEndDate, DismentleDate, InstalledPower, Profil, HedgePct, Counterparty, CountryCounterparty, InPlanif 
+
+FROM [DW].[DimHedge] WHERE LoadExecutionId="+ (DT_WSTR, 10)  @[$Package::SourceLoadExecutionId]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\dft_DimHedge_ups\Audit"
+              componentClassID="Microsoft.Lineage"
+              contactInfo="Audit;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Includes data about the environment in which the package runs. Map system variables to new output columns. For example, add the name of the computer and operator to the data flow."
+              name="Audit">
+              <inputs>
+                <input
+                  refId="Package\dft_DimHedge_ups\Audit.Inputs[Audit Input 1]"
+                  name="Audit Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_DimHedge_ups\Audit.Outputs[Audit Output 1]"
+                  exclusionGroup="1"
+                  name="Audit Output 1"
+                  synchronousInputId="Package\dft_DimHedge_ups\Audit.Inputs[Audit Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_DimHedge_ups\der_LoadExecutionId"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="der_LoadExecutionId"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\dft_DimHedge_ups\der_LoadExecutionId.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_DimHedge_ups\der_LoadExecutionId.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\dft_DimHedge_ups\der_LoadExecutionId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_DimHedge_ups\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]"
+                      name="LoadExecutionId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_I4)@[$Package::LoadExcecutionId]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_I4)@[$Package::LoadExcecutionId]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_DimHedge_ups\der_LoadExecutionId.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\dft_DimHedge_ups\der_LoadExecutionId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_DimHedge_ups\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_DimHedge_ups\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_DimHedge_ups\lkp_DimHedge"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="lkp_DimHedge"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT HedgeId, ProjectId, Project, Technology, TypeHedge, ContractStartDate, ContractEndDate, DismentleDate, InstalledPower, Profil, HedgePct, Counterparty, CountryCounterparty, InPlanif 
+
+FROM [DW].[DimHedge] WHERE LoadExecutionId=0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT HedgeId, ProjectId, Project, Technology, TypeHedge, ContractStartDate, ContractEndDate, DismentleDate, InstalledPower, Profil, HedgePct, Counterparty, CountryCounterparty, InPlanif 
+
+FROM [DW].[DimHedge] WHERE LoadExecutionId=?) [refTable]
+where [refTable].[HedgeId] = ? and [refTable].[ProjectId] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="HedgeId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ProjectId" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Project" dataType="DT_STR" length="250" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="Technology" dataType="DT_STR" length="200" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="TypeHedge" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="ContractStartDate" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ContractEndDate" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DismentleDate" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="InstalledPower" dataType="DT_NUMERIC" length="0" precision="7" scale="5" codePage="0"/&gt;&lt;referenceColumn name="Profil" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="HedgePct" dataType="DT_NUMERIC" length="0" precision="4" scale="2" codePage="0"/&gt;&lt;referenceColumn name="Counterparty" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="CountryCounterparty" dataType="DT_STR" length="100" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="InPlanif" dataType="DT_STR" length="50" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[HedgeId]};#{Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ProjectId]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dft_DimHedge_ups\lkp_DimHedge.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[cmgr_DWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[cmgr_DWH]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dft_DimHedge_ups\lkp_DimHedge.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\lkp_DimHedge.Inputs[Lookup Input].Columns[HedgeId]"
+                      cachedDataType="i4"
+                      cachedName="HedgeId"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[HedgeId]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">HedgeId</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\lkp_DimHedge.Inputs[Lookup Input].Columns[ProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjectId"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ProjectId]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">ProjectId</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\dft_DimHedge_ups\lkp_DimHedge.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimHedgeId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimHedgeId]"
+                      name="DimHedgeId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">HedgeId</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="100"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimProjectId]"
+                      name="DimProjectId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ProjectId</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimProject]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="250"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimProject]"
+                      name="DimProject"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Project</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimTechnology]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="200"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimTechnology]"
+                      name="DimTechnology"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Technology</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimTypeHedge]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="50"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimTypeHedge]"
+                      name="DimTypeHedge"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">TypeHedge</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimContractStartDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimContractStartDate]"
+                      name="DimContractStartDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ContractStartDate</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimContractEndDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimContractEndDate]"
+                      name="DimContractEndDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ContractEndDate</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimDismentleDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimDismentleDate]"
+                      name="DimDismentleDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">DismentleDate</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimInstalledPower]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimInstalledPower]"
+                      name="DimInstalledPower"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">InstalledPower</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimProfil]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="100"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimProfil]"
+                      name="DimProfil"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Profil</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimHedgePct]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimHedgePct]"
+                      name="DimHedgePct"
+                      precision="4"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">HedgePct</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimCounterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="100"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimCounterparty]"
+                      name="DimCounterparty"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Counterparty</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimCountryCounterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="100"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimCountryCounterparty]"
+                      name="DimCountryCounterparty"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">CountryCounterparty</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimInPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="50"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimInPlanif]"
+                      name="DimInPlanif"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">InPlanif</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\dft_DimHedge_ups\lkp_DimHedge.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\dft_DimHedge_ups\lkp_DimHedge.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="ole_cmd_update_DW_DimHedge"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [DW].[DimHedge]
+   SET [Project] = ?
+      ,[Technology] = ?
+      ,[TypeHedge] = ?
+      ,[ContractStartDate] = ?
+      ,[ContractEndDate] = ?
+      ,[DismentleDate] = ?
+      ,[InstalledPower] = ?
+      ,[Profil] = ?
+      ,[HedgePct] = ?
+      ,[Counterparty] = ?
+      ,[CountryCounterparty] = ?
+      ,[InPlanif] = ?
+      ,[LoadExecutionId] = ?
+ WHERE HedgeId = ? AND ProjectId=?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[cmgr_DWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[cmgr_DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].Columns[ProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjectId"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_14]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ProjectId]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].Columns[HedgeId]"
+                      cachedDataType="i4"
+                      cachedName="HedgeId"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_13]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[HedgeId]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].Columns[Project]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="Project"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Project]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].Columns[Technology]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Technology"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Technology]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].Columns[TypeHedge]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TypeHedge"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[TypeHedge]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].Columns[ContractStartDate]"
+                      cachedDataType="dbDate"
+                      cachedName="ContractStartDate"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ContractStartDate]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].Columns[ContractEndDate]"
+                      cachedDataType="dbDate"
+                      cachedName="ContractEndDate"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ContractEndDate]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].Columns[DismentleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DismentleDate"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[DismentleDate]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].Columns[InstalledPower]"
+                      cachedDataType="numeric"
+                      cachedName="InstalledPower"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[InstalledPower]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].Columns[Profil]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Profil"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Profil]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].Columns[HedgePct]"
+                      cachedDataType="numeric"
+                      cachedName="HedgePct"
+                      cachedPrecision="4"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[HedgePct]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].Columns[Counterparty]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Counterparty"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Counterparty]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].Columns[CountryCounterparty]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="CountryCounterparty"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[CountryCounterparty]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].Columns[InPlanif]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="InPlanif"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_11]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[InPlanif]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].Columns[LoadExecutionId]"
+                      cachedDataType="i4"
+                      cachedName="LoadExecutionId"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_12]"
+                      lineageId="Package\dft_DimHedge_ups\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="dbDate"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="dbDate"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      dataType="dbDate"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      dataType="numeric"
+                      name="Param_6"
+                      precision="7"
+                      scale="5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      dataType="numeric"
+                      name="Param_8"
+                      precision="4"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_9">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_10">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_11]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_11">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_12]"
+                      dataType="i4"
+                      name="Param_12">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_13]"
+                      dataType="i4"
+                      name="Param_13">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input].ExternalColumns[Param_14]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Param_14">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="ole_dest_DW_DimHedge"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[DW].[DimHedge]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[cmgr_DWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[cmgr_DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].Columns[HedgeId]"
+                      cachedDataType="i4"
+                      cachedName="HedgeId"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[HedgeId]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[HedgeId]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].Columns[ProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjectId"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[ProjectId]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ProjectId]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].Columns[Project]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="Project"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[Project]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Project]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].Columns[Technology]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Technology"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[Technology]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Technology]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].Columns[TypeHedge]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TypeHedge"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[TypeHedge]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[TypeHedge]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].Columns[ContractStartDate]"
+                      cachedDataType="dbDate"
+                      cachedName="ContractStartDate"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[ContractStartDate]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ContractStartDate]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].Columns[ContractEndDate]"
+                      cachedDataType="dbDate"
+                      cachedName="ContractEndDate"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[ContractEndDate]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ContractEndDate]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].Columns[DismentleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DismentleDate"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[DismentleDate]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[DismentleDate]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].Columns[InstalledPower]"
+                      cachedDataType="numeric"
+                      cachedName="InstalledPower"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[InstalledPower]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[InstalledPower]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].Columns[Profil]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Profil"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[Profil]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Profil]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].Columns[HedgePct]"
+                      cachedDataType="numeric"
+                      cachedName="HedgePct"
+                      cachedPrecision="4"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[HedgePct]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[HedgePct]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].Columns[Counterparty]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Counterparty"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[Counterparty]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Counterparty]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].Columns[CountryCounterparty]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="CountryCounterparty"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[CountryCounterparty]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[CountryCounterparty]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].Columns[InPlanif]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="InPlanif"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[InPlanif]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[InPlanif]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].Columns[LoadExecutionId]"
+                      cachedDataType="i4"
+                      cachedName="LoadExecutionId"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[LoadExecutionId]"
+                      lineageId="Package\dft_DimHedge_ups\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[HedgeId]"
+                      dataType="i4"
+                      name="HedgeId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ProjectId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="Project" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Technology" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[TypeHedge]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TypeHedge" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[ContractStartDate]"
+                      dataType="dbDate"
+                      name="ContractStartDate" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[ContractEndDate]"
+                      dataType="dbDate"
+                      name="ContractEndDate" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[DismentleDate]"
+                      dataType="dbDate"
+                      name="DismentleDate" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[InstalledPower]"
+                      dataType="numeric"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[Profil]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Profil" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[HedgePct]"
+                      dataType="numeric"
+                      name="HedgePct"
+                      precision="4"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[Counterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Counterparty" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[CountryCounterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="CountryCounterparty" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="InPlanif" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input].ExternalColumns[LoadExecutionId]"
+                      dataType="i4"
+                      name="LoadExecutionId" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="ole_src_ExcelMarketStaging_StgHedge"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT  HedgeId, ProjectId, Project, Technology, TypeHedge, ContractStartDate, ContractEndDate, DismentleDate, InstalledPower, Profil, HedgePct, Counterparty, CountryCounterparty, InPlanif
+FROM            [ExcelMarketStaging].[StgHedge] WHERE (LoadExecutionId=?)</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping">"Parameter0:Input",{D2433890-26A5-4FF0-A33E-13467418EEEC};</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[cmgr_DWHStg]"
+                  connectionManagerRefId="Package.ConnectionManagers[cmgr_DWHStg]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[HedgeId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[HedgeId]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[HedgeId]"
+                      name="HedgeId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[ProjectId]"
+                      length="100"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ProjectId]"
+                      name="ProjectId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[Project]"
+                      length="250"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Project]"
+                      name="Project"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[Technology]"
+                      length="200"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Technology]"
+                      name="Technology"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[TypeHedge]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[TypeHedge]"
+                      length="50"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[TypeHedge]"
+                      name="TypeHedge"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ContractStartDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[ContractStartDate]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ContractStartDate]"
+                      name="ContractStartDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ContractEndDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[ContractEndDate]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ContractEndDate]"
+                      name="ContractEndDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[DismentleDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[DismentleDate]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[DismentleDate]"
+                      name="DismentleDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[InstalledPower]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[InstalledPower]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[InstalledPower]"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Profil]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[Profil]"
+                      length="100"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Profil]"
+                      name="Profil"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[HedgePct]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[HedgePct]"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[HedgePct]"
+                      name="HedgePct"
+                      precision="4"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Counterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[Counterparty]"
+                      length="100"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Counterparty]"
+                      name="Counterparty"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[CountryCounterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[CountryCounterparty]"
+                      length="100"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[CountryCounterparty]"
+                      name="CountryCounterparty"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[InPlanif]"
+                      length="50"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[InPlanif]"
+                      name="InPlanif"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[HedgeId]"
+                      dataType="i4"
+                      name="HedgeId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ProjectId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="Project" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Technology" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[TypeHedge]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="TypeHedge" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[ContractStartDate]"
+                      dataType="dbDate"
+                      name="ContractStartDate" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[ContractEndDate]"
+                      dataType="dbDate"
+                      name="ContractEndDate" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[DismentleDate]"
+                      dataType="dbDate"
+                      name="DismentleDate" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[InstalledPower]"
+                      dataType="numeric"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[Profil]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Profil" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[HedgePct]"
+                      dataType="numeric"
+                      name="HedgePct"
+                      precision="4"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[Counterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Counterparty" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[CountryCounterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="CountryCounterparty" />
+                    <externalMetadataColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].ExternalColumns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="InPlanif" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[HedgeId]"
+                      dataType="i4"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[HedgeId]"
+                      name="HedgeId" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[ProjectId]"
+                      name="ProjectId" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[Project]"
+                      name="Project" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[Technology]"
+                      name="Technology" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[TypeHedge]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[TypeHedge]"
+                      name="TypeHedge" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[ContractStartDate]"
+                      dataType="dbDate"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[ContractStartDate]"
+                      name="ContractStartDate" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[ContractEndDate]"
+                      dataType="dbDate"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[ContractEndDate]"
+                      name="ContractEndDate" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[DismentleDate]"
+                      dataType="dbDate"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[DismentleDate]"
+                      name="DismentleDate" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[InstalledPower]"
+                      dataType="numeric"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[InstalledPower]"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[Profil]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[Profil]"
+                      name="Profil" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[HedgePct]"
+                      dataType="numeric"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[HedgePct]"
+                      name="HedgePct"
+                      precision="4"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[Counterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[Counterparty]"
+                      name="Counterparty" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[CountryCounterparty]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[CountryCounterparty]"
+                      name="CountryCounterparty" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[InPlanif]"
+                      name="InPlanif" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;11"
+              description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
+              name="scr_CheckForDiffrentColumns"
+              version="11">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Stores the source code of the component"
+                  isArray="true"
+                  name="SourceCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="30">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[ComponentWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services component wrapper
+*  This module defines the base class for your component
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+
+public class UserComponent: ScriptComponent
+{
+    public Connections Connections;
+    public Variables Variables;
+    public UserComponent()
+    {
+        Connections = new Connections(this);
+        Variables = new Variables(this);
+    }
+
+    public override void ProcessInput(int InputID, string InputName, PipelineBuffer Buffer, OutputNameMap OutputMap)
+    {
+
+        if (InputName.Equals(@"Input 0", StringComparison.Ordinal))
+        {
+            Input0_ProcessInput(new Input0Buffer(Buffer, GetColumnIndexes(InputID), OutputMap));
+        }
+
+    }
+
+    public virtual void Input0_ProcessInput(Input0Buffer Buffer)
+    {
+        while (Buffer.NextRow())
+        {
+            Input0_ProcessInputRow(Buffer);
+        }
+    }
+
+    public virtual void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+    }
+
+}
+
+public class Connections
+{
+    ScriptComponent ParentComponent;
+
+    public Connections(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+
+public class Variables
+{
+    ScriptComponent ParentComponent;
+
+    public Variables(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.resx]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[main.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[#region Help:  Introduction to the Script Component
+/* The Script Component allows you to perform virtually any operation that can be accomplished in
+ * a .Net application within the context of an Integration Services data flow.
+ *
+ * Expand the other regions which have "Help" prefixes for examples of specific ways to use
+ * Integration Services features within this script component. */
+#endregion
+
+#region Namespaces
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+#endregion
+
+/// <summary>
+/// This is the class to which to add your code.  Do not change the name, attributes, or parent
+/// of this class.
+/// </summary>
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
+public class ScriptMain : UserComponent
+{
+    #region Help:  Using Integration Services variables and parameters
+    /* To use a variable in this script, first ensure that the variable has been added to
+     * either the list contained in the ReadOnlyVariables property or the list contained in
+     * the ReadWriteVariables property of this script component, according to whether or not your
+     * code needs to write into the variable.  To do so, save this script, close this instance of
+     * Visual Studio, and update the ReadOnlyVariables and ReadWriteVariables properties in the
+     * Script Transformation Editor window.
+     * To use a parameter in this script, follow the same steps. Parameters are always read-only.
+     *
+     * Example of reading from a variable or parameter:
+     *  DateTime startTime = Variables.MyStartTime;
+     *
+     * Example of writing to a variable:
+     *  Variables.myStringVariable = "new value";
+     */
+    #endregion
+
+    #region Help:  Using Integration Services Connnection Managers
+    /* Some types of connection managers can be used in this script component.  See the help topic
+     * "Working with Connection Managers Programatically" for details.
+     *
+     * To use a connection manager in this script, first ensure that the connection manager has
+     * been added to either the list of connection managers on the Connection Managers page of the
+     * script component editor.  To add the connection manager, save this script, close this instance of
+     * Visual Studio, and add the Connection Manager to the list.
+     *
+     * If the component needs to hold a connection open while processing rows, override the
+     * AcquireConnections and ReleaseConnections methods.
+     * 
+     * Example of using an ADO.Net connection manager to acquire a SqlConnection:
+     *  object rawConnection = Connections.SalesDB.AcquireConnection(transaction);
+     *  SqlConnection salesDBConn = (SqlConnection)rawConnection;
+     *
+     * Example of using a File connection manager to acquire a file path:
+     *  object rawConnection = Connections.Prices_zip.AcquireConnection(transaction);
+     *  string filePath = (string)rawConnection;
+     *
+     * Example of releasing a connection manager:
+     *  Connections.SalesDB.ReleaseConnection(rawConnection);
+     */
+    #endregion
+
+    #region Help:  Firing Integration Services Events
+    /* This script component can fire events.
+     *
+     * Example of firing an error event:
+     *  ComponentMetaData.FireError(10, "Process Values", "Bad value", "", 0, out cancel);
+     *
+     * Example of firing an information event:
+     *  ComponentMetaData.FireInformation(10, "Process Values", "Processing has started", "", 0, fireAgain);
+     *
+     * Example of firing a warning event:
+     *  ComponentMetaData.FireWarning(10, "Process Values", "No rows were received", "", 0);
+     */
+    #endregion
+
+    /// <summary>
+    /// This method is called once, before rows begin to be processed in the data flow.
+    ///
+    /// You can remove this method if you don't need to do anything here.
+    /// </summary>
+
+    public override void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+        bool _RowIsDifferent = false;
+        if ((!_RowIsDifferent) && (Row.HedgeId != Row.DimHedgeId))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.ProjectId != Row.DimProjectId))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.Technology != Row.DimTechnology))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.TypeHedge != Row.DimTypeHedge))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.ContractStartDate != Row.DimContractEndDate))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.ContractEndDate != Row.DimContractEndDate))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.DismentleDate != Row.DimDismentleDate))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.InstalledPower != Row.DimInstalledPower))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.Profil != Row.DimProfil))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.HedgePct != Row.DimHedgePct))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.Counterparty != Row.DimCounterparty))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.CountryCounterparty != Row.DimCountryCounterparty))
+            _RowIsDifferent = true;
+
+        if ((!_RowIsDifferent) && (Row.InPlanif != Row.DimInPlanif))
+            _RowIsDifferent = true;
+
+
+        if (_RowIsDifferent == true)
+            Row.DirectRowToDifferentColumns();
+        else
+            Row.DirectRowToSameColumns();
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[BufferWrapper.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services buffer wrappers
+*  This module defines classes for accessing data flow buffers
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+
+public class Input0Buffer: ScriptBuffer
+
+{
+    public Input0Buffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public Int32 HedgeId
+    {
+        get
+        {
+            return Buffer.GetInt32(BufferColumnIndexes[0]);
+        }
+    }
+    public bool HedgeId_IsNull
+    {
+        get
+        {
+            return IsNull(0);
+        }
+    }
+
+    public String ProjectId
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[1]);
+        }
+    }
+    public bool ProjectId_IsNull
+    {
+        get
+        {
+            return IsNull(1);
+        }
+    }
+
+    public String Project
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[2]);
+        }
+    }
+    public bool Project_IsNull
+    {
+        get
+        {
+            return IsNull(2);
+        }
+    }
+
+    public String Technology
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[3]);
+        }
+    }
+    public bool Technology_IsNull
+    {
+        get
+        {
+            return IsNull(3);
+        }
+    }
+
+    public String TypeHedge
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[4]);
+        }
+    }
+    public bool TypeHedge_IsNull
+    {
+        get
+        {
+            return IsNull(4);
+        }
+    }
+
+    public DateTime ContractStartDate
+    {
+        get
+        {
+            return Buffer.GetDate(BufferColumnIndexes[5]);
+        }
+    }
+    public bool ContractStartDate_IsNull
+    {
+        get
+        {
+            return IsNull(5);
+        }
+    }
+
+    public DateTime ContractEndDate
+    {
+        get
+        {
+            return Buffer.GetDate(BufferColumnIndexes[6]);
+        }
+    }
+    public bool ContractEndDate_IsNull
+    {
+        get
+        {
+            return IsNull(6);
+        }
+    }
+
+    public DateTime DismentleDate
+    {
+        get
+        {
+            return Buffer.GetDate(BufferColumnIndexes[7]);
+        }
+    }
+    public bool DismentleDate_IsNull
+    {
+        get
+        {
+            return IsNull(7);
+        }
+    }
+
+    public Decimal InstalledPower
+    {
+        get
+        {
+            return Buffer.GetDecimal(BufferColumnIndexes[8]);
+        }
+    }
+    public bool InstalledPower_IsNull
+    {
+        get
+        {
+            return IsNull(8);
+        }
+    }
+
+    public String Profil
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[9]);
+        }
+    }
+    public bool Profil_IsNull
+    {
+        get
+        {
+            return IsNull(9);
+        }
+    }
+
+    public Decimal HedgePct
+    {
+        get
+        {
+            return Buffer.GetDecimal(BufferColumnIndexes[10]);
+        }
+    }
+    public bool HedgePct_IsNull
+    {
+        get
+        {
+            return IsNull(10);
+        }
+    }
+
+    public String Counterparty
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[11]);
+        }
+    }
+    public bool Counterparty_IsNull
+    {
+        get
+        {
+            return IsNull(11);
+        }
+    }
+
+    public String CountryCounterparty
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[12]);
+        }
+    }
+    public bool CountryCounterparty_IsNull
+    {
+        get
+        {
+            return IsNull(12);
+        }
+    }
+
+    public String InPlanif
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[13]);
+        }
+    }
+    public bool InPlanif_IsNull
+    {
+        get
+        {
+            return IsNull(13);
+        }
+    }
+
+    public Int32 LoadExecutionId
+    {
+        get
+        {
+            return Buffer.GetInt32(BufferColumnIndexes[14]);
+        }
+    }
+    public bool LoadExecutionId_IsNull
+    {
+        get
+        {
+            return IsNull(14);
+        }
+    }
+
+    public Int32 DimHedgeId
+    {
+        get
+        {
+            return Buffer.GetInt32(BufferColumnIndexes[15]);
+        }
+    }
+    public bool DimHedgeId_IsNull
+    {
+        get
+        {
+            return IsNull(15);
+        }
+    }
+
+    public String DimProjectId
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[16]);
+        }
+    }
+    public bool DimProjectId_IsNull
+    {
+        get
+        {
+            return IsNull(16);
+        }
+    }
+
+    public String DimProject
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[17]);
+        }
+    }
+    public bool DimProject_IsNull
+    {
+        get
+        {
+            return IsNull(17);
+        }
+    }
+
+    public String DimTechnology
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[18]);
+        }
+    }
+    public bool DimTechnology_IsNull
+    {
+        get
+        {
+            return IsNull(18);
+        }
+    }
+
+    public String DimTypeHedge
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[19]);
+        }
+    }
+    public bool DimTypeHedge_IsNull
+    {
+        get
+        {
+            return IsNull(19);
+        }
+    }
+
+    public DateTime DimContractStartDate
+    {
+        get
+        {
+            return Buffer.GetDate(BufferColumnIndexes[20]);
+        }
+    }
+    public bool DimContractStartDate_IsNull
+    {
+        get
+        {
+            return IsNull(20);
+        }
+    }
+
+    public DateTime DimContractEndDate
+    {
+        get
+        {
+            return Buffer.GetDate(BufferColumnIndexes[21]);
+        }
+    }
+    public bool DimContractEndDate_IsNull
+    {
+        get
+        {
+            return IsNull(21);
+        }
+    }
+
+    public DateTime DimDismentleDate
+    {
+        get
+        {
+            return Buffer.GetDate(BufferColumnIndexes[22]);
+        }
+    }
+    public bool DimDismentleDate_IsNull
+    {
+        get
+        {
+            return IsNull(22);
+        }
+    }
+
+    public Decimal DimInstalledPower
+    {
+        get
+        {
+            return Buffer.GetDecimal(BufferColumnIndexes[23]);
+        }
+    }
+    public bool DimInstalledPower_IsNull
+    {
+        get
+        {
+            return IsNull(23);
+        }
+    }
+
+    public String DimProfil
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[24]);
+        }
+    }
+    public bool DimProfil_IsNull
+    {
+        get
+        {
+            return IsNull(24);
+        }
+    }
+
+    public Decimal DimHedgePct
+    {
+        get
+        {
+            return Buffer.GetDecimal(BufferColumnIndexes[25]);
+        }
+    }
+    public bool DimHedgePct_IsNull
+    {
+        get
+        {
+            return IsNull(25);
+        }
+    }
+
+    public String DimCounterparty
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[26]);
+        }
+    }
+    public bool DimCounterparty_IsNull
+    {
+        get
+        {
+            return IsNull(26);
+        }
+    }
+
+    public String DimCountryCounterparty
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[27]);
+        }
+    }
+    public bool DimCountryCounterparty_IsNull
+    {
+        get
+        {
+            return IsNull(27);
+        }
+    }
+
+    public String DimInPlanif
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[28]);
+        }
+    }
+    public bool DimInPlanif_IsNull
+    {
+        get
+        {
+            return IsNull(28);
+        }
+    }
+
+    public void DirectRowToDifferentColumns()
+    {
+        base.DirectRow(@"DifferentColumns");
+    }
+
+    public void DirectRowToSameColumns()
+    {
+        base.DirectRow(@"SameColumns");
+    }
+
+    new public bool NextRow()
+    {
+        return base.NextRow();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_6a773342e7524bcb80109c951d0dd0b4.Properties.Settings.get_Default():SC_6a773342e7524bcb80109c951d0dd0b4.Properties.Sett" +
+    "ings")]
+
+namespace SC_6a773342e7524bcb80109c951d0dd0b4.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_6a773342e7524bcb80109c951d0dd0b4.csproj]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{76d89e31-39c3-43d6-b5e8-ced2038a362c}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SC_6a773342e7524bcb80109c951d0dd0b4</RootNamespace>
+    <AssemblyName>SC_6a773342e7524bcb80109c951d0dd0b4</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>true</ResolveAssemblyReferenceIgnoreTargetFrameworkAttributeVersionMismatch>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.SqlServer.TxScript, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.PipelineHost, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Compile Include="main.cs" />
+    <Compile Include="BufferWrapper.cs" />
+    <Compile Include="ComponentWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <!-- Include the build rules for a C# project.-->
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- This section defines VSTA properties that describe the host-changable project properties. -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}">
+        <ProjectProperties HostName="ScriptComponent" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="" DebugInfoCommandLine="" DebugInfoWorkingDir="" IconImageList="" />
+        <Host Name="ScriptComponent" GeneratedNamespace="SC_6a773342e7524bcb80109c951d0dd0b4" IconIndex="0"></Host>
+        <ProjectClient>
+          <HostIdentifier>SSIS_SC130</HostIdentifier>
+        </ProjectClient>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Project]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="4.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:CodeName>SC_6a773342e7524bcb80109c951d0dd0b4</msb:CodeName>
+		<msb:Language>msBuild</msb:Language>
+		<msb:DisplayName>SC_6a773342e7524bcb80109c951d0dd0b4</msb:DisplayName>
+		<msb:ProjectId>{F7114395-13E5-4E52-B696-B41C8C9D079A}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="SC_6a773342e7524bcb80109c951d0dd0b4.csproj"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="BufferWrapper.cs"/>
+		<msb:File Include="main.cs"/>
+		<msb:File Include="ComponentWrapper.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\AssemblyInfo.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("SC_6a773342e7524bcb80109c951d0dd0b4")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("SC_6a773342e7524bcb80109c951d0dd0b4")]
+[assembly: AssemblyCopyright("Copyright @  2022")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.0.0")]
+]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[Properties\Resources.Designer.cs]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_6a773342e7524bcb80109c951d0dd0b4.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_6a773342e7524bcb80109c951d0dd0b4.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_6a773342e7524bcb80109c951d0dd0b4.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace SC_6a773342e7524bcb80109c951d0dd0b4.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SC_6a773342e7524bcb80109c951d0dd0b4.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Stores the binary representation of the component"
+                  isArray="true"
+                  name="BinaryCode"
+                  state="cdata">
+                  <arrayElements
+                    arrayElementCount="2">
+                    <arrayElement
+                      dataType="System.String"><![CDATA[SC_6a773342e7524bcb80109c951d0dd0b4.dll]]></arrayElement>
+                    <arrayElement
+                      dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAA4VU2MAAAAAAAAAAOAAIiALATAAACIAAAAIAAAAAAAAQkAA
+AAAgAAAAYAAAAAAAEAAgAAAAAgAABAAAAAAAAAAGAAAAAAAAAACgAAAAAgAAAAAAAAMAYIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAPA/AABPAAAAAGAAAEgEAAAAAAAAAAAAAAAAAAAA
+AAAAAIAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAASCAAAAAgAAAAIgAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAEgEAAAAYAAAAAYAAAAkAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAIAAAAACAAAAKgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAAAk
+QAAAAAAAAEgAAAACAAUARCYAAPQYAAABAAAAAAAAADg/AAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAABMwAgBGAQAAAQAAERYKBi0QA28EAAAGA28iAAAGLgIXCgYt
+FQNvBgAABgNvJAAABigQAAAKLAIXCgYtFQNvCgAABgNvKAAABigQAAAKLAIXCgYtFQNvDAAABgNv
+KgAABigQAAAKLAIXCgYtFQNvDgAABgNvLgAABigRAAAKLAIXCgYtFQNvEAAABgNvLgAABigRAAAK
+LAIXCgYtFQNvEgAABgNvMAAABigRAAAKLAIXCgYtFQNvFAAABgNvMgAABigSAAAKLAIXCgYtFQNv
+FgAABgNvNAAABigQAAAKLAIXCgYtFQNvGAAABgNvNgAABigSAAAKLAIXCgYtFQNvGgAABgNvOAAA
+BigQAAAKLAIXCgYtFQNvHAAABgNvOgAABigQAAAKLAIXCgYtFQNvHgAABgNvPAAABigQAAAKLAIX
+CgYsBwNvPgAABioDbz8AAAYqHgIoQgAABioqAgMEBSgTAAAKKlICexQAAAoCexUAAAoWlG8WAAAK
+KiICFigXAAAKKlICexQAAAoCexUAAAoXlG8YAAAKKiICFygXAAAKKlICexQAAAoCexUAAAoYlG8Y
+AAAKKiICGCgXAAAKKlICexQAAAoCexUAAAoZlG8YAAAKKiICGSgXAAAKKlICexQAAAoCexUAAAoa
+lG8YAAAKKiICGigXAAAKKlICexQAAAoCexUAAAoblG8ZAAAKKiICGygXAAAKKlICexQAAAoCexUA
+AAoclG8ZAAAKKiICHCgXAAAKKlICexQAAAoCexUAAAodlG8ZAAAKKiICHSgXAAAKKlICexQAAAoC
+exUAAAoelG8aAAAKKiICHigXAAAKKlYCexQAAAoCexUAAAofCZRvGAAACiomAh8JKBcAAAoqVgJ7
+FAAACgJ7FQAACh8KlG8aAAAKKiYCHwooFwAACipWAnsUAAAKAnsVAAAKHwuUbxgAAAoqJgIfCygX
+AAAKKlYCexQAAAoCexUAAAofDJRvGAAACiomAh8MKBcAAAoqVgJ7FAAACgJ7FQAACh8NlG8YAAAK
+KiYCHw0oFwAACipWAnsUAAAKAnsVAAAKHw6UbxYAAAoqJgIfDigXAAAKKlYCexQAAAoCexUAAAof
+D5RvFgAACiomAh8PKBcAAAoqVgJ7FAAACgJ7FQAACh8QlG8YAAAKKiYCHxAoFwAACipWAnsUAAAK
+AnsVAAAKHxGUbxgAAAoqJgIfESgXAAAKKlYCexQAAAoCexUAAAofEpRvGAAACiomAh8SKBcAAAoq
+VgJ7FAAACgJ7FQAACh8TlG8YAAAKKiYCHxMoFwAACipWAnsUAAAKAnsVAAAKHxSUbxkAAAoqJgIf
+FCgXAAAKKlYCexQAAAoCexUAAAofFZRvGQAACiomAh8VKBcAAAoqVgJ7FAAACgJ7FQAACh8WlG8Z
+AAAKKiYCHxYoFwAACipWAnsUAAAKAnsVAAAKHxeUbxoAAAoqJgIfFygXAAAKKlYCexQAAAoCexUA
+AAofGJRvGAAACiomAh8YKBcAAAoqVgJ7FAAACgJ7FQAACh8ZlG8aAAAKKiYCHxkoFwAACipWAnsU
+AAAKAnsVAAAKHxqUbxgAAAoqJgIfGigXAAAKKlYCexQAAAoCexUAAAofG5RvGAAACiomAh8bKBcA
+AAoqVgJ7FAAACgJ7FQAACh8clG8YAAAKKiYCHxwoFwAACioyAnIBAABwKBsAAAoqMgJyIwAAcCgb
+AAAKKh4CKBwAAAoqHgIoHQAACip+AigeAAAKAgJzRgAABn0BAAAEAgJzRwAABn0CAAAEKpIEcjsA
+AHAabx8AAAosFQIFAgMoIAAACg4EcwMAAAZvRAAABipKKwcCA29FAAAGA29AAAAGLfEqBio6Aigh
+AAAKAgN9AwAABCo6AighAAAKAgN9BAAABCoeAighAAAKKq5+BQAABC0ecksAAHDQBwAAAigiAAAK
+byMAAApzJAAACoAFAAAEfgUAAAQqGn4GAAAEKh4CgAYAAAQqGn4HAAAEKh4CKCUAAAoqLnNNAAAG
+gAcAAAQqAEJTSkIBAAEAAAAAAAwAAAB2NC4wLjMwMzE5AAAAAAUAbAAAAOwKAAAjfgAAWAsAAOwK
+AAAjU3RyaW5ncwAAAABEFgAAwAAAACNVUwAEFwAAEAAAACNHVUlEAAAAFBcAAOABAAAjQmxvYgAA
+AAAAAAACAAABVxWiAQkBAAAA+gEzABYAAAEAAAAgAAAACAAAAAcAAABOAAAADQAAACUAAAAQAAAA
+AQAAAAMAAAA9AAAAPgAAAAEAAAAEAAAAAQAAAAAAHwQBAAAAAAAGAOwCJQgGAIADJQgGADgCEggP
+AJkIAAAGAGUCWAcGAM8CWAcGALACWAcGAGcDWAcGAAwDWAcGACUDWAcGAHwCWAcGAJcCwQMKAEAD
+/AAKALsH/AAOAKwH/AAKAIcH/AAGAPMAEAcGAOgDEAcKAMoJ/AAGAHIJEAcGABsCEggGAMwHRQgG
+AHsHQwcSAOsB8AMSAEwC8AMSAEoBLgcGAAACJQgGAN4DEAcGAGoHEAcGAB0BEAcGAMUAEAcGAHoK
+WAcAAAAALgAAAAAAAQABAAEAEAAjBwAAEAABAAEAAQAQAJ8HAAA5AAEAAwABABAArAkAAE0AAQBC
+AAEAEABJCQAAUQADAEYAAQAQANcIAABRAAQARwAAABAATAioCFEABQBIAAABEAAGCagIaQAHAEwA
+BgBJCZoABgDXCJ4AAQC6CaIAAQC6CaIAEQAXB6YAEQA6AaoAEQCWAK4AUCAAAAAAxgA2CrIAAQCi
+IQAAAACGGAUIBgACAKohAAAAAIYYBQg1AAIAtSEAAAAAhghIALgABQDKIQAAAACGCEcEYgAFANMh
+AAAAAIYIdwC8AAUA6CEAAAAAhgiLBGIABQDxIQAAAACGCHkJvAAFAAYiAAAAAIYIRAZiAAUADyIA
+AAAAhghVCrwABQAkIgAAAACGCG0GYgAFAC0iAAAAAIYIpgC8AAUAQiIAAAAAhgi4BGIABQBLIgAA
+AACGCLwBwAAFAGAiAAAAAIYIUwViAAUAaSIAAAAAhghiAcAABQB+IgAAAACGCOUEYgAFAIciAAAA
+AIYIjQHAAAUAnCIAAAAAhggeBWIABQClIgAAAACGCNwHxQAFALoiAAAAAIYI4gViAAUAwyIAAAAA
+hggGBLwABQDZIgAAAACGCLsFYgAFAOMiAAAAAIYIVQnFAAUA+SIAAAAAhggZBmIABQADIwAAAACG
+CJEKvAAFABkjAAAAAIYInAZiAAUAIyMAAAAAhgi2CrwABQA5IwAAAACGCM8GYgAFAEMjAAAAAIYI
+pAO8AAUAWSMAAAAAhgiQBWIABQBjIwAAAACGCGMAuAAFAHkjAAAAAIYIcARiAAUAgyMAAAAAhghU
+ALgABQCZIwAAAACGCFoEYgAFAKMjAAAAAIYIhQC8AAUAuSMAAAAAhgigBGIABQDDIwAAAACGCIUJ
+vAAFANkjAAAAAIYIVwZiAAUA4yMAAAAAhghkCrwABQD5IwAAAACGCIMGYgAFAAMkAAAAAIYItAC8
+AAUAGSQAAAAAhgjNBGIABQAjJAAAAACGCNIBwAAFADkkAAAAAIYIcAViAAUAQyQAAAAAhgh2AcAA
+BQBZJAAAAACGCAAFYgAFAGMkAAAAAIYInwHAAAUAeSQAAAAAhgg3BWIABQCDJAAAAACGCO8HxQAF
+AJkkAAAAAIYI/AViAAUAoyQAAAAAhggRBLwABQC5JAAAAACGCM0FYgAFAMMkAAAAAIYIYgnFAAUA
+2SQAAAAAhggtBmIABQDjJAAAAACGCKIKvAAFAPkkAAAAAIYItAZiAAUAAyUAAAAAhgjOCrwABQAZ
+JQAAAACGCO4GYgAFACMlAAAAAIYIsQO8AAUAOSUAAAAAhgikBWIABQBDJQAAAACGAC0JBgAFAFAl
+AAAAAIYAFgkGAAUAXSUAAAAAhgBNCmIABQBlJQAAAACGAJQJYgAFAG0lAAAAAIYYBQgGAAUAjSUA
+AAAAxgAfCsoABQCyJQAAAADGARgKsgAJAMUlAAAAAMYBNgqyAAoAxyUAAAAAhhgFCNQACwDWJQAA
+AACGGAUI1AAMAOUlAAAAAIMYBQgGAA0A7SUAAAAAkwjIB9oADQAZJgAAAACTCCIB3wANACAmAAAA
+AJMILgHkAA0AKCYAAAAAlgigCeoADgAvJgAAAACGGAUIBgAOADcmAAAAAJEYCwjvAA4AAAABAFEK
+AAABAMEHAAACAOEIAAADAJUHAAABADcAAAACAOkAAAADAMEHAAAEAJUHAAABAMEHAAABAFEKAAAB
+ANAJAAABANAJAAABAJ4DCQAFCAEAEQAFCAYAGQAFCAoAKQAFCBAAMQAFCBAAOQAFCBAAQQAFCBAA
+SQAFCBAAUQAFCBAAWQAFCBAAYQAFCBAAaQAFCAYAqQAFCAYAyQAFCBUA2QAFCAYA4QCDCh8AiQCD
+CiUAkQCDCi0AcQAFCDUAcQDBBz8AcQDhCEMAeQABAEcAcQAJB0wAeQDbA1EAeQC0AVYAeQDlA1wA
+cQAsChAAcQBNCmIAcQCUCWIAmQAFCAYA4QAPCWYAmQD1CG0AoQAFCAYA8QDXAHMA8QB2CnoAsQAF
+CIAA0QAFCAYALgALABgBLgATACEBLgAbAEABLgAjAEkBLgArAHIBLgAzAHIBLgA7AHIBLgBDAEkB
+LgBLAHgBLgBTAHIBLgBbAI8BQwBjANkB4QB7ANkB4wBrANkBaQdzAEABiQdzAEABGwADAAEABwA7
+AAgAPQAAAFsA8wAAAGEE9wAAAIwA+wAAAKcE9wAAAIwJ+wAAAF4G9wAAAGsK+wAAAIoG9wAAALsA
++wAAANQE9wAAANkB/wAAAHcF9wAAAH0B/wAAAAcF9wAAAKYB/wAAAD4F9wAAAPYHBAEAAAMG9wAA
+ABgE+wAAANQF9wAAAGkJBAEAADQG9wAAANwK+wAAAPwG9wAAANUK+wAAAPUG9wAAALgD+wAAAKsF
+9wAAAGcA8wAAAHQE9wAAAFgA8wAAAF4E9wAAAIkA+wAAAKQE9wAAAIkJ+wAAAFsG9wAAAGgK+wAA
+AIcG9wAAALgA+wAAANEE9wAAANYB/wAAAHQF9wAAAHoB/wAAAAQF9wAAAKMB/wAAADsF9wAAAPMH
+BAEAAAAG9wAAABUE+wAAANEF9wAAAGYJBAEAADEG9wAAAKYK+wAAALgG9wAAANIK+wAAAPIG9wAA
+ALUD+wAAAKgF9wAAAMwHCQEAAEIBDgEAAKQJEwECAAQAAwACAAUABQACAAYABwACAAcACQACAAgA
+CwACAAkADQACAAoADwACAAsAEQACAAwAEwACAA0AFQACAA4AFwACAA8AGQACABAAGwACABEAHQAC
+ABIAHwACABMAIQACABQAIwACABUAJQACABYAJwACABcAKQACABgAKwACABkALQACABoALwACABsA
+MQACABwAMwACAB0ANQACAB4ANwACAB8AOQACACAAOwACACEAPQACACIAPwACACMAQQACACQAQwAC
+ACUARQACACYARwACACcASQACACgASwACACkATQACACoATwACACsAUQACACwAUwACAC0AVQACAC4A
+VwACAC8AWQACADAAWwACADEAXQACADIAXwACADMAYQACADQAYwACADUAZQACADYAZwACADcAaQAC
+ADgAawACADkAbQACADoAbwACADsAcQACADwAcwACAD0AdQACAEkAdwACAEoAeQABAEsAeQACAEwA
+ewAEgAAAAQAAAAAAAAAAAAAAAAAKAAAABAAAAAAAAAAAAAAAiAA/AAAAAAAOAAAAAAAAAAAAAACR
+ANoJAAAAAA4AAAAAAAAAAAAAAJEA9wkAAAAABAAAAAAAAAAAAAAAiAAQBwAAAAAAAAAAAQAAAFYI
+AAAAAABHZXRJbnQzMgBTQ182YTc3MzM0MmU3NTI0YmNiODAxMDljOTUxZDBkZDBiNAA8TW9kdWxl
+PgBJbnB1dElEAG1zY29ybGliAGdldF9IZWRnZUlkAGdldF9EaW1IZWRnZUlkAGdldF9Mb2FkRXhl
+Y3V0aW9uSWQAZ2V0X1Byb2plY3RJZABnZXRfRGltUHJvamVjdElkAGRlZmF1bHRJbnN0YW5jZQBn
+ZXRfVHlwZUhlZGdlAGdldF9EaW1UeXBlSGVkZ2UAUnVudGltZVR5cGVIYW5kbGUAR2V0VHlwZUZy
+b21IYW5kbGUASW5wdXROYW1lAERhdGVUaW1lAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlBpcGVs
+aW5lAFR5cGUAZ2V0X0N1bHR1cmUAc2V0X0N1bHR1cmUAcmVzb3VyY2VDdWx0dXJlAEFwcGxpY2F0
+aW9uU2V0dGluZ3NCYXNlAGdldF9Db250cmFjdEVuZERhdGUAZ2V0X0RpbUNvbnRyYWN0RW5kRGF0
+ZQBnZXRfRGlzbWVudGxlRGF0ZQBnZXRfRGltRGlzbWVudGxlRGF0ZQBHZXREYXRlAGdldF9Db250
+cmFjdFN0YXJ0RGF0ZQBnZXRfRGltQ29udHJhY3RTdGFydERhdGUARWRpdG9yQnJvd3NhYmxlU3Rh
+dGUAQ29tcGlsZXJHZW5lcmF0ZWRBdHRyaWJ1dGUARGVidWdnZXJOb25Vc2VyQ29kZUF0dHJpYnV0
+ZQBEZWJ1Z2dhYmxlQXR0cmlidXRlAEVkaXRvckJyb3dzYWJsZUF0dHJpYnV0ZQBBc3NlbWJseVRp
+dGxlQXR0cmlidXRlAEFzc2VtYmx5VHJhZGVtYXJrQXR0cmlidXRlAFRhcmdldEZyYW1ld29ya0F0
+dHJpYnV0ZQBBc3NlbWJseUNvbmZpZ3VyYXRpb25BdHRyaWJ1dGUAQXNzZW1ibHlEZXNjcmlwdGlv
+bkF0dHJpYnV0ZQBDb21waWxhdGlvblJlbGF4YXRpb25zQXR0cmlidXRlAEFzc2VtYmx5UHJvZHVj
+dEF0dHJpYnV0ZQBBc3NlbWJseUNvcHlyaWdodEF0dHJpYnV0ZQBTU0lTU2NyaXB0Q29tcG9uZW50
+RW50cnlQb2ludEF0dHJpYnV0ZQBBc3NlbWJseUNvbXBhbnlBdHRyaWJ1dGUAUnVudGltZUNvbXBh
+dGliaWxpdHlBdHRyaWJ1dGUAdmFsdWUAZ2V0X0luUGxhbmlmAGdldF9EaW1JblBsYW5pZgBTeXN0
+ZW0uUnVudGltZS5WZXJzaW9uaW5nAEdldFN0cmluZwBHZXREZWNpbWFsAFN5c3RlbS5Db21wb25l
+bnRNb2RlbABnZXRfUHJvZmlsAGdldF9EaW1Qcm9maWwAU0NfNmE3NzMzNDJlNzUyNGJjYjgwMTA5
+Yzk1MWQwZGQwYjQuZGxsAGdldF9IZWRnZUlkX0lzTnVsbABnZXRfRGltSGVkZ2VJZF9Jc051bGwA
+Z2V0X0xvYWRFeGVjdXRpb25JZF9Jc051bGwAZ2V0X1Byb2plY3RJZF9Jc051bGwAZ2V0X0RpbVBy
+b2plY3RJZF9Jc051bGwAZ2V0X1R5cGVIZWRnZV9Jc051bGwAZ2V0X0RpbVR5cGVIZWRnZV9Jc051
+bGwAZ2V0X0NvbnRyYWN0RW5kRGF0ZV9Jc051bGwAZ2V0X0RpbUNvbnRyYWN0RW5kRGF0ZV9Jc051
+bGwAZ2V0X0Rpc21lbnRsZURhdGVfSXNOdWxsAGdldF9EaW1EaXNtZW50bGVEYXRlX0lzTnVsbABn
+ZXRfQ29udHJhY3RTdGFydERhdGVfSXNOdWxsAGdldF9EaW1Db250cmFjdFN0YXJ0RGF0ZV9Jc051
+bGwAZ2V0X0luUGxhbmlmX0lzTnVsbABnZXRfRGltSW5QbGFuaWZfSXNOdWxsAGdldF9Qcm9maWxf
+SXNOdWxsAGdldF9EaW1Qcm9maWxfSXNOdWxsAGdldF9JbnN0YWxsZWRQb3dlcl9Jc051bGwAZ2V0
+X0RpbUluc3RhbGxlZFBvd2VyX0lzTnVsbABnZXRfSGVkZ2VQY3RfSXNOdWxsAGdldF9EaW1IZWRn
+ZVBjdF9Jc051bGwAZ2V0X1Byb2plY3RfSXNOdWxsAGdldF9EaW1Qcm9qZWN0X0lzTnVsbABnZXRf
+VGVjaG5vbG9neV9Jc051bGwAZ2V0X0RpbVRlY2hub2xvZ3lfSXNOdWxsAGdldF9Db3VudGVycGFy
+dHlfSXNOdWxsAGdldF9EaW1Db3VudGVycGFydHlfSXNOdWxsAGdldF9Db3VudHJ5Q291bnRlcnBh
+cnR5X0lzTnVsbABnZXRfRGltQ291bnRyeUNvdW50ZXJwYXJ0eV9Jc051bGwAU3lzdGVtAHJlc291
+cmNlTWFuAFNjcmlwdE1haW4AU3lzdGVtLkNvbmZpZ3VyYXRpb24AU3lzdGVtLkdsb2JhbGl6YXRp
+b24AU3lzdGVtLlJlZmxlY3Rpb24AU3RyaW5nQ29tcGFyaXNvbgBDdWx0dXJlSW5mbwBPdXRwdXRO
+YW1lTWFwAE91dHB1dE1hcABJbnB1dDBCdWZmZXIAUGlwZWxpbmVCdWZmZXIAU2NyaXB0QnVmZmVy
+AGdldF9SZXNvdXJjZU1hbmFnZXIAZ2V0X0luc3RhbGxlZFBvd2VyAGdldF9EaW1JbnN0YWxsZWRQ
+b3dlcgAuY3RvcgAuY2N0b3IAU3lzdGVtLkRpYWdub3N0aWNzAFN5c3RlbS5SdW50aW1lLkNvbXBp
+bGVyU2VydmljZXMAU3lzdGVtLlJlc291cmNlcwBTQ182YTc3MzM0MmU3NTI0YmNiODAxMDljOTUx
+ZDBkZDBiNC5Qcm9wZXJ0aWVzLlJlc291cmNlcy5yZXNvdXJjZXMARGVidWdnaW5nTW9kZXMAU0Nf
+NmE3NzMzNDJlNzUyNGJjYjgwMTA5Yzk1MWQwZGQwYjQuUHJvcGVydGllcwBWYXJpYWJsZXMAQnVm
+ZmVyQ29sdW1uSW5kZXhlcwBHZXRDb2x1bW5JbmRleGVzAFNldHRpbmdzAEVxdWFscwBEaXJlY3RS
+b3dUb1NhbWVDb2x1bW5zAERpcmVjdFJvd1RvRGlmZmVyZW50Q29sdW1ucwBDb25uZWN0aW9ucwBn
+ZXRfSGVkZ2VQY3QAZ2V0X0RpbUhlZGdlUGN0AE9iamVjdABnZXRfUHJvamVjdABnZXRfRGltUHJv
+amVjdABFbmRPZlJvd3NldABnZXRfRGVmYXVsdABVc2VyQ29tcG9uZW50AFBhcmVudENvbXBvbmVu
+dABTY3JpcHRDb21wb25lbnQATWljcm9zb2Z0LlNxbFNlcnZlci5UeFNjcmlwdABNaWNyb3NvZnQu
+U3FsU2VydmVyLlBpcGVsaW5lSG9zdABJbnB1dDBfUHJvY2Vzc0lucHV0AERpcmVjdFJvdwBJbnB1
+dDBfUHJvY2Vzc0lucHV0Um93AE5leHRSb3cAZ2V0X1RlY2hub2xvZ3kAZ2V0X0RpbVRlY2hub2xv
+Z3kAZ2V0X0Fzc2VtYmx5AG9wX0luZXF1YWxpdHkAZ2V0X0NvdW50ZXJwYXJ0eQBnZXRfRGltQ291
+bnRlcnBhcnR5AGdldF9Db3VudHJ5Q291bnRlcnBhcnR5AGdldF9EaW1Db3VudHJ5Q291bnRlcnBh
+cnR5AAAAAAAhRABpAGYAZgBlAHIAZQBuAHQAQwBvAGwAdQBtAG4AcwAAF1MAYQBtAGUAQwBvAGwA
+dQBtAG4AcwAAD0kAbgBwAHUAdAAgADAAAHFTAEMAXwA2AGEANwA3ADMAMwA0ADIAZQA3ADUAMgA0
+AGIAYwBiADgAMAAxADAAOQBjADkANQAxAGQAMABkAGQAMABiADQALgBQAHIAbwBwAGUAcgB0AGkA
+ZQBzAC4AUgBlAHMAbwB1AHIAYwBlAHMAAAAAAOttgYNcy4NKhZq7DP4kcYsABCABAQgDIAABBSAB
+ARERBCABAQ4FIAEBEWEDBwECBQACAg4OBwACAhFFEUUHAAICEUkRSQkgAwESPR0IEkEDBhI9AwYd
+CAQgAQgIBCABAggEIAEOCAUgARFFCAUgARFJCAMgAAIGIAICDhF1BSABHQgIBgABEnkRfQUgABKA
+gQcgAgEOEoCBCLd6XFYZNOCJCImEXc2AgMyRAwYSFAMGEhgDBhJNAwYSWQMGEl0DBhIgBSABARIM
+AyAACAMgAA4EIAARRQQgABFJCSAEAQgOEj0SQQUgAQESTQQAABJZBAAAEl0FAAEBEl0EAAASIAMA
+AAEDKAAIAygAAgMoAA4EKAARRQQoABFJBAgAElkECAASXQQIABIgCAEACAAAAAAAHgEAAQBUAhZX
+cmFwTm9uRXhjZXB0aW9uVGhyb3dzAQgBAAIAAAAAACgBACNTQ182YTc3MzM0MmU3NTI0YmNiODAx
+MDljOTUxZDBkZDBiNAAABQEAAAAAFgEAEUNvcHlyaWdodCBAICAyMDIyAABJAQAaLk5FVEZyYW1l
+d29yayxWZXJzaW9uPXY0LjUBAFQOFEZyYW1ld29ya0Rpc3BsYXlOYW1lEi5ORVQgRnJhbWV3b3Jr
+IDQuNQQBAAAAAAC0AAAAzsrvvgEAAACRAAAAbFN5c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VSZWFk
+ZXIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5
+VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSNTeXN0ZW0uUmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJjZVNl
+dAIAAAAAAAAAAAAAAFBBRFBBRFC0AAAAGEAAAAAAAAAAAAAAMkAAAAAgAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAACRAAAAAAAAAAAAAAAAAX0NvckRsbE1haW4AbXNjb3JlZS5kbGwAAAAAAP8lACAAEAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABABAA
+AAAYAACAAAAAAAAAAAAAAAAAAAABAAEAAAAwAACAAAAAAAAAAAAAAAAAAAABAAAAAABIAAAAWGAA
+AOwDAAAAAAAAAAAAAOwDNAAAAFYAUwBfAFYARQBSAFMASQBPAE4AXwBJAE4ARgBPAAAAAAC9BO/+
+AAABAAAAAQAAAAAAAAABAAAAAAA/AAAAAAAAAAQAAAACAAAAAAAAAAAAAAAAAAAARAAAAAEAVgBh
+AHIARgBpAGwAZQBJAG4AZgBvAAAAAAAkAAQAAABUAHIAYQBuAHMAbABhAHQAaQBvAG4AAAAAAAAA
+sARMAwAAAQBTAHQAcgBpAG4AZwBGAGkAbABlAEkAbgBmAG8AAAAoAwAAAQAwADAAMAAwADAANABi
+ADAAAAAaAAEAAQBDAG8AbQBtAGUAbgB0AHMAAAAAAAAAIgABAAEAQwBvAG0AcABhAG4AeQBOAGEA
+bQBlAAAAAAAAAAAAcAAkAAEARgBpAGwAZQBEAGUAcwBjAHIAaQBwAHQAaQBvAG4AAAAAAFMAQwBf
+ADYAYQA3ADcAMwAzADQAMgBlADcANQAyADQAYgBjAGIAOAAwADEAMAA5AGMAOQA1ADEAZAAwAGQA
+ZAAwAGIANAAAADAACAABAEYAaQBsAGUAVgBlAHIAcwBpAG8AbgAAAAAAMQAuADAALgAwAC4AMAAA
+AHAAKAABAEkAbgB0AGUAcgBuAGEAbABOAGEAbQBlAAAAUwBDAF8ANgBhADcANwAzADMANAAyAGUA
+NwA1ADIANABiAGMAYgA4ADAAMQAwADkAYwA5ADUAMQBkADAAZABkADAAYgA0AC4AZABsAGwAAABI
+ABIAAQBMAGUAZwBhAGwAQwBvAHAAeQByAGkAZwBoAHQAAABDAG8AcAB5AHIAaQBnAGgAdAAgAEAA
+IAAgADIAMAAyADIAAAAqAAEAAQBMAGUAZwBhAGwAVAByAGEAZABlAG0AYQByAGsAcwAAAAAAAAAA
+AHgAKAABAE8AcgBpAGcAaQBuAGEAbABGAGkAbABlAG4AYQBtAGUAAABTAEMAXwA2AGEANwA3ADMA
+MwA0ADIAZQA3ADUAMgA0AGIAYwBiADgAMAAxADAAOQBjADkANQAxAGQAMABkAGQAMABiADQALgBk
+AGwAbAAAAGgAJAABAFAAcgBvAGQAdQBjAHQATgBhAG0AZQAAAAAAUwBDAF8ANgBhADcANwAzADMA
+NAAyAGUANwA1ADIANABiAGMAYgA4ADAAMQAwADkAYwA5ADUAMQBkADAAZABkADAAYgA0AAAANAAI
+AAEAUAByAG8AZAB1AGMAdABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgAwAC4AMAAAADgACAABAEEA
+cwBzAGUAbQBiAGwAeQAgAFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADAALgAwAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAwAAABEMAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=]]></arrayElement>
+                  </arrayElements>
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the Microsoft Visual Studio Tools for Applications project. Project names must be unique within a package."
+                  name="VSTAProjectName"
+                  typeConverter="NOTBROWSABLE">SC_6a773342e7524bcb80109c951d0dd0b4</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the programming language used by the script."
+                  name="ScriptLanguage"
+                  typeConverter="Microsoft.SqlServer.VSTAHosting.ScriptingLanguages">CSharp</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read-only variables."
+                  name="ReadOnlyVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a comma-separated list of read/write variables."
+                  name="ReadWriteVariables"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIWriteableVariablePickerDlg"></property>
+                <property
+                  dataType="System.String"
+                  description="List of breakpoints present on the script."
+                  isArray="true"
+                  name="BreakpointCollection"
+                  typeConverter="NOTBROWSABLE">
+                  <arrayElements
+                    arrayElementCount="0" />
+                </property>
+                <property
+                  dataType="System.String"
+                  description="Checksum to match component metedata against compiled codes."
+                  name="MetadataChecksum140"
+                  typeConverter="NOTBROWSABLE">76</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0]"
+                  hasSideEffects="true"
+                  name="Input 0">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[HedgeId]"
+                      cachedDataType="i4"
+                      cachedName="HedgeId"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[HedgeId]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[ProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjectId"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ProjectId]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[Project]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="Project"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Project]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[Technology]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Technology"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Technology]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[TypeHedge]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="TypeHedge"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[TypeHedge]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[ContractStartDate]"
+                      cachedDataType="dbDate"
+                      cachedName="ContractStartDate"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ContractStartDate]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[ContractEndDate]"
+                      cachedDataType="dbDate"
+                      cachedName="ContractEndDate"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[ContractEndDate]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DismentleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DismentleDate"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[DismentleDate]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[InstalledPower]"
+                      cachedDataType="numeric"
+                      cachedName="InstalledPower"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[InstalledPower]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[Profil]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Profil"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Profil]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[HedgePct]"
+                      cachedDataType="numeric"
+                      cachedName="HedgePct"
+                      cachedPrecision="4"
+                      cachedScale="2"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[HedgePct]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[Counterparty]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Counterparty"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[Counterparty]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[CountryCounterparty]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="CountryCounterparty"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[CountryCounterparty]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[InPlanif]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="InPlanif"
+                      lineageId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output].Columns[InPlanif]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[LoadExecutionId]"
+                      cachedDataType="i4"
+                      cachedName="LoadExecutionId"
+                      lineageId="Package\dft_DimHedge_ups\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimHedgeId]"
+                      cachedDataType="i4"
+                      cachedName="DimHedgeId"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimHedgeId]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="DimProjectId"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimProjectId]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimProject]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="DimProject"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimProject]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimTechnology]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="DimTechnology"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimTechnology]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimTypeHedge]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="DimTypeHedge"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimTypeHedge]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimContractStartDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DimContractStartDate"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimContractStartDate]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimContractEndDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DimContractEndDate"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimContractEndDate]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimDismentleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DimDismentleDate"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimDismentleDate]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimInstalledPower]"
+                      cachedDataType="numeric"
+                      cachedName="DimInstalledPower"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimInstalledPower]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimProfil]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="DimProfil"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimProfil]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimHedgePct]"
+                      cachedDataType="numeric"
+                      cachedName="DimHedgePct"
+                      cachedPrecision="4"
+                      cachedScale="2"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimHedgePct]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimCounterparty]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="DimCounterparty"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimCounterparty]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimCountryCounterparty]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="DimCountryCounterparty"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimCountryCounterparty]" />
+                    <inputColumn
+                      refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0].Columns[DimInPlanif]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="DimInPlanif"
+                      lineageId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output].Columns[DimInPlanif]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Outputs[DifferentColumns]"
+                  exclusionGroup="1"
+                  name="DifferentColumns"
+                  synchronousInputId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Outputs[SameColumns]"
+                  exclusionGroup="1"
+                  name="SameColumns"
+                  synchronousInputId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\dft_DimHedge_ups.Paths[Derived Column Output]"
+              endId="Package\dft_DimHedge_ups\lkp_DimHedge.Inputs[Lookup Input]"
+              name="Derived Column Output"
+              startId="Package\dft_DimHedge_ups\der_LoadExecutionId.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\dft_DimHedge_ups.Paths[DifferentColumns]"
+              endId="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge.Inputs[OLE DB Command Input]"
+              name="DifferentColumns"
+              startId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Outputs[DifferentColumns]" />
+            <path
+              refId="Package\dft_DimHedge_ups.Paths[Lookup Match Output]"
+              endId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Inputs[Input 0]"
+              name="Lookup Match Output"
+              startId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\dft_DimHedge_ups.Paths[Lookup No Match Output]"
+              endId="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\dft_DimHedge_ups\lkp_DimHedge.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\dft_DimHedge_ups.Paths[OLE DB Source Output]"
+              endId="Package\dft_DimHedge_ups\der_LoadExecutionId.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\dft_DimHedge_ups.Paths[SameColumns]"
+              endId="Package\dft_DimHedge_ups\Audit.Inputs[Audit Input 1]"
+              name="SameColumns"
+              startId="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns.Outputs[SameColumns]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="169,42"
+          Id="Package\dft_DimHedge_ups"
+          TopLeft="284,88" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\dft_DimHedge_ups">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="147,42"
+          Id="Package\dft_DimHedge_ups\lkp_DimHedge"
+          TopLeft="321,278" />
+        <NodeLayout
+          Size="261,42"
+          Id="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge"
+          TopLeft="273,52" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\dft_DimHedge_ups\der_LoadExecutionId"
+          TopLeft="311,167" />
+        <EdgeLayout
+          Id="Package\dft_DimHedge_ups.Paths[OLE DB Source Output]"
+          TopLeft="401.75,94">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,73"
+              Start="0,0"
+              End="0,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\dft_DimHedge_ups.Paths[Derived Column Output]"
+          TopLeft="397.25,209">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,69"
+              Start="0,0"
+              End="0,61.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="217,42"
+          Id="Package\dft_DimHedge_ups\scr_CheckForDiffrentColumns"
+          TopLeft="439,384" />
+        <EdgeLayout
+          Id="Package\dft_DimHedge_ups.Paths[Lookup Match Output]"
+          TopLeft="417.666666666667,320">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="129.833333333333,64"
+              Start="0,0"
+              End="129.833333333333,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.0134589502019" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.0134589502019"
+                    Point2="0,26.0134589502019"
+                    Point3="4,26.0134589502019" />
+                  <mssgle:LineSegment
+                    End="125.833333333333,26.0134589502019" />
+                  <mssgle:CubicBezierSegment
+                    Point1="125.833333333333,26.0134589502019"
+                    Point2="129.833333333333,26.0134589502019"
+                    Point3="129.833333333333,30.0134589502019" />
+                  <mssgle:LineSegment
+                    End="129.833333333333,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="16.7252799479167,31.0134589502019,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="196,42"
+          Id="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge"
+          TopLeft="132,388" />
+        <EdgeLayout
+          Id="Package\dft_DimHedge_ups.Paths[Lookup No Match Output]"
+          TopLeft="371.333333333333,320">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-141.333333333333,68"
+              Start="0,0"
+              End="-141.333333333333,60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.6393001345895" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.6393001345895"
+                    Point2="0,27.6393001345895"
+                    Point3="-4,27.6393001345895" />
+                  <mssgle:LineSegment
+                    End="-137.333333333333,27.6393001345895" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-137.333333333333,27.6393001345895"
+                    Point2="-141.333333333333,27.6393001345895"
+                    Point3="-141.333333333333,31.6393001345895" />
+                  <mssgle:LineSegment
+                    End="-141.333333333333,60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-126.473053385417,32.6393001345895,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="234,42"
+          Id="Package\dft_DimHedge_ups\ole_cmd_update_DW_DimHedge"
+          TopLeft="143,464" />
+        <EdgeLayout
+          Id="Package\dft_DimHedge_ups.Paths[DifferentColumns]"
+          TopLeft="547.5,426">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-287.5,38"
+              Start="0,0"
+              End="-287.5,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15"
+                    Point2="0,19"
+                    Point3="-4,19" />
+                  <mssgle:LineSegment
+                    End="-283.5,19" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-283.5,19"
+                    Point2="-287.5,19"
+                    Point3="-287.5,23" />
+                  <mssgle:LineSegment
+                    End="-287.5,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-182.397578125,24,77.29515625,9.7978515625"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="103,42"
+          Id="Package\dft_DimHedge_ups\Audit"
+          TopLeft="537,464" />
+        <EdgeLayout
+          Id="Package\dft_DimHedge_ups.Paths[SameColumns]"
+          TopLeft="585.416666666667,426">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-31.8332421875,10.37548828125,63.666484375,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\dft_DimHedge_ups\lkp_DimHedge">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\dft_DimHedge_ups\ole_src_ExcelMarketStaging_StgHedge">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\dft_DimHedge_ups\ole_dest_DW_DimHedge">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

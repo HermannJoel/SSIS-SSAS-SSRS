@@ -1,0 +1,1669 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/4/2022 4:45:22 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-JDQLDT1"
+  DTS:CreatorName="DESKTOP-JDQLDT1\nherm"
+  DTS:DTSID="{9C38AAB0-374E-404A-8E6C-4EE721F5C1CA}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ExcelSrcAsset"
+  DTS:PackageType="5"
+  DTS:VersionBuild="72"
+  DTS:VersionGUID="{0A2BEB35-6A85-425C-983A-3143212D3C71}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="20"
+      DTS:DTSID="{FC7A3BC0-635D-4933-811B-61900C936072}"
+      DTS:ObjectName="LoadExecutionId"
+      DTS:Required="True">
+      <DTS:Property
+        DTS:DataType="20"
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{87375AAA-BF2E-490C-86A7-9F07E840776D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageStartDateTime">
+      <DTS:VariableValue
+        DTS:DataType="7">10/4/2022 5:13:03 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{39CE1DB3-101F-4DF0-84A6-9EF5098CF888}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PreviousActivityDateTime">
+      <DTS:VariableValue
+        DTS:DataType="7">10/4/2022 5:13:07 PM</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\dft_ExcelMarket_Asset"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{c546672f-fccf-44b8-93a4-65e642768786}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="dft_ExcelMarket_Asset"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\dft_ExcelMarket_Asset\dcnv"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="dcnv"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\dft_ExcelMarket_Asset\dcnv.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Inputs[Data Conversion Input].Columns[ProjectId]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="ProjectId"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[ProjectId]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Inputs[Data Conversion Input].Columns[Project]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Project"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Project]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Inputs[Data Conversion Input].Columns[Technology]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Technology"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Technology]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Inputs[Data Conversion Input].Columns[DismentleDate]"
+                      cachedDataType="date"
+                      cachedName="DismentleDate"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[DismentleDate]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Inputs[Data Conversion Input].Columns[InstalledPower]"
+                      cachedDataType="r8"
+                      cachedName="InstalledPower"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[InstalledPower]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Inputs[Data Conversion Input].Columns[InPlanif]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="InPlanif"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[InPlanif]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Inputs[Data Conversion Input].Columns[AssetId]"
+                      cachedDataType="r8"
+                      cachedName="AssetId"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[AssetId]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Inputs[Data Conversion Input].Columns[Cod]"
+                      cachedDataType="date"
+                      cachedName="Cod"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Cod]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Inputs[Data Conversion Input].Columns[Mw]"
+                      cachedDataType="r8"
+                      cachedName="Mw"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Mw]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Inputs[Data Conversion Input].Columns[SuccesPct]"
+                      cachedDataType="r8"
+                      cachedName="SuccesPct"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[SuccesPct]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Inputs[Data Conversion Input].Columns[Eoh]"
+                      cachedDataType="r8"
+                      cachedName="Eoh"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Eoh]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Inputs[Data Conversion Input].Columns[DateMerchant]"
+                      cachedDataType="date"
+                      cachedName="DateMerchant"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[DateMerchant]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Inputs[Data Conversion Input].Columns[Repowering]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Repowering"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Repowering]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Inputs[Data Conversion Input].Columns[DateMsi]"
+                      cachedDataType="date"
+                      cachedName="DateMsi"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[DateMsi]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Inputs[Data Conversion Input].Columns[P50]"
+                      cachedDataType="r8"
+                      cachedName="P50"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[P50]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Inputs[Data Conversion Input].Columns[P90]"
+                      cachedDataType="r8"
+                      cachedName="P90"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[P90]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Inputs[Data Conversion Input].Columns[LoadExecutionId]"
+                      cachedDataType="i4"
+                      cachedName="LoadExecutionId"
+                      lineageId="Package\dft_ExcelMarket_Asset\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\dft_ExcelMarket_Asset\dcnv.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[ProjectId]"
+                      name="ProjectId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[ProjectId]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="250"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[Project]"
+                      name="Project"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Project]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[Technology]"
+                      name="Technology"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Technology]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[DismentleDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[DismentleDate]"
+                      name="DismentleDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[DismentleDate]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[InstalledPower]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[InstalledPower]"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[InstalledPower]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[InPlanif]"
+                      name="InPlanif"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[InPlanif]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[AssetId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[AssetId]"
+                      name="AssetId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[AssetId]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[Cod]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[Cod]"
+                      name="Cod"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Cod]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[Mw]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[Mw]"
+                      name="Mw"
+                      precision="5"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Mw]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[SuccesPct]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[SuccesPct]"
+                      name="SuccesPct"
+                      precision="7"
+                      scale="5"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[SuccesPct]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[Eoh]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[Eoh]"
+                      name="Eoh"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Eoh]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[DateMerchant]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[DateMerchant]"
+                      name="DateMerchant"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[DateMerchant]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[Repowering]"
+                      name="Repowering"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Repowering]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[DateMsi]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[DateMsi]"
+                      name="DateMsi"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[DateMsi]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[P50]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[P50]"
+                      name="P50"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[P50]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[P90]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[P90]"
+                      name="P90"
+                      precision="10"
+                      scale="3"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[P90]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[LoadExecutionId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[LoadExecutionId]"
+                      name="LoadExecutionId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\dft_ExcelMarket_Asset\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\dft_ExcelMarket_Asset\dcnv.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_ExcelMarket_Asset\der_LoadExecutionId"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="der_LoadExecutionId"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\dft_ExcelMarket_Asset\der_LoadExecutionId.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_ExcelMarket_Asset\der_LoadExecutionId.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\dft_ExcelMarket_Asset\der_LoadExecutionId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\dft_ExcelMarket_Asset\der_LoadExecutionId.Outputs[Derived Column Output].Columns[LoadExecutionId]"
+                      name="LoadExecutionId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_I4)@[$Package::LoadExecutionId]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_I4)@[$Package::LoadExecutionId]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\dft_ExcelMarket_Asset\der_LoadExecutionId.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\dft_ExcelMarket_Asset\der_LoadExecutionId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_ExcelMarket_Asset\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_ExcelMarket_Asset\der_LoadExecutionId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="excel_src_TemplateAsset"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Sheet1$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Connections[OleDbConnection]"
+                  connectionManagerID="{11B24864-CF57-4F64-BCF2-4E57E585E581}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[ecmgr_Asset]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[ProjectId]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[projet_id]"
+                      length="255"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[ProjectId]"
+                      name="ProjectId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Project]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[projet]"
+                      length="255"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Project]"
+                      name="Project"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Technology]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[technologie]"
+                      length="255"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Technology]"
+                      name="Technology"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[DismentleDate]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[date_dementelement]"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[DismentleDate]"
+                      name="DismentleDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[InstalledPower]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[puissance_installée]"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[InstalledPower]"
+                      name="InstalledPower"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[InPlanif]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[en_planif]"
+                      length="255"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[InPlanif]"
+                      name="InPlanif"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[AssetId]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[asset_id]"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[AssetId]"
+                      name="AssetId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Cod]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[cod]"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Cod]"
+                      name="Cod"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Mw]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[mw]"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Mw]"
+                      name="Mw"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[SuccesPct]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[taux_succès]"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[SuccesPct]"
+                      name="SuccesPct"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Eoh]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[eoh]"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Eoh]"
+                      name="Eoh"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[DateMerchant]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[date_merchant]"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[DateMerchant]"
+                      name="DateMerchant"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Repowering]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[repowering]"
+                      length="255"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[Repowering]"
+                      name="Repowering"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[DateMsi]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[date_msi]"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[DateMsi]"
+                      name="DateMsi"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[P50]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[p50]"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[P50]"
+                      name="P50"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[P90]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[p90]"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].Columns[P90]"
+                      name="P90"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[rw_id]"
+                      dataType="r8"
+                      name="rw_id" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[projet_id]"
+                      dataType="wstr"
+                      length="255"
+                      name="projet_id" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[projet]"
+                      dataType="wstr"
+                      length="255"
+                      name="projet" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[technologie]"
+                      dataType="wstr"
+                      length="255"
+                      name="technologie" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[date_dementelement]"
+                      dataType="date"
+                      name="date_dementelement" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[puissance_installée]"
+                      dataType="r8"
+                      name="puissance_installée" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[en_planif]"
+                      dataType="wstr"
+                      length="255"
+                      name="en_planif" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[asset_id]"
+                      dataType="r8"
+                      name="asset_id" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[cod]"
+                      dataType="date"
+                      name="cod" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[mw]"
+                      dataType="r8"
+                      name="mw" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[taux_succès]"
+                      dataType="r8"
+                      name="taux_succès" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[eoh]"
+                      dataType="r8"
+                      name="eoh" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[date_merchant]"
+                      dataType="date"
+                      name="date_merchant" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[repowering]"
+                      dataType="wstr"
+                      length="255"
+                      name="repowering" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[date_msi]"
+                      dataType="date"
+                      name="date_msi" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[p50]"
+                      dataType="r8"
+                      name="p50" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output].ExternalColumns[p90]"
+                      dataType="r8"
+                      name="p90" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[projet_id]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[projet_id]"
+                      name="projet_id" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[asset_id]"
+                      dataType="r8"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[asset_id]"
+                      name="asset_id" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[projet]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[projet]"
+                      name="projet" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[technologie]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[technologie]"
+                      name="technologie" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[date_dementelement]"
+                      dataType="date"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[date_dementelement]"
+                      name="date_dementelement" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[cod]"
+                      dataType="date"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[cod]"
+                      name="cod" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[mw]"
+                      dataType="r8"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[mw]"
+                      name="mw" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[taux_succès]"
+                      dataType="r8"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[taux_succès]"
+                      name="taux_succès" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[puissance_installée]"
+                      dataType="r8"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[puissance_installée]"
+                      name="puissance_installée" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[eoh]"
+                      dataType="r8"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[eoh]"
+                      name="eoh" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[date_merchant]"
+                      dataType="date"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[date_merchant]"
+                      name="date_merchant" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[en_planif]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[en_planif]"
+                      name="en_planif" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[repowering]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[repowering]"
+                      name="repowering" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[date_msi]"
+                      dataType="date"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[date_msi]"
+                      name="date_msi" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[p50]"
+                      dataType="r8"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[p50]"
+                      name="p50" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[p90]"
+                      dataType="r8"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[p90]"
+                      name="p90" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="ole_dest_ExcelMarket_Asset"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[ExcelMarket].[Asset]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Connections[OleDbConnection]"
+                  connectionManagerID="{E9BC52B7-80F9-40CF-9C65-05782D46F31A}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[cmgr_OLTP]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].Columns[AssetId]"
+                      cachedDataType="i4"
+                      cachedName="AssetId"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[AssetId]"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[AssetId]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].Columns[ProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjectId"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[ProjectId]"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[ProjectId]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].Columns[Project]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="Project"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Project]"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[Project]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].Columns[Technology]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Technology"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Technology]"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[Technology]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].Columns[InstalledPower]"
+                      cachedDataType="numeric"
+                      cachedName="InstalledPower"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[InstalledPower]"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[InstalledPower]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].Columns[Cod]"
+                      cachedDataType="dbDate"
+                      cachedName="Cod"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Cod]"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[Cod]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].Columns[Mw]"
+                      cachedDataType="numeric"
+                      cachedName="Mw"
+                      cachedPrecision="5"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Mw]"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[Mw]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].Columns[DismentleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DismentleDate"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[DismentleDate]"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[DismentleDate]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].Columns[SuccesPct]"
+                      cachedDataType="numeric"
+                      cachedName="SuccesPct"
+                      cachedPrecision="7"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[SuccesPct]"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[SuccesPct]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].Columns[Eoh]"
+                      cachedDataType="numeric"
+                      cachedName="Eoh"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Eoh]"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[Eoh]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].Columns[DateMerchant]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMerchant"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[DateMerchant]"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[DateMerchant]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].Columns[Repowering]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Repowering"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Repowering]"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[Repowering]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].Columns[DateMsi]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMsi"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[DateMsi]"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[DateMsi]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].Columns[P50]"
+                      cachedDataType="numeric"
+                      cachedName="P50"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[P50]"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[P50]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].Columns[P90]"
+                      cachedDataType="numeric"
+                      cachedName="P90"
+                      cachedPrecision="10"
+                      cachedScale="3"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[P90]"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[P90]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].Columns[InPlanif]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="InPlanif"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[InPlanif]"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[InPlanif]" />
+                    <inputColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].Columns[LoadExecutionId]"
+                      cachedDataType="i4"
+                      cachedName="LoadExecutionId"
+                      externalMetadataColumnId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[LoadExecutionId]"
+                      lineageId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output].Columns[LoadExecutionId]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[AssetId]"
+                      dataType="i4"
+                      name="AssetId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ProjectId" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="Project" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Technology" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Cod]"
+                      dataType="dbDate"
+                      name="Cod" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Mw]"
+                      dataType="numeric"
+                      name="Mw"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[SuccesPct]"
+                      dataType="numeric"
+                      name="SuccesPct"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[InstalledPower]"
+                      dataType="numeric"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Eoh]"
+                      dataType="numeric"
+                      name="Eoh"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[DateMerchant]"
+                      dataType="dbDate"
+                      name="DateMerchant" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[DismentleDate]"
+                      dataType="dbDate"
+                      name="DismentleDate" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Repowering" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[DateMsi]"
+                      dataType="dbDate"
+                      name="DateMsi" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="InPlanif" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[P50]"
+                      dataType="numeric"
+                      name="P50"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[P90]"
+                      dataType="numeric"
+                      name="P90"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[ActivityDateTime]"
+                      dataType="dbTimeStamp"
+                      name="ActivityDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input].ExternalColumns[LoadExecutionId]"
+                      dataType="i4"
+                      name="LoadExecutionId" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\dft_ExcelMarket_Asset.Paths[Data Conversion Output]"
+              endId="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\dft_ExcelMarket_Asset\dcnv.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\dft_ExcelMarket_Asset.Paths[Derived Column Output]"
+              endId="Package\dft_ExcelMarket_Asset\dcnv.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\dft_ExcelMarket_Asset\der_LoadExecutionId.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\dft_ExcelMarket_Asset.Paths[Excel Source Output]"
+              endId="Package\dft_ExcelMarket_Asset\der_LoadExecutionId.Inputs[Derived Column Input]"
+              name="Excel Source Output"
+              startId="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\sql_DeleteCurrentLoadExecutionIdData"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{02BB44C6-59F3-4CAE-9526-C0490E674DDE}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="sql_DeleteCurrentLoadExecutionIdData"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{E9BC52B7-80F9-40CF-9C65-05782D46F31A}"
+          SQLTask:SqlStatementSource="DELETE FROM [ExcelMarket].[Asset] WHERE [LoadExecutionId] = ?     " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="$Package::LoadExecutionId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\sql_Truncate_ExcelMarketAsset"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{D3500508-C5F4-4966-896B-2B7AFFD6B3D9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="sql_Truncate_ExcelMarketAsset"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{E9BC52B7-80F9-40CF-9C65-05782D46F31A}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [ExcelMarket].[Asset];" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{23AE7B79-16E8-476E-8A9A-036BB82C088E}"
+      DTS:From="Package\sql_Truncate_ExcelMarketAsset"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\dft_ExcelMarket_Asset" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{7DF76B1E-B784-47A9-92F6-B10BE20FD6C5}"
+      DTS:From="Package\sql_DeleteCurrentLoadExecutionIdData"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\dft_ExcelMarket_Asset" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="185,42"
+          Id="Package\dft_ExcelMarket_Asset"
+          TopLeft="345,164" />
+        <NodeLayout
+          Size="232,42"
+          Id="Package\sql_Truncate_ExcelMarketAsset"
+          TopLeft="557,33" />
+        <NodeLayout
+          Size="263,42"
+          Id="Package\sql_DeleteCurrentLoadExecutionIdData"
+          TopLeft="62,36" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="673,75">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-206,89"
+              Start="0,0"
+              End="-206,81.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.9421221864952" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,48.9421221864952"
+                    Point2="0,52.9421221864952"
+                    Point3="-4,52.9421221864952" />
+                  <mssgle:LineSegment
+                    End="-202,52.9421221864952" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-202,52.9421221864952"
+                    Point2="-206,52.9421221864952"
+                    Point3="-206,56.9421221864952" />
+                  <mssgle:LineSegment
+                    End="-206,81.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="193.5,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="214.5,86"
+              Start="0,0"
+              End="214.5,78.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.1575562700965" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,47.1575562700965"
+                    Point2="0,51.1575562700965"
+                    Point3="4,51.1575562700965" />
+                  <mssgle:LineSegment
+                    End="210.5,51.1575562700965" />
+                  <mssgle:CubicBezierSegment
+                    Point1="210.5,51.1575562700965"
+                    Point2="214.5,51.1575562700965"
+                    Point3="214.5,55.1575562700965" />
+                  <mssgle:LineSegment
+                    End="214.5,78.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\dft_ExcelMarket_Asset">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="178,42"
+          Id="Package\dft_ExcelMarket_Asset\der_LoadExecutionId"
+          TopLeft="364.25,114" />
+        <NodeLayout
+          Size="197,42"
+          Id="Package\dft_ExcelMarket_Asset\dcnv"
+          TopLeft="364.25,204" />
+        <NodeLayout
+          Size="197,42"
+          Id="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset"
+          TopLeft="364.25,30" />
+        <NodeLayout
+          Size="212,42"
+          Id="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset"
+          TopLeft="364.25,314" />
+        <EdgeLayout
+          Id="Package\dft_ExcelMarket_Asset.Paths[Excel Source Output]"
+          TopLeft="462.75,72">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-9.5,42"
+              Start="0,0"
+              End="-9.5,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17"
+                    Point2="0,21"
+                    Point3="-4,21" />
+                  <mssgle:LineSegment
+                    End="-5.5,21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.5,21"
+                    Point2="-9.5,21"
+                    Point3="-9.5,25" />
+                  <mssgle:LineSegment
+                    End="-9.5,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\dft_ExcelMarket_Asset.Paths[Derived Column Output]"
+          TopLeft="453.25,156">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9.5,48"
+              Start="0,0"
+              End="9.5,40.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20"
+                    Point2="0,24"
+                    Point3="4,24" />
+                  <mssgle:LineSegment
+                    End="5.5,24" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5.5,24"
+                    Point2="9.5,24"
+                    Point3="9.5,28" />
+                  <mssgle:LineSegment
+                    End="9.5,40.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\dft_ExcelMarket_Asset.Paths[Data Conversion Output]"
+          TopLeft="466.5,246">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,68"
+              Start="0,0"
+              End="0,60.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,60.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\dft_ExcelMarket_Asset\excel_src_TemplateAsset">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\dft_ExcelMarket_Asset\ole_dest_ExcelMarket_Asset">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

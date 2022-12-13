@@ -1,0 +1,2112 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/2/2022 7:03:13 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-JDQLDT1"
+  DTS:CreatorName="DESKTOP-JDQLDT1\nherm"
+  DTS:DTSID="{6C4B9E58-A0A3-47BB-9337-A7049DC5D941}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="ETL-Asset"
+  DTS:PackageType="5"
+  DTS:VersionBuild="33"
+  DTS:VersionGUID="{E7BBB0D4-872A-49B0-A158-E5C90FEBEB48}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-JDQLDT1\MSSQLSERVERDWH.OLTP]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{21306EAC-66B0-4922-9C2F-DB88FB744690}"
+      DTS:ObjectName="DESKTOP-JDQLDT1\MSSQLSERVERDWH.OLTP">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-JDQLDT1\MSSQLSERVERDWH;Initial Catalog=OLTP;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{59EBA6F6-C356-4A3C-9A78-201E08F10B86}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=D:\blx_mdp\cwd\in\template_asset_dwh.xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{ADCC3758-AAE5-490B-B8A2-70A6EA56DBF7}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="PackageStartDateTime">
+      <DTS:VariableValue
+        DTS:DataType="7">10/3/2022 2:04:11 PM</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Expression Task"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{CD504790-0E0B-439D-BAA0-E58E988C38E8}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Expression Task"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::PackageStartDateTime]= GETDATE()" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Insert_Template_Asset"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{54F0CCEB-1573-4F98-8D8D-77E6E388764A}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Insert_Template_Asset"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{7781F618-6980-4997-AFBF-052458654014}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="User"
+          DTS:ObjectName="PackageStartDateTime">
+          <DTS:VariableValue
+            DTS:DataType="7">10/3/2022 2:04:11 PM</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Insert_Template_Asset\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Insert_Template_Asset\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Inputs[Data Conversion Input].Columns[asset_id]"
+                      cachedDataType="r8"
+                      cachedName="asset_id"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[asset_id]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Inputs[Data Conversion Input].Columns[projet_id]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="projet_id"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[projet_id]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Inputs[Data Conversion Input].Columns[projet]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="projet"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[projet]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Inputs[Data Conversion Input].Columns[technologie]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="technologie"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[technologie]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Inputs[Data Conversion Input].Columns[cod]"
+                      cachedDataType="date"
+                      cachedName="cod"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[cod]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Inputs[Data Conversion Input].Columns[mw]"
+                      cachedDataType="r8"
+                      cachedName="mw"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[mw]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Inputs[Data Conversion Input].Columns[taux_succès]"
+                      cachedDataType="r8"
+                      cachedName="taux_succès"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[taux_succès]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Inputs[Data Conversion Input].Columns[puissance_installée]"
+                      cachedDataType="r8"
+                      cachedName="puissance_installée"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[puissance_installée]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Inputs[Data Conversion Input].Columns[eoh]"
+                      cachedDataType="r8"
+                      cachedName="eoh"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[eoh]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Inputs[Data Conversion Input].Columns[date_merchant]"
+                      cachedDataType="date"
+                      cachedName="date_merchant"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[date_merchant]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Inputs[Data Conversion Input].Columns[date_dementelement]"
+                      cachedDataType="date"
+                      cachedName="date_dementelement"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[date_dementelement]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Inputs[Data Conversion Input].Columns[repowering]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="repowering"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[repowering]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Inputs[Data Conversion Input].Columns[date_msi]"
+                      cachedDataType="date"
+                      cachedName="date_msi"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[date_msi]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Inputs[Data Conversion Input].Columns[en_planif]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="en_planif"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[en_planif]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Inputs[Data Conversion Input].Columns[p50]"
+                      cachedDataType="r8"
+                      cachedName="p50"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[p50]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Inputs[Data Conversion Input].Columns[p90]"
+                      cachedDataType="r8"
+                      cachedName="p90"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[p90]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Insert_Template_Asset\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[AssetId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[AssetId]"
+                      name="AssetId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[asset_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[ProjectId]"
+                      name="ProjectId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[projet_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="250"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[Project]"
+                      name="Project"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[projet]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[Technology]"
+                      name="Technology"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[technologie]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[Cod]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[Cod]"
+                      name="Cod"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[cod]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[Mw]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[Mw]"
+                      name="Mw"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[mw]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[SuccesPct]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[SuccesPct]"
+                      name="SuccesPct"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[taux_succès]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[InstalledPower]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[InstalledPower]"
+                      name="InstalledPower"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[puissance_installée]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[Eoh]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[Eoh]"
+                      name="Eoh"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[eoh]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[DateMerchant]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[DateMerchant]"
+                      name="DateMerchant"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[date_merchant]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[DismentleDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[DismentleDate]"
+                      name="DismentleDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[date_dementelement]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="100"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[Repowering]"
+                      name="Repowering"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[repowering]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[DateMsi]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[DateMsi]"
+                      name="DateMsi"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[date_msi]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[InPlanif]"
+                      name="InPlanif"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[en_planif]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[P50]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[P50]"
+                      name="P50"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[p50]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[P90]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[P90]"
+                      name="P90"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[p90]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Insert_Template_Asset\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Insert_Template_Asset\Excel Source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Sheet1$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Insert_Template_Asset\Excel Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[asset_id]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[asset_id]"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[asset_id]"
+                      name="asset_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[projet_id]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[projet_id]"
+                      length="255"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[projet_id]"
+                      name="projet_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[projet]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[projet]"
+                      length="255"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[projet]"
+                      name="projet"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[technologie]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[technologie]"
+                      length="255"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[technologie]"
+                      name="technologie"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[cod]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[cod]"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[cod]"
+                      name="cod"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[mw]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[mw]"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[mw]"
+                      name="mw"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[taux_succès]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[taux_succès]"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[taux_succès]"
+                      name="taux_succès"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[puissance_installée]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[puissance_installée]"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[puissance_installée]"
+                      name="puissance_installée"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[eoh]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[eoh]"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[eoh]"
+                      name="eoh"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[date_merchant]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[date_merchant]"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[date_merchant]"
+                      name="date_merchant"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[date_dementelement]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[date_dementelement]"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[date_dementelement]"
+                      name="date_dementelement"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[repowering]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[repowering]"
+                      length="255"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[repowering]"
+                      name="repowering"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[date_msi]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[date_msi]"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[date_msi]"
+                      name="date_msi"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[en_planif]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[en_planif]"
+                      length="255"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[en_planif]"
+                      name="en_planif"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[p50]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[p50]"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[p50]"
+                      name="p50"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[p90]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[p90]"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[p90]"
+                      name="p90"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[rw_id]"
+                      dataType="r8"
+                      name="rw_id" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[asset_id]"
+                      dataType="r8"
+                      name="asset_id" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[projet_id]"
+                      dataType="wstr"
+                      length="255"
+                      name="projet_id" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[projet]"
+                      dataType="wstr"
+                      length="255"
+                      name="projet" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[technologie]"
+                      dataType="wstr"
+                      length="255"
+                      name="technologie" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[cod]"
+                      dataType="date"
+                      name="cod" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[mw]"
+                      dataType="r8"
+                      name="mw" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[taux_succès]"
+                      dataType="r8"
+                      name="taux_succès" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[puissance_installée]"
+                      dataType="r8"
+                      name="puissance_installée" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[eoh]"
+                      dataType="r8"
+                      name="eoh" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[date_merchant]"
+                      dataType="date"
+                      name="date_merchant" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[date_dementelement]"
+                      dataType="date"
+                      name="date_dementelement" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[repowering]"
+                      dataType="wstr"
+                      length="255"
+                      name="repowering" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[date_msi]"
+                      dataType="date"
+                      name="date_msi" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[en_planif]"
+                      dataType="wstr"
+                      length="255"
+                      name="en_planif" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[p50]"
+                      dataType="r8"
+                      name="p50" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].ExternalColumns[p90]"
+                      dataType="r8"
+                      name="p90" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[asset_id]"
+                      dataType="r8"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[asset_id]"
+                      name="asset_id" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[projet_id]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[projet_id]"
+                      name="projet_id" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[projet]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[projet]"
+                      name="projet" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[technologie]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[technologie]"
+                      name="technologie" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[cod]"
+                      dataType="date"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[cod]"
+                      name="cod" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[mw]"
+                      dataType="r8"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[mw]"
+                      name="mw" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[taux_succès]"
+                      dataType="r8"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[taux_succès]"
+                      name="taux_succès" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[puissance_installée]"
+                      dataType="r8"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[puissance_installée]"
+                      name="puissance_installée" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[eoh]"
+                      dataType="r8"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[eoh]"
+                      name="eoh" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[date_merchant]"
+                      dataType="date"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[date_merchant]"
+                      name="date_merchant" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[date_dementelement]"
+                      dataType="date"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[date_dementelement]"
+                      name="date_dementelement" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[repowering]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[repowering]"
+                      name="repowering" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[date_msi]"
+                      dataType="date"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[date_msi]"
+                      name="date_msi" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[en_planif]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[en_planif]"
+                      name="en_planif" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[p50]"
+                      dataType="r8"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[p50]"
+                      name="p50" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[p90]"
+                      dataType="r8"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[p90]"
+                      name="p90" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Insert_Template_Asset\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Asset]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Insert_Template_Asset\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-JDQLDT1\MSSQLSERVERDWH.OLTP]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-JDQLDT1\MSSQLSERVERDWH.OLTP]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[AssetId]"
+                      cachedDataType="i4"
+                      cachedName="AssetId"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AssetId]"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[AssetId]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ProjectId]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ProjectId"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProjectId]"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[ProjectId]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Project]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="Project"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Project]"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[Project]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Technology]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Technology"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Technology]"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[Technology]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Cod]"
+                      cachedDataType="dbDate"
+                      cachedName="Cod"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Cod]"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[Cod]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Mw]"
+                      cachedDataType="r8"
+                      cachedName="Mw"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Mw]"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[Mw]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SuccesPct]"
+                      cachedDataType="r8"
+                      cachedName="SuccesPct"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SuccesPct]"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[SuccesPct]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[InstalledPower]"
+                      cachedDataType="r8"
+                      cachedName="InstalledPower"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InstalledPower]"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[InstalledPower]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Eoh]"
+                      cachedDataType="r8"
+                      cachedName="Eoh"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Eoh]"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[Eoh]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DateMerchant]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMerchant"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateMerchant]"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[DateMerchant]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Repowering]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Repowering"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Repowering]"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[Repowering]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DateMsi]"
+                      cachedDataType="dbDate"
+                      cachedName="DateMsi"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateMsi]"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[DateMsi]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[InPlanif]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="InPlanif"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InPlanif]"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[InPlanif]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[P50]"
+                      cachedDataType="r8"
+                      cachedName="P50"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[P50]"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[P50]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[P90]"
+                      cachedDataType="r8"
+                      cachedName="P90"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[P90]"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[P90]" />
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DismentleDate]"
+                      cachedDataType="dbDate"
+                      cachedName="DismentleDate"
+                      externalMetadataColumnId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DismentleDate]"
+                      lineageId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output].Columns[DismentleDate]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="i4"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[AssetId]"
+                      dataType="i4"
+                      name="AssetId" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProjectId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ProjectId" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Project]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="Project" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Technology]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Technology" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Cod]"
+                      dataType="dbDate"
+                      name="Cod" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Mw]"
+                      dataType="numeric"
+                      name="Mw"
+                      precision="5"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SuccesPct]"
+                      dataType="numeric"
+                      name="SuccesPct"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InstalledPower]"
+                      dataType="numeric"
+                      name="InstalledPower"
+                      precision="7"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Eoh]"
+                      dataType="numeric"
+                      name="Eoh"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateMerchant]"
+                      dataType="dbDate"
+                      name="DateMerchant" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DismentleDate]"
+                      dataType="dbDate"
+                      name="DismentleDate" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Repowering]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Repowering" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateMsi]"
+                      dataType="dbDate"
+                      name="DateMsi" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InPlanif]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="InPlanif" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[P50]"
+                      dataType="numeric"
+                      name="P50"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[P90]"
+                      dataType="numeric"
+                      name="P90"
+                      precision="10"
+                      scale="3" />
+                    <externalMetadataColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ActivityDateTime]"
+                      dataType="dbTimeStamp"
+                      name="ActivityDateTime" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Insert_Template_Asset\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Insert_Template_Asset\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Insert_Template_Asset\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Insert_Template_Asset\Sort"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+              name="Sort"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the maximum number of threads to use for sorting."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\Insert_Template_Asset\Sort.Inputs[Sort Input]"
+                  name="Sort Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Inputs[Sort Input].Columns[asset_id]"
+                      cachedDataType="r8"
+                      cachedName="asset_id"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[asset_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Inputs[Sort Input].Columns[projet_id]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="projet_id"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[projet_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Inputs[Sort Input].Columns[projet]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="projet"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[projet]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Inputs[Sort Input].Columns[technologie]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="technologie"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[technologie]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Inputs[Sort Input].Columns[cod]"
+                      cachedDataType="date"
+                      cachedName="cod"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[cod]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Inputs[Sort Input].Columns[mw]"
+                      cachedDataType="r8"
+                      cachedName="mw"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[mw]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Inputs[Sort Input].Columns[taux_succès]"
+                      cachedDataType="r8"
+                      cachedName="taux_succès"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[taux_succès]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Inputs[Sort Input].Columns[puissance_installée]"
+                      cachedDataType="r8"
+                      cachedName="puissance_installée"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[puissance_installée]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Inputs[Sort Input].Columns[eoh]"
+                      cachedDataType="r8"
+                      cachedName="eoh"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[eoh]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Inputs[Sort Input].Columns[date_merchant]"
+                      cachedDataType="date"
+                      cachedName="date_merchant"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[date_merchant]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Inputs[Sort Input].Columns[date_dementelement]"
+                      cachedDataType="date"
+                      cachedName="date_dementelement"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[date_dementelement]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Inputs[Sort Input].Columns[repowering]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="repowering"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[repowering]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Inputs[Sort Input].Columns[date_msi]"
+                      cachedDataType="date"
+                      cachedName="date_msi"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[date_msi]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Inputs[Sort Input].Columns[en_planif]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="en_planif"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[en_planif]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Inputs[Sort Input].Columns[p50]"
+                      cachedDataType="r8"
+                      cachedName="p50"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[p50]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Inputs[Sort Input].Columns[p90]"
+                      cachedDataType="r8"
+                      cachedName="p90"
+                      lineageId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[p90]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the comparison options for character data."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the sort order of the column."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output]"
+                  isSorted="true"
+                  name="Sort Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[asset_id]"
+                      dataType="r8"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[asset_id]"
+                      name="asset_id">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[asset_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[projet_id]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[projet_id]"
+                      name="projet_id"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[projet_id]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[projet]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[projet]"
+                      name="projet">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[projet]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[technologie]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[technologie]"
+                      name="technologie">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[technologie]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[cod]"
+                      dataType="date"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[cod]"
+                      name="cod">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[cod]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[mw]"
+                      dataType="r8"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[mw]"
+                      name="mw">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[mw]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[taux_succès]"
+                      dataType="r8"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[taux_succès]"
+                      name="taux_succès">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[taux_succès]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[puissance_installée]"
+                      dataType="r8"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[puissance_installée]"
+                      name="puissance_installée">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[puissance_installée]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[eoh]"
+                      dataType="r8"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[eoh]"
+                      name="eoh">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[eoh]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[date_merchant]"
+                      dataType="date"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[date_merchant]"
+                      name="date_merchant">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[date_merchant]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[date_dementelement]"
+                      dataType="date"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[date_dementelement]"
+                      name="date_dementelement">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[date_dementelement]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[repowering]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[repowering]"
+                      name="repowering">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[repowering]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[date_msi]"
+                      dataType="date"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[date_msi]"
+                      name="date_msi">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[date_msi]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[en_planif]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[en_planif]"
+                      name="en_planif">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[en_planif]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[p50]"
+                      dataType="r8"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[p50]"
+                      name="p50">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[p50]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[p90]"
+                      dataType="r8"
+                      lineageId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output].Columns[p90]"
+                      name="p90">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the lineage identifier of the input column that is associated with this output column."
+                          name="SortColumnId">#{Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output].Columns[p90]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Insert_Template_Asset.Paths[Data Conversion Output]"
+              endId="Package\Insert_Template_Asset\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Insert_Template_Asset\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Insert_Template_Asset.Paths[Excel Source Output]"
+              endId="Package\Insert_Template_Asset\Sort.Inputs[Sort Input]"
+              name="Excel Source Output"
+              startId="Package\Insert_Template_Asset\Excel Source.Outputs[Excel Source Output]" />
+            <path
+              refId="Package\Insert_Template_Asset.Paths[Sort Output]"
+              endId="Package\Insert_Template_Asset\Data Conversion.Inputs[Data Conversion Input]"
+              name="Sort Output"
+              startId="Package\Insert_Template_Asset\Sort.Outputs[Sort Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate_Asset_Table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{45027EAC-0D93-4946-A300-E19A67DC805F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate_Asset_Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{21306EAC-66B0-4922-9C2F-DB88FB744690}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbo.[Asset]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Update_LogTracker"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6AB59F65-7176-4261-A92E-A8EDAE086927}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Update_LogTracker"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{21306EAC-66B0-4922-9C2F-DB88FB744690}"
+          SQLTask:SqlStatementSource="INSERT INTO dbo.[LogTracker]([EventType],[TableName],[LastActivityDateTime]) VALUES &#xA;('I','Asset',?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::PackageStartDateTime"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="7"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{D68387B5-32FA-4CCA-B157-3EBAB34956D0}"
+      DTS:From="Package\Insert_Template_Asset"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Update_LogTracker" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{84A5D51D-4F30-4C6A-88CE-6AB535748DA6}"
+      DTS:From="Package\Expression Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Insert_Template_Asset" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{C0BA9C7D-4AB1-4BC8-B74D-190D8F96FCC2}"
+      DTS:From="Package\Truncate_Asset_Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Insert_Template_Asset" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Expression Task"
+          TopLeft="244,40" />
+        <NodeLayout
+          Size="187,42"
+          Id="Package\Insert_Template_Asset"
+          TopLeft="361,160" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\Truncate_Asset_Table"
+          TopLeft="530,36" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Update_LogTracker"
+          TopLeft="378,287" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="454.5,202">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9,85"
+              Start="0,0"
+              End="9,77.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38.5"
+                    Point2="0,42.5"
+                    Point3="4,42.5" />
+                  <mssgle:LineSegment
+                    End="5,42.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5,42.5"
+                    Point2="9,42.5"
+                    Point3="9,46.5" />
+                  <mssgle:LineSegment
+                    End="9,77.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="321.5,82">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="103.166666666667,78"
+              Start="0,0"
+              End="103.166666666667,70.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,42.4029692470838" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,42.4029692470838"
+                    Point2="0,46.4029692470838"
+                    Point3="4,46.4029692470838" />
+                  <mssgle:LineSegment
+                    End="99.1666666666667,46.4029692470838" />
+                  <mssgle:CubicBezierSegment
+                    Point1="99.1666666666667,46.4029692470838"
+                    Point2="103.166666666667,46.4029692470838"
+                    Point3="103.166666666667,50.4029692470838" />
+                  <mssgle:LineSegment
+                    End="103.166666666667,70.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="621.5,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-137.166666666667,82"
+              Start="0,0"
+              End="-137.166666666667,74.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.7826086956522" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,44.7826086956522"
+                    Point2="0,48.7826086956522"
+                    Point3="-4,48.7826086956522" />
+                  <mssgle:LineSegment
+                    End="-133.166666666667,48.7826086956522" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-133.166666666667,48.7826086956522"
+                    Point2="-137.166666666667,48.7826086956522"
+                    Point3="-137.166666666667,52.7826086956522" />
+                  <mssgle:LineSegment
+                    End="-137.166666666667,74.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Insert_Template_Asset">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="98,42"
+          Id="Package\Insert_Template_Asset\Sort"
+          TopLeft="418,113" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Insert_Template_Asset\Excel Source"
+          TopLeft="403,18" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Insert_Template_Asset\OLE DB Destination"
+          TopLeft="398,312" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Insert_Template_Asset\Data Conversion"
+          TopLeft="391,195" />
+        <EdgeLayout
+          Id="Package\Insert_Template_Asset.Paths[Sort Output]"
+          TopLeft="468,155">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40"
+              Start="0,0"
+              End="0,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Insert_Template_Asset.Paths[Excel Source Output]"
+          TopLeft="469.75,60">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53"
+              Start="0,0"
+              End="0,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Insert_Template_Asset.Paths[Data Conversion Output]"
+          TopLeft="469,237">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="14.5,75"
+              Start="0,0"
+              End="14.5,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.5"
+                    Point2="0,37.5"
+                    Point3="4,37.5" />
+                  <mssgle:LineSegment
+                    End="10.5,37.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="10.5,37.5"
+                    Point2="14.5,37.5"
+                    Point3="14.5,41.5" />
+                  <mssgle:LineSegment
+                    End="14.5,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Insert_Template_Asset\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Insert_Template_Asset\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

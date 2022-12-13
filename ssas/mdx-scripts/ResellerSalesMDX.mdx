@@ -1,0 +1,63 @@
+SELECT 
+FROM [ResellerSales]
+GO
+
+SELECT 
+FROM [ResellerSales]
+WHERE [Measures].[Total Product Cost]
+GO
+
+SELECT {[Measures].[Total Product Cost], [Measures].[Order Quantity], [Average Sales Amont]} ON COLUMNS
+FROM [ResellerSales]
+
+/*==============  Activities ==============*/
+
+SELECT [Measures].[Total Product Cost] ON COLUMNS
+FROM [ResellerSales]
+WHERE [Dim Reseller].[English Country Region Name].[English Country Region Name].MEMBERS
+
+SELECT[Dim Reseller].[English Country Region Name].[English Country Region Name].MEMBERS ON COLUMNS
+FROM [ResellerSales]
+WHERE [Measures].[Total Product Cost]
+
+SELECT {[Dim Reseller].[English Country Region Name].[English Country Region Name].&[Canada]:[Dim Reseller].[English Country Region Name].[English Country Region Name].&[Germany]} ON COLUMNS
+FROM [ResellerSales]
+WHERE [Measures].[Total Product Cost]
+
+SELECT [Measures].[Total Product Cost] ON COLUMNS, 
+ NON EMPTY([Due Date].[Calendar Year].[Calendar Year],
+           [Due Date].[Month Number Of Year].[Month Number Of Year]
+       ) ON ROWS
+FROM [ResellerSales]
+ 
+
+---   Activities  -----
+---ytd 20121205
+WITH MEMBER TotalToYtd AS 
+SUM(ytd([Due Date].[Hierarchy].[Date Key].&[20121205])
+              ,[Measures].[Order Quantity])
+SELECT (
+        TotalToYtd
+       ) ON COLUMNS 
+FROM [ResellerSales];
+
+--- ytd 20121205 with parallelperiod (Backwards=-, forward=+)
+WITH MEMBER TotalToYtd AS 
+SUM(ytd(PARALLELPERIOD(
+                       [Due Date].[Hierarchy].[Calendar Year],1
+                      ,[Due Date].[Hierarchy].[Date Key].&[20121205] 
+					  )),
+					  [Measures].[Order Quantity]
+					  )
+SELECT 	TotalToYtd ON COLUMNS				  
+FROM [ResellerSales]
+
+----
+
+WITH MEMBER TotalToYtd AS
+SUM(
+LASTPERIODS(30,
+        [Due Date].[Hierarchy].[Date Key].&[20121205]), 
+		[Measures].[Order Quantity])
+SELECT TotalToYtd ON COLUMNS
+FROM [ResellerSales]
