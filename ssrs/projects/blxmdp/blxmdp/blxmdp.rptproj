@@ -55,7 +55,9 @@
     <DataSource Include="blxdwh.rds" />
   </ItemGroup>
   <ItemGroup>
-    <Report Include="blxmdp_exp_hcr.rdl" />
+    <Report Include="ReportFull.rdl" />
+    <Report Include="ReportHcrExpo.rdl" />
+    <Report Include="ReportHcrExposure.rdl" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Reporting Services\Microsoft.ReportingServices.MSBuilder.targets" />
 </Project>

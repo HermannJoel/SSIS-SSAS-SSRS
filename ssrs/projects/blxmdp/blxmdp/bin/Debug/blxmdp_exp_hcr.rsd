@@ -3,7 +3,7 @@
   <DataSet Name="DataSet1">
     <Query>
       <DataSourceReference>blxdwh</DataSourceReference>
-      <CommandText> SELECT NON EMPTY { [Measures].[Exposition], [Measures].[HCR] } ON COLUMNS, NON EMPTY { ([Dim Date 1].[Hierarchy].[Month Number Of Year].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM [blx dwh] CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</CommandText>
+      <CommandText> SELECT NON EMPTY { [Measures].[Exposition], [Measures].[HCR] } ON COLUMNS, NON EMPTY { ([Dim Date 1].[Date].[Quarter Number Of Year].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_UNIQUE_NAME ON ROWS FROM [blx dwh] CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</CommandText>
       <rd:DesignerState>
         <QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition">
           <CommandType>MDX</CommandType>
@@ -13,38 +13,24 @@
                 <Item>
                   <ID xsi:type="Level">
                     <DimensionName>Dim Date 1</DimensionName>
-                    <HierarchyName>Hierarchy</HierarchyName>
-                    <HierarchyUniqueName>[Dim Date 1].[Hierarchy]</HierarchyUniqueName>
+                    <HierarchyName>Date</HierarchyName>
+                    <HierarchyUniqueName>[Dim Date 1].[Date]</HierarchyUniqueName>
                     <LevelName>Calender Year</LevelName>
-                    <UniqueName>[Dim Date 1].[Hierarchy].[Calender Year]</UniqueName>
+                    <UniqueName>[Dim Date 1].[Date].[Calender Year]</UniqueName>
                   </ID>
                   <ItemCaption>Calender Year</ItemCaption>
                   <UniqueName>true</UniqueName>
-                  <MemberValue>true</MemberValue>
                 </Item>
                 <Item>
                   <ID xsi:type="Level">
                     <DimensionName>Dim Date 1</DimensionName>
-                    <HierarchyName>Hierarchy</HierarchyName>
-                    <HierarchyUniqueName>[Dim Date 1].[Hierarchy]</HierarchyUniqueName>
+                    <HierarchyName>Date</HierarchyName>
+                    <HierarchyUniqueName>[Dim Date 1].[Date]</HierarchyUniqueName>
                     <LevelName>Quarter Number Of Year</LevelName>
-                    <UniqueName>[Dim Date 1].[Hierarchy].[Quarter Number Of Year]</UniqueName>
+                    <UniqueName>[Dim Date 1].[Date].[Quarter Number Of Year]</UniqueName>
                   </ID>
                   <ItemCaption>Quarter Number Of Year</ItemCaption>
                   <UniqueName>true</UniqueName>
-                  <MemberValue>true</MemberValue>
-                </Item>
-                <Item>
-                  <ID xsi:type="Level">
-                    <DimensionName>Dim Date 1</DimensionName>
-                    <HierarchyName>Hierarchy</HierarchyName>
-                    <HierarchyUniqueName>[Dim Date 1].[Hierarchy]</HierarchyUniqueName>
-                    <LevelName>Month Number Of Year</LevelName>
-                    <UniqueName>[Dim Date 1].[Hierarchy].[Month Number Of Year]</UniqueName>
-                  </ID>
-                  <ItemCaption>Month Number Of Year</ItemCaption>
-                  <UniqueName>true</UniqueName>
-                  <MemberValue>true</MemberValue>
                 </Item>
                 <Item>
                   <ID xsi:type="Measure">
@@ -90,7 +76,7 @@
             <QueryProperties />
           </QuerySpecification>
           <Query>
-            <Statement> SELECT NON EMPTY { [Measures].[Exposition], [Measures].[HCR] } ON COLUMNS, NON EMPTY { ([Dim Date 1].[Hierarchy].[Month Number Of Year].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM [blx dwh] CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</Statement>
+            <Statement> SELECT NON EMPTY { [Measures].[Exposition], [Measures].[HCR] } ON COLUMNS, NON EMPTY { ([Dim Date 1].[Date].[Quarter Number Of Year].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_UNIQUE_NAME ON ROWS FROM [blx dwh] CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</Statement>
             <ParameterDefinitions />
           </Query>
         </QueryDefinition>
@@ -98,15 +84,11 @@
     </Query>
     <Fields>
       <Field Name="Calender_Year">
-        <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Dim Date 1].[Hierarchy].[Calender Year]" /&gt;</DataField>
+        <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Dim Date 1].[Date].[Calender Year]" /&gt;</DataField>
         <rd:TypeName>System.String</rd:TypeName>
       </Field>
       <Field Name="Quarter_Number_Of_Year">
-        <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Dim Date 1].[Hierarchy].[Quarter Number Of Year]" /&gt;</DataField>
-        <rd:TypeName>System.String</rd:TypeName>
-      </Field>
-      <Field Name="Month_Number_Of_Year">
-        <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Dim Date 1].[Hierarchy].[Month Number Of Year]" /&gt;</DataField>
+        <DataField>&lt;?xml version="1.0" encoding="utf-8"?&gt;&lt;Field xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:type="Level" UniqueName="[Dim Date 1].[Date].[Quarter Number Of Year]" /&gt;</DataField>
         <rd:TypeName>System.String</rd:TypeName>
       </Field>
       <Field Name="Exposition">
