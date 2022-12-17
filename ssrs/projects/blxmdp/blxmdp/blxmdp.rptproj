@@ -57,7 +57,8 @@
   <ItemGroup>
     <Report Include="ReportFull.rdl" />
     <Report Include="ReportHcrExposure.rdl" />
-    <Report Include="ReportTypeHedgeTech.rdl" />
+    <Report Include="ReportHedgeTypeContractTech.rdl" />
+    <Report Include="ReportProdPlanifTypeHedge.rdl" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Reporting Services\Microsoft.ReportingServices.MSBuilder.targets" />
 </Project>
