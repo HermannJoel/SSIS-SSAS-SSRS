@@ -12,8 +12,8 @@
   </DataSourceImpersonationInfo>
   <Dimensions>
     <Dimension>
-      <ID>DimHedge</ID>
-      <Name>DimHedge</Name>
+      <ID>Dim Hedge 1</ID>
+      <Name>Dim Hedge 1</Name>
       <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
       <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
       <Annotations>
@@ -21,7 +21,7 @@
           <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
           <Value>
             <dds xmlns="">
-              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="8" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-1206" scrolltop="-100" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="75" x="7594" y="13044" backcolor="16119285" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="8" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-1674" scrolltop="4761" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="7382" y="17965" backcolor="16119285" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
                 <font>
                   <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
                 </font>
@@ -43,7 +43,7 @@
                 </layoutobject>
                 <shape groupshapeid="0" groupnode="0" />
               </ddscontrol>
-              <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="DimHedge" left="20" top="7400" logicalid="5" controlid="2" masterid="0" hint1="0" hint2="0" width="3757" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+              <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="DimHedge" left="-1383" top="7506" logicalid="5" controlid="2" masterid="0" hint1="0" hint2="0" width="3757" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                 <control>
                   <ddsxmlobjectstreaminitwrapper binary="000c0000ad0e000088130000" />
                 </control>
@@ -54,7 +54,7 @@
                 </layoutobject>
                 <shape groupshapeid="0" groupnode="0" />
               </ddscontrol>
-              <ddscontrol controlprogid="MSDDS.Polyline" left="1499" top="4501" logicalid="6" controlid="3" masterid="0" hint1="0" hint2="0" width="799" height="3199" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+              <ddscontrol controlprogid="MSDDS.Polyline" left="195" top="4501" logicalid="6" controlid="3" masterid="0" hint1="0" hint2="0" width="1003" height="3305" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
                 <control>
                   <ddsxmlobj>
                     <polyline endtypedst="6" endtypesrc="3" usercolor="1973790" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
@@ -67,9 +67,11 @@
                     <property name="VisibleAP" value="0" vartype="3" />
                   </ddsxmlobj>
                 </layoutobject>
-                <connector lineroutestyle="MSDDS.Rectilinear" sourceid="1" destid="2" sourceattachpoint="5" destattachpoint="6" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-                  <point x="1898" y="5000" />
-                  <point x="1898" y="7400" />
+                <connector lineroutestyle="MSDDS.Rectilinear" sourceid="1" destid="2" sourceattachpoint="1" destattachpoint="6" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
+                  <point x="798" y="5000" />
+                  <point x="798" y="6332" />
+                  <point x="495" y="6332" />
+                  <point x="495" y="7506" />
                 </connector>
               </ddscontrol>
             </dds>
@@ -89,15 +91,15 @@
         </Annotation>
         <Annotation>
           <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
-          <Value>-1206</Value>
+          <Value>-1674</Value>
         </Annotation>
         <Annotation>
           <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
-          <Value>-100</Value>
+          <Value>4761</Value>
         </Annotation>
         <Annotation>
           <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
-          <Value>20</Value>
+          <Value>-1383</Value>
         </Annotation>
         <Annotation>
           <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
@@ -105,20 +107,39 @@
         </Annotation>
         <Annotation>
           <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
-          <Value>75</Value>
+          <Value>100</Value>
         </Annotation>
         <Annotation>
           <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
           <Value>
             <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="0" xmlns="">
-              <Shapes NodeWidth="113">
-                <Shape Id="Hedge Id" Expanded="true">
+              <Shapes NodeWidth="106">
+                <Shape Id="Hedge Id" Expanded="false">
                   <Attributes>
                     <Attribute Id="Hedge Id" />
                     <Attribute Id="Asset Id" />
                     <Attribute Id="In Planif" />
+                    <Attribute Id="Type Hedge" />
                   </Attributes>
                   <Position x="20" y="20" />
+                </Shape>
+                <Shape Id="Project Id" Expanded="false">
+                  <Attributes>
+                    <Attribute Id="Project Id" />
+                  </Attributes>
+                  <Position x="157" y="20" />
+                </Shape>
+                <Shape Id="Project" Expanded="false">
+                  <Attributes>
+                    <Attribute Id="Project" />
+                  </Attributes>
+                  <Position x="295" y="20" />
+                </Shape>
+                <Shape Id="Technology" Expanded="false">
+                  <Attributes>
+                    <Attribute Id="Technology" />
+                  </Attributes>
+                  <Position x="432" y="20" />
                 </Shape>
               </Shapes>
             </DiagramLayout>
@@ -128,7 +149,7 @@
       <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
       <State>Unprocessed</State>
       <Source xsi:type="DataSourceViewBinding">
-        <DataSourceViewID>blxdwh</DataSourceViewID>
+        <DataSourceViewID>blx dwh</DataSourceViewID>
       </Source>
       <UnknownMember>Visible</UnknownMember>
       <ErrorConfiguration>
@@ -153,47 +174,22 @@
           </KeyColumns>
           <AttributeRelationships>
             <AttributeRelationship>
-              <AttributeID>In Planif</AttributeID>
-              <Name>In Planif</Name>
-            </AttributeRelationship>
-            <AttributeRelationship>
               <AttributeID>Asset Id</AttributeID>
               <Name>Asset Id</Name>
             </AttributeRelationship>
             <AttributeRelationship>
-              <AttributeID>Technology</AttributeID>
-              <Name>Technology</Name>
-            </AttributeRelationship>
-            <AttributeRelationship>
-              <AttributeID>Project Id</AttributeID>
-              <Name>Project Id</Name>
-            </AttributeRelationship>
-            <AttributeRelationship>
-              <AttributeID>Project</AttributeID>
-              <Name>Project</Name>
+              <AttributeID>In Planif</AttributeID>
+              <Name>In Planif</Name>
             </AttributeRelationship>
             <AttributeRelationship>
               <AttributeID>Type Hedge</AttributeID>
               <Name>Type Hedge</Name>
             </AttributeRelationship>
+            <AttributeRelationship>
+              <AttributeID>Project Id</AttributeID>
+              <Name>Project Id</Name>
+            </AttributeRelationship>
           </AttributeRelationships>
-          <OrderBy>Key</OrderBy>
-          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-        </Attribute>
-        <Attribute>
-          <ID>In Planif</ID>
-          <Name>In Planif</Name>
-          <KeyColumns>
-            <KeyColumn>
-              <DataType>WChar</DataType>
-              <DataSize>50</DataSize>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimHedge</TableID>
-                <ColumnID>InPlanif</ColumnID>
-              </Source>
-            </KeyColumn>
-          </KeyColumns>
           <OrderBy>Key</OrderBy>
           <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
           <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
@@ -216,22 +212,6 @@
           <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
         </Attribute>
         <Attribute>
-          <ID>Technology</ID>
-          <Name>Technology</Name>
-          <KeyColumns>
-            <KeyColumn>
-              <DataType>WChar</DataType>
-              <DataSize>200</DataSize>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimHedge</TableID>
-                <ColumnID>Technology</ColumnID>
-              </Source>
-            </KeyColumn>
-          </KeyColumns>
-          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-        </Attribute>
-        <Attribute>
           <ID>Project Id</ID>
           <Name>Project Id</Name>
           <KeyColumns>
@@ -244,6 +224,12 @@
               </Source>
             </KeyColumn>
           </KeyColumns>
+          <AttributeRelationships>
+            <AttributeRelationship>
+              <AttributeID>Project</AttributeID>
+              <Name>Project</Name>
+            </AttributeRelationship>
+          </AttributeRelationships>
           <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
           <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
         </Attribute>
@@ -257,6 +243,52 @@
               <Source xsi:type="ColumnBinding">
                 <TableID>DW_DimHedge</TableID>
                 <ColumnID>Project</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <AttributeRelationships>
+            <AttributeRelationship>
+              <AttributeID>Technology</AttributeID>
+              <Name>Technology</Name>
+            </AttributeRelationship>
+          </AttributeRelationships>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>Technology</ID>
+          <Name>Technology</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>200</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>DW_DimHedge</TableID>
+                <ColumnID>Technology</ColumnID>
+              </Source>
+            </KeyColumn>
+          </KeyColumns>
+          <NameColumn>
+            <DataType>WChar</DataType>
+            <DataSize>200</DataSize>
+            <Source xsi:type="ColumnBinding">
+              <TableID>DW_DimHedge</TableID>
+              <ColumnID>Technology</ColumnID>
+            </Source>
+          </NameColumn>
+          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
+          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
+        </Attribute>
+        <Attribute>
+          <ID>In Planif</ID>
+          <Name>In Planif</Name>
+          <KeyColumns>
+            <KeyColumn>
+              <DataType>WChar</DataType>
+              <DataSize>50</DataSize>
+              <Source xsi:type="ColumnBinding">
+                <TableID>DW_DimHedge</TableID>
+                <ColumnID>InPlanif</ColumnID>
               </Source>
             </KeyColumn>
           </KeyColumns>
@@ -276,362 +308,14 @@
               </Source>
             </KeyColumn>
           </KeyColumns>
-          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-        </Attribute>
-      </Attributes>
-      <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
-    </Dimension>
-    <Dimension>
-      <ID>DimDate2</ID>
-      <Name>Dim Date</Name>
-      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-      <Annotations>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
-          <Value>
-            <dds xmlns="">
-              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-906" scrolltop="-4352" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="5398" y="12700" backcolor="16119285" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
-                <font>
-                  <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
-                </font>
-                <mouseicon>
-                  <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
-                </mouseicon>
-              </diagram>
-              <layoutmanager>
-                <ddsxmlobj />
-              </layoutmanager>
-              <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="DimDate" left="20" top="0" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="3916" height="6164" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                <control>
-                  <ddsxmlobjectstreaminitwrapper binary="000c00004c0f000014180000" />
-                </control>
-                <layoutobject>
-                  <ddsxmlobj>
-                    <property name="LogicalObject" value="DW_DimDate" vartype="8" />
-                  </ddsxmlobj>
-                </layoutobject>
-                <shape groupshapeid="0" groupnode="0" />
-              </ddscontrol>
-            </dds>
-          </Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
-          <Value>true</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
-          <Value>false</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
-          <Value>true</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
-          <Value>-906</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
-          <Value>-4352</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
-          <Value>20</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
-          <Value>0</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
-          <Value>100</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
-          <Value>
-            <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="0" xmlns="">
-              <Shapes NodeWidth="173">
-                <Shape Id="Date Key" Expanded="false">
-                  <Attributes>
-                    <Attribute Id="Date Key" />
-                    <Attribute Id="Day Number Of Month" />
-                  </Attributes>
-                  <Position x="20" y="20" />
-                </Shape>
-                <Shape Id="Month Number Of Year" Expanded="false">
-                  <Attributes>
-                    <Attribute Id="Month Number Of Year" />
-                  </Attributes>
-                  <Position x="241" y="20" />
-                </Shape>
-                <Shape Id="Quarter Number Of Year" Expanded="false">
-                  <Attributes>
-                    <Attribute Id="Quarter Number Of Year" />
-                  </Attributes>
-                  <Position x="462" y="20" />
-                </Shape>
-                <Shape Id="Calender Year" Expanded="false">
-                  <Attributes>
-                    <Attribute Id="Calender Year" />
-                  </Attributes>
-                  <Position x="683" y="20" />
-                </Shape>
-              </Shapes>
-            </DiagramLayout>
-          </Value>
-        </Annotation>
-      </Annotations>
-      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
-      <State>Unprocessed</State>
-      <Source xsi:type="DataSourceViewBinding">
-        <DataSourceViewID>blxdwh</DataSourceViewID>
-      </Source>
-      <Type>Time</Type>
-      <ErrorConfiguration>
-        <KeyNotFound>ReportAndStop</KeyNotFound>
-        <KeyDuplicate>ReportAndStop</KeyDuplicate>
-        <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
-      </ErrorConfiguration>
-      <CurrentStorageMode>Molap</CurrentStorageMode>
-      <Attributes>
-        <Attribute>
-          <ID>Date Key</ID>
-          <Name>Date Key</Name>
-          <Type>Days</Type>
-          <Usage>Key</Usage>
-          <KeyColumns>
-            <KeyColumn>
-              <DataType>Integer</DataType>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimDate</TableID>
-                <ColumnID>DateKey</ColumnID>
-              </Source>
-            </KeyColumn>
-          </KeyColumns>
           <NameColumn>
             <DataType>WChar</DataType>
+            <DataSize>50</DataSize>
             <Source xsi:type="ColumnBinding">
-              <TableID>DW_DimDate</TableID>
-              <ColumnID>Date</ColumnID>
+              <TableID>DW_DimHedge</TableID>
+              <ColumnID>TypeHedge</ColumnID>
             </Source>
           </NameColumn>
-          <AttributeRelationships>
-            <AttributeRelationship>
-              <AttributeID>Month Number Of Year</AttributeID>
-              <Name>Month Number Of Year</Name>
-            </AttributeRelationship>
-            <AttributeRelationship>
-              <AttributeID>Day Number Of Month</AttributeID>
-              <Name>Day Number Of Month</Name>
-            </AttributeRelationship>
-            <AttributeRelationship>
-              <AttributeID>Quarter Of Year</AttributeID>
-              <Name>Quarter Of Year</Name>
-            </AttributeRelationship>
-            <AttributeRelationship>
-              <AttributeID>Month Of Year</AttributeID>
-              <Name>Month Of Year</Name>
-            </AttributeRelationship>
-          </AttributeRelationships>
-          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-        </Attribute>
-        <Attribute>
-          <ID>Calender Year</ID>
-          <Name>Calender Year</Name>
-          <Type>Years</Type>
-          <KeyColumns>
-            <KeyColumn>
-              <DataType>Integer</DataType>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimDate</TableID>
-                <ColumnID>CalenderYear</ColumnID>
-              </Source>
-            </KeyColumn>
-          </KeyColumns>
-          <NameColumn>
-            <DataType>WChar</DataType>
-            <Source xsi:type="ColumnBinding">
-              <TableID>DW_DimDate</TableID>
-              <ColumnID>CalenderYear</ColumnID>
-            </Source>
-          </NameColumn>
-          <OrderBy>Key</OrderBy>
-          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-        </Attribute>
-        <Attribute>
-          <ID>Quarter Number Of Year</ID>
-          <Name>Quarter Number Of Year</Name>
-          <Type>Quarters</Type>
-          <KeyColumns>
-            <KeyColumn>
-              <DataType>Integer</DataType>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimDate</TableID>
-                <ColumnID>CalenderYear</ColumnID>
-              </Source>
-            </KeyColumn>
-            <KeyColumn>
-              <DataType>Integer</DataType>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimDate</TableID>
-                <ColumnID>QuarterNumberOfYear</ColumnID>
-              </Source>
-            </KeyColumn>
-          </KeyColumns>
-          <NameColumn>
-            <DataType>WChar</DataType>
-            <Source xsi:type="ColumnBinding">
-              <TableID>DW_DimDate</TableID>
-              <ColumnID>QuarterNumberOfYear</ColumnID>
-            </Source>
-          </NameColumn>
-          <AttributeRelationships>
-            <AttributeRelationship>
-              <AttributeID>Calender Year</AttributeID>
-              <Name>Calender Year</Name>
-            </AttributeRelationship>
-          </AttributeRelationships>
-          <OrderBy>Key</OrderBy>
-          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-        </Attribute>
-        <Attribute>
-          <ID>Month Number Of Year</ID>
-          <Name>Month Number Of Year</Name>
-          <Type>Months</Type>
-          <KeyColumns>
-            <KeyColumn>
-              <DataType>Integer</DataType>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimDate</TableID>
-                <ColumnID>CalenderYear</ColumnID>
-              </Source>
-            </KeyColumn>
-            <KeyColumn>
-              <DataType>Integer</DataType>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimDate</TableID>
-                <ColumnID>MonthNumberOfYear</ColumnID>
-              </Source>
-            </KeyColumn>
-          </KeyColumns>
-          <NameColumn>
-            <DataType>WChar</DataType>
-            <DataSize>30</DataSize>
-            <Source xsi:type="ColumnBinding">
-              <TableID>DW_DimDate</TableID>
-              <ColumnID>MonthNameOfYear</ColumnID>
-            </Source>
-          </NameColumn>
-          <AttributeRelationships>
-            <AttributeRelationship>
-              <AttributeID>Quarter Number Of Year</AttributeID>
-              <Name>Quarter Number Of Year</Name>
-            </AttributeRelationship>
-          </AttributeRelationships>
-          <OrderBy>Key</OrderBy>
-          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-        </Attribute>
-        <Attribute>
-          <ID>Day Number Of Month</ID>
-          <Name>Day Number Of Month</Name>
-          <Type>Days</Type>
-          <KeyColumns>
-            <KeyColumn>
-              <DataType>Integer</DataType>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimDate</TableID>
-                <ColumnID>CalenderYear</ColumnID>
-              </Source>
-            </KeyColumn>
-            <KeyColumn>
-              <DataType>Integer</DataType>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimDate</TableID>
-                <ColumnID>DayNumberOfMonth</ColumnID>
-              </Source>
-            </KeyColumn>
-          </KeyColumns>
-          <NameColumn>
-            <DataType>WChar</DataType>
-            <Source xsi:type="ColumnBinding">
-              <TableID>DW_DimDate</TableID>
-              <ColumnID>DayNumberOfMonth</ColumnID>
-            </Source>
-          </NameColumn>
-          <OrderBy>Key</OrderBy>
-          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-        </Attribute>
-        <Attribute>
-          <ID>Quarter Of Year</ID>
-          <Name>Quarter Of Year</Name>
-          <Type>Quarters</Type>
-          <KeyColumns>
-            <KeyColumn>
-              <DataType>Integer</DataType>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimDate</TableID>
-                <ColumnID>CalenderYear</ColumnID>
-              </Source>
-            </KeyColumn>
-            <KeyColumn>
-              <DataType>WChar</DataType>
-              <DataSize>5</DataSize>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimDate</TableID>
-                <ColumnID>QuarterOfYear</ColumnID>
-              </Source>
-            </KeyColumn>
-          </KeyColumns>
-          <NameColumn>
-            <DataType>WChar</DataType>
-            <DataSize>5</DataSize>
-            <Source xsi:type="ColumnBinding">
-              <TableID>DW_DimDate</TableID>
-              <ColumnID>QuarterOfYear</ColumnID>
-            </Source>
-          </NameColumn>
-          <OrderBy>Key</OrderBy>
-          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-        </Attribute>
-        <Attribute>
-          <ID>Month Of Year</ID>
-          <Name>Month Of Year</Name>
-          <Type>Months</Type>
-          <KeyColumns>
-            <KeyColumn>
-              <DataType>Integer</DataType>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimDate</TableID>
-                <ColumnID>CalenderYear</ColumnID>
-              </Source>
-            </KeyColumn>
-            <KeyColumn>
-              <DataType>WChar</DataType>
-              <DataSize>1024</DataSize>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimDate</TableID>
-                <ColumnID>MonthOfYear</ColumnID>
-              </Source>
-            </KeyColumn>
-          </KeyColumns>
-          <NameColumn>
-            <DataType>WChar</DataType>
-            <DataSize>4000</DataSize>
-            <Source xsi:type="ColumnBinding">
-              <TableID>DW_DimDate</TableID>
-              <ColumnID>MonthOfYear</ColumnID>
-            </Source>
-          </NameColumn>
-          <OrderBy>Key</OrderBy>
           <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
           <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
         </Attribute>
@@ -639,234 +323,37 @@
       <Hierarchies>
         <Hierarchy>
           <ID>Hierarchy</ID>
-          <Name>Hierarchy</Name>
+          <Name>Projects</Name>
           <Levels>
             <Level>
-              <ID>Calender Year</ID>
-              <Name>Calender Year</Name>
-              <SourceAttributeID>Calender Year</SourceAttributeID>
+              <ID>Project</ID>
+              <Name>Project</Name>
+              <SourceAttributeID>Project</SourceAttributeID>
             </Level>
             <Level>
-              <ID>Quarter Number Of Year</ID>
-              <Name>Quarter Number Of Year</Name>
-              <SourceAttributeID>Quarter Number Of Year</SourceAttributeID>
+              <ID>Project Id</ID>
+              <Name>Project Id</Name>
+              <SourceAttributeID>Project Id</SourceAttributeID>
             </Level>
             <Level>
-              <ID>Month Number Of Year</ID>
-              <Name>Month Number Of Year</Name>
-              <SourceAttributeID>Month Number Of Year</SourceAttributeID>
+              <ID>Hedge Id</ID>
+              <Name>Hedge Id</Name>
+              <SourceAttributeID>Hedge Id</SourceAttributeID>
             </Level>
+          </Levels>
+        </Hierarchy>
+        <Hierarchy>
+          <ID>Hierarchy 1 1</ID>
+          <Name>Technologies</Name>
+          <Levels>
             <Level>
-              <ID>Date Key</ID>
-              <Name>Date Key</Name>
-              <SourceAttributeID>Date Key</SourceAttributeID>
+              <ID>Technology</ID>
+              <Name>Technology</Name>
+              <SourceAttributeID>Technology</SourceAttributeID>
             </Level>
           </Levels>
         </Hierarchy>
       </Hierarchies>
-      <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
-    </Dimension>
-    <Dimension>
-      <ID>Dim Hedge</ID>
-      <Name>Dim Hedge</Name>
-      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-      <Annotations>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
-          <Value>true</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
-          <Value>false</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
-          <Value>true</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
-          <Value>0</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
-          <Value>0</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
-          <Value>0</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
-          <Value>0</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
-          <Value>100</Value>
-        </Annotation>
-      </Annotations>
-      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
-      <State>Unprocessed</State>
-      <Source xsi:type="DataSourceViewBinding">
-        <DataSourceViewID>blxdwh</DataSourceViewID>
-      </Source>
-      <UnknownMember>Visible</UnknownMember>
-      <ErrorConfiguration>
-        <KeyNotFound>ReportAndStop</KeyNotFound>
-        <KeyDuplicate>ReportAndStop</KeyDuplicate>
-        <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
-      </ErrorConfiguration>
-      <CurrentStorageMode>Molap</CurrentStorageMode>
-      <Attributes>
-        <Attribute>
-          <ID>Hedge Id</ID>
-          <Name>Hedge Id</Name>
-          <Usage>Key</Usage>
-          <KeyColumns>
-            <KeyColumn>
-              <DataType>Integer</DataType>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimHedge</TableID>
-                <ColumnID>HedgeId</ColumnID>
-              </Source>
-            </KeyColumn>
-          </KeyColumns>
-          <AttributeRelationships>
-            <AttributeRelationship>
-              <AttributeID>Project Id</AttributeID>
-              <Name>Project Id</Name>
-            </AttributeRelationship>
-            <AttributeRelationship>
-              <AttributeID>Project</AttributeID>
-              <Name>Project</Name>
-            </AttributeRelationship>
-            <AttributeRelationship>
-              <AttributeID>Technology</AttributeID>
-              <Name>Technology</Name>
-            </AttributeRelationship>
-            <AttributeRelationship>
-              <AttributeID>Type Hedge</AttributeID>
-              <Name>Type Hedge</Name>
-            </AttributeRelationship>
-            <AttributeRelationship>
-              <AttributeID>In Planif</AttributeID>
-              <Name>In Planif</Name>
-            </AttributeRelationship>
-            <AttributeRelationship>
-              <AttributeID>Asset Id</AttributeID>
-              <Name>Asset Id</Name>
-            </AttributeRelationship>
-          </AttributeRelationships>
-          <OrderBy>Key</OrderBy>
-          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-        </Attribute>
-        <Attribute>
-          <ID>Project Id</ID>
-          <Name>Project Id</Name>
-          <KeyColumns>
-            <KeyColumn>
-              <DataType>WChar</DataType>
-              <DataSize>100</DataSize>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimHedge</TableID>
-                <ColumnID>ProjectId</ColumnID>
-              </Source>
-            </KeyColumn>
-          </KeyColumns>
-          <OrderBy>Key</OrderBy>
-          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-        </Attribute>
-        <Attribute>
-          <ID>Project</ID>
-          <Name>Project</Name>
-          <KeyColumns>
-            <KeyColumn>
-              <DataType>WChar</DataType>
-              <DataSize>250</DataSize>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimHedge</TableID>
-                <ColumnID>Project</ColumnID>
-              </Source>
-            </KeyColumn>
-          </KeyColumns>
-          <OrderBy>Key</OrderBy>
-          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-        </Attribute>
-        <Attribute>
-          <ID>Technology</ID>
-          <Name>Technology</Name>
-          <KeyColumns>
-            <KeyColumn>
-              <DataType>WChar</DataType>
-              <DataSize>200</DataSize>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimHedge</TableID>
-                <ColumnID>Technology</ColumnID>
-              </Source>
-            </KeyColumn>
-          </KeyColumns>
-          <OrderBy>Key</OrderBy>
-          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-        </Attribute>
-        <Attribute>
-          <ID>Type Hedge</ID>
-          <Name>Type Hedge</Name>
-          <KeyColumns>
-            <KeyColumn>
-              <DataType>WChar</DataType>
-              <DataSize>50</DataSize>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimHedge</TableID>
-                <ColumnID>TypeHedge</ColumnID>
-              </Source>
-            </KeyColumn>
-          </KeyColumns>
-          <OrderBy>Key</OrderBy>
-          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-        </Attribute>
-        <Attribute>
-          <ID>In Planif</ID>
-          <Name>In Planif</Name>
-          <KeyColumns>
-            <KeyColumn>
-              <DataType>WChar</DataType>
-              <DataSize>50</DataSize>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimHedge</TableID>
-                <ColumnID>InPlanif</ColumnID>
-              </Source>
-            </KeyColumn>
-          </KeyColumns>
-          <OrderBy>Key</OrderBy>
-          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-        </Attribute>
-        <Attribute>
-          <ID>Asset Id</ID>
-          <Name>Asset Id</Name>
-          <KeyColumns>
-            <KeyColumn>
-              <DataType>Integer</DataType>
-              <NullProcessing>UnknownMember</NullProcessing>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimAsset</TableID>
-                <ColumnID>AssetId</ColumnID>
-              </Source>
-            </KeyColumn>
-          </KeyColumns>
-          <OrderBy>Key</OrderBy>
-          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-        </Attribute>
-      </Attributes>
       <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
     </Dimension>
     <Dimension>
@@ -879,7 +366,7 @@
           <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
           <Value>
             <dds xmlns="">
-              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-1780" scrolltop="-4022" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="7170" y="10054" backcolor="16119285" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-1780" scrolltop="-4022" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="10583" y="17965" backcolor="16119285" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
                 <font>
                   <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
                 </font>
@@ -1203,760 +690,8 @@
       </Hierarchies>
       <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
     </Dimension>
-    <Dimension>
-      <ID>Dim Hedge 1</ID>
-      <Name>Dim Hedge 1</Name>
-      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-      <Annotations>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
-          <Value>
-            <dds xmlns="">
-              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="8" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-1674" scrolltop="4761" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="4974" y="10054" backcolor="16119285" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
-                <font>
-                  <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
-                </font>
-                <mouseicon>
-                  <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
-                </mouseicon>
-              </diagram>
-              <layoutmanager>
-                <ddsxmlobj />
-              </layoutmanager>
-              <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="DimAsset" left="231" top="0" logicalid="4" controlid="1" masterid="0" hint1="0" hint2="0" width="3334" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                <control>
-                  <ddsxmlobjectstreaminitwrapper binary="000c0000060d000088130000" />
-                </control>
-                <layoutobject>
-                  <ddsxmlobj>
-                    <property name="LogicalObject" value="DW_DimAsset" vartype="8" />
-                  </ddsxmlobj>
-                </layoutobject>
-                <shape groupshapeid="0" groupnode="0" />
-              </ddscontrol>
-              <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="DimHedge" left="-1383" top="7506" logicalid="5" controlid="2" masterid="0" hint1="0" hint2="0" width="3757" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                <control>
-                  <ddsxmlobjectstreaminitwrapper binary="000c0000ad0e000088130000" />
-                </control>
-                <layoutobject>
-                  <ddsxmlobj>
-                    <property name="LogicalObject" value="DW_DimHedge" vartype="8" />
-                  </ddsxmlobj>
-                </layoutobject>
-                <shape groupshapeid="0" groupnode="0" />
-              </ddscontrol>
-              <ddscontrol controlprogid="MSDDS.Polyline" left="195" top="4501" logicalid="6" controlid="3" masterid="0" hint1="0" hint2="0" width="1003" height="3305" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                <control>
-                  <ddsxmlobj>
-                    <polyline endtypedst="6" endtypesrc="3" usercolor="1973790" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-                  </ddsxmlobj>
-                </control>
-                <layoutobject>
-                  <ddsxmlobj>
-                    <property name="LogicalObject" value="dataSet.Relations[FK_DimHedge_DimAsset]" vartype="8" />
-                    <property name="Virtual" value="0" vartype="11" />
-                    <property name="VisibleAP" value="0" vartype="3" />
-                  </ddsxmlobj>
-                </layoutobject>
-                <connector lineroutestyle="MSDDS.Rectilinear" sourceid="1" destid="2" sourceattachpoint="1" destattachpoint="6" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-                  <point x="798" y="5000" />
-                  <point x="798" y="6332" />
-                  <point x="495" y="6332" />
-                  <point x="495" y="7506" />
-                </connector>
-              </ddscontrol>
-            </dds>
-          </Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
-          <Value>true</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
-          <Value>false</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
-          <Value>true</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
-          <Value>-1674</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
-          <Value>4761</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
-          <Value>-1383</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
-          <Value>0</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
-          <Value>100</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ARDiagramLayout</Name>
-          <Value>
-            <DiagramLayout ZoomPercent="100" ViewPortX="0" ViewPortY="0" xmlns="">
-              <Shapes NodeWidth="106">
-                <Shape Id="Hedge Id" Expanded="false">
-                  <Attributes>
-                    <Attribute Id="Hedge Id" />
-                    <Attribute Id="Asset Id" />
-                    <Attribute Id="In Planif" />
-                  </Attributes>
-                  <Position x="20" y="20" />
-                </Shape>
-                <Shape Id="Project Id" Expanded="false">
-                  <Attributes>
-                    <Attribute Id="Project Id" />
-                  </Attributes>
-                  <Position x="157" y="20" />
-                </Shape>
-                <Shape Id="Project" Expanded="false">
-                  <Attributes>
-                    <Attribute Id="Project" />
-                  </Attributes>
-                  <Position x="295" y="20" />
-                </Shape>
-                <Shape Id="Technology" Expanded="false">
-                  <Attributes>
-                    <Attribute Id="Technology" />
-                  </Attributes>
-                  <Position x="432" y="20" />
-                </Shape>
-              </Shapes>
-            </DiagramLayout>
-          </Value>
-        </Annotation>
-      </Annotations>
-      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
-      <State>Unprocessed</State>
-      <Source xsi:type="DataSourceViewBinding">
-        <DataSourceViewID>blx dwh</DataSourceViewID>
-      </Source>
-      <UnknownMember>Visible</UnknownMember>
-      <ErrorConfiguration>
-        <KeyNotFound>ReportAndStop</KeyNotFound>
-        <KeyDuplicate>ReportAndStop</KeyDuplicate>
-        <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
-      </ErrorConfiguration>
-      <CurrentStorageMode>Molap</CurrentStorageMode>
-      <Attributes>
-        <Attribute>
-          <ID>Hedge Id</ID>
-          <Name>Hedge Id</Name>
-          <Usage>Key</Usage>
-          <KeyColumns>
-            <KeyColumn>
-              <DataType>Integer</DataType>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimHedge</TableID>
-                <ColumnID>HedgeId</ColumnID>
-              </Source>
-            </KeyColumn>
-          </KeyColumns>
-          <AttributeRelationships>
-            <AttributeRelationship>
-              <AttributeID>Asset Id</AttributeID>
-              <Name>Asset Id</Name>
-            </AttributeRelationship>
-            <AttributeRelationship>
-              <AttributeID>Project Id</AttributeID>
-              <Name>Project Id</Name>
-            </AttributeRelationship>
-            <AttributeRelationship>
-              <AttributeID>In Planif</AttributeID>
-              <Name>In Planif</Name>
-            </AttributeRelationship>
-            <AttributeRelationship>
-              <AttributeID>Type Hedge</AttributeID>
-              <Name>Type Hedge</Name>
-            </AttributeRelationship>
-          </AttributeRelationships>
-          <OrderBy>Key</OrderBy>
-          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-        </Attribute>
-        <Attribute>
-          <ID>Asset Id</ID>
-          <Name>Asset Id</Name>
-          <KeyColumns>
-            <KeyColumn>
-              <DataType>Integer</DataType>
-              <NullProcessing>UnknownMember</NullProcessing>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimAsset</TableID>
-                <ColumnID>AssetId</ColumnID>
-              </Source>
-            </KeyColumn>
-          </KeyColumns>
-          <OrderBy>Key</OrderBy>
-          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-        </Attribute>
-        <Attribute>
-          <ID>Project Id</ID>
-          <Name>Project Id</Name>
-          <KeyColumns>
-            <KeyColumn>
-              <DataType>WChar</DataType>
-              <DataSize>100</DataSize>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimHedge</TableID>
-                <ColumnID>ProjectId</ColumnID>
-              </Source>
-            </KeyColumn>
-          </KeyColumns>
-          <AttributeRelationships>
-            <AttributeRelationship>
-              <AttributeID>Project</AttributeID>
-              <Name>Project</Name>
-            </AttributeRelationship>
-          </AttributeRelationships>
-          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-        </Attribute>
-        <Attribute>
-          <ID>Project</ID>
-          <Name>Project</Name>
-          <KeyColumns>
-            <KeyColumn>
-              <DataType>WChar</DataType>
-              <DataSize>250</DataSize>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimHedge</TableID>
-                <ColumnID>Project</ColumnID>
-              </Source>
-            </KeyColumn>
-          </KeyColumns>
-          <AttributeRelationships>
-            <AttributeRelationship>
-              <AttributeID>Technology</AttributeID>
-              <Name>Technology</Name>
-            </AttributeRelationship>
-          </AttributeRelationships>
-          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-        </Attribute>
-        <Attribute>
-          <ID>Technology</ID>
-          <Name>Technology</Name>
-          <KeyColumns>
-            <KeyColumn>
-              <DataType>WChar</DataType>
-              <DataSize>200</DataSize>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimHedge</TableID>
-                <ColumnID>Technology</ColumnID>
-              </Source>
-            </KeyColumn>
-          </KeyColumns>
-          <NameColumn>
-            <DataType>WChar</DataType>
-            <DataSize>200</DataSize>
-            <Source xsi:type="ColumnBinding">
-              <TableID>DW_DimHedge</TableID>
-              <ColumnID>Technology</ColumnID>
-            </Source>
-          </NameColumn>
-          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-        </Attribute>
-        <Attribute>
-          <ID>In Planif</ID>
-          <Name>In Planif</Name>
-          <KeyColumns>
-            <KeyColumn>
-              <DataType>WChar</DataType>
-              <DataSize>50</DataSize>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimHedge</TableID>
-                <ColumnID>InPlanif</ColumnID>
-              </Source>
-            </KeyColumn>
-          </KeyColumns>
-          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-        </Attribute>
-        <Attribute>
-          <ID>Type Hedge</ID>
-          <Name>Type Hedge</Name>
-          <KeyColumns>
-            <KeyColumn>
-              <DataType>WChar</DataType>
-              <DataSize>50</DataSize>
-              <Source xsi:type="ColumnBinding">
-                <TableID>DW_DimHedge</TableID>
-                <ColumnID>TypeHedge</ColumnID>
-              </Source>
-            </KeyColumn>
-          </KeyColumns>
-          <NameColumn>
-            <DataType>WChar</DataType>
-            <DataSize>50</DataSize>
-            <Source xsi:type="ColumnBinding">
-              <TableID>DW_DimHedge</TableID>
-              <ColumnID>TypeHedge</ColumnID>
-            </Source>
-          </NameColumn>
-          <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
-          <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
-        </Attribute>
-      </Attributes>
-      <Hierarchies>
-        <Hierarchy>
-          <ID>Hierarchy</ID>
-          <Name>Projects</Name>
-          <Levels>
-            <Level>
-              <ID>Project</ID>
-              <Name>Project</Name>
-              <SourceAttributeID>Project</SourceAttributeID>
-            </Level>
-            <Level>
-              <ID>Project Id</ID>
-              <Name>Project Id</Name>
-              <SourceAttributeID>Project Id</SourceAttributeID>
-            </Level>
-            <Level>
-              <ID>Hedge Id</ID>
-              <Name>Hedge Id</Name>
-              <SourceAttributeID>Hedge Id</SourceAttributeID>
-            </Level>
-          </Levels>
-        </Hierarchy>
-        <Hierarchy>
-          <ID>Hierarchy 1 1</ID>
-          <Name>Technologies</Name>
-          <Levels>
-            <Level>
-              <ID>Technology</ID>
-              <Name>Technology</Name>
-              <SourceAttributeID>Technology</SourceAttributeID>
-            </Level>
-          </Levels>
-        </Hierarchy>
-      </Hierarchies>
-      <ddl300:ProcessingState>Unprocessed</ddl300:ProcessingState>
-    </Dimension>
   </Dimensions>
   <Cubes>
-    <Cube>
-      <ID>blxdwh</ID>
-      <Name>blxdwh</Name>
-      <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-      <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-      <Annotations>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
-          <Value>
-            <dds xmlns="">
-              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="16" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-2454" scrolltop="193" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="82" x="22225" y="12700" backcolor="16119285" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
-                <font>
-                  <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
-                </font>
-                <mouseicon>
-                  <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
-                </mouseicon>
-              </diagram>
-              <layoutmanager>
-                <ddsxmlobj />
-              </layoutmanager>
-              <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="DimAsset" left="231" top="11100" logicalid="8" controlid="1" masterid="0" hint1="0" hint2="0" width="3334" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                <control>
-                  <ddsxmlobjectstreaminitwrapper binary="000c0000060d000088130000" />
-                </control>
-                <layoutobject>
-                  <ddsxmlobj>
-                    <property name="LogicalObject" value="DW_DimAsset" vartype="8" />
-                  </ddsxmlobj>
-                </layoutobject>
-                <shape groupshapeid="0" groupnode="0" />
-              </ddscontrol>
-              <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="DimDate" left="6177" top="0" logicalid="9" controlid="2" masterid="0" hint1="0" hint2="0" width="3995" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                <control>
-                  <ddsxmlobjectstreaminitwrapper binary="000c00009b0f000088130000" />
-                </control>
-                <layoutobject>
-                  <ddsxmlobj>
-                    <property name="LogicalObject" value="DW_DimDate" vartype="8" />
-                  </ddsxmlobj>
-                </layoutobject>
-                <shape groupshapeid="0" groupnode="0" />
-              </ddscontrol>
-              <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="DimHedge" left="20" top="3700" logicalid="10" controlid="3" masterid="0" hint1="0" hint2="0" width="3757" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                <control>
-                  <ddsxmlobjectstreaminitwrapper binary="000c0000ad0e000088130000" />
-                </control>
-                <layoutobject>
-                  <ddsxmlobj>
-                    <property name="LogicalObject" value="DW_DimHedge" vartype="8" />
-                  </ddsxmlobj>
-                </layoutobject>
-                <shape groupshapeid="0" groupnode="0" />
-              </ddscontrol>
-              <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge.3" tooltip="FactProdPrices" left="6507" top="7400" logicalid="11" controlid="4" masterid="0" hint1="0" hint2="0" width="3334" height="5000" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                <control>
-                  <ddsxmlobjectstreaminitwrapper binary="000c0000060d000088130000" />
-                </control>
-                <layoutobject>
-                  <ddsxmlobj>
-                    <property name="LogicalObject" value="DW_FactProdPrices" vartype="8" />
-                  </ddsxmlobj>
-                </layoutobject>
-                <shape groupshapeid="0" groupnode="0" />
-              </ddscontrol>
-              <ddscontrol controlprogid="MSDDS.Polyline" left="1499" top="8400" logicalid="12" controlid="5" masterid="0" hint1="0" hint2="0" width="799" height="3200" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                <control>
-                  <ddsxmlobj>
-                    <polyline endtypedst="6" endtypesrc="3" usercolor="1973790" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-                  </ddsxmlobj>
-                </control>
-                <layoutobject>
-                  <ddsxmlobj>
-                    <property name="LogicalObject" value="dataSet.Relations[FK_DimHedge_DimAsset]" vartype="8" />
-                    <property name="Virtual" value="0" vartype="11" />
-                    <property name="VisibleAP" value="0" vartype="3" />
-                  </ddsxmlobj>
-                </layoutobject>
-                <connector lineroutestyle="MSDDS.Rectilinear" sourceid="1" destid="3" sourceattachpoint="4" destattachpoint="7" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-                  <point x="1898" y="11100" />
-                  <point x="1898" y="8700" />
-                </connector>
-              </ddscontrol>
-              <ddscontrol controlprogid="MSDDS.Polyline" left="7775" top="4501" logicalid="13" controlid="6" masterid="0" hint1="0" hint2="0" width="799" height="3199" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                <control>
-                  <ddsxmlobj>
-                    <polyline endtypedst="6" endtypesrc="3" usercolor="1973790" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-                  </ddsxmlobj>
-                </control>
-                <layoutobject>
-                  <ddsxmlobj>
-                    <property name="LogicalObject" value="dataSet.Relations[FK_FactProdPrices_DimDate]" vartype="8" />
-                    <property name="Virtual" value="0" vartype="11" />
-                    <property name="VisibleAP" value="0" vartype="3" />
-                  </ddsxmlobj>
-                </layoutobject>
-                <connector lineroutestyle="MSDDS.Rectilinear" sourceid="2" destid="4" sourceattachpoint="7" destattachpoint="4" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-                  <point x="8174" y="5000" />
-                  <point x="8174" y="7400" />
-                </connector>
-              </ddscontrol>
-              <ddscontrol controlprogid="MSDDS.Polyline" left="3477" top="5801" logicalid="14" controlid="7" masterid="0" hint1="0" hint2="0" width="3330" height="4399" noresize="0" nomove="0" nodefaultattachpoints="1" autodrag="0" usedefaultiddshape="0" selectable="1" showselectionhandles="0" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
-                <control>
-                  <ddsxmlobj>
-                    <polyline endtypedst="6" endtypesrc="3" usercolor="1973790" linestyle="0" linerender="1" customendtypedstid="0" customendtypesrcid="0" adornsvisible="1" />
-                  </ddsxmlobj>
-                </control>
-                <layoutobject>
-                  <ddsxmlobj>
-                    <property name="LogicalObject" value="dataSet.Relations[FK_FactProdPrices_DimHedge]" vartype="8" />
-                    <property name="Virtual" value="0" vartype="11" />
-                    <property name="VisibleAP" value="0" vartype="3" />
-                  </ddsxmlobj>
-                </layoutobject>
-                <connector lineroutestyle="MSDDS.Rectilinear" sourceid="3" destid="4" sourceattachpoint="23" destattachpoint="18" segmenteditmode="0" bendpointeditmode="0" bendpointvisibility="0" relatedid="0" virtual="0">
-                  <point x="3777" y="6200" />
-                  <point x="5142" y="6200" />
-                  <point x="5142" y="9900" />
-                  <point x="6507" y="9900" />
-                </connector>
-              </ddscontrol>
-            </dds>
-          </Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowFriendlyNames</Name>
-          <Value>true</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:ShowRelationshipNames</Name>
-          <Value>false</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:UseDiagramDefaultLayout</Name>
-          <Value>true</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortLeft</Name>
-          <Value>-2454</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramViewPortTop</Name>
-          <Value>193</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingLeft</Name>
-          <Value>20</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramBoundingTop</Name>
-          <Value>0</Value>
-        </Annotation>
-        <Annotation>
-          <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramZoom</Name>
-          <Value>82</Value>
-        </Annotation>
-      </Annotations>
-      <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
-      <State>Unprocessed</State>
-      <Dimensions>
-        <Dimension>
-          <ID>DimHedge</ID>
-          <Name>DimHedge</Name>
-          <DimensionID>DimHedge</DimensionID>
-          <Attributes>
-            <Attribute>
-              <AttributeID>Hedge Id</AttributeID>
-            </Attribute>
-            <Attribute>
-              <AttributeID>In Planif</AttributeID>
-            </Attribute>
-            <Attribute>
-              <AttributeID>Asset Id</AttributeID>
-            </Attribute>
-            <Attribute>
-              <AttributeID>Technology</AttributeID>
-            </Attribute>
-            <Attribute>
-              <AttributeID>Project Id</AttributeID>
-            </Attribute>
-            <Attribute>
-              <AttributeID>Project</AttributeID>
-            </Attribute>
-            <Attribute>
-              <AttributeID>Type Hedge</AttributeID>
-            </Attribute>
-          </Attributes>
-        </Dimension>
-        <Dimension>
-          <ID>DimDate2</ID>
-          <Name>Dim Date</Name>
-          <DimensionID>DimDate2</DimensionID>
-          <Attributes>
-            <Attribute>
-              <AttributeID>Date Key</AttributeID>
-            </Attribute>
-            <Attribute>
-              <AttributeID>Calender Year</AttributeID>
-            </Attribute>
-            <Attribute>
-              <AttributeID>Quarter Number Of Year</AttributeID>
-            </Attribute>
-            <Attribute>
-              <AttributeID>Month Number Of Year</AttributeID>
-            </Attribute>
-            <Attribute>
-              <AttributeID>Day Number Of Month</AttributeID>
-            </Attribute>
-            <Attribute>
-              <AttributeID>Quarter Of Year</AttributeID>
-            </Attribute>
-            <Attribute>
-              <AttributeID>Month Of Year</AttributeID>
-            </Attribute>
-          </Attributes>
-          <Hierarchies>
-            <Hierarchy>
-              <HierarchyID>Hierarchy</HierarchyID>
-            </Hierarchy>
-          </Hierarchies>
-        </Dimension>
-      </Dimensions>
-      <MeasureGroups>
-        <MeasureGroup>
-          <ID>Fact Prod Prices</ID>
-          <Name>Fact Prod Prices</Name>
-          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-          <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
-          <State>Unprocessed</State>
-          <Measures>
-            <Measure>
-              <ID>P50 Asset</ID>
-              <Name>P50 Asset</Name>
-              <Source>
-                <DataType>Double</DataType>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>DW_FactProdPrices</TableID>
-                  <ColumnID>P50Asset</ColumnID>
-                </Source>
-              </Source>
-            </Measure>
-            <Measure>
-              <ID>P90 Asset</ID>
-              <Name>P90 Asset</Name>
-              <Source>
-                <DataType>Double</DataType>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>DW_FactProdPrices</TableID>
-                  <ColumnID>P90Asset</ColumnID>
-                </Source>
-              </Source>
-            </Measure>
-            <Measure>
-              <ID>P50 Hedge</ID>
-              <Name>P50 Hedge</Name>
-              <Source>
-                <DataType>Double</DataType>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>DW_FactProdPrices</TableID>
-                  <ColumnID>P50Hedge</ColumnID>
-                </Source>
-              </Source>
-            </Measure>
-            <Measure>
-              <ID>P90 Hedge</ID>
-              <Name>P90 Hedge</Name>
-              <Source>
-                <DataType>Double</DataType>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>DW_FactProdPrices</TableID>
-                  <ColumnID>P90Hedge</ColumnID>
-                </Source>
-              </Source>
-            </Measure>
-            <Measure>
-              <ID>Contract Price</ID>
-              <Name>Contract Price</Name>
-              <Source>
-                <DataType>Double</DataType>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>DW_FactProdPrices</TableID>
-                  <ColumnID>ContractPrice</ColumnID>
-                </Source>
-              </Source>
-            </Measure>
-            <Measure>
-              <ID>Settlement Price</ID>
-              <Name>Settlement Price</Name>
-              <Source>
-                <DataType>Double</DataType>
-                <Source xsi:type="ColumnBinding">
-                  <TableID>DW_FactProdPrices</TableID>
-                  <ColumnID>SettlementPrice</ColumnID>
-                </Source>
-              </Source>
-            </Measure>
-            <Measure>
-              <ID>Fact Prod Prices Count</ID>
-              <Name>Fact Prod Prices Count</Name>
-              <AggregateFunction>Count</AggregateFunction>
-              <Source>
-                <DataType>Integer</DataType>
-                <DataSize>4</DataSize>
-                <Source xsi:type="RowBinding">
-                  <TableID>DW_FactProdPrices</TableID>
-                </Source>
-              </Source>
-            </Measure>
-          </Measures>
-          <StorageMode>Molap</StorageMode>
-          <ProcessingMode>Regular</ProcessingMode>
-          <Dimensions>
-            <Dimension xsi:type="RegularMeasureGroupDimension">
-              <CubeDimensionID>DimHedge</CubeDimensionID>
-              <Attributes>
-                <Attribute>
-                  <AttributeID>Hedge Id</AttributeID>
-                  <KeyColumns>
-                    <KeyColumn>
-                      <DataType>Integer</DataType>
-                      <Source xsi:type="ColumnBinding">
-                        <TableID>DW_FactProdPrices</TableID>
-                        <ColumnID>Hedgekey</ColumnID>
-                      </Source>
-                    </KeyColumn>
-                  </KeyColumns>
-                  <Type>Granularity</Type>
-                </Attribute>
-              </Attributes>
-            </Dimension>
-            <Dimension xsi:type="RegularMeasureGroupDimension">
-              <CubeDimensionID>DimDate2</CubeDimensionID>
-              <Attributes>
-                <Attribute>
-                  <AttributeID>Date Key</AttributeID>
-                  <KeyColumns>
-                    <KeyColumn>
-                      <DataType>Integer</DataType>
-                      <Source xsi:type="ColumnBinding">
-                        <TableID>DW_FactProdPrices</TableID>
-                        <ColumnID>DateKey</ColumnID>
-                      </Source>
-                    </KeyColumn>
-                  </KeyColumns>
-                  <Type>Granularity</Type>
-                </Attribute>
-              </Attributes>
-            </Dimension>
-          </Dimensions>
-          <Partitions>
-            <Partition>
-              <ID>Fact Prod Prices</ID>
-              <Name>Fact Prod Prices</Name>
-              <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-              <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-              <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
-              <State>Unprocessed</State>
-              <Source xsi:type="DsvTableBinding">
-                <DataSourceViewID>blxdwh</DataSourceViewID>
-                <TableID>DW_FactProdPrices</TableID>
-              </Source>
-              <StorageMode>Molap</StorageMode>
-              <CurrentStorageMode>Molap</CurrentStorageMode>
-              <ProcessingMode>Regular</ProcessingMode>
-            </Partition>
-          </Partitions>
-        </MeasureGroup>
-      </MeasureGroups>
-      <Source>
-        <DataSourceViewID>blxdwh</DataSourceViewID>
-      </Source>
-      <MdxScripts>
-        <MdxScript>
-          <ID>MdxScript</ID>
-          <Name>MdxScript</Name>
-          <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
-          <LastSchemaUpdate>0001-01-01T00:00:00Z</LastSchemaUpdate>
-          <Commands>
-            <Command>
-              <Text>/*
-The CALCULATE command controls the aggregation of leaf cells in the cube.
-If the CALCULATE command is deleted or modified, the data within the cube is affected.
-You should edit this command only if you manually specify how the cube is aggregated.
-*/
-CALCULATE; 
-CREATE MEMBER CURRENTCUBE.[Measures].[Exposition]
- AS [Measures].[P50 Asset] + [Measures].[P50 Hedge], 
-FORE_COLOR = 255 /*Red*/, 
-VISIBLE = 1  ; </Text>
-            </Command>
-          </Commands>
-        </MdxScript>
-      </MdxScripts>
-      <Kpis>
-        <Kpi>
-          <ID>KPI</ID>
-          <Name>HCR</Name>
-          <AssociatedMeasureGroupID>Fact Prod Prices</AssociatedMeasureGroupID>
-          <Value>-[Measures].[P50 Hedge]/[Measures].[P50 Asset]</Value>
-          <Goal>(HCR, 
- PARALLELPERIOD([Dim Date 1].[Calender Year].[Calender Year],1,
- [Dim Date 1].[Calender Year].CURRENTMEMBER))</Goal>
-          <TrendGraphic>Status Arrow - Ascending</TrendGraphic>
-          <StatusGraphic>Traffic Light</StatusGraphic>
-        </Kpi>
-      </Kpis>
-    </Cube>
     <Cube>
       <ID>blx dwh</ID>
       <Name>blx dwh</Name>
@@ -1967,7 +702,7 @@ VISIBLE = 1  ; </Text>
           <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
           <Value>
             <dds xmlns="">
-              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="16" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-6947" scrolltop="-23" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="78" x="17754" y="10054" backcolor="16119285" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+              <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="16" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-6947" scrolltop="-23" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="78" x="29210" y="17965" backcolor="16119285" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
                 <font>
                   <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
                 </font>
@@ -2340,41 +1075,73 @@ The CALCULATE command controls the aggregation of leaf cells in the cube.
 If the CALCULATE command is deleted or modified, the data within the cube is affected.
 You should edit this command only if you manually specify how the cube is aggregated.
 */
-CALCULATE;       
+CALCULATE;        
 CREATE MEMBER CURRENTCUBE.[Measures].[HCR]
  AS -[Measures].[P50 Hedge]/[Measures].[P50 Asset], 
 FORMAT_STRING = "Percent", 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'HCR' ,  ASSOCIATED_MEASURE_GROUP = 'Fact Prod Prices';       
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'HCR' ,  ASSOCIATED_MEASURE_GROUP = 'Fact Prod Prices';        
 CREATE MEMBER CURRENTCUBE.[Measures].[HCRStatusCalc]
  AS (HCR-HCRTARGET) / HCRTARGET, 
-VISIBLE = 0 ,  DISPLAY_FOLDER = 'HCR' ,  ASSOCIATED_MEASURE_GROUP = 'Fact Prod Prices';       
+VISIBLE = 0 ,  DISPLAY_FOLDER = 'HCR' ,  ASSOCIATED_MEASURE_GROUP = 'Fact Prod Prices';        
 CREATE MEMBER CURRENTCUBE.[Measures].[HCRXyearsAgo]
  AS ([HCR],
  PARALLELPERIOD([Dim Date 1].[Hierarchy].[Calendar Year], 2,
  [Dim Date1].[Calendar Year].CURRENTMEMBER)), 
-VISIBLE = 0 ,  DISPLAY_FOLDER = 'HCR' ,  ASSOCIATED_MEASURE_GROUP = 'Fact Prod Prices';        
+VISIBLE = 0 ,  DISPLAY_FOLDER = 'HCR' ,  ASSOCIATED_MEASURE_GROUP = 'Fact Prod Prices';         
 CREATE MEMBER CURRENTCUBE.[Measures].[Exposition]
  AS [Measures].[P50 Asset] + [Measures].[P50 Hedge], 
 FORMAT_STRING = "#,##0.00;-#,##0.00", 
 FORE_COLOR = 0 /*Black*/ , 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'Exposure' ,  ASSOCIATED_MEASURE_GROUP = 'Fact Prod Prices';      
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Exposure' ,  ASSOCIATED_MEASURE_GROUP = 'Fact Prod Prices';       
 CREATE MEMBER CURRENTCUBE.[Measures].[HCRTARGET]
  AS (HCR, 
  PARALLELPERIOD([Dim Date 1].[Calender Year].[Calender Year],1,
  [Dim Date 1].[Calender Year].CURRENTMEMBER)), 
-VISIBLE = 0 ,  DISPLAY_FOLDER = 'HCR';        
+VISIBLE = 0 ,  DISPLAY_FOLDER = 'HCR';         
 CREATE DYNAMIC SET CURRENTCUBE.[TopXProjectsXyears]
  AS TOPCOUNT([Dim Hedge 1].[Projects].[Project].MEMBERS
 	 ,10
 	 ,([Measures].[P50 Asset],
 	  [Dim Date 1].[Calender Year].&amp;[2022])
-	  ), DISPLAY_FOLDER = 'Ranking'  ;   
+	  ), DISPLAY_FOLDER = 'Ranking';    
 CREATE DYNAMIC SET CURRENTCUBE.[BottomXProjectsXyears]
  AS BOTTOMCOUNT([Dim Hedge 1].[Projects].[Project].MEMBERS
 	 ,10
 	 ,([Measures].[P50 Asset],
 	  [Dim Date 1].[Calender Year].&amp;[2022])
-	  ), DISPLAY_FOLDER = 'Ranking'  ; </Text>
+	  ), DISPLAY_FOLDER = 'Ranking'; 
+CREATE DYNAMIC SET CURRENTCUBE.[Reguled]
+ AS EXCEPT(
+	  [Dim Hedge 1].[Type Hedge].[Type Hedge].MEMBERS, 
+	  {[Dim Hedge 1].[Type Hedge].&amp;[PPA], [Dim Hedge 1].[Type Hedge].&amp;[None], 
+	  [Dim Hedge 1].[Type Hedge].&amp;[Unknown]}	
+	 ), DISPLAY_FOLDER = 'Portfolio'  ; 
+CREATE DYNAMIC SET CURRENTCUBE.[Merchant]
+ AS EXCEPT(
+	  [Dim Hedge 1].[Type Hedge].[Type Hedge].MEMBERS, 
+	  {[Dim Hedge 1].[Type Hedge].&amp;[CR], [Dim Hedge 1].[Type Hedge].&amp;[CR16], 
+	  [Dim Hedge 1].[Type Hedge].&amp;[CR17], [Dim Hedge 1].[Type Hedge].&amp;[OA]}	
+	 ), DISPLAY_FOLDER = 'Portfolio'  ; 
+CREATE DYNAMIC SET CURRENTCUBE.[Active]
+ AS EXCEPT(
+	 [Dim Hedge 1].[In Planif].[In Planif].MEMBERS,
+     [Dim Hedge 1].[In Planif].&amp;[Oui]
+	 ), DISPLAY_FOLDER = 'Portfolio'  ; 
+CREATE DYNAMIC SET CURRENTCUBE.[Planif]
+ AS EXCEPT(
+	 [Dim Hedge 1].[In Planif].[In Planif].MEMBERS,
+     [Dim Hedge 1].[In Planif].&amp;[Non]
+	 ), DISPLAY_FOLDER = 'Portfolio'  ; 
+CREATE DYNAMIC SET CURRENTCUBE.[Solar]
+ AS EXCEPT(
+	 [Dim Hedge 1].[Technology].[Technology].MEMBERS,
+     [Dim Hedge 1].[Technology].&amp;[éolien]
+	 ), DISPLAY_FOLDER = 'Portfolio'  ; 
+CREATE DYNAMIC SET CURRENTCUBE.[wp]
+ AS EXCEPT(
+	 [Dim Hedge 1].[Technology].[Technology].MEMBERS,
+     [Dim Hedge 1].[Technology].&amp;[solaire]
+	 ), DISPLAY_FOLDER = 'Portfolio'  ; </Text>
             </Command>
           </Commands>
         </MdxScript>
@@ -2383,6 +1150,7 @@ CREATE DYNAMIC SET CURRENTCUBE.[BottomXProjectsXyears]
         <Kpi>
           <ID>KPI</ID>
           <Name>Coverage Ratio</Name>
+          <DisplayFolder>HCR kpi</DisplayFolder>
           <AssociatedMeasureGroupID>Fact Prod Prices</AssociatedMeasureGroupID>
           <Value>-[Measures].[P50 Hedge]/[Measures].[P50 Asset]</Value>
           <Goal>(HCR, 

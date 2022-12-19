@@ -8,16 +8,6 @@
   </Database>
   <Cubes>
     <ProjectItem>
-      <Name>blxdwh.cube</Name>
-      <FullPath>blxdwh.cube</FullPath>
-      <Dependencies>
-        <ProjectItem>
-          <Name>blxdwh.partitions</Name>
-          <FullPath>blxdwh.partitions</FullPath>
-        </ProjectItem>
-      </Dependencies>
-    </ProjectItem>
-    <ProjectItem>
       <Name>blx dwh.cube</Name>
       <FullPath>blx dwh.cube</FullPath>
       <Dependencies>
@@ -29,18 +19,6 @@
     </ProjectItem>
   </Cubes>
   <Dimensions>
-    <ProjectItem>
-      <Name>DimHedge.dim</Name>
-      <FullPath>DimHedge.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>Dim Date.dim</Name>
-      <FullPath>Dim Date.dim</FullPath>
-    </ProjectItem>
-    <ProjectItem>
-      <Name>Dim Hedge.dim</Name>
-      <FullPath>Dim Hedge.dim</FullPath>
-    </ProjectItem>
     <ProjectItem>
       <Name>Dim Hedge 1.dim</Name>
       <FullPath>Dim Hedge 1.dim</FullPath>

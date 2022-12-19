@@ -13,35 +13,13 @@
     </DataSources>
     <Dimensions>
       <Dimension>
-        <ID>DimHedge</ID>
-      </Dimension>
-      <Dimension>
-        <ID>DimDate2</ID>
-      </Dimension>
-      <Dimension>
-        <ID>Dim Hedge</ID>
+        <ID>Dim Hedge 1</ID>
       </Dimension>
       <Dimension>
         <ID>Dim Date 1</ID>
       </Dimension>
-      <Dimension>
-        <ID>Dim Hedge 1</ID>
-      </Dimension>
     </Dimensions>
     <Cubes>
-      <Cube>
-        <ID>blxdwh</ID>
-        <MeasureGroups>
-          <MeasureGroup>
-            <ID>Fact Prod Prices</ID>
-            <Partitions>
-              <Partition>
-                <ID>Fact Prod Prices</ID>
-              </Partition>
-            </Partitions>
-          </MeasureGroup>
-        </MeasureGroups>
-      </Cube>
       <Cube>
         <ID>blx dwh</ID>
         <MeasureGroups>
