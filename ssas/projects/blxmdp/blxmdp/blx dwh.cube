@@ -8,7 +8,7 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
       <Value>
         <dds xmlns="">
-          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="16" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-6947" scrolltop="-23" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="78" x="17754" y="10054" backcolor="16119285" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="1" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="16" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-6947" scrolltop="-23" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="78" x="29210" y="17965" backcolor="16119285" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
             <font>
               <ddsxmlobjectstreamwrapper binary="01000000900144420100065461686f6d61" />
             </font>
@@ -365,41 +365,73 @@ The CALCULATE command controls the aggregation of leaf cells in the cube.
 If the CALCULATE command is deleted or modified, the data within the cube is affected.
 You should edit this command only if you manually specify how the cube is aggregated.
 */
-CALCULATE;       
+CALCULATE;        
 CREATE MEMBER CURRENTCUBE.[Measures].[HCR]
  AS -[Measures].[P50 Hedge]/[Measures].[P50 Asset], 
 FORMAT_STRING = "Percent", 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'HCR' ,  ASSOCIATED_MEASURE_GROUP = 'Fact Prod Prices';       
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'HCR' ,  ASSOCIATED_MEASURE_GROUP = 'Fact Prod Prices';        
 CREATE MEMBER CURRENTCUBE.[Measures].[HCRStatusCalc]
  AS (HCR-HCRTARGET) / HCRTARGET, 
-VISIBLE = 0 ,  DISPLAY_FOLDER = 'HCR' ,  ASSOCIATED_MEASURE_GROUP = 'Fact Prod Prices';       
+VISIBLE = 0 ,  DISPLAY_FOLDER = 'HCR' ,  ASSOCIATED_MEASURE_GROUP = 'Fact Prod Prices';        
 CREATE MEMBER CURRENTCUBE.[Measures].[HCRXyearsAgo]
  AS ([HCR],
  PARALLELPERIOD([Dim Date 1].[Hierarchy].[Calendar Year], 2,
  [Dim Date1].[Calendar Year].CURRENTMEMBER)), 
-VISIBLE = 0 ,  DISPLAY_FOLDER = 'HCR' ,  ASSOCIATED_MEASURE_GROUP = 'Fact Prod Prices';        
+VISIBLE = 0 ,  DISPLAY_FOLDER = 'HCR' ,  ASSOCIATED_MEASURE_GROUP = 'Fact Prod Prices';         
 CREATE MEMBER CURRENTCUBE.[Measures].[Exposition]
  AS [Measures].[P50 Asset] + [Measures].[P50 Hedge], 
 FORMAT_STRING = "#,##0.00;-#,##0.00", 
 FORE_COLOR = 0 /*Black*/ , 
-VISIBLE = 1 ,  DISPLAY_FOLDER = 'Exposure' ,  ASSOCIATED_MEASURE_GROUP = 'Fact Prod Prices';      
+VISIBLE = 1 ,  DISPLAY_FOLDER = 'Exposure' ,  ASSOCIATED_MEASURE_GROUP = 'Fact Prod Prices';       
 CREATE MEMBER CURRENTCUBE.[Measures].[HCRTARGET]
  AS (HCR, 
  PARALLELPERIOD([Dim Date 1].[Calender Year].[Calender Year],1,
  [Dim Date 1].[Calender Year].CURRENTMEMBER)), 
-VISIBLE = 0 ,  DISPLAY_FOLDER = 'HCR';        
+VISIBLE = 0 ,  DISPLAY_FOLDER = 'HCR';         
 CREATE DYNAMIC SET CURRENTCUBE.[TopXProjectsXyears]
  AS TOPCOUNT([Dim Hedge 1].[Projects].[Project].MEMBERS
 	 ,10
 	 ,([Measures].[P50 Asset],
 	  [Dim Date 1].[Calender Year].&amp;[2022])
-	  ), DISPLAY_FOLDER = 'Ranking'  ;   
+	  ), DISPLAY_FOLDER = 'Ranking';    
 CREATE DYNAMIC SET CURRENTCUBE.[BottomXProjectsXyears]
  AS BOTTOMCOUNT([Dim Hedge 1].[Projects].[Project].MEMBERS
 	 ,10
 	 ,([Measures].[P50 Asset],
 	  [Dim Date 1].[Calender Year].&amp;[2022])
-	  ), DISPLAY_FOLDER = 'Ranking'  ; </Text>
+	  ), DISPLAY_FOLDER = 'Ranking'; 
+CREATE DYNAMIC SET CURRENTCUBE.[Reguled]
+ AS EXCEPT(
+	  [Dim Hedge 1].[Type Hedge].[Type Hedge].MEMBERS, 
+	  {[Dim Hedge 1].[Type Hedge].&amp;[PPA], [Dim Hedge 1].[Type Hedge].&amp;[None], 
+	  [Dim Hedge 1].[Type Hedge].&amp;[Unknown]}	
+	 ), DISPLAY_FOLDER = 'Portfolio'  ; 
+CREATE DYNAMIC SET CURRENTCUBE.[Merchant]
+ AS EXCEPT(
+	  [Dim Hedge 1].[Type Hedge].[Type Hedge].MEMBERS, 
+	  {[Dim Hedge 1].[Type Hedge].&amp;[CR], [Dim Hedge 1].[Type Hedge].&amp;[CR16], 
+	  [Dim Hedge 1].[Type Hedge].&amp;[CR17], [Dim Hedge 1].[Type Hedge].&amp;[OA]}	
+	 ), DISPLAY_FOLDER = 'Portfolio'  ; 
+CREATE DYNAMIC SET CURRENTCUBE.[Active]
+ AS EXCEPT(
+	 [Dim Hedge 1].[In Planif].[In Planif].MEMBERS,
+     [Dim Hedge 1].[In Planif].&amp;[Oui]
+	 ), DISPLAY_FOLDER = 'Portfolio'  ; 
+CREATE DYNAMIC SET CURRENTCUBE.[Planif]
+ AS EXCEPT(
+	 [Dim Hedge 1].[In Planif].[In Planif].MEMBERS,
+     [Dim Hedge 1].[In Planif].&amp;[Non]
+	 ), DISPLAY_FOLDER = 'Portfolio'  ; 
+CREATE DYNAMIC SET CURRENTCUBE.[Solar]
+ AS EXCEPT(
+	 [Dim Hedge 1].[Technology].[Technology].MEMBERS,
+     [Dim Hedge 1].[Technology].&amp;[éolien]
+	 ), DISPLAY_FOLDER = 'Portfolio'  ; 
+CREATE DYNAMIC SET CURRENTCUBE.[wp]
+ AS EXCEPT(
+	 [Dim Hedge 1].[Technology].[Technology].MEMBERS,
+     [Dim Hedge 1].[Technology].&amp;[solaire]
+	 ), DISPLAY_FOLDER = 'Portfolio'  ; </Text>
         </Command>
       </Commands>
     </MdxScript>
@@ -408,6 +440,7 @@ CREATE DYNAMIC SET CURRENTCUBE.[BottomXProjectsXyears]
     <Kpi dwd:design-time-name="f27cf68f-832b-415a-93c3-36ad08d5deee">
       <ID>KPI</ID>
       <Name>Coverage Ratio</Name>
+      <DisplayFolder>HCR kpi</DisplayFolder>
       <AssociatedMeasureGroupID>Fact Prod Prices</AssociatedMeasureGroupID>
       <Value>-[Measures].[P50 Hedge]/[Measures].[P50 Asset]</Value>
       <Goal>(HCR, 
